@@ -1,28 +1,58 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-const MonthSelection = () => {
-    const [mes, setMes] = useState('Janeiro') //estado inicial é janeiro
+const MonthSelection = ({onMonthChange, onYearChange}) => {
+    const [month, setMonth] = useState(0) //estado inicial é janeiro
+    const [year, setYear] = useState(2020)
 
-    const onMonthChange = (e) => {
-        setMes(e.target.value)
+    //skips to the next month, can also handle if it is December
+    const nextMonth = () => {
+        if (month===11) {
+            //if it is December (11), we set the month back to January (0), and we change year.
+            setMonth(0)
+            setYear(year + 1)
+            onYearChange //calls function onYearChange??
+        }
+        else setMonth(month + 1)
+
+        onMonthChange //calls function onMonthChange??
+    }
+
+    //skips to the previous month, can also handle if it is January
+    const previousMonth = () => {
+        if (month===0) {
+            //if it is December (11), we set the month back to January (0), and we change year.
+            setMonth(11)
+            setYear(year - 1)
+            onYearChange
+        }
+        else setMonth(month - 1)
+
+        onMonthChange
+    }
+
+    //Returns the month corresponding to the int month
+    const showMonth = () => {
+        switch (month) {
+            case 0: return "Janeiro";
+            case 1: return "Fevereiro";
+            case 2: return "Março";
+            case 3: return "Abril";
+            case 4: return "Maio";
+            case 5: return "Junho";
+            case 6: return "Julho";
+            case 7: return "Agosto";
+            case 8: return "Setembro";
+            case 9: return "Outubro";
+            case 10: return "Novembro";
+            case 11: return "Dezembro";
+        }
     }
     
   return (
     <div>
-        <select id="months" name="months" value={mes} onChange={onMonthChange}>
-            <option value="Janeiro">Janeiro</option>
-            <option value="Fevereiro">Fevereiro</option>
-            <option value="Março">Março</option>
-            <option value="Abril">Abril</option>
-            <option value="Maio">Maio</option>
-            <option value="Junho">Junho</option>
-            <option value="Julho">Julho</option>
-            <option value="Agosto">Agosto</option>
-            <option value="Setembro">Setembro</option>
-            <option value="Outubro">Outubro</option>
-            <option value="Novembro">Novembro</option>
-            <option value="Dezembro">Dezembro</option>
-        </select>
+        <button onClick={previousMonth}>&larr;</button>
+        <text>{showMonth()}</text>
+        <button onClick={nextMonth}>&rarr;</button>
     </div>
   )
 }
