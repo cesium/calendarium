@@ -32,10 +32,10 @@ const MonthSelection = ({onMonthChange, onYearChange, month, year}) => {
     
   return (
     <div>
-        <h2>
-            <button onClick={previousMonth}>&larr;</button> 
-            {showMonth()} 
-            <button onClick={nextMonth}>&rarr;</button>
+        <h2 className="flex justify-center space-x-9 w-56 bg-gray-200 rounded-full outline-gray-400 outline">
+            <button className="w-8 text-2xl" onClick={previousMonth}>&larr;</button> 
+            <span className="flex-none w-28 font-sans text-2xl text-center">{showMonth()}</span>
+            <button className="w-8 text-2xl" onClick={nextMonth}>&rarr;</button>
         </h2>
     </div>
   )
