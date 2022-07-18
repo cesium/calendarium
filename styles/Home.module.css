@@ -108,6 +108,11 @@
   margin-left: 0.5rem;
 }
 
+.calendar {
+  margin: auto;
+  padding: 10px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
