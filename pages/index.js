@@ -7,13 +7,34 @@ import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import myEvents from "./events";
+import  html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
 
+
 export default function Home() {
-    return (
-        <div className={styles.container}>
+    const exportPDF = () => {
+        const input = document.getElementById("APP")
+        html2canvas(input,{logging:true, letterRendering:1,userCors: true}).then(canvas=>{
+            const imgwidth= 208;
+            const imgHeight= canvas.height * imgwidth/ canvas.width;
+            const imgData = canvas.toDataURL('img/png')
+            const pdf = new jsPDF ('p','mm','a4');
+            pdf.addImage(imgData, 'PNG',0,0,imgwidth, imgHeight);
+            pdf.save("calendario.pdf")
+        })
+
+    }
+
+    return ( 
+        <div className="Home">
+            <button onClick={() => exportPDF()}>Tranferir para PDF</button>
+
+      
+<div className={styles.container}>
             <Head>
                 <title>Calendarium</title>
                 <meta
@@ -24,7 +45,7 @@ export default function Home() {
             </Head>
             <Navbar />
 
-            <div className={styles.calendar}>
+            <div id= "APP" className={styles.calendar}>
                 <Calendar
                     localizer={localizer}
                     //Establishing some default definitions
@@ -54,12 +75,19 @@ export default function Home() {
                     min={new Date(2022, 0, 1, 8, 0)}
                     max={new Date(2022, 0, 1, 21, 0)}
                     style={{ height: "90vh" }}
+                    
                 />
+            
+           
             </div>
-
+                        
             <div className={styles.footer}>
                 <img src="/cesium-full-logo.png" width="15%" />
             </div>
+            
         </div>
+    
+    
+       </div>
     );
 }
