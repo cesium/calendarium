@@ -1,15 +1,16 @@
-import Head from "next/head";
-import Image from "next/image";
-import Navbar from "../Components/Navbar";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "moment/locale/en-gb";
-import styles from "../styles/Home.module.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import myEvents from "./events";
+import TextBox from './textBox'
+import Navbar from '../Components/Navbar'
+import emailjs from "emailjs-com"
+import Head from 'next/head'
+import Image from 'next/image'
+import { Calendar, momentLocalizer } from "react-big-calendar"
+import moment from "moment"
+import "moment/locale/en-gb"
+import styles from '../styles/Home.module.css'
+import "react-big-calendar/lib/css/react-big-calendar.css"
+import myEvents from './events'
 import  html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-
 
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
@@ -34,7 +35,7 @@ export default function Home() {
             <button onClick={() => exportPDF()}>Tranferir para PDF</button>
 
       
-<div className={styles.container}>
+      <div className={styles.container}>
             <Head>
                 <title>Calendarium</title>
                 <meta
@@ -68,7 +69,9 @@ export default function Home() {
                         };
 
                         return { style: newStyle };
-                    }}
+                      }
+                    }
+                    
                     //Using the array of all events
                     events={myEvents}
                     //Limit the time for the events (Between 8:00 and 20:00)
@@ -80,14 +83,13 @@ export default function Home() {
             
            
             </div>
-                        
-            <div className={styles.footer}>
-                <img src="/cesium-full-logo.png" width="15%" />
-            </div>
-            
-        </div>
-    
-    
-       </div>
-    );
+      <div className="textbox"> 
+          <TextBox />
+      </div>
+      <div className={styles.footer}>
+        <img src="/cesium-full-logo.png" width="15%"/>
+      </div>
+      
+    </div> 
+  )
 }
