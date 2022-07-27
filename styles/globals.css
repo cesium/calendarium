@@ -51,28 +51,31 @@ a {
     margin-top: 30px;
     margin-left: 50px;
     margin-bottom: 50px;
-    width: 30%;
-    display: inline-block;
+    display: block;
 }
 
 .txt-caixa {
-    width: 200px;
+    width: 300px;
     margin-top: 10px;
     background-color: #D3D3D3;
     padding: 10px 10px;
     border: solid 2px black;
     border-radius: 5px;
+    display: block;
 }
 
 .txt-caixa input {
-    max-width: 90%;
+    width: 90%;
     border-radius: 2px;
     margin-bottom: 10px;
+    display: block;
 }
 
 .txt-msg {
+    width: 90%;
     max-width: 90%;
     border-radius: 2px;
+    display: block;
 }
 
 .txt-send-button {
@@ -82,6 +85,7 @@ a {
     padding: 2px 5px;
     cursor: pointer;
     background-color: #A9A9A9;
+    display: block;
 }
 
 .txt-send-button:hover {
