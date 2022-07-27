@@ -113,6 +113,13 @@
   padding: 10px;
 }
 
+.filter {
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  max-width: 150vh;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
