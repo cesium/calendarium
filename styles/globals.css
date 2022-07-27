@@ -19,55 +19,71 @@ a {
 
 .navbar {
     display: flex;
-    margin: auto;
+    justify-content: space-between;
     height: 75px;
     padding: 16px 32px;
     box-shadow: 0px 5px 7px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
 
 .nav-cesium-logo {
     height: 100%;
-    margin-right: auto;
-}
-
-.button {
-    background-color: rgb(105, 105, 105);
-    display: flex;
-    text-align: center;
-    width: 10rem;
-    justify-content: center;
-    padding: 10px;
-    color: white;
-}
-
-.button:hover {
-    background-color: rgba(179, 179, 179, 0.857);
-}
-
-.menu.active {
-    opacity: 1;
-    visibility: visible;
-    justify-content: center;
-    width: 10rem;
-    list-style: none;
-    text-align: start;
-    background-color: rgb(105, 105, 105);
-}
-
-.menu {
-    opacity: 0;
-}
-
-
-.menu.active li {
-    padding: 16px;
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: white;
     cursor: pointer;
 }
 
-.menu.active li:hover {
-    background-color: rgba(216, 216, 216, 0.857);
+.navbar-button-pdf {
+    background-color: #ED7950;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 150px;
+    padding: 5px;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.navbar-button-pdf:hover {
+    opacity: 75%;
+}
+
+.txt-container-border {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 30%;
+    display: inline-block;
+}
+
+.txt-caixa {
+    width: 200px;
+    margin-top: 10px;
+    background-color: #D3D3D3;
+    padding: 10px 10px;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.txt-caixa input {
+    max-width: 90%;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.txt-msg {
+    max-width: 90%;
+    border-radius: 2px;
+}
+
+.txt-send-button {
+    margin-top: 30px;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 2px 5px;
+    cursor: pointer;
+    background-color: #A9A9A9;
+}
+
+.txt-send-button:hover {
+    opacity: 50%;
 }
