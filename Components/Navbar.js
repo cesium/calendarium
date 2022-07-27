@@ -12,6 +12,6 @@ export default function Navbar() {
                 <img src="./cesium-full-logo.png" className="nav-cesium-logo" />
             </Link>
             <Dropdown />
-        </nav>
+        </nav>   
     );
 }
