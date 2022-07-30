@@ -5,13 +5,13 @@ import jsPDF from "jspdf";
 
 export default function Navbar() {
     const exportPDF = () => {
-        const input = document.getElementById("APP");
+        const input = document.getElementById("pdf");
         html2canvas(input, {
             logging: true,
             letterRendering: 1,
             userCors: true,
         }).then((canvas) => {
-            const imgwidth = 208;
+            const imgwidth = 200;
             const imgHeight = (canvas.height * imgwidth) / canvas.width;
             const imgData = canvas.toDataURL("img/png");
             const pdf = new jsPDF("p", "mm", "a4");

@@ -22,9 +22,6 @@ export default function Home() {
     //Function to update the Events with the selected Filters
     const showNewEvents = (f) => {
 
-        console.log(f)
-        console.log(myEvents)
-
         const filters = Object.values(f)
         const newEvents = [...myEvents]
 
@@ -38,7 +35,6 @@ export default function Home() {
     
     //Function to update the Filters state
     const handleFilters = (myFilters) =>{
-        console.log(myFilters)
         const newFilters = {...myFilters}
 
         setFilters(newFilters)
@@ -58,7 +54,7 @@ export default function Home() {
                 </Head>
                 <Navbar />
 
-                <div id="APP" className={styles.calendar}>
+                <div id="pdf" className={styles.calendar}>
                     <Calendar
                         localizer={localizer}
                         //Establishing some default definitions

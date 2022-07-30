@@ -1,15 +1,21 @@
 import emailjs from "emailjs-com";
 
+let email_service = process.env.PRIVATE_ID_EMAIL_SERVICE
+
+let template = process.env.PRIVATE_ID_TEMPLATE
+
+let user = process.env.PRIVATE_ID_USER
+
 const TextBox = () => {
     function sendEmail(e) {
         e.preventDefault();
 
         emailjs
             .sendForm(
-                "service_oxvmxpc",
-                "template_cqb2zyg",
+                email_service,
+                template,
                 e.target,
-                "53zgb406krqnsJIF_"
+                user
             )
             .then((res) => {
                 console.log(res);
@@ -23,15 +29,6 @@ const TextBox = () => {
                 Box for suggestions!
             </h1>
             <form className="txt-caixa" onSubmit={sendEmail}>
-                <label>Name</label>
-                <input type="text" name="name" className="form-control" />
-
-                <label>Email</label>
-                <input
-                    type="email"
-                    name="user_email"
-                    className="form-control"
-                />
 
                 <label className="txt-msg">Message</label>
 
