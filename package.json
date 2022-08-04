@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write . --ignore-path .gitignore"
   },
   "dependencies": {
     "@types/react-big-calendar": "^0.38.1",

@@ -7,4 +7,4 @@ module.exports = {
 
     PRIVATE_ID_USER:"0BfQ5jno1Qi05monO",
   }
-}
+};
