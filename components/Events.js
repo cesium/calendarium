@@ -12,6 +12,8 @@ Group Id:
 6 -> UMinho activities
 */
 
+
+
 export default [
   {
     title: "CeSIUM - Evento top",

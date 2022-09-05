@@ -15,6 +15,8 @@ ID 0 and 1 will be for the elements of Others group
 
 The attributes "groupId" and "semester" are for functions at the Checkbox
 */
+
+
 export default [
   {
     id: 0,

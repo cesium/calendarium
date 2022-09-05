@@ -9,14 +9,21 @@ import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import myEvents from "../components/Events";
 import CheckBox from "../components/CheckBox";
+import Modal from "../components/Modal";
+import BasicModal from "../components/Modal";
 
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
+
+
+
+
 
 export default function Home() {
   //States and update functions for both Filters and Events
   const [Events, setEvents] = useState(myEvents);
   const [Filters, setFilters] = useState([]);
+  const [selected, setSelected] = useState();
 
   //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
@@ -32,7 +39,7 @@ export default function Home() {
 
     setEvents(newEvents);
   };
-
+  
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
     console.log(myFilters);
@@ -42,6 +49,12 @@ export default function Home() {
     showNewEvents(newFilters);
   };
 
+  // Function to update a selected event
+  const handleSelected = (mySelected) => {
+    console.info('[handleSelected - event]', mySelected);
+    setSelected(mySelected);
+    console.log(selected);
+  };
   return (
     <div className="Home">
       <div className={styles.container}>
@@ -53,8 +66,12 @@ export default function Home() {
         <Navbar />
 
         <div id="APP" className={styles.calendar}>
+          {/* if event is clicked open modal */}
+          {selected && <BasicModal content={selected}/>}
           <Calendar
             localizer={localizer}
+            selected={selected}
+            onSelectEvent={handleSelected}
             //Establishing some default definitions
             defaultDate={new Date()}
             defaultView="month"
