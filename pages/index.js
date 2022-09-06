@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import fsPromises from "fs/promises";
 import path from "path";
 import TextBox from "../components/TextBox";
@@ -88,14 +89,22 @@ export default function Home({ events, filters }) {
           />
         </div>
         <div className={styles.filter}>
-          <CheckBox handleFilters={(myFilters) => handleFilters(myFilters)} />
+          <CheckBox
+            filters={filters}
+            handleFilters={(myFilters) => handleFilters(myFilters)}
+          />
         </div>
       </div>
       <div className="textbox">
         <TextBox />
       </div>
       <div className={styles.footer}>
-        <img src="/cesium-full-logo.png" width="15%" />
+        <Image
+          width={21}
+          height={21}
+          src="/cesium-full-logo.png"
+          alt="Logo do Cesium"
+        />
       </div>
     </div>
   );
