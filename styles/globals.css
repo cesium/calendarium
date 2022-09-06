@@ -24,8 +24,8 @@ a {
   justify-content: space-between;
   height: 75px;
   padding: 16px 32px;
-  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
 }
 
 .nav-cesium-logo {
@@ -34,13 +34,13 @@ a {
 }
 
 .navbar-button-pdf {
-  background-color: #ed7950;
-  color: white;
   display: flex;
-  text-align: center;
   justify-content: center;
   width: 150px;
   padding: 5px;
+  color: white;
+  text-align: center;
+  background-color: #ed7950;
   border: solid 2px black;
   border-radius: 5px;
 }
@@ -50,44 +50,44 @@ a {
 }
 
 .txt-container-border {
-  margin-top: 30px;
-  margin-left: 50px;
-  margin-bottom: 50px;
   display: block;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-left: 50px;
 }
 
 .txt-caixa {
+  display: block;
   width: 300px;
+  padding: 10px 10px;
   margin-top: 10px;
   background-color: #d3d3d3;
-  padding: 10px 10px;
   border: solid 2px black;
   border-radius: 5px;
-  display: block;
 }
 
 .txt-caixa input {
-  width: 90%;
-  border-radius: 2px;
-  margin-bottom: 10px;
   display: block;
+  width: 90%;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 .txt-msg {
+  display: block;
   width: 90%;
   max-width: 90%;
   border-radius: 2px;
-  display: block;
 }
 
 .txt-send-button {
-  margin-top: 30px;
-  border: solid 2px black;
-  border-radius: 5px;
+  display: block;
   padding: 2px 5px;
+  margin-top: 30px;
   cursor: pointer;
   background-color: #a9a9a9;
-  display: block;
+  border: solid 2px black;
+  border-radius: 5px;
 }
 
 .txt-send-button:hover {
