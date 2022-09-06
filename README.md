@@ -6,17 +6,17 @@ This project consist in a calendar of exams, projects due dates and events of Gr
 
 In this project, the following _open-source_ resources were used:
 
-+ [Next.js](https://nextjs.org/) (using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app))
+- [Next.js](https://nextjs.org/) (using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app))
 
-+ [React-Big-Calendar](https://github.com/jquense/react-big-calendar)
+- [React-Big-Calendar](https://github.com/jquense/react-big-calendar)
 
-+ [Ant Desgin](https://ant.design/docs/react/introduce) ([Documentation](https://github.com/ant-design/ant-design/))
+- [Ant Desgin](https://ant.design/docs/react/introduce) ([Documentation](https://github.com/ant-design/ant-design/))
 
-+ [EmailJs](https://www.emailjs.com/)
+- [EmailJs](https://www.emailjs.com/)
 
-+ [html2pdf](https://github.com/eKoopmans/html2pdf.js)
+- [html2pdf](https://github.com/eKoopmans/html2pdf.js)
 
-+ [jsPDF](https://github.com/parallax/jsPDF)
+- [jsPDF](https://github.com/parallax/jsPDF)
 
 ## Getting Started
 
