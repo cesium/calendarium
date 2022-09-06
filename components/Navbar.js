@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -23,9 +23,20 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <Link href="https://cesium.link/">
-        <img src="./cesium-full-logo.png" className="nav-cesium-logo" />
+        <Image
+          width={100}
+          height={21}
+          src="/cesium-full-logo.png"
+          className="nav-cesium-logo"
+          alt="CeSIUM Link"
+        />
       </Link>
-      <img src="./calendar-icon.ico" />
+      <Image
+        width={32}
+        height={21}
+        src="/calendar-icon.ico"
+        alt="Calendarium"
+      />
       <button onClick={() => exportPDF()} className="navbar-button-pdf">
         Extract to PDF
       </button>
