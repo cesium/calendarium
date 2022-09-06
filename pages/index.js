@@ -24,7 +24,7 @@ export default function Home() {
   const [Events, setEvents] = useState(myEvents);
   const [Filters, setFilters] = useState([]);
   const [selected, setSelected] = useState();
-
+  const [open, setOpen] = useState(false);
   //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
     console.log(f);
@@ -51,9 +51,8 @@ export default function Home() {
 
   // Function to update a selected event
   const handleSelected = (mySelected) => {
-    console.info('[handleSelected - event]', mySelected);
     setSelected(mySelected);
-    console.log(selected);
+    setOpen(!open);
   };
   return (
     <div className="Home">
@@ -66,8 +65,7 @@ export default function Home() {
         <Navbar />
 
         <div id="APP" className={styles.calendar}>
-          {/* if event is clicked open modal */}
-          {selected && <BasicModal content={selected}/>}
+          {open && <BasicModal content={selected} />}
           <Calendar
             localizer={localizer}
             selected={selected}

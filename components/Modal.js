@@ -22,7 +22,6 @@ export default function BasicModal(info) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    window.location.reload();
   }
   const title = info.content.title;
   const start = JSON.stringify(info.content.start);
