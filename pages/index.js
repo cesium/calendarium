@@ -14,7 +14,7 @@ import CheckBox from "../components/CheckBox";
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
 
-export default function Home({ events }) {
+export default function Home({ events, filters }) {
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
@@ -22,7 +22,7 @@ export default function Home({ events }) {
   };
   //States and update functions for both Filters and Events
   const [Events, setEvents] = useState(events.map(configureDates));
-  const [Filters, setFilters] = useState([]);
+  const [Filters, setFilters] = useState(filters);
 
   //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
@@ -102,12 +102,17 @@ export default function Home({ events }) {
 }
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "data/events.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const events = JSON.parse(jsonData);
+  const eventFilePath = path.join(process.cwd(), "data/events.json");
+  const eventData = await fsPromises.readFile(eventFilePath);
+  const events = JSON.parse(eventData);
+
+  const filterFilePath = path.join(process.cwd(), "data/filters.json");
+  const filterData = await fsPromises.readFile(filterFilePath);
+  const filters = JSON.parse(filterData);
   return {
     props: {
       events: events,
+      filters: filters,
     },
   };
 }
