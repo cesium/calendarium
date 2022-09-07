@@ -39,7 +39,7 @@ export default function Home({ events, filters }) {
 
     setEvents(newEvents);
   };
-  
+
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
     const newFilters = { ...myFilters };

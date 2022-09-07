@@ -4,8 +4,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "next lint",
+    "lint:css": "stylelint --fix './**/*.css' --ignore-path .gitignore",
     "format": "prettier --write . --ignore-path .gitignore",
-    "lint": "next lint"
+    "test": "npm-run-all test:*",
+    "test:lint": "npm-run-all test:lint:*",
+    "test:lint:js": "next lint",
+    "test:lint:css": "stylelint './**/*.css' --ignore-path .gitignore",
+    "test:format": "prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
     "@types/react-big-calendar": "^0.38.1",
@@ -15,10 +22,18 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "next": "latest",
+    "npm-run-all": "^4.1.5",
     "react": "^17.0.2",
     "react-big-calendar": "^1.4.2",
     "react-dom": "^17.0.2",
-    "react-pdf": "^5.7.2"
+    "react-pdf": "^5.7.2",
+    "stylelint": "^14.11.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-csstree-validator": "^2.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
@@ -27,7 +42,7 @@
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
     "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
+    "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.1",
     "tailwindcss": "^2.0.4",
     "typescript": "4.5.4"
