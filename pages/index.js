@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
+import fsPromises from "fs/promises";
+import path from "path";
 import TextBox from "../components/TextBox";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
@@ -7,7 +10,6 @@ import moment from "moment";
 import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import myEvents from "../components/Events";
 import CheckBox from "../components/CheckBox";
 import Modal from "../components/Modal";
 import BasicModal from "../components/Modal";
@@ -15,23 +17,22 @@ import BasicModal from "../components/Modal";
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
 
-
-
-
-
-export default function Home() {
+export default function Home({ events, filters }) {
+  const configureDates = (event) => {
+    event.start = new Date(event.start);
+    event.end = new Date(event.end);
+    return event;
+  };
   //States and update functions for both Filters and Events
-  const [Events, setEvents] = useState(myEvents);
-  const [Filters, setFilters] = useState([]);
+  const [Events, setEvents] = useState(events.map(configureDates));
+  const [Filters, setFilters] = useState(filters);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
+
   //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
-    console.log(f);
-    console.log(myEvents);
-
     const filters = Object.values(f);
-    const newEvents = [...myEvents];
+    const newEvents = [...events];
 
     if (filters.length > 0) {
       newEvents = newEvents.filter((ev) => filters.includes(ev.filterId));
@@ -42,7 +43,6 @@ export default function Home() {
   
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
-    console.log(myFilters);
     const newFilters = { ...myFilters };
 
     setFilters(newFilters);
@@ -101,15 +101,39 @@ export default function Home() {
         </div>
         {open && <BasicModal content={selected} />}
         <div className={styles.filter}>
-          <CheckBox handleFilters={(myFilters) => handleFilters(myFilters)} />
+          <CheckBox
+            filters={filters}
+            handleFilters={(myFilters) => handleFilters(myFilters)}
+          />
         </div>
       </div>
       <div className="textbox">
         <TextBox />
       </div>
       <div className={styles.footer}>
-        <img src="/cesium-full-logo.png" width="15%" />
+        <Image
+          width={21}
+          height={21}
+          src="/cesium-full-logo.png"
+          alt="Logo do Cesium"
+        />
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const eventFilePath = path.join(process.cwd(), "data/events.json");
+  const eventData = await fsPromises.readFile(eventFilePath);
+  const events = JSON.parse(eventData);
+
+  const filterFilePath = path.join(process.cwd(), "data/filters.json");
+  const filterData = await fsPromises.readFile(filterFilePath);
+  const filters = JSON.parse(filterData);
+  return {
+    props: {
+      events: events,
+      filters: filters,
+    },
+  };
 }

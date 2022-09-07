@@ -1,12 +1,11 @@
-import { Button, Modal } from 'antd';
-import { useState } from 'react';
-
+import { Button, Modal } from "antd";
+import { useState } from "react";
 
 const style = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100vh',
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100vh",
 };
 
 function BasicModal(info) {
@@ -35,13 +34,23 @@ function BasicModal(info) {
 
   return (
     <>
-      <Modal title={title} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={500} centered={true} visible={isModalOpen}>
-        <p>Data: {start} - {end}</p>
+      <Modal
+        title={title}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={500}
+        centered={true}
+        visible={isModalOpen}
+      >
+        <p>
+          Data: {start} - {end}
+        </p>
         <p>Ano: {groupId}</p>
         <p>Descrição</p>
       </Modal>
     </>
   );
-};
+}
 
 export default BasicModal;
