@@ -11,7 +11,6 @@ import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CheckBox from "../components/CheckBox";
-import Modal from "../components/Modal";
 import BasicModal from "../components/Modal";
 
 //To localize the format of the calendar
