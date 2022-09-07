@@ -65,7 +65,6 @@ export default function Home() {
         <Navbar />
 
         <div id="APP" className={styles.calendar}>
-          {open && <BasicModal content={selected} />}
           <Calendar
             localizer={localizer}
             selected={selected}
@@ -100,6 +99,7 @@ export default function Home() {
             style={{ height: "90vh" }}
           />
         </div>
+        {open && <BasicModal content={selected} />}
         <div className={styles.filter}>
           <CheckBox handleFilters={(myFilters) => handleFilters(myFilters)} />
         </div>
