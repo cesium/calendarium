@@ -11,6 +11,7 @@ import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CheckBox from "../components/CheckBox";
+import BasicModal from "../components/Modal";
 
 //To localize the format of the calendar
 const localizer = momentLocalizer(moment);
@@ -24,6 +25,8 @@ export default function Home({ events, filters }) {
   //States and update functions for both Filters and Events
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
+  const [selected, setSelected] = useState();
+  const [open, setOpen] = useState(false);
 
   //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
@@ -36,7 +39,7 @@ export default function Home({ events, filters }) {
 
     setEvents(newEvents);
   };
-
+  
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
     const newFilters = { ...myFilters };
@@ -45,6 +48,11 @@ export default function Home({ events, filters }) {
     showNewEvents(newFilters);
   };
 
+  // Function to update a selected event
+  const handleSelected = (mySelected) => {
+    setSelected(mySelected);
+    setOpen(!open);
+  };
   return (
     <div className="Home">
       <div className={styles.container}>
@@ -58,6 +66,8 @@ export default function Home({ events, filters }) {
         <div id="APP" className={styles.calendar}>
           <Calendar
             localizer={localizer}
+            selected={selected}
+            onSelectEvent={handleSelected}
             //Establishing some default definitions
             defaultDate={new Date()}
             defaultView="month"
@@ -88,6 +98,7 @@ export default function Home({ events, filters }) {
             style={{ height: "90vh" }}
           />
         </div>
+        {open && <BasicModal content={selected} />}
         <div className={styles.filter}>
           <CheckBox
             filters={filters}
