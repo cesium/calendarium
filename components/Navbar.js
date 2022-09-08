@@ -20,6 +20,14 @@ export default function Navbar() {
     });
   };
 
+
+  const darkMode = () => {
+    const body = document.querySelector("body");
+    body.classList.toggle("dark");
+    const btn = document.querySelector(".navbar-darkmode-btn");
+    btn.innerHTML = 'Light Mode';
+  };
+
   return (
     <nav className="navbar">
       <Link href="https://cesium.link/">
@@ -31,15 +39,21 @@ export default function Navbar() {
           alt="CeSIUM Link"
         />
       </Link>
+
       <Image
         width={32}
         height={21}
         src="/calendar-icon.ico"
         alt="Calendarium"
       />
-      <button onClick={() => exportPDF()} className="navbar-button-pdf">
-        Extract to PDF
-      </button>
+      <div className="navbar-buttons">
+        <button onClick={() => darkMode()} className="navbar-darkmode-btn">
+          darkMode
+        </button>
+        <button onClick={() => exportPDF()} className="navbar-button-pdf">
+          Extract to PDF
+        </button>
+      </div>
     </nav>
   );
 }
