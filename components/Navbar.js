@@ -3,9 +3,38 @@ import Image from "next/image";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useState } from "react";
+
 export default function Navbar() {
-  const [dark, setDarkMode] = useState(true);
-  const [light, setLightMode] = useState(false);
+  const [theme, setTheme] = useLocalStorage("dark", "light");
+
+  function useLocalStorage(key, initialValue) {
+    const [storedValue, setStoredValue] = useState(() => {
+      if (typeof window === "undefined") {
+        return initialValue;
+      }
+      try {
+        const item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+      } catch (error) {
+        console.log(error);
+        return initialValue;
+      }
+    });
+    const setValue = (value) => {
+      try {
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        if (typeof window !== "undefined") {
+          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    return [storedValue, setValue];
+  }
+
   const exportPDF = () => {
     const input = document.getElementById("APP");
     html2canvas(input, {
@@ -26,13 +55,12 @@ export default function Navbar() {
     const body = document.querySelector("body");
     body.classList.toggle("dark");
     const btn = document.querySelector(".navbar-darkmode-btn");
-    dark ? setDarkMode(false) : setDarkMode(true);
-    light ? setLightMode(false) : setLightMode(true);
+    theme === "dark" ? setTheme("light") : setTheme("dark");
   };
 
   return (
     <nav className="navbar">
-      {dark && (
+      {theme == "light" && (
         <Link href="https://cesium.link/">
           <Image
             width={100}
@@ -44,7 +72,7 @@ export default function Navbar() {
         </Link>
       )}
 
-      {light && (
+      {theme == "dark" && (
         <Link href="https://cesium.link/">
           <Image
             width={100}
@@ -65,7 +93,7 @@ export default function Navbar() {
         <button onClick={() => exportPDF()} className="navbar-button-pdf">
           Extract to PDF
         </button>
-        {light && (
+        {theme == "light" && (
           <button onClick={() => darkMode()} className="navbar-darkmode-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +112,7 @@ export default function Navbar() {
             </svg>
           </button>
         )}
-        {dark && (
+        {theme == "dark" && (
           <button onClick={() => darkMode()} className="navbar-darkmode-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
