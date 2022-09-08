@@ -53,7 +53,7 @@ export default function Home({ events, filters }) {
           <meta name="Calendarium" content="Calendar of events and exams" />
           <link rel="icon" href="/calendar-icon.ico" />~
         </Head>
-        <Navbar landing={false} />
+        <Navbar />
 
         <div id="APP" className={styles.calendar}>
           <Calendar
