@@ -39,7 +39,6 @@ body.dark button {
 }
 body.dark button:hover {
   color: #1a202c;
-  background-color: #fff;
   border: none;
 }
 
