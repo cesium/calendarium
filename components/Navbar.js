@@ -20,12 +20,11 @@ export default function Navbar() {
     });
   };
 
-
   const darkMode = () => {
     const body = document.querySelector("body");
     body.classList.toggle("dark");
     const btn = document.querySelector(".navbar-darkmode-btn");
-    btn.innerHTML = 'Light Mode';
+    btn.innerHTML = "Light Mode";
   };
 
   return (
