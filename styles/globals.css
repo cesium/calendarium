@@ -19,6 +19,38 @@ a {
   box-sizing: border-box;
 }
 
+/* if body class is dark */
+body.dark {
+  color: #fff;
+  background-color: #1a202c;
+}
+
+body.dark .navbar-darkmode-btn {
+  color: yellow;
+}
+body.dark .navbar-darkmode-btn:hover {
+  color: yellow;
+  background: none;
+}
+
+body.dark button {
+  color: #fff;
+  background-color: #1a202c;
+}
+body.dark button:hover {
+  color: #1a202c;
+  border: none;
+}
+
+body.dark h1 {
+  color: #fff;
+}
+body.dark .rbc-day-bg {
+  background-color: #1a202c;
+}
+body.dark .rbc-off-range-bg {
+  background-color: #1a202c;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -44,11 +76,30 @@ a {
   border: solid 2px black;
   border-radius: 5px;
 }
+.navbar-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 .navbar-button-pdf:hover {
   opacity: 75%;
 }
+.navbar-darkmode-btn {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  padding: 5px;
+  margin-right: 10px;
+  color: black;
+  text-align: center;
+}
 
+.navbar-darkmode-btn:hover {
+  margin-bottom: 10px;
+  opacity: 75%;
+}
 .txt-container-border {
   display: block;
   margin-top: 30px;
