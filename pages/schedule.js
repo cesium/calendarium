@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
+
+import { Layout } from "../components/Layout";
 
 const localizer = momentLocalizer(moment);
 
@@ -23,7 +26,7 @@ export default function Schedule() {
         shift: "TP2",
         building: "7",
         room: "0.02",
-        day: 0,
+        day: 1,
         start: "09:00",
         end: "11:00",
       },
@@ -34,7 +37,7 @@ export default function Schedule() {
         shift: "TP2",
         building: "7",
         room: "0.02",
-        day: 1,
+        day: 2,
         start: "09:00",
         end: "11:00",
       },
@@ -63,30 +66,36 @@ export default function Schedule() {
   }, []);
 
   return (
-    <div>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        defaultView="week"
-        style={{ height: "90vh" }}
-        defaultDate={new Date()}
-        toolbar={false}
-        min={new Date("08:00 2022/01/01")}
-        max={new Date("21:00 2022/01/01")}
-        // onNavigate={(newDate) => updateEvents(newDate)}
-        //
-        //Custom event colors by their year (groupID)
-        eventPropGetter={(event) => {
-          const style = {
-            backgroundColor: colors[event.title],
-            border: "none",
-          };
+    <Layout>
+      <Head>
+        <title>Schedule | Calendarium</title>
+        <meta name="Calendarium" content="Calendar of events and exams" />
+        <link rel="icon" href="/calendar-icon.ico" />~
+      </Head>
 
-          return { style };
-        }}
-      />
-    </div>
+      <div id="SCHEDULE">
+        <Calendar
+          toolbar={false}
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          defaultView="week"
+          defaultDate={new Date()}
+          min={new Date("08:00 2022/01/01")}
+          max={new Date("21:00 2022/01/01")}
+          //Custom event colors by their year (groupID)
+          eventPropGetter={(event) => {
+            const style = {
+              backgroundColor: colors[event.title],
+              border: "none",
+            };
+
+            return { style };
+          }}
+          style={{ height: "90vh" }}
+        />
+      </div>
+    </Layout>
   );
 }
