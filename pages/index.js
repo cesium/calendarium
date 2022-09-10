@@ -10,10 +10,9 @@ import moment from "moment";
 import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import CheckBox from "../components/CheckBox";
+import dynamic from "next/dynamic";
 import BasicModal from "../components/Modal";
-
-//To localize the format of the calendar
+import CheckBox from "../components/CheckBox.tsx";
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
@@ -22,13 +21,12 @@ export default function Home({ events, filters }) {
     event.end = new Date(event.end);
     return event;
   };
-  //States and update functions for both Filters and Events
+
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
 
-  //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
     const filters = Object.values(f);
     const newEvents = [...events];
@@ -43,7 +41,6 @@ export default function Home({ events, filters }) {
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
     const newFilters = { ...myFilters };
-
     setFilters(newFilters);
     showNewEvents(newFilters);
   };
@@ -90,9 +87,7 @@ export default function Home({ events, filters }) {
 
               return { style: newStyle };
             }}
-            //Using the array of all events
             events={Events}
-            //Limit the time for the events (Between 8:00 and 20:00)
             min={new Date(2022, 0, 1, 8, 0)}
             max={new Date(2022, 0, 1, 21, 0)}
             style={{ height: "90vh" }}
