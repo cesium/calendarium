@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import fsPromises from "fs/promises";
-import path from "path";
+import * as fs from "fs";
 import TextBox from "../components/TextBox";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
@@ -10,10 +9,8 @@ import moment from "moment";
 import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import CheckBox from "../components/CheckBox";
 import BasicModal from "../components/Modal";
-
-//To localize the format of the calendar
+import CheckBox from "../components/CheckBox";
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
@@ -22,16 +19,15 @@ export default function Home({ events, filters }) {
     event.end = new Date(event.end);
     return event;
   };
-  //States and update functions for both Filters and Events
+
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
 
-  //Function to update the Events with the selected Filters
   const showNewEvents = (f) => {
     const filters = Object.values(f);
-    const newEvents = [...events];
+    let newEvents = [...events];
 
     if (filters.length > 0) {
       newEvents = newEvents.filter((ev) => filters.includes(ev.filterId));
@@ -43,7 +39,6 @@ export default function Home({ events, filters }) {
   //Function to update the Filters state
   const handleFilters = (myFilters) => {
     const newFilters = { ...myFilters };
-
     setFilters(newFilters);
     showNewEvents(newFilters);
   };
@@ -90,9 +85,7 @@ export default function Home({ events, filters }) {
 
               return { style: newStyle };
             }}
-            //Using the array of all events
             events={Events}
-            //Limit the time for the events (Between 8:00 and 20:00)
             min={new Date(2022, 0, 1, 8, 0)}
             max={new Date(2022, 0, 1, 21, 0)}
             style={{ height: "90vh" }}
@@ -122,13 +115,8 @@ export default function Home({ events, filters }) {
 }
 
 export async function getStaticProps() {
-  const eventFilePath = path.join(process.cwd(), "data/events.json");
-  const eventData = await fsPromises.readFile(eventFilePath);
-  const events = JSON.parse(eventData);
-
-  const filterFilePath = path.join(process.cwd(), "data/filters.json");
-  const filterData = await fsPromises.readFile(filterFilePath);
-  const filters = JSON.parse(filterData);
+  const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
+  const events = JSON.parse(fs.readFileSync("data/events.json", "utf-8"));
   return {
     props: {
       events: events,

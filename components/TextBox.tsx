@@ -31,7 +31,7 @@ const TextBox = () => {
 
         <label className="txt-msg">Message</label>
 
-        <textarea name="message" rows="4" className="form-control" />
+        <textarea name="message" rows={4} className="form-control" />
 
         <input type="submit" value="Send" className="txt-send-button" />
       </form>
