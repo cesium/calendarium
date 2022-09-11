@@ -11,6 +11,7 @@ import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import BasicModal from "../components/Modal";
 import CheckBox from "../components/CheckBox";
+
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
