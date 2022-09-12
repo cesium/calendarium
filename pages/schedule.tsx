@@ -7,7 +7,7 @@ import path from "path";
 import fsPromises from "fs/promises";
 
 import { Layout } from "../components/Layout";
-import CheckBox from "../components/CheckBox";
+import { SelectSchedule } from "../components/SelectSchedule";
 
 import { IFilterDTO, IShiftDTO } from "../dtos";
 
@@ -19,13 +19,18 @@ interface IFormatedShift {
   id: number;
   title: string;
   theoretical: boolean;
-  shift: string;
+  shift?: string;
   building: string;
   room: string;
   day: number;
   start: Date;
   end: Date;
   filterId: number;
+}
+
+interface ISelectedFilter {
+  id: number;
+  shift?: string;
 }
 
 interface ISchedulesProps {
@@ -35,7 +40,7 @@ interface ISchedulesProps {
 
 export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [events, setEvents] = useState<IFormatedShift[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<number[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
 
   const formats = useMemo(
     () => ({
@@ -45,24 +50,28 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   );
 
   const formatEvents = useCallback(() => {
-    const filteredShifts = shifts.filter((event) =>
-      selectedFilters.includes(event.filterId)
-    );
+    const filteredShifts = shifts.filter((shift) => {
+      const findFilter = selectedFilters.find(
+        (filter) => filter.id === shift.filterId && filter.shift === shift.shift
+      );
 
-    const formatedEvents = filteredShifts.map((mockEvent) => {
-      const [startHour, startMinute] = mockEvent.start.split(":");
-      const [endHour, endMinute] = mockEvent.end.split(":");
+      return !!findFilter;
+    });
+
+    const formatedEvents = filteredShifts.map((shift) => {
+      const [startHour, startMinute] = shift.start.split(":");
+      const [endHour, endMinute] = shift.end.split(":");
 
       return {
-        ...mockEvent,
-        title: `${mockEvent.title} ${mockEvent.shift} - Edf. ${mockEvent.building} Sala ${mockEvent.room}`,
+        ...shift,
+        title: `${shift.title} ${shift.shift} - Edf. ${shift.building} Sala ${shift.room}`,
         start: moment()
-          .day(mockEvent.day)
+          .day(shift.day)
           .hour(+startHour)
           .minute(+startMinute)
           .toDate(),
         end: moment()
-          .day(mockEvent.day)
+          .day(shift.day)
           .hour(+endHour)
           .minute(+endMinute)
           .toDate(),
@@ -100,9 +109,12 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         />
       </div>
 
-      <CheckBox
+      <SelectSchedule
         filters={filters}
-        handleFilters={(myFilters) => setSelectedFilters(myFilters)}
+        handleFilters={(myFilters) => {
+          console.log(myFilters);
+          setSelectedFilters(myFilters);
+        }}
       />
     </Layout>
   );

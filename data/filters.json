@@ -45,7 +45,8 @@
     "id": 121,
     "name": "Analise",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["TP2", "T2", "T3", "TP4"]
   },
   {
     "id": 122,
@@ -63,7 +64,8 @@
     "id": 124,
     "name": "Logica",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["TP2", "T2", "T3", "TP4"]
   },
   {
     "id": 125,

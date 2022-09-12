@@ -3,6 +3,7 @@ export interface IFilterDTO {
   name: string;
   groupId: number;
   semester: number;
+  shifts?: string[];
 }
 
 export interface IEventDTO {
