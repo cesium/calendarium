@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import fsPromises from "fs/promises";
 import path from "path";
-import TextBox from "../components/TextBox";
+import FeedbackForm from "../components/FeedbackForm";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -102,7 +102,7 @@ export default function Home({ events, filters }) {
         </div>
       </div>
       <div className="textbox">
-        <TextBox />
+        <FeedbackForm />
       </div>
       <div className={styles.footer}>
         <Image
