@@ -1,47 +1,41 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
-
 import { Layout } from "../components/Layout";
 import CheckBox from "../components/CheckBox";
 
+import { IFilterDTO, IShiftDTO } from "../dtos";
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
 const localizer = momentLocalizer(moment);
 
-const mock = [
-  {
-    id: 12345,
-    title: "Análise",
-    theoretical: true,
-    shift: "TP2",
-    building: "7",
-    room: "0.02",
-    day: 1,
-    start: "09:00",
-    end: "11:00",
-    filterId: 121,
-  },
-  {
-    id: 12345,
-    title: "Lógica",
-    theoretical: true,
-    shift: "TP2",
-    building: "7",
-    room: "0.02",
-    day: 2,
-    start: "09:00",
-    end: "11:00",
-    filterId: 124,
-  },
-];
+interface IFormatedShift {
+  id: number;
+  title: string;
+  theoretical: boolean;
+  shift: string;
+  building: string;
+  room: string;
+  day: number;
+  start: Date;
+  end: Date;
+  filterId: number;
+}
 
-export default function Schedule({ filters }) {
-  const [events, setEvents] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState([]);
+interface ISchedulesProps {
+  filters: IFilterDTO[];
+  shifts: IShiftDTO[];
+}
+
+export default function Schedule({ filters, shifts }: ISchedulesProps) {
+  const [events, setEvents] = useState<IFormatedShift[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<number[]>([]);
 
   const formats = useMemo(
     () => ({
@@ -51,28 +45,32 @@ export default function Schedule({ filters }) {
   );
 
   const formatEvents = useCallback(() => {
-    const myMock = mock.filter((event) =>
+    const filteredShifts = shifts.filter((event) =>
       selectedFilters.includes(event.filterId)
     );
 
-    const formatedEvents = myMock.map((mockEvent) => {
+    const formatedEvents = filteredShifts.map((mockEvent) => {
       const [startHour, startMinute] = mockEvent.start.split(":");
       const [endHour, endMinute] = mockEvent.end.split(":");
 
       return {
         ...mockEvent,
         title: `${mockEvent.title} ${mockEvent.shift} - Edf. ${mockEvent.building} Sala ${mockEvent.room}`,
-        start: new Date(
-          moment().day(mockEvent.day).hour(startHour).minute(startMinute)
-        ),
-        end: new Date(
-          moment().day(mockEvent.day).hour(endHour).minute(endMinute)
-        ),
+        start: moment()
+          .day(mockEvent.day)
+          .hour(+startHour)
+          .minute(+startMinute)
+          .toDate(),
+        end: moment()
+          .day(mockEvent.day)
+          .hour(+endHour)
+          .minute(+endMinute)
+          .toDate(),
       };
     });
 
     setEvents(formatedEvents);
-  }, [selectedFilters]);
+  }, [shifts, selectedFilters]);
 
   useEffect(() => {
     formatEvents();
@@ -102,26 +100,31 @@ export default function Schedule({ filters }) {
         />
       </div>
 
-      <div>
-        <CheckBox
-          filters={filters}
-          handleFilters={(myFilters) => setSelectedFilters(myFilters)}
-        />
-      </div>
+      <CheckBox
+        filters={filters}
+        handleFilters={(myFilters) => setSelectedFilters(myFilters)}
+      />
     </Layout>
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
+  // fetch filters
   const filterFilePath = path.join(process.cwd(), "data/filters.json");
 
-  const filterData = await fsPromises.readFile(filterFilePath);
+  const filtersBuffer = await fsPromises.readFile(filterFilePath);
+  const filters = JSON.parse(filtersBuffer as unknown as string);
 
-  const filters = JSON.parse(filterData);
+  // fetch shitfs
+  const shiftFilePath = path.join(process.cwd(), "data/shifts.json");
+
+  const shiftsBuffer = await fsPromises.readFile(shiftFilePath);
+  const shifts = JSON.parse(shiftsBuffer as unknown as string);
 
   return {
     props: {
       filters,
+      shifts,
     },
   };
-}
+};

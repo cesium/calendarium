@@ -1,10 +1,16 @@
+import React, { ReactNode } from "react";
 import Image from "next/image";
 
 import { Navbar } from "../Navbar";
 
 import styles from "./layout.module.scss";
 
-export const Layout = ({ children, isHome }) => {
+interface ILayoutProps {
+  children: ReactNode;
+  isHome?: boolean;
+}
+
+export const Layout = ({ children, isHome }: ILayoutProps) => {
   return (
     <>
       <Navbar isHome={isHome} />
