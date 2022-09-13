@@ -107,7 +107,7 @@ export default function Home({ events, filters }) {
         <Image
           width={21}
           height={21}
-          src="/cesium-full-logo.png"
+          src="/cesium-LIGHT.svg"
           alt="Logo do Cesium"
         />
       </div>
