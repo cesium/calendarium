@@ -3,7 +3,19 @@ import Image from "next/image";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useTheme } from "./Theme/Theme";
-import styles from "./style.module.css";
+
+const dark = {
+  display: "flex",
+  justifyContent: "center",
+  width: "150px",
+  color: "white",
+};
+const light = {
+  display: "flex",
+  justifyContent: "center",
+  width: "150px",
+  color: "black",
+};
 
 export default function Navbar() {
   const { isDark, toggleTheme } = useTheme();
@@ -12,11 +24,9 @@ export default function Navbar() {
   }
 
   const exportPDF = () => {
-    const input = document.getElementById("APP");
+    const input = document.getElementById("APP")!;
     html2canvas(input, {
       logging: true,
-      letterRendering: 1,
-      userCors: true,
     }).then((canvas) => {
       const imgwidth = 208;
       const imgHeight = (canvas.height * imgwidth) / canvas.width;
@@ -29,7 +39,7 @@ export default function Navbar() {
 
   const darkMode = () => {
     const body = document.querySelector("body");
-    body.classList.toggle("dark");
+    body?.classList.toggle("dark");
   };
 
   function DarkModeToggle({ visible }) {
@@ -37,7 +47,7 @@ export default function Navbar() {
       visible && (
         <button className="btn" onClick={toggleTheme}>
           {isDark ? (
-            <div className={styles.dark}>
+            <div style={dark}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -55,7 +65,7 @@ export default function Navbar() {
               </svg>
             </div>
           ) : (
-            <div className={styles.light}>
+            <div style={light}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -95,7 +105,7 @@ export default function Navbar() {
           <Image
             width={100}
             height={21}
-            src="/cesium-full-logo.png"
+            src="/cesium-DARK.svg"
             className="nav-cesium-logo"
             alt="CeSIUM Link"
           />

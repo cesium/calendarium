@@ -10,19 +10,13 @@ const style = {
 
 function BasicModal(info) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  console.log(info);
   let title = info.content.title;
   let start = JSON.stringify(info.content.start);
   let end = JSON.stringify(info.content.end);
-  // transform start and end into a more readable format
-  start = start.substring(1, 11);
-  end = end.substring(1, 11);
+  start = start.substring(1, 11) + " " + start.substring(12, 20);
+  end = end.substring(1, 11) + " " + end.substring(12, 20);
 
   let groupId = info.content.groupId;
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
   const handleOk = () => {
     setIsModalOpen(false);
