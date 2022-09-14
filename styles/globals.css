@@ -51,55 +51,7 @@ body.dark .rbc-day-bg {
 body.dark .rbc-off-range-bg {
   background-color: #1a202c;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  height: 75px;
-  padding: 16px 32px;
-  margin-bottom: 30px;
-  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
-}
 
-.nav-cesium-logo {
-  height: 100%;
-  cursor: pointer;
-}
-
-.navbar-button-pdf {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  padding: 5px;
-  color: white;
-  text-align: center;
-  background-color: #ed7950;
-  border: solid 2px black;
-  border-radius: 5px;
-}
-.navbar-buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar-button-pdf:hover {
-  opacity: 75%;
-}
-.navbar-darkmode-btn {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  padding: 5px;
-  margin-right: 10px;
-  color: black;
-  text-align: center;
-}
-
-.navbar-darkmode-btn:hover {
-  margin-bottom: 10px;
-  opacity: 75%;
-}
 .txt-container-border {
   display: block;
   margin-top: 30px;
