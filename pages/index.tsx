@@ -9,7 +9,7 @@ import "moment/locale/en-gb";
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import { Layout } from "../components/Layout";
+import Layout from "../components/Layout";
 import CheckBox from "../components/CheckBox";
 import BasicModal from "../components/Modal";
 

@@ -27,32 +27,32 @@
     flex: 1;
     flex-direction: row;
     align-items: center;
-  
+
     .darkmode {
       display: flex;
       justify-content: center;
       padding: 5px;
       color: black;
       text-align: center;
-  
+
       &:hover {
         opacity: 75%;
       }
     }
-  
+
     .buttonPdf {
       display: flex;
-      justify-content: center;;
+      justify-content: center;
       text-align: center;
-  
+
       width: 150px;
       padding: 5px;
-  
+
       color: white;
       background-color: #ed7950;
       border: solid 2px black;
       border-radius: 5px;
-  
+
       &:hover {
         opacity: 75%;
       }

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import Image from "next/image";
 
-import { Navbar } from "../Navbar";
+import Navbar from "../Navbar";
 
 import styles from "./layout.module.scss";
 
@@ -10,7 +10,7 @@ interface ILayoutProps {
   isHome?: boolean;
 }
 
-export const Layout = ({ children, isHome }: ILayoutProps) => {
+const Layout = ({ children, isHome }: ILayoutProps) => {
   return (
     <>
       <Navbar isHome={isHome} />
@@ -28,3 +28,5 @@ export const Layout = ({ children, isHome }: ILayoutProps) => {
     </>
   );
 };
+
+export default Layout;

@@ -6,7 +6,7 @@ import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
 
-import { Layout } from "../components/Layout";
+import Layout from "../components/Layout";
 import { SelectSchedule } from "../components/SelectSchedule";
 
 import { IFilterDTO, IShiftDTO } from "../dtos";

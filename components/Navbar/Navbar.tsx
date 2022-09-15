@@ -11,7 +11,7 @@ interface INavbarProps {
   isHome?: boolean;
 }
 
-export const Navbar = ({ isHome }: INavbarProps) => {
+const Navbar = ({ isHome }: INavbarProps) => {
   const { isDark, toggleTheme } = useTheme();
   if (isDark) {
     document.body.classList.add("dark");
@@ -119,3 +119,5 @@ export const Navbar = ({ isHome }: INavbarProps) => {
     </nav>
   );
 };
+
+export default Navbar;

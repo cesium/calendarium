@@ -90,11 +90,16 @@ export const SelectSchedule = ({
                 {year_one_one.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -105,11 +110,16 @@ export const SelectSchedule = ({
                 {year_one_two.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -124,11 +134,16 @@ export const SelectSchedule = ({
                 {year_two_one.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -139,11 +154,16 @@ export const SelectSchedule = ({
                 {year_two_two.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -158,11 +178,16 @@ export const SelectSchedule = ({
                 {year_three_one.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -173,11 +198,16 @@ export const SelectSchedule = ({
                 {year_three_two.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -192,11 +222,16 @@ export const SelectSchedule = ({
                 {year_four_one.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -207,11 +242,16 @@ export const SelectSchedule = ({
                 {year_four_two.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
+                      key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                     />
                   ) : (
-                    <Option filter={filter} handleToggle={handleToggle} />
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
                   )
                 )}
               </Panel>
@@ -223,9 +263,17 @@ export const SelectSchedule = ({
           <Panel header="2nd Year (Masters)" key="5">
             {year_five.map((filter) =>
               filter.shifts?.length ? (
-                <OptionWithShifts filter={filter} handleToggle={handleToggle} />
+                <OptionWithShifts
+                  key={filter.id}
+                  filter={filter}
+                  handleToggle={handleToggle}
+                />
               ) : (
-                <Option filter={filter} handleToggle={handleToggle} />
+                <Option
+                  key={filter.id}
+                  filter={filter}
+                  handleToggle={handleToggle}
+                />
               )
             )}
           </Panel>
@@ -235,9 +283,17 @@ export const SelectSchedule = ({
           <Panel header="Others" key="0">
             {others.map((filter) =>
               filter.shifts?.length ? (
-                <OptionWithShifts filter={filter} handleToggle={handleToggle} />
+                <OptionWithShifts
+                  key={filter.id}
+                  filter={filter}
+                  handleToggle={handleToggle}
+                />
               ) : (
-                <Option filter={filter} handleToggle={handleToggle} />
+                <Option
+                  key={filter.id}
+                  filter={filter}
+                  handleToggle={handleToggle}
+                />
               )
             )}
           </Panel>
@@ -256,7 +312,7 @@ const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
   <p>
     {filter.name}: <br />
     {filter.shifts.map((shiftOption) => (
-      <React.Fragment key={shiftOption}>
+      <>
         <Checkbox
           key={filter.id}
           onChange={() => handleToggle(filter.id, shiftOption)}
@@ -266,13 +322,13 @@ const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
         </Checkbox>
 
         <br />
-      </React.Fragment>
+      </>
     ))}
   </p>
 );
 
 const Option = ({ filter, handleToggle }: IOptionProps) => (
-  <React.Fragment key={filter.id}>
+  <>
     <Checkbox
       key={filter.id}
       onChange={() => handleToggle(filter.id)}
@@ -282,5 +338,5 @@ const Option = ({ filter, handleToggle }: IOptionProps) => (
     </Checkbox>
 
     <br />
-  </React.Fragment>
+  </>
 );
