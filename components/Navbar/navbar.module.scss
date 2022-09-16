@@ -1,0 +1,94 @@
+.dark {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  color: white;
+}
+
+.light {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  color: black;
+}
+
+.navbar {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+  margin-bottom: 30px;
+
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1);
+
+  .navbarButtons {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+
+    .darkmode {
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+      color: black;
+      text-align: center;
+
+      &:hover {
+        opacity: 75%;
+      }
+    }
+
+    .buttonPdf {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+
+      width: 150px;
+      padding: 5px;
+
+      color: white;
+      background-color: #ed7950;
+      border: solid 2px black;
+      border-radius: 5px;
+
+      &:hover {
+        opacity: 75%;
+      }
+    }
+  }
+
+  .cesiumLogo {
+    cursor: pointer;
+    object-fit: contain;
+
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+      color: #969cb3;
+
+      & + a {
+        margin-left: 2rem;
+      }
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  .darkLink {
+    a:hover {
+      color: white;
+    }
+  }
+}
