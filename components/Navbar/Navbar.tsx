@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 
 import { useTheme } from "../Theme/Theme";
 
@@ -16,22 +14,6 @@ const Navbar = ({ isHome }: INavbarProps) => {
   if (isDark) {
     document.body.classList.add("dark");
   }
-
-  const exportPDF = () => {
-    const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
-
-    html2canvas(input, {
-      logging: true,
-    }).then((canvas) => {
-      const imgwidth = 208;
-      const imgHeight = (canvas.height * imgwidth) / canvas.width;
-      const imgData = canvas.toDataURL("img/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgwidth, imgHeight);
-      pdf.save("calendario.pdf");
-    });
-  };
 
   const darkMode = () => {
     const body = document.querySelector("body");
@@ -88,10 +70,6 @@ const Navbar = ({ isHome }: INavbarProps) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarButtons}>
-        <button onClick={() => exportPDF()} className={styles.buttonPdf}>
-          Extract to PDF
-        </button>
-
         <button onClick={() => darkMode()} className={styles.darkmode}>
           <DarkModeToggle visible={true} />
         </button>
