@@ -5,12 +5,15 @@ import Navbar from "../Navbar";
 
 import styles from "./layout.module.scss";
 
+import { useTheme } from "../Theme/Theme";
+
 interface ILayoutProps {
   children: ReactNode;
   isHome?: boolean;
 }
 
 const Layout = ({ children, isHome }: ILayoutProps) => {
+  const { isDark, toggleTheme } = useTheme();
   return (
     <>
       <Navbar isHome={isHome} />
@@ -18,12 +21,12 @@ const Layout = ({ children, isHome }: ILayoutProps) => {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        <Image
-          width={21}
-          height={21}
-          src="/cesium-full-logo.png"
-          alt="Logo do Cesium"
-        />
+          <Image
+            width={100}
+            height={36}
+            src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
+            alt="CeSIUM Logo"
+          />
       </footer>
     </>
   );
