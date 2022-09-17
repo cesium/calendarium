@@ -21,12 +21,12 @@ const Layout = ({ children, isHome }: ILayoutProps) => {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-          <Image
-            width={100}
-            height={36}
-            src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
-            alt="CeSIUM Logo"
-          />
+        <Image
+          width={100}
+          height={36}
+          src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
+          alt="CeSIUM Logo"
+        />
       </footer>
     </>
   );
