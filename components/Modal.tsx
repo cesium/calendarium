@@ -1,29 +1,25 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import { useState } from "react";
 
-const style = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-};
-
-function BasicModal(info) {
+function EventModal({
+  selectedEvent: { title, start, end, groupId },
+  setInspectEvent,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  let title = info.content.title;
-  let start = JSON.stringify(info.content.start);
-  let end = JSON.stringify(info.content.end);
-  start = start.substring(1, 11) + " " + start.substring(12, 20);
-  end = end.substring(1, 11) + " " + end.substring(12, 20);
 
-  let groupId = info.content.groupId;
+  const start_date = new Date(start).toLocaleDateString("pt", {
+    hour: "numeric",
+    minute: "numeric",
+  });
 
-  const handleOk = () => {
+  const end_date = new Date(end).toLocaleDateString("pt", {
+    hour: "numeric",
+    minute: "numeric"
+  });
+
+  const handleModalClose = () => {
     setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
+    setInspectEvent(false);
   };
 
   return (
@@ -31,20 +27,20 @@ function BasicModal(info) {
       <Modal
         title={title}
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width={500}
+        footer={null}
         centered={true}
-        visible={isModalOpen}
+        width={500}
+        onCancel={(_) => handleModalClose()}
       >
+        <p>Descrição: {title}</p>
         <p>
-          Data: {start} - {end}
+          Data:{" "}
+          {`${start_date} - ${end_date}`}
         </p>
-        <p>Ano: {groupId}</p>
-        <p>Descrição</p>
+        <p>{groupId != 0 ? `Ano: ${groupId}º` : ""}</p>
       </Modal>
     </>
   );
 }
 
-export default BasicModal;
+export default EventModal;
