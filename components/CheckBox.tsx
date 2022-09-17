@@ -55,7 +55,7 @@ function CheckBox({ filters, handleFilters }) {
       <Panel header="Filtros" key={0}>
         <Collapse>
           {semesters.map((b, index1) => (
-            <Panel header={b} key={index1}>
+            <Panel header={b} key={index1}>Collapse
               {event[index1]?.map(
                 (
                   value: {
