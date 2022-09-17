@@ -72,7 +72,7 @@ export default function Home({ events, filters }) {
           <Head>
             <title>Home | Calendarium</title>
             <meta name="Calendarium" content="Calendar of events and exams" />
-            <link rel="icon" href="/calendar-icon.ico" />
+            <link rel="icon" href="/favicon-calendarium.ico" />
           </Head>
 
           <div id="APP">
