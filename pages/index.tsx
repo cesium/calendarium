@@ -3,8 +3,7 @@ import * as fs from "fs";
 import FeedbackForm from "../components/FeedbackForm";
 import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "moment/locale/en-gb";
+import moment from "moment-timezone";
 
 import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -16,6 +15,25 @@ import EventModal from "../components/Modal";
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
+  /*
+  We set the timezone to UTC. This needs to be done
+  because react-big-calendar displays the times in
+  local time, but in the json they are read in UTC. 
+  
+  So if the json says an event is from
+  14:00 to 16:00, if we are in France in the summer
+  it would display from 16:00 to 18:00
+  
+  We don't want that, we always want
+  the same result no matter the timezone.
+
+  Bamako is the capital of Mali, which is in UTC and
+  (very important) does not implement day light savings
+
+  Refer to https://github.com/cesium/calendarium/pull/39
+  */
+  moment.tz.setDefault("Africa/Bamako");
+
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
@@ -91,8 +109,6 @@ export default function Home({ events, filters }) {
                 return { style: newStyle };
               }}
               events={Events}
-              min={new Date(2022, 0, 1, 8, 0)}
-              max={new Date(2022, 0, 1, 21, 0)}
               style={{ height: "90vh" }}
             />
           </div>
@@ -120,6 +136,8 @@ export default function Home({ events, filters }) {
 }
 
 export async function getStaticProps() {
+  //Refer to the above comment
+  moment.tz.setDefault("Africa/Bamako");
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
   const events = JSON.parse(fs.readFileSync("data/events.json", "utf-8"));
   return {
