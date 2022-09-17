@@ -1,93 +1,107 @@
 [
   {
-    "title": "CeSIUM - Evento top",
-    "start": "2022-07-16 13:00",
-    "end": "2022-07-16 15:30",
-    "groupId": 0,
-    "filterId": 0
+    "title": "[AL] Teste",
+    "start": "2022-10-31 00:00",
+    "end": "2022-10-31 23:59",
+    "groupId": 1,
+    "filterId": 111
   },
   {
-    "title": "Algoritmos - Teste",
-    "start": "2022-07-19 15:00",
-    "end": "2022-07-19 18:00",
-    "groupId": 2,
-    "filterId": 211
+    "title": "[AL] Teste",
+    "start": "2023-01-04 00:00",
+    "end": "2023-01-04 23:59",
+    "groupId": 1,
+    "filterId": 111
   },
   {
-    "title": "PF - 50 questoes Teste",
-    "start": "2022-07-18 10:00",
-    "end": "2022-07-18 11:45",
+    "title": "[AL] Recurso",
+    "start": "2023-01-25 00:00",
+    "end": "2023-01-25 23:59",
+    "groupId": 1,
+    "filterId": 111
+  },
+  {
+    "title": "[Cálculo] Teste",
+    "start": "2022-11-02 00:00",
+    "end": "2022-11-02 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Teste",
+    "start": "2023-01-06 00:00",
+    "end": "2023-01-06 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Recurso",
+    "start": "2023-02-03 00:00",
+    "end": "2023-02-03 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Recurso",
+    "start": "2023-02-03 00:00",
+    "end": "2023-02-03 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[LI1] Entrega TP",
+    "start": "2022-11-12 00:00",
+    "end": "2022-11-12 23:59",
+    "groupId": 1,
+    "filterId": 113
+  },
+  {
+    "title": "[LI1] Entrega TP",
+    "start": "2023-01-02 00:00",
+    "end": "2022-01-02 23:59",
+    "groupId": 1,
+    "filterId": 113
+  },
+  {
+    "title": "[PF] Teste 50 Questões",
+    "start": "2022-11-03 00:00",
+    "end": "2022-11-03 23:59",
     "groupId": 1,
     "filterId": 114
   },
   {
-    "title": "CeSIUM - Fim Summer Camp :(",
-    "start": "2022-07-27 14:00",
-    "end": "2022-07-27 20:00",
-    "groupId": 0,
-    "filterId": 0
-  },
-  {
-    "title": "LI4 - Entrega",
-    "start": "2022-07-31 00:00",
-    "end": "2022-07-31 23:59",
-    "groupId": 3,
-    "filterId": 315
-  },
-
-  {
-    "title": "Calculo - Mini-teste",
-    "start": "2022-07-18 15:30",
-    "end": "2022-07-18 16:30",
+    "title": "[PF] Teste Final",
+    "start": "2023-01-09 00:00",
+    "end": "2023-01-09 23:59",
     "groupId": 1,
-    "filterId": 112
+    "filterId": 114
   },
-
   {
-    "title": "PI - 51 questoes Teste",
-    "start": "2022-07-25 10:00",
-    "end": "2022-07-25 11:45",
+    "title": "[PF] Recurso",
+    "start": "2023-01-30 00:00",
+    "end": "2023-01-30 23:59",
     "groupId": 1,
-    "filterId": 125
+    "filterId": 114
   },
-
   {
-    "title": "UMinho - Propinas",
-    "start": "2022-06-10 00:00",
-    "end": "2022-06-10 23:59",
-    "groupId": 6,
-    "filterId": 1
+    "title": "[TMD] Teste",
+    "start": "2022-11-04 00:00",
+    "end": "2022-11-04 23:59",
+    "groupId": 1,
+    "filterId": 115
   },
-
   {
-    "title": "VC - Teste Fácil",
-    "start": "2022-06-25 18:00",
-    "end": "2022-06-25 19:30",
-    "groupId": 4,
-    "filterId": 421
+    "title": "[TMD] Teste",
+    "start": "2023-01-11 00:00",
+    "end": "2023-01-11 23:59",
+    "groupId": 1,
+    "filterId": 115
   },
-
   {
-    "title": "VI - Teste Dificil",
-    "start": "2022-06-15 14:00",
-    "end": "2022-06-15 16:30",
-    "groupId": 4,
-    "filterId": 421
-  },
-
-  {
-    "title": "VTR - Entrega Trabalho",
-    "start": "2022-06-30 00:00",
-    "end": "2022-06-30 23:59",
-    "groupId": 4,
-    "filterId": 421
-  },
-
-  {
-    "title": "Dissertação - Entrega Final",
-    "start": "2022-07-01 00:00",
-    "end": "2022-07-01 23:59",
-    "groupId": 5,
-    "filterId": 52
+    "title": "[TMD] Recurso",
+    "start": "2023-02-01 00:00",
+    "end": "2023-02-01 23:59",
+    "groupId": 1,
+    "filterId": 115
   }
 ]
