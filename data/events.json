@@ -1,93 +1,513 @@
 [
   {
-    "title": "CeSIUM - Evento top",
-    "start": "2022-07-16 13:00",
-    "end": "2022-07-16 15:30",
-    "groupId": 0,
-    "filterId": 0
+    "title": "[AL] Teste",
+    "start": "2022-10-31 00:00",
+    "end": "2022-10-31 23:59",
+    "groupId": 1,
+    "filterId": 111
   },
   {
-    "title": "Algoritmos - Teste",
-    "start": "2022-07-19 15:00",
-    "end": "2022-07-19 18:00",
-    "groupId": 2,
-    "filterId": 211
+    "title": "[AL] Teste",
+    "start": "2023-01-04 00:00",
+    "end": "2023-01-04 23:59",
+    "groupId": 1,
+    "filterId": 111
   },
   {
-    "title": "PF - 50 questoes Teste",
-    "start": "2022-07-18 10:00",
-    "end": "2022-07-18 11:45",
+    "title": "[AL] Recurso",
+    "start": "2023-01-25 00:00",
+    "end": "2023-01-25 23:59",
+    "groupId": 1,
+    "filterId": 111
+  },
+  {
+    "title": "[Cálculo] Teste",
+    "start": "2022-11-02 00:00",
+    "end": "2022-11-02 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Teste",
+    "start": "2023-01-06 00:00",
+    "end": "2023-01-06 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Recurso",
+    "start": "2023-02-03 00:00",
+    "end": "2023-02-03 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Recurso",
+    "start": "2023-02-03 00:00",
+    "end": "2023-02-03 23:59",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[LI1] Entrega TP",
+    "start": "2022-11-12 00:00",
+    "end": "2022-11-12 23:59",
+    "groupId": 1,
+    "filterId": 113
+  },
+  {
+    "title": "[LI1] Entrega TP",
+    "start": "2023-01-02 00:00",
+    "end": "2022-01-02 23:59",
+    "groupId": 1,
+    "filterId": 113
+  },
+  {
+    "title": "[PF] Teste 50 Questões",
+    "start": "2022-11-03 00:00",
+    "end": "2022-11-03 23:59",
     "groupId": 1,
     "filterId": 114
   },
   {
-    "title": "CeSIUM - Fim Summer Camp :(",
-    "start": "2022-07-27 14:00",
-    "end": "2022-07-27 20:00",
-    "groupId": 0,
-    "filterId": 0
+    "title": "[PF] Teste Final",
+    "start": "2023-01-09 00:00",
+    "end": "2023-01-09 23:59",
+    "groupId": 1,
+    "filterId": 114
   },
   {
-    "title": "LI4 - Entrega",
-    "start": "2022-07-31 00:00",
-    "end": "2022-07-31 23:59",
+    "title": "[PF] Recurso",
+    "start": "2023-01-30 00:00",
+    "end": "2023-01-30 23:59",
+    "groupId": 1,
+    "filterId": 114
+  },
+  {
+    "title": "[TMD] Teste",
+    "start": "2022-11-04 00:00",
+    "end": "2022-11-04 23:59",
+    "groupId": 1,
+    "filterId": 115
+  },
+  {
+    "title": "[TMD] Teste",
+    "start": "2023-01-11 00:00",
+    "end": "2023-01-11 23:59",
+    "groupId": 1,
+    "filterId": 115
+  },
+  {
+    "title": "[TMD] Recurso",
+    "start": "2023-02-01 00:00",
+    "end": "2023-02-01 23:59",
+    "groupId": 1,
+    "filterId": 115
+  },
+  {
+    "title": "[AlgC] Teste",
+    "start": "2022-11-03 00:00",
+    "end": "2022-11-03 23:59",
+    "groupId": 2,
+    "filterId": 211
+  },
+  {
+    "title": "[AlgC] Teste",
+    "start": "2023-01-10 00:00",
+    "end": "2023-01-10 23:59",
+    "groupId": 2,
+    "filterId": 211
+  },
+  {
+    "title": "[AlgC] Recurso",
+    "start": "2023-02-04 00:00",
+    "end": "2023-02-04 23:59",
+    "groupId": 2,
+    "filterId": 211
+  },
+  {
+    "title": "[ArqC] Teste",
+    "start": "2022-11-04 00:00",
+    "end": "2022-11-04 23:59",
+    "groupId": 2,
+    "filterId": 212
+  },
+  {
+    "title": "[ArqC] Teste",
+    "start": "2023-01-03 00:00",
+    "end": "2023-01-03 23:59",
+    "groupId": 2,
+    "filterId": 212
+  },
+  {
+    "title": "[ArqC] Recurso",
+    "start": "2023-01-26 00:00",
+    "end": "2023-01-26 23:59",
+    "groupId": 2,
+    "filterId": 212
+  },
+  {
+    "title": "[EA] Teste",
+    "start": "2022-10-31 00:00",
+    "end": "2022-10-31 23:59",
+    "groupId": 2,
+    "filterId": 213
+  },
+  {
+    "title": "[EA] Teste",
+    "start": "2023-01-12 00:00",
+    "end": "2023-01-12 23:59",
+    "groupId": 2,
+    "filterId": 213
+  },
+  {
+    "title": "[EA] Recurso",
+    "start": "2023-02-02 00:00",
+    "end": "2023-02-02 23:59",
+    "groupId": 2,
+    "filterId": 213
+  },
+  {
+    "title": "[FM] Recurso",
+    "start": "2023-01-24 00:00",
+    "end": "2023-01-24 23:59",
+    "groupId": 2,
+    "filterId": 214
+  },
+  {
+    "title": "[FCD] Teste",
+    "start": "2022-11-02 00:00",
+    "end": "2022-11-02 23:59",
+    "groupId": 2,
+    "filterId": 215
+  },
+  {
+    "title": "[FCD] Teste",
+    "start": "2023-01-05 00:00",
+    "end": "2023-01-05 23:59",
+    "groupId": 2,
+    "filterId": 215
+  },
+  {
+    "title": "[FCD] Recurso",
+    "start": "2023-01-31 00:00",
+    "end": "2023-01-31 23:59",
+    "groupId": 2,
+    "filterId": 215
+  },
+  {
+    "title": "[CP] Entrega TP",
+    "start": "2023-01-12 00:00",
+    "end": "2023-01-12 23:59",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
+    "title": "[CP] Teste",
+    "start": "2023-01-13 00:00",
+    "end": "2023-01-13 23:59",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
+    "title": "[CC] Entrega TP",
+    "start": "2023-01-02 00:00",
+    "end": "2023-01-02 23:59",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[CC] Teste",
+    "start": "2023-01-11 00:00",
+    "end": "2023-01-11 23:59",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[CC] Recurso",
+    "start": "2023-02-01 00:00",
+    "end": "2023-02-01 23:59",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[DSS] Entrega TP",
+    "start": "2022-10-20 00:00",
+    "end": "2022-10-20 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Entrega TP",
+    "start": "2022-11-17 00:00",
+    "end": "2022-11-17 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Entrega TP",
+    "start": "2023-01-07 00:00",
+    "end": "2023-01-07 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Teste",
+    "start": "2023-01-06 00:00",
+    "end": "2023-01-06 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Recurso",
+    "start": "2023-01-30 00:00",
+    "end": "2023-01-30 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[IA] Entrega TP",
+    "start": "2022-12-16 00:00",
+    "end": "2022-12-16 23:59",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Teste",
+    "start": "2023-01-04 00:00",
+    "end": "2023-01-04 23:59",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Recurso",
+    "start": "2023-01-25 00:00",
+    "end": "2023-01-25 23:59",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[LI4] Entrega TP",
+    "start": "2022-10-24 00:00",
+    "end": "2022-10-24 23:59",
     "groupId": 3,
     "filterId": 315
   },
-
   {
-    "title": "Calculo - Mini-teste",
-    "start": "2022-07-18 15:30",
-    "end": "2022-07-18 16:30",
-    "groupId": 1,
-    "filterId": 112
+    "title": "[LI4] Entrega TP",
+    "start": "2022-11-28 00:00",
+    "end": "2022-11-28 23:59",
+    "groupId": 3,
+    "filterId": 315
   },
-
   {
-    "title": "PI - 51 questoes Teste",
-    "start": "2022-07-25 10:00",
-    "end": "2022-07-25 11:45",
-    "groupId": 1,
-    "filterId": 125
+    "title": "[LI4] Entrega TP",
+    "start": "2023-01-14 00:00",
+    "end": "2023-01-14 23:59",
+    "groupId": 3,
+    "filterId": 315
   },
-
   {
-    "title": "UMinho - Propinas",
-    "start": "2022-06-10 00:00",
-    "end": "2022-06-10 23:59",
-    "groupId": 6,
-    "filterId": 1
+    "title": "[SD] Entrega TP",
+    "start": "2023-01-09 00:00",
+    "end": "2023-01-09 23:59",
+    "groupId": 3,
+    "filterId": 316
   },
-
   {
-    "title": "VC - Teste Fácil",
-    "start": "2022-06-25 18:00",
-    "end": "2022-06-25 19:30",
+    "title": "[SD] Teste",
+    "start": "2023-01-02 00:00",
+    "end": "2023-01-02 23:59",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[SD] Recurso",
+    "start": "2023-01-23 00:00",
+    "end": "2023-01-23 23:59",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[ASCN] Entrega TP",
+    "start": "2023-01-14 00:00",
+    "end": "2023-01-14 23:59",
     "groupId": 4,
-    "filterId": 421
+    "filterId": 411
   },
-
   {
-    "title": "VI - Teste Dificil",
-    "start": "2022-06-15 14:00",
-    "end": "2022-06-15 16:30",
+    "title": "[ASCN] Teste",
+    "start": "2023-01-07 00:00",
+    "end": "2023-01-07 23:59",
     "groupId": 4,
-    "filterId": 421
+    "filterId": 411
   },
-
   {
-    "title": "VTR - Entrega Trabalho",
-    "start": "2022-06-30 00:00",
-    "end": "2022-06-30 23:59",
+    "title": "[ASCN] Recurso",
+    "start": "2023-01-27 00:00",
+    "end": "2023-01-27 23:59",
     "groupId": 4,
-    "filterId": 421
+    "filterId": 411
   },
-
   {
-    "title": "Dissertação - Entrega Final",
-    "start": "2022-07-01 00:00",
-    "end": "2022-07-01 23:59",
-    "groupId": 5,
-    "filterId": 52
+    "title": "[CP] Entrega TP",
+    "start": "2022-10-07 00:00",
+    "end": "2022-10-07 23:59",
+    "groupId": 4,
+    "filterId": 412
+  },
+  {
+    "title": "[CP] Entrega TP",
+    "start": "2022-10-28 00:00",
+    "end": "2022-10-28 23:59",
+    "groupId": 4,
+    "filterId": 412
+  },
+  {
+    "title": "[CP] Teste",
+    "start": "2023-01-03 00:00",
+    "end": "2023-01-03 23:59",
+    "groupId": 4,
+    "filterId": 412
+  },
+  {
+    "title": "[CP] Recurso",
+    "start": "2023-01-24 00:00",
+    "end": "2023-01-24 23:59",
+    "groupId": 4,
+    "filterId": 412
+  },
+  {
+    "title": "[DAA] Entrega TP",
+    "start": "2022-11-24 00:00",
+    "end": "2022-11-24 23:59",
+    "groupId": 4,
+    "filterId": 413
+  },
+  {
+    "title": "[DAA] Entrega TP",
+    "start": "2023-01-19 00:00",
+    "end": "2023-01-19 23:59",
+    "groupId": 4,
+    "filterId": 413
+  },
+  {
+    "title": "[DAA] Teste",
+    "start": "2023-01-05 00:00",
+    "end": "2023-01-05 23:59",
+    "groupId": 4,
+    "filterId": 413
+  },
+  {
+    "title": "[DAA] Recurso",
+    "start": "2023-01-26 00:00",
+    "end": "2023-01-26 23:59",
+    "groupId": 4,
+    "filterId": 413
+  },
+  {
+    "title": "[ESR] Entrega TP",
+    "start": "2022-12-15 00:00",
+    "end": "2022-12-15 23:59",
+    "groupId": 4,
+    "filterId": 414
+  },
+  {
+    "title": "[ESR] Entrega TP",
+    "start": "2022-12-16 00:00",
+    "end": "2022-12-16 23:59",
+    "groupId": 4,
+    "filterId": 414
+  },
+  {
+    "title": "[ESR] Teste",
+    "start": "2023-01-12 00:00",
+    "end": "2023-01-12 23:59",
+    "groupId": 4,
+    "filterId": 414
+  },
+  {
+    "title": "[ESR] Recurso",
+    "start": "2023-02-02 00:00",
+    "end": "2023-02-02 23:59",
+    "groupId": 4,
+    "filterId": 414
+  },
+  {
+    "title": "[MFES] Teste",
+    "start": "2022-10-07 00:00",
+    "end": "2022-10-07 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[MFES] Teste",
+    "start": "2022-10-28 00:00",
+    "end": "2022-10-28 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[MFES] Teste",
+    "start": "2022-11-11 00:00",
+    "end": "2022-11-11 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[MFES] Teste",
+    "start": "2022-12-09 00:00",
+    "end": "2022-12-09 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[MFES] Teste",
+    "start": "2022-10-07 00:00",
+    "end": "2022-10-07 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[MFES] Recurso",
+    "start": "2022-02-03 00:00",
+    "end": "2022-02-03 23:59",
+    "groupId": 4,
+    "filterId": 415
+  },
+  {
+    "title": "[RAS] Entrega TP",
+    "start": "2022-11-04 00:00",
+    "end": "2022-11-04 23:59",
+    "groupId": 4,
+    "filterId": 416
+  },
+  {
+    "title": "[RAS] Entrega TP",
+    "start": "2022-12-02 00:00",
+    "end": "2022-12-02 23:59",
+    "groupId": 4,
+    "filterId": 416
+  },
+  {
+    "title": "[RAS] Entrega TP",
+    "start": "2023-01-02 00:00",
+    "end": "2023-01-02 23:59",
+    "groupId": 4,
+    "filterId": 416
+  },
+  {
+    "title": "[RAS] Teste",
+    "start": "2023-01-10 00:00",
+    "end": "2023-01-10 23:59",
+    "groupId": 4,
+    "filterId": 416
+  },
+  {
+    "title": "[RAS] Recurso",
+    "start": "2023-01-31 00:00",
+    "end": "2023-01-31 23:59",
+    "groupId": 4,
+    "filterId": 416
   }
 ]
