@@ -14,16 +14,16 @@ function CheckBox({ filters, handleFilters }) {
     semester: number;
   }[] = [];
   const semesters = [
-    "[LEI] 1º Ano - 1º Semestre",
-    "[LEI] 1º Ano - 2º Semestre",
-    "[LEI] 2º Ano - 1º Semestre",
-    "[LEI] 2º Ano - 2º Semestre",
-    "[LEI] 3º Ano - 1º Semestre",
-    "[LEI] 3º Ano - 2º Semestre",
-    "[MEI] 1º Ano - 1º Semestre",
-    "[MEI] 1º Ano - 2º Semestre",
-    "[MEI] 2º Ano",
-    "Outro",
+    "[LEI] 1º Year - 1º Semester",
+    "[LEI] 1º Year - 2º Semester",
+    "[LEI] 2º Year - 1º Semester",
+    "[LEI] 2º Year - 2º Semester",
+    "[LEI] 3º Year - 1º Semester",
+    "[LEI] 3º Year - 2º Semester",
+    "[MEI] 1º Year - 1º Semester",
+    "[MEI] 1º Year - 2º Semester",
+    "[MEI] 2º Year",
+    "Others",
   ];
 
   event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1);
@@ -52,7 +52,7 @@ function CheckBox({ filters, handleFilters }) {
 
   return (
     <Collapse>
-      <Panel header="Filtros" key={0}>
+      <Panel header="Filters" key={0}>
         <Collapse>
           {semesters.map((b, index1) => (
             <Panel header={b} key={index1}>
