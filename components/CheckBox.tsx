@@ -14,15 +14,15 @@ function CheckBox({ filters, handleFilters }) {
     semester: number;
   }[] = [];
   const semesters = [
-    "[LEI] 1º Year - 1º Semester",
-    "[LEI] 1º Year - 2º Semester",
-    "[LEI] 2º Year - 1º Semester",
-    "[LEI] 2º Year - 2º Semester",
-    "[LEI] 3º Year - 1º Semester",
-    "[LEI] 3º Year - 2º Semester",
-    "[MEI] 1º Year - 1º Semester",
-    "[MEI] 1º Year - 2º Semester",
-    "[MEI] 2º Year",
+    "[LEI] 1st Year - 1st Semester",
+    "[LEI] 1st Year - 2nd Semester",
+    "[LEI] 2nd Year - 1st Semester",
+    "[LEI] 2nd Year - 2nd Semester",
+    "[LEI] 3rd Year - 1st Semester",
+    "[LEI] 3rd Year - 2nd Semester",
+    "[MEI] 1st Year - 1st Semester",
+    "[MEI] 1st Year - 2nd Semester",
+    "[MEI] 2nd Year",
     "Others",
   ];
 
