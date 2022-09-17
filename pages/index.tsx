@@ -19,7 +19,7 @@ export default function Home({ events, filters }) {
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
-    
+
     return event;
   };
 
@@ -92,7 +92,12 @@ export default function Home({ events, filters }) {
             />
           </div>
 
-          {inspectEvent && <EventModal selectedEvent={selectedEvent} setInspectEvent={setInspectEvent} />}
+          {inspectEvent && (
+            <EventModal
+              selectedEvent={selectedEvent}
+              setInspectEvent={setInspectEvent}
+            />
+          )}
 
           <div className={styles.filter}>
             <CheckBox

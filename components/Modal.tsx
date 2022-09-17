@@ -14,7 +14,7 @@ function EventModal({
 
   const end_date = new Date(end).toLocaleDateString("pt", {
     hour: "numeric",
-    minute: "numeric"
+    minute: "numeric",
   });
 
   const handleModalClose = () => {
@@ -33,10 +33,7 @@ function EventModal({
         onCancel={(_) => handleModalClose()}
       >
         <p>Descrição: {title}</p>
-        <p>
-          Data:{" "}
-          {`${start_date} - ${end_date}`}
-        </p>
+        <p>Data: {`${start_date} - ${end_date}`}</p>
         <p>{groupId != 0 ? `Ano: ${groupId}º` : ""}</p>
       </Modal>
     </>
