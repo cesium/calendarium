@@ -98,14 +98,16 @@ const Navbar = ({ isHome }: INavbarProps) => {
       </div>
 
       <div className={styles.cesiumLogo}>
-        <Link href="https://cesium.link/">
-          <Image
-            width={100}
-            height={36}
-            src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
-            alt="CeSIUM Link"
-          />
-        </Link>
+        <div className="hidden md:block">
+          <Link href="https://cesium.link/">
+            <Image
+              width={100}
+              height={36}
+              src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
+              alt="CeSIUM Link"
+            />
+          </Link>
+        </div>
       </div>
 
       <div className={`${styles.links} ${isDark ? styles.darkLink : ""}`}>
