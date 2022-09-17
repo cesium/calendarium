@@ -82,9 +82,9 @@ export const SelectSchedule = ({
   */
   return (
     <Collapse>
-      <Panel header="filters" key="panel">
+      <Panel header="Filters" key="panel">
         <Collapse>
-          <Panel header="1st Year (Graduation)" key="1">
+          <Panel header="[LEI] 1st Year" key="1">
             <Collapse>
               <Panel header="1st Semester" key={""}>
                 {year_one_one.map((filter) =>
@@ -128,7 +128,7 @@ export const SelectSchedule = ({
         </Collapse>
 
         <Collapse>
-          <Panel header="2nd Year (Graduation)" key="2">
+          <Panel header="[LEI] 2nd Year" key="2">
             <Collapse>
               <Panel header="1st Semester" key={""}>
                 {year_two_one.map((filter) =>
@@ -172,7 +172,7 @@ export const SelectSchedule = ({
         </Collapse>
 
         <Collapse>
-          <Panel header="3rd Year (Graduation)" key="3">
+          <Panel header="[LEI] 3rd Year" key="3">
             <Collapse>
               <Panel header="1st Semester" key={""}>
                 {year_three_one.map((filter) =>
@@ -216,7 +216,7 @@ export const SelectSchedule = ({
         </Collapse>
 
         <Collapse>
-          <Panel header="1st Year (Masters)" key="4">
+          <Panel header="[MEI] 1st Year" key="4">
             <Collapse>
               <Panel header="1st Semester" key={""}>
                 {year_four_one.map((filter) =>
@@ -238,7 +238,7 @@ export const SelectSchedule = ({
             </Collapse>
 
             <Collapse>
-              <Panel header="2nd Semester (Profiles)" key={""}>
+              <Panel header="2nd Semester" key={""}>
                 {year_four_two.map((filter) =>
                   filter.shifts?.length ? (
                     <OptionWithShifts
@@ -260,7 +260,7 @@ export const SelectSchedule = ({
         </Collapse>
 
         <Collapse>
-          <Panel header="2nd Year (Masters)" key="5">
+          <Panel header="[MEI] 2nd Year" key="5">
             {year_five.map((filter) =>
               filter.shifts?.length ? (
                 <OptionWithShifts
