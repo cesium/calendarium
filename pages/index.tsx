@@ -25,7 +25,12 @@ export default function Home({ events, filters }) {
 
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
-  const [selectedEvent, setSelectedEvent] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState<{
+    title;
+    start;
+    end;
+    groupId;
+  }>(events[0]);
   const [inspectEvent, setInspectEvent] = useState(false);
 
   const showNewEvents = (f) => {
@@ -77,7 +82,7 @@ export default function Home({ events, filters }) {
               onSelectEvent={(event) => handleSelection(event)}
               defaultDate={new Date()}
               defaultView="month"
-              eventPropGetter={(event) => {
+              eventPropGetter={(event: { title; start; end; groupId }) => {
                 const newStyle = {
                   backgroundColor: colors[event.groupId],
                   border: "none",
