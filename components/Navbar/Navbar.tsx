@@ -93,7 +93,7 @@ const Navbar = ({ isHome }: INavbarProps) => {
         </button>
 
         <button onClick={() => darkMode()} className={styles.darkmode}>
-          <DarkModeToggle visible={true} />
+          <DarkModeToggle visible={false} />
         </button>
       </div>
 

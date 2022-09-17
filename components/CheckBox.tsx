@@ -14,16 +14,16 @@ function CheckBox({ filters, handleFilters }) {
     semester: number;
   }[] = [];
   const semesters = [
-    "1st Year - 1st Semester",
-    "1st Year - 2nd Semester",
-    "2nd Year - 1st Semester",
-    "2nd Year - 2nd Semester",
-    "3rd Year - 1st Semester",
-    "3rd Year - 2nd Semester",
-    "4th Year - 1st Semester",
-    "4st Year - 2nd Semester",
-    "5th Year ",
-    "Other",
+    "[LEI] 1º Ano - 1º Semestre",
+    "[LEI] 1º Ano - 2º Semestre",
+    "[LEI] 2º Ano - 1º Semestre",
+    "[LEI] 2º Ano - 2º Semestre",
+    "[LEI] 3º Ano - 1º Semestre",
+    "[LEI] 3º Ano - 2º Semestre",
+    "[MEI] 1º Ano - 1º Semestre",
+    "[MEI] 1º Ano - 2º Semestre",
+    "[MEI] 2º Ano",
+    "Outro",
   ];
 
   event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1);
@@ -75,7 +75,7 @@ function CheckBox({ filters, handleFilters }) {
                           Checked.indexOf(value.id) === -1 ? false : true
                         }
                       />
-                      <span>{value.name}</span>
+                      <span className="pl-2">{value.name}</span>
                     </div>
                   </React.Fragment>
                 )
