@@ -72,6 +72,10 @@
     display: flex;
     justify-content: flex-end;
 
+    .activeLink {
+      color: var(--black);
+    }
+
     a {
       position: relative;
       color: var(--placeholder);
@@ -82,10 +86,6 @@
 
       &:hover {
         color: var(--black);
-      }
-
-      &.activeLink {
-        color: var(--white);
       }
 
       &.activeLink::after {
@@ -104,6 +104,10 @@
   }
 
   .darkLink {
+    .activeLink {
+      color: var(--white);
+    }
+
     a:hover {
       color: var(--white);
     }
