@@ -91,10 +91,6 @@ const Navbar = ({ isHome }: INavbarProps) => {
         <button onClick={() => exportPDF()} className={styles.buttonPdf}>
           Extract to PDF
         </button>
-
-        <button onClick={() => darkMode()} className={styles.darkmode}>
-          <DarkModeToggle visible={false} />
-        </button>
       </div>
 
       <div className={styles.cesiumLogo}>
