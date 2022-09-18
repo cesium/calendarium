@@ -90,7 +90,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       <Head>
         <title>Schedule | Calendarium</title>
         <meta name="Calendarium" content="Calendar of events and exams" />
-        <link rel="icon" href="/calendar-icon.ico" />~
+        <link rel="icon" href="/favicon-calendarium.ico" />~
       </Head>
 
       <div id="SCHEDULE">
