@@ -4,6 +4,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 import { useTheme } from "../Theme/Theme";
+import ActiveLink from "../ActiveLink";
 
 import styles from "./navbar.module.scss";
 
@@ -107,12 +108,12 @@ const Navbar = ({ isHome }: INavbarProps) => {
       </div>
 
       <div className={`${styles.links} ${isDark ? styles.darkLink : ""}`}>
-        <Link href="/">
+        <ActiveLink href="/" activeClassName={styles.activeLink}>
           <a>EVENTS</a>
-        </Link>
-        <Link href="/schedule">
+        </ActiveLink>
+        <ActiveLink href="/schedule" activeClassName={styles.activeLink}>
           <a>SCHEDULE</a>
-        </Link>
+        </ActiveLink>
       </div>
     </nav>
   );

@@ -2,19 +2,18 @@
   display: flex;
   justify-content: center;
   width: 150px;
-  color: white;
+  color: var(--white);
 }
 
 .light {
   display: flex;
   justify-content: center;
   width: 150px;
-  color: black;
+  color: var(--black);
 }
 
 .navbar {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
 
   padding: 1rem 2rem;
@@ -32,7 +31,7 @@
       display: flex;
       justify-content: center;
       padding: 5px;
-      color: black;
+      color: var(--black);
       text-align: center;
 
       &:hover {
@@ -48,9 +47,9 @@
       width: 150px;
       padding: 5px;
 
-      color: white;
-      background-color: #ed7950;
-      border: solid 2px black;
+      color: var(--white);
+      background-color: var(--orange);
+      border: solid 2px var(--black);
       border-radius: 5px;
 
       &:hover {
@@ -73,22 +72,44 @@
     display: flex;
     justify-content: flex-end;
 
+    .activeLink {
+      color: var(--black);
+    }
+
     a {
-      color: #969cb3;
+      position: relative;
+      color: var(--placeholder);
 
       & + a {
         margin-left: 2rem;
       }
 
       &:hover {
-        color: black;
+        color: var(--black);
+      }
+
+      &.activeLink::after {
+        content: "";
+        height: 3px;
+        width: 100%;
+        border-radius: 3px 3px 0 0;
+
+        position: absolute;
+        bottom: calc(-2rem + 6px);
+        left: 0;
+
+        background: var(--orange);
       }
     }
   }
 
   .darkLink {
+    .activeLink {
+      color: var(--white);
+    }
+
     a:hover {
-      color: white;
+      color: var(--white);
     }
   }
 }

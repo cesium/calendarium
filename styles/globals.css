@@ -19,6 +19,15 @@ a {
   box-sizing: border-box;
 }
 
+:root {
+  --white: #ffffff;
+  --black: #000000;
+
+  --orange: #ed7950;
+
+  --placeholder: #969cb3;
+}
+
 /* if body class is dark */
 body.dark {
   color: #fff;
