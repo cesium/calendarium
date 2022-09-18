@@ -71,7 +71,7 @@
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    
+
     a {
       position: relative;
       color: var(--placeholder);
@@ -87,17 +87,17 @@
       &.activeLink {
         color: var(--white);
       }
-    
+
       &.activeLink::after {
         content: "";
         height: 3px;
         width: 100%;
         border-radius: 3px 3px 0 0;
-    
+
         position: absolute;
         bottom: calc(-2rem + 6px);
         left: 0;
-    
+
         background: var(--orange);
       }
     }
