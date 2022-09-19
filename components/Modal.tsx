@@ -32,7 +32,6 @@ function EventModal({
         width={500}
         onCancel={(_) => handleModalClose()}
       >
-        <p>Descrição: {title}</p>
         <p>Data: {`${start_date} - ${end_date}`}</p>
         <p>{groupId != 0 ? `Ano: ${groupId}º` : ""}</p>
       </Modal>
