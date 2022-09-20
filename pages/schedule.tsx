@@ -42,6 +42,11 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [events, setEvents] = useState<IFormatedShift[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
 
+  useEffect(() => {
+    // Runs on component load
+    getStorageFilters();
+  }, []);
+
   const formats = useMemo(
     () => ({
       dayFormat: (date, _, localizer) => localizer.format(date, "ddd"),
@@ -85,6 +90,18 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     formatEvents();
   }, [selectedFilters, formatEvents]);
 
+  function getStorageFilters() {
+    const storageFilters = localStorage.getItem('storageFilters');
+    if (storageFilters) {
+      setSelectedFilters(JSON.parse(storageFilters));
+      // TODO: enable selected checkboxes
+    }
+  }
+
+  function setStorageFilters(storageFilters: Array<string>): void {
+    localStorage.setItem("storageFilters", JSON.stringify(storageFilters));
+  }
+
   return (
     <Layout>
       <Head>
@@ -114,6 +131,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         handleFilters={(myFilters) => {
           console.log(myFilters);
           setSelectedFilters(myFilters);
+          setStorageFilters(myFilters);
         }}
       />
     </Layout>
