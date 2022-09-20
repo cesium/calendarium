@@ -91,7 +91,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   }, [selectedFilters, formatEvents]);
 
   function getStorageFilters() {
-    const storageFilters = localStorage.getItem('storageFilters');
+    const storageFilters = localStorage.getItem("storageFilters");
     if (storageFilters) {
       setSelectedFilters(JSON.parse(storageFilters));
       // TODO: enable selected checkboxes
