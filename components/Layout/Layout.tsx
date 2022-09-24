@@ -16,7 +16,7 @@ const Layout = ({ children, isHome }: ILayoutProps) => {
   return (
     <>
       <div className={styles.main}>
-        <Navbar isHome={isHome}/>
+        <Navbar isHome={isHome} />
       </div>
 
       <main className={styles.main}>{children}</main>
