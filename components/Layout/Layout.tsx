@@ -14,7 +14,7 @@ interface ILayoutProps {
 const Layout = ({ children, isHome }: ILayoutProps) => {
   const { isDark, toggleTheme } = useTheme();
   return (
-    <div style={{ overflow: 'auto' }}>
+    <div style={{ overflow: "auto" }}>
       <div className={styles.main}>
         <Navbar isHome={isHome} />
       </div>
