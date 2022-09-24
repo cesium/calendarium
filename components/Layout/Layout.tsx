@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import Image from "next/image";
 
 import Navbar from "../Navbar";
 
@@ -15,20 +14,13 @@ interface ILayoutProps {
 const Layout = ({ children, isHome }: ILayoutProps) => {
   const { isDark, toggleTheme } = useTheme();
   return (
-    <>
-      <Navbar isHome={isHome} />
+    <div style={{ overflow: "auto" }}>
+      <div className={styles.main}>
+        <Navbar isHome={isHome} />
+      </div>
 
       <main className={styles.main}>{children}</main>
-
-      <footer className={styles.footer}>
-        <Image
-          width={100}
-          height={36}
-          src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
-          alt="CeSIUM Logo"
-        />
-      </footer>
-    </>
+    </div>
   );
 };
 

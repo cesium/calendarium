@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap");
+
 .dark {
   display: flex;
   justify-content: center;
@@ -18,14 +20,20 @@
 
   padding: 1rem 2rem;
   margin-bottom: 30px;
+  margin-top: 30px;
 
-  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  width: 100%;
+  height: fit-content;
+
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
 
   .navbarButtons {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
+    margin: auto;
+    width: fit-content;
 
     .darkmode {
       display: flex;
@@ -40,37 +48,46 @@
     }
 
     .buttonPdf {
-      display: flex;
-      justify-content: center;
-      text-align: center;
-
-      width: 150px;
-      padding: 5px;
-
-      color: var(--white);
-      background-color: var(--orange);
-      border: solid 2px var(--black);
-      border-radius: 5px;
+      background: rgba(255, 118, 73, 0.9);
+      border-radius: 999px;
+      box-sizing: border-box;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 16px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+      margin: 0 3px 0 3px;
+      transition: 150ms linear;
 
       &:hover {
-        opacity: 75%;
+        box-shadow: rgb(255, 118, 73, 0.8) 0 2px 12px 0px;
       }
     }
   }
 
   .cesiumLogo {
     cursor: pointer;
-    object-fit: contain;
 
     flex: 1;
     display: flex;
-    justify-content: center;
+    margin-left: 10px;
+    margin-top: 6px;
   }
 
   .links {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    margin-right: 15px;
 
     .activeLink {
       color: var(--black);
@@ -95,7 +112,7 @@
         border-radius: 3px 3px 0 0;
 
         position: absolute;
-        bottom: calc(-2rem + 6px);
+        bottom: calc(-2rem + -1px);
         left: 0;
 
         background: var(--orange);
@@ -110,6 +127,85 @@
 
     a:hover {
       color: var(--white);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: block;
+
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    width: 100%;
+    height: fit-content;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+
+    .navbarButtons {
+      display: block;
+      width: fit-content;
+      margin: auto;
+      padding-top: 15px;
+    }
+
+    .cesiumLogo {
+      display: block;
+      cursor: pointer;
+      object-fit: contain;
+      margin: auto;
+      width: fit-content;
+    }
+
+    .links {
+      padding-top: 20px;
+      margin: auto;
+      width: fit-content;
+
+      .activeLink {
+        color: var(--black);
+      }
+
+      a {
+        position: relative;
+        color: var(--placeholder);
+
+        & + a {
+          margin-left: 2rem;
+        }
+
+        &:hover {
+          color: var(--black);
+        }
+
+        &.activeLink::after {
+          content: "";
+          height: 3px;
+          width: 100%;
+          border-radius: 3px 3px 0 0;
+
+          position: absolute;
+          bottom: calc(-2rem + 16px);
+          left: 0;
+
+          background: var(--orange);
+        }
+      }
+    }
+
+    .darkLink {
+      .activeLink {
+        color: var(--white);
+      }
+
+      a:hover {
+        color: var(--white);
+      }
     }
   }
 }

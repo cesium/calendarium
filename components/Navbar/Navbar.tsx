@@ -88,23 +88,23 @@ const Navbar = ({ isHome }: INavbarProps) => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbarButtons}>
-        <button onClick={() => exportPDF()} className={styles.buttonPdf}>
-          Extract to PDF
-        </button>
-      </div>
-
       <div className={styles.cesiumLogo}>
-        <div className="hidden md:block">
+        <div>
           <Link href="https://cesium.link/">
             <Image
-              width={100}
-              height={36}
+              width={136}
+              height={46}
               src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
               alt="CeSIUM Link"
             />
           </Link>
         </div>
+      </div>
+
+      <div className={styles.navbarButtons}>
+        <button onClick={() => exportPDF()} className={styles.buttonPdf}>
+          Extract to PDF
+        </button>
       </div>
 
       <div className={`${styles.links} ${isDark ? styles.darkLink : ""}`}>

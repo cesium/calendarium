@@ -10,7 +10,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
 import CheckBox from "../components/CheckBox";
-import EventModal from "../components/Modal";
+import EventModal from "../components/EventModal";
 
 const localizer = momentLocalizer(moment);
 
@@ -128,9 +128,7 @@ export default function Home({ events, filters }) {
           </div>
         </div>
       </div>
-      <div className="textbox">
-        <FeedbackForm />
-      </div>
+      <FeedbackForm />
     </Layout>
   );
 }
