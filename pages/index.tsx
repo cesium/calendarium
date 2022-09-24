@@ -10,7 +10,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
 import CheckBox from "../components/CheckBox";
-import EventModal from "../components/Modal";
+import Modal from "../components/Modal";
 
 const localizer = momentLocalizer(moment);
 
@@ -114,7 +114,7 @@ export default function Home({ events, filters }) {
           </div>
 
           {inspectEvent && (
-            <EventModal
+            <Modal
               selectedEvent={selectedEvent}
               setInspectEvent={setInspectEvent}
             />
