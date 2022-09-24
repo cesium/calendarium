@@ -5,6 +5,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
+import FeedbackForm from "../components/FeedbackForm";
 
 import Layout from "../components/Layout";
 import { SelectSchedule } from "../components/SelectSchedule";
@@ -116,6 +117,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           setSelectedFilters(myFilters);
         }}
       />
+
+      <FeedbackForm />
     </Layout>
   );
 }

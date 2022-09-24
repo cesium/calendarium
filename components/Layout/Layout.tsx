@@ -15,7 +15,9 @@ const Layout = ({ children, isHome }: ILayoutProps) => {
   const { isDark, toggleTheme } = useTheme();
   return (
     <>
-      <Navbar isHome={isHome} />
+      <div className={styles.main}>
+        <Navbar isHome={isHome}/>
+      </div>
 
       <main className={styles.main}>{children}</main>
     </>

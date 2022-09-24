@@ -128,9 +128,7 @@ export default function Home({ events, filters }) {
           </div>
         </div>
       </div>
-      <div className="textbox">
-        <FeedbackForm />
-      </div>
+      <FeedbackForm />
     </Layout>
   );
 }
