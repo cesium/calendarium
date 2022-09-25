@@ -1,45 +1,36 @@
 # Calendarium
 
-This project consist in a calendar of exams, projects due dates and events of Graduation and Masters degree in Software Engineering at [University of Minho](https://www.uminho.pt/EN/Pages/default.aspx)
+> 📅 Calendar with special events, due dates and week schedule 
 
-## Resources
+Exams, projects, events and schedules. Your hub to everything LEI, MEI or even MIEI!
 
-In this project, the following _open-source_ resources were used:
+## 🤝 Contributing
 
-- [Next.js](https://nextjs.org/) (using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app))
+When contributing to this repository, please first discuss the change you wish to make via discussions, issue, email, or any other method with the owners of this repository before making a change.
 
-- [React-Big-Calendar](https://github.com/jquense/react-big-calendar)
+Please note we have a [Code of Conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
-- [Ant Desgin](https://ant.design/docs/react/introduce) ([Documentation](https://github.com/ant-design/ant-design/))
+We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 
-- [EmailJs](https://www.emailjs.com/)
+## 📑 Features
 
-- [html2pdf](https://github.com/eKoopmans/html2pdf.js)
+> Here's a quick view of the features you can expect
 
-- [jsPDF](https://github.com/parallax/jsPDF)
+### Multiple calendar views:
 
-## Getting Started
+- Day
+- Week
+- Month
+- Agenda
 
-First, run the development server:
+### Event filtering:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- See only the events that matter to you
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Export to PDF:
 
-## Features
+- Export your calendar or schedule into PDF format
 
-The Calendar has 4 types of Views: Month, Week, Day and Agenda. Each one of those represents in a different way the displayed events.
+### Suggestions:
 
-It's possible to filter events and export the current filterd view in a PDF file.
-
-Since it's possible to find events with wrong informations, an TextBox for suggestions is also available for any feedback.
-
-## Contributing
-
-When contributing to this repository, please first discuss the change you wish
-to make via discussions, issues, email, or any other method with the owners of this
-repository before making a change.
+- Anything out of place? Give us your feedback using the [suggestions form](https://forms.gle/C2uxuUKqoeqMWfcZ6)!
