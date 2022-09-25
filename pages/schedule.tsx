@@ -110,13 +110,15 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         />
       </div>
 
-      <SelectSchedule
-        filters={filters}
-        handleFilters={(myFilters) => {
-          console.log(myFilters);
-          setSelectedFilters(myFilters);
-        }}
-      />
+      <div style={{ fontFamily: "Inter" }}>
+        <SelectSchedule
+          filters={filters}
+          handleFilters={(myFilters) => {
+            console.log(myFilters);
+            setSelectedFilters(myFilters);
+          }}
+        />
+      </div>
 
       <FeedbackForm />
     </Layout>

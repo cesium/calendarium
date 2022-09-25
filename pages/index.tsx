@@ -120,7 +120,7 @@ export default function Home({ events, filters }) {
             />
           )}
 
-          <div className={styles.filter}>
+          <div style={{ fontFamily: "Inter" }}>
             <CheckBox
               filters={filters}
               handleFilters={(myFilters) => handleFilters(myFilters)}

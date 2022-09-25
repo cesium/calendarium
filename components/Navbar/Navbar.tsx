@@ -103,16 +103,20 @@ const Navbar = ({ isHome }: INavbarProps) => {
 
       <div className={styles.navbarButtons}>
         <button onClick={() => exportPDF()} className={styles.buttonPdf}>
-          Extract to PDF
+          Export <i className="bi bi-file-earmark-pdf-fill"></i>
         </button>
       </div>
 
       <div className={`${styles.links} ${isDark ? styles.darkLink : ""}`}>
         <ActiveLink href="/" activeClassName={styles.activeLink}>
-          <a>EVENTS</a>
+          <a>
+            <i className="bi bi-calendar-fill"></i> EVENTS
+          </a>
         </ActiveLink>
         <ActiveLink href="/schedule" activeClassName={styles.activeLink}>
-          <a>SCHEDULE</a>
+          <a>
+            <i className="bi bi-clock-fill"></i> SCHEDULE
+          </a>
         </ActiveLink>
       </div>
     </nav>

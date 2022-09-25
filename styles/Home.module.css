@@ -45,14 +45,6 @@
   border-radius: 5px;
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  max-width: 800px;
-}
-
 .card {
   max-width: 300px;
   padding: 1.5rem;
@@ -86,18 +78,4 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
-
-.filter {
-  max-width: 150vh;
-  padding: 10px;
-  margin: auto;
-  border: 1px solid #eaeaea;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    flex-direction: column;
-    width: 100%;
-  }
 }
