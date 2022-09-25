@@ -110,12 +110,12 @@ const Navbar = ({ isHome }: INavbarProps) => {
       <div className={`${styles.links} ${isDark ? styles.darkLink : ""}`}>
         <ActiveLink href="/" activeClassName={styles.activeLink}>
           <a>
-            <i className="bi bi-calendar-fill"></i> Events
+            <i className="bi bi-calendar-fill"></i> EVENTS
           </a>
         </ActiveLink>
         <ActiveLink href="/schedule" activeClassName={styles.activeLink}>
           <a>
-            <i className="bi bi-clock-fill"></i> Schedule
+            <i className="bi bi-clock-fill"></i> SCHEDULE
           </a>
         </ActiveLink>
       </div>
