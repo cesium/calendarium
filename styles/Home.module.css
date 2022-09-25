@@ -79,10 +79,3 @@
   height: 1em;
   margin-left: 0.5rem;
 }
-
-.filter {
-  max-width: 150vh;
-  padding: 10px;
-  margin: auto;
-  border: 1px solid #eaeaea;
-}
