@@ -1,6 +1,6 @@
 # Calendarium
 
-> 📅 Calendar with special events, due dates and week schedule 
+> 📅 Calendar with special events, due dates and week schedule
 
 Exams, projects, events and schedules. Your hub to everything LEI, MEI or even MIEI!
 
