@@ -9,6 +9,14 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
+- [Node.js 16.15+](https://nodejs.org/en/download/)
+
+We recommend using [asdf version manager][asdf-vm] to install and manage all the programming languages' requirements.
+
+## 🗂️ Resources
+
+We use the following open-source software:
+
 - [Next.js](https://nextjs.org/) (using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app))
 
 - [React-Big-Calendar](https://github.com/jquense/react-big-calendar)
@@ -20,8 +28,6 @@ The following software is required to be installed on your system:
 - [html2pdf](https://github.com/eKoopmans/html2pdf.js)
 
 - [jsPDF](https://github.com/parallax/jsPDF)
-
-We recommend using [asdf version manager][asdf-vm] to install and manage all the programming languages' requirements.
 
 ## 🔧 Setup
 
