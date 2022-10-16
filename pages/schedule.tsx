@@ -67,12 +67,12 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         ...shift,
         title: `${shift.title} ${shift.shift} - Edf. ${shift.building} Sala ${shift.room}`,
         start: moment()
-          .day(shift.day)
+          .day(shift.day + 1)
           .hour(+startHour)
           .minute(+startMinute)
           .toDate(),
         end: moment()
-          .day(shift.day)
+          .day(shift.day + 1)
           .hour(+endHour)
           .minute(+endMinute)
           .toDate(),
