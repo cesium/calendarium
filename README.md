@@ -1,8 +1,7 @@
-<h1 align="center">
-  <a href="https://calendario.cesium.di.uminho.pt">
-    <img src="assets/calendarium-banner.png" title="Go to Calendarium">
-  </a>
-</h1>
+<a href="https://calendario.cesium.di.uminho.pt" align="center" title="Go to Calendarium">
+  ![LOGO](assets/calendarium-banner-dark.png#gh-dark-mode-only)
+  ![LOGO](assets/calendarium-banner-light.png#gh-light-mode-only)
+</a>
 
 > 📅 Calendar with special events, due dates and week schedule
 
