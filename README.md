@@ -1,7 +1,12 @@
-<a href="https://calendario.cesium.di.uminho.pt" align="center" title="Go to Calendarium">
-  ![LOGO](assets/calendarium-banner-dark.png#gh-dark-mode-only)
-  ![LOGO](assets/calendarium-banner-light.png#gh-light-mode-only)
-</a>
+<h1 align="center">
+  <a href="https://calendario.cesium.di.uminho.pt/" title="Go to Calendarium">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/calendarium-banner-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="assets/calendarium-banner-light.png">
+      <img alt="Calendarium Banner">
+    </picture>
+  </a>
+</h1>
 
 > 📅 Calendar with special events, due dates and week schedule
 
