@@ -3,7 +3,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="assets/calendarium-banner-dark.png">
       <source media="(prefers-color-scheme: light)" srcset="assets/calendarium-banner-light.png">
-      <img alt="Calendarium" height="auto" width="550px">
+      <img alt="Calendarium" height="auto" width="800px">
     </picture>
   </a>
 </h1>
