@@ -1,6 +1,10 @@
 <h1 align="center">
-  <a href="https://calendario.cesium.di.uminho.pt">
-    <img src="assets/calendarium-banner.png" title="Go to Calendarium">
+  <a href="https://calendario.cesium.di.uminho.pt/" title="Go to Calendarium">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/calendarium-banner-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="assets/calendarium-banner-light.png">
+      <img alt="Calendarium" height="auto" width="800px">
+    </picture>
   </a>
 </h1>
 
