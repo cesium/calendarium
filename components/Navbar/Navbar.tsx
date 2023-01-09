@@ -92,9 +92,9 @@ const Navbar = ({ isHome }: INavbarProps) => {
         <div>
           <Link href="https://cesium.link/">
             <Image
-              width={136}
+              width={198}
               height={46}
-              src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
+              src={isDark ? "/calendarium-banner-dark.png" : "/calendarium-banner-light.png"}
               alt="CeSIUM Link"
             />
           </Link>
