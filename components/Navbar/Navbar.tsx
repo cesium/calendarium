@@ -89,12 +89,12 @@ const Navbar = ({ isHome }: INavbarProps) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.cesiumLogo}>
-        <div>
+        <div style={{ cursor: "pointer" }}>
           <Link href="https://cesium.link/">
             <Image
-              width={136}
+              width={260.89}
               height={46}
-              src={isDark ? "/cesium-LIGHT.svg" : "/cesium-DARK.svg"}
+              src={isDark ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
               alt="CeSIUM Link"
             />
           </Link>

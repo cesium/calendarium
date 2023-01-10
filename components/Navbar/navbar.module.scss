@@ -73,12 +73,9 @@
   }
 
   .cesiumLogo {
-    cursor: pointer;
-
     flex: 1;
     display: flex;
-    margin-left: 10px;
-    margin-top: 6px;
+    margin-top: 7px;
   }
 
   .links {
@@ -110,7 +107,7 @@
         border-radius: 3px 3px 0 0;
 
         position: absolute;
-        bottom: calc(-2rem + -1px);
+        bottom: calc(-2rem + -2px);
         left: 0;
 
         background: var(--orange);
