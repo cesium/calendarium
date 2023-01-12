@@ -93,6 +93,13 @@ export default function Home({ events, filters }) {
             <link rel="icon" href="/favicon-calendarium.ico" />
           </Head>
 
+          <div className={styles.filters}>
+            <CheckBox
+              filters={filters}
+              handleFilters={(myFilters) => handleFilters(myFilters)}
+            />
+          </div>
+
           <div id="APP">
             <Calendar
               localizer={localizer}
@@ -119,13 +126,6 @@ export default function Home({ events, filters }) {
               setInspectEvent={setInspectEvent}
             />
           )}
-
-          <div style={{ fontFamily: "Inter" }}>
-            <CheckBox
-              filters={filters}
-              handleFilters={(myFilters) => handleFilters(myFilters)}
-            />
-          </div>
         </div>
       </div>
       <FeedbackForm />

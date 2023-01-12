@@ -1,11 +1,14 @@
 import React from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
+import styles from "./checkbox.module.scss";
+import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
+
   let event: {
     map: any;
     id: number;
@@ -51,38 +54,59 @@ function CheckBox({ filters, handleFilters }) {
   };
 
   return (
-    <Collapse>
+    <Collapse
+      className={styles.checkbox}
+      bordered={false}
+      expandIcon={({ isActive }) => (
+        <CaretRightOutlined rotate={isActive ? 90 : 0} />
+      )}
+    >
       <Panel header="Filters" key={0}>
-        <Collapse>
-          {semesters.map((b, index1) => (
+        {semesters.map((b, index1) => (
+          <Collapse
+            style={{ background: "white" }}
+            bordered={false}
+            expandIcon={({ isActive }) => (
+              <CaretRightOutlined rotate={isActive ? 90 : 0} />
+            )}
+          >
             <Panel header={b} key={index1}>
-              {event[index1]?.map(
-                (
-                  value: {
-                    id: number;
-                    name: string;
-                    groupId: number;
-                    semester: number;
-                  },
-                  index: number
-                ) => (
-                  <React.Fragment key={index}>
-                    <div>
-                      <Checkbox
-                        onChange={() => handleToggle(value.id)}
-                        type="checkbox"
-                        checked={
-                          Checked.indexOf(value.id) === -1 ? false : true
-                        }
-                      />
-                      <span className="pl-2">{value.name}</span>
-                    </div>
-                  </React.Fragment>
-                )
-              )}
+              <div style={{ fontWeight: 400 }}>
+                {/* <div>
+                  <Checkbox type="checkbox" onChange={}>
+                    {" "}
+                    Check all
+                  </Checkbox>
+                </div> */}
+                {event[index1]?.map(
+                  (
+                    value: {
+                      id: number;
+                      name: string;
+                      groupId: number;
+                      semester: number;
+                    },
+                    index: number
+                  ) => (
+                    <React.Fragment key={index}>
+                      <div>
+                        <Checkbox
+                          onChange={() => handleToggle(value.id)}
+                          type="checkbox"
+                          checked={
+                            Checked.indexOf(value.id) === -1 ? false : true
+                          }
+                        >
+                          {value.name}
+                        </Checkbox>
+                      </div>
+                    </React.Fragment>
+                  )
+                )}
+              </div>
             </Panel>
-          ))}
-        </Collapse>
+          </Collapse>
+        ))}
       </Panel>
     </Collapse>
   );

@@ -36,15 +36,6 @@
   line-height: 1.5;
 }
 
-.code {
-  padding: 0.75rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-  font-size: 1.1rem;
-  background: #fafafa;
-  border-radius: 5px;
-}
-
 .card {
   max-width: 300px;
   padding: 1.5rem;
@@ -78,4 +69,8 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.filters {
+  padding: 0 0 1.7rem 0;
 }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
 import { IFilterDTO } from "../dtos";
+import styles from "../components/CheckBox/checkbox.module.scss";
+import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -81,11 +83,29 @@ export const SelectSchedule = ({
   mapping the values in each array
   */
   return (
-    <Collapse>
+    <Collapse
+      className={styles.checkbox}
+      bordered={false}
+      expandIcon={({ isActive }) => (
+        <CaretRightOutlined rotate={isActive ? 90 : 0} />
+      )}
+    >
       <Panel header="Filters" key="panel">
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="[LEI] 1st Year" key="1">
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="1st Semester" key={""}>
                 {year_one_one.map((filter) =>
                   filter.shifts?.length ? (
@@ -105,7 +125,13 @@ export const SelectSchedule = ({
               </Panel>
             </Collapse>
 
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="2nd Semester" key={""}>
                 {year_one_two.map((filter) =>
                   filter.shifts?.length ? (
@@ -127,9 +153,21 @@ export const SelectSchedule = ({
           </Panel>
         </Collapse>
 
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="[LEI] 2nd Year" key="2">
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="1st Semester" key={""}>
                 {year_two_one.map((filter) =>
                   filter.shifts?.length ? (
@@ -149,7 +187,13 @@ export const SelectSchedule = ({
               </Panel>
             </Collapse>
 
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="2nd Semester" key={""}>
                 {year_two_two.map((filter) =>
                   filter.shifts?.length ? (
@@ -171,9 +215,21 @@ export const SelectSchedule = ({
           </Panel>
         </Collapse>
 
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="[LEI] 3rd Year" key="3">
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="1st Semester" key={""}>
                 {year_three_one.map((filter) =>
                   filter.shifts?.length ? (
@@ -193,7 +249,13 @@ export const SelectSchedule = ({
               </Panel>
             </Collapse>
 
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="2nd Semester" key={""}>
                 {year_three_two.map((filter) =>
                   filter.shifts?.length ? (
@@ -215,9 +277,21 @@ export const SelectSchedule = ({
           </Panel>
         </Collapse>
 
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="[MEI] 1st Year" key="4">
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="1st Semester" key={""}>
                 {year_four_one.map((filter) =>
                   filter.shifts?.length ? (
@@ -237,7 +311,13 @@ export const SelectSchedule = ({
               </Panel>
             </Collapse>
 
-            <Collapse>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
               <Panel header="2nd Semester" key={""}>
                 {year_four_two.map((filter) =>
                   filter.shifts?.length ? (
@@ -259,7 +339,13 @@ export const SelectSchedule = ({
           </Panel>
         </Collapse>
 
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="[MEI] 2nd Year" key="5">
             {year_five.map((filter) =>
               filter.shifts?.length ? (
@@ -269,17 +355,25 @@ export const SelectSchedule = ({
                   handleToggle={handleToggle}
                 />
               ) : (
-                <Option
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                />
+                <div style={{ fontWeight: 400 }}>
+                  <Option
+                    key={filter.id}
+                    filter={filter}
+                    handleToggle={handleToggle}
+                  />
+                </div>
               )
             )}
           </Panel>
         </Collapse>
 
-        <Collapse>
+        <Collapse
+          style={{ background: "white" }}
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+        >
           <Panel header="Others" key="0">
             {others.map((filter) =>
               filter.shifts?.length ? (
@@ -289,11 +383,13 @@ export const SelectSchedule = ({
                   handleToggle={handleToggle}
                 />
               ) : (
-                <Option
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                />
+                <div style={{ fontWeight: 400 }}>
+                  <Option
+                    key={filter.id}
+                    filter={filter}
+                    handleToggle={handleToggle}
+                  />
+                </div>
               )
             )}
           </Panel>
