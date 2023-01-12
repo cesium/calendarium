@@ -1,0 +1,24 @@
+.checkbox {
+  border-radius: 25px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+  width: 20rem;
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .checkbox {
+    width: 100%;
+  }
+}
+
+.sub_checkbox {
+  background: white;
+  font-weight: 400;
+}
+
+.filters {
+  padding: 0 0 1.7rem 0;
+}

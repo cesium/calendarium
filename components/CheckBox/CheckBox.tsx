@@ -1,11 +1,14 @@
 import React from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
+import styles from "./checkbox.module.scss";
+import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
+
   let event: {
     map: any;
     id: number;
@@ -14,15 +17,15 @@ function CheckBox({ filters, handleFilters }) {
     semester: number;
   }[] = [];
   const semesters = [
-    "[LEI] 1st Year - 1st Semester",
-    "[LEI] 1st Year - 2nd Semester",
-    "[LEI] 2nd Year - 1st Semester",
-    "[LEI] 2nd Year - 2nd Semester",
-    "[LEI] 3rd Year - 1st Semester",
-    "[LEI] 3rd Year - 2nd Semester",
-    "[MEI] 1st Year - 1st Semester",
-    "[MEI] 1st Year - 2nd Semester",
-    "[MEI] 2nd Year",
+    "LEI | 1ˢᵗ year - 1ˢᵗ semester",
+    "LEI | 1ˢᵗ year - 2ⁿᵈ semester",
+    "LEI | 2ⁿᵈ year - 1ˢᵗ semester",
+    "LEI | 2ⁿᵈ year - 2ⁿᵈ semester",
+    "LEI | 3ʳᵈ year - 1ˢᵗ semester",
+    "LEI | 3ʳᵈ year - 2ⁿᵈ semester",
+    "MEI | 1ˢᵗ year - 1ˢᵗ semester",
+    "MEI | 1ˢᵗ year - 2ⁿᵈ semester",
+    "MEI | 2ⁿᵈ year",
     "Others",
   ];
 
@@ -51,38 +54,60 @@ function CheckBox({ filters, handleFilters }) {
   };
 
   return (
-    <Collapse>
+    <Collapse
+      className={styles.checkbox}
+      bordered={false}
+      expandIcon={({ isActive }) => (
+        <CaretRightOutlined rotate={isActive ? 90 : 0} />
+      )}
+    >
       <Panel header="Filters" key={0}>
-        <Collapse>
-          {semesters.map((b, index1) => (
-            <Panel header={b} key={index1}>
-              {event[index1]?.map(
-                (
-                  value: {
-                    id: number;
-                    name: string;
-                    groupId: number;
-                    semester: number;
-                  },
-                  index: number
-                ) => (
-                  <React.Fragment key={index}>
-                    <div>
-                      <Checkbox
-                        onChange={() => handleToggle(value.id)}
-                        type="checkbox"
-                        checked={
-                          Checked.indexOf(value.id) === -1 ? false : true
-                        }
-                      />
-                      <span className="pl-2">{value.name}</span>
-                    </div>
-                  </React.Fragment>
-                )
-              )}
+        {semesters.map((b, index1) => (
+          <Collapse
+            style={{ background: "white" }}
+            bordered={false}
+            expandIcon={({ isActive }) => (
+              <CaretRightOutlined rotate={isActive ? 90 : 0} />
+            )}
+            key={index1}
+          >
+            <Panel header={b} key={index1 + 1}>
+              <div style={{ fontWeight: 400 }}>
+                {/* <div>
+                  <Checkbox type="checkbox" onChange={}>
+                    {" "}
+                    Check all
+                  </Checkbox>
+                </div> */}
+                {event[index1]?.map(
+                  (
+                    value: {
+                      id: number;
+                      name: string;
+                      groupId: number;
+                      semester: number;
+                    },
+                    index: number
+                  ) => (
+                    <React.Fragment key={index}>
+                      <div>
+                        <Checkbox
+                          onChange={() => handleToggle(value.id)}
+                          type="checkbox"
+                          checked={
+                            Checked.indexOf(value.id) === -1 ? false : true
+                          }
+                        >
+                          {value.name}
+                        </Checkbox>
+                      </div>
+                    </React.Fragment>
+                  )
+                )}
+              </div>
             </Panel>
-          ))}
-        </Collapse>
+          </Collapse>
+        ))}
       </Panel>
     </Collapse>
   );
