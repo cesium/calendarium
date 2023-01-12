@@ -119,6 +119,7 @@ export const SelectSchedule = ({
             expandIcon={({ isActive }) => (
               <CaretRightOutlined rotate={isActive ? 90 : 0} />
             )}
+            key={index1}
           >
             <Panel header={y} key={index1}>
               {semesters.map((s, index2) => (
@@ -128,6 +129,7 @@ export const SelectSchedule = ({
                   expandIcon={({ isActive }) => (
                     <CaretRightOutlined rotate={isActive ? 90 : 0} />
                   )}
+                  key={index2}
                 >
                   <Panel header={s} key={index2}>
                     {functions[index1 * 2 + index2].map((filter) =>

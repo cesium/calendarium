@@ -69,8 +69,9 @@ function CheckBox({ filters, handleFilters }) {
             expandIcon={({ isActive }) => (
               <CaretRightOutlined rotate={isActive ? 90 : 0} />
             )}
+            key={index1}
           >
-            <Panel header={b} key={index1}>
+            <Panel header={b} key={index1 + 1}>
               <div style={{ fontWeight: 400 }}>
                 {/* <div>
                   <Checkbox type="checkbox" onChange={}>
