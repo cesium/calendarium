@@ -14,7 +14,7 @@ import { IFilterDTO, IShiftDTO } from "../dtos";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import styles from "../components/CheckBox/checkbox.module.scss";
+import styles from "../styles/schedule.module.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -106,7 +106,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         />
       </div>
 
-      <div id="SCHEDULE">
+      <div id="SCHEDULE" className={styles.schedule}>
         <Calendar
           toolbar={false}
           localizer={localizer}

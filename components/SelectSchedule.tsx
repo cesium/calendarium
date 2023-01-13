@@ -90,12 +90,9 @@ export const SelectSchedule = ({
     handleFilters(newSelctedFilters);
   };
 
-  const years = [
-    "LEI | 1ˢᵗ year",
-    "LEI | 2ⁿᵈ year",
-    "LEI | 3ʳᵈ year",
-    "MEI | 1ˢᵗ year",
-  ];
+  const mei = ["1ˢᵗ year"];
+
+  const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
 
   const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
 
@@ -104,111 +101,172 @@ export const SelectSchedule = ({
   mapping the values in each array
   */
   return (
-    <Collapse
-      className={styles.checkbox}
-      bordered={false}
-      expandIcon={({ isActive }) => (
-        <CaretRightOutlined rotate={isActive ? 90 : 0} />
-      )}
-    >
-      <Panel header="Filters" key="panel">
-        {years.map((y, index1) => (
+    <div className={styles.layer}>
+      {/* LEI */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="LEI" key="panel">
+          {lei.map((y, index1) => (
+            <Collapse
+              style={{ background: "white" }}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+              key={index1}
+            >
+              <Panel header={y} key={index1}>
+                {semesters.map((s, index2) => (
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                    )}
+                    key={index2}
+                  >
+                    <Panel header={s} key={index2}>
+                      {functions[index1 * 2 + index2].map((filter) =>
+                        filter.shifts?.length ? (
+                          <OptionWithShifts
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                          />
+                        ) : (
+                          <Option
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                          />
+                        )
+                      )}
+                    </Panel>
+                  </Collapse>
+                ))}
+              </Panel>
+            </Collapse>
+          ))}
+        </Panel>
+      </Collapse>
+
+      {/* MEI */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="MEI" key="panel">
+          {mei.map((y, index1) => (
+            <Collapse
+              style={{ background: "white" }}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+              key={index1}
+            >
+              <Panel header={y} key={index1}>
+                {semesters.map((s, index2) => (
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                    )}
+                    key={index2}
+                  >
+                    <Panel header={s} key={index2}>
+                      {functions[(index1 + 3) * 2 + index2].map((filter) =>
+                        filter.shifts?.length ? (
+                          <OptionWithShifts
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                          />
+                        ) : (
+                          <Option
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                          />
+                        )
+                      )}
+                    </Panel>
+                  </Collapse>
+                ))}
+              </Panel>
+            </Collapse>
+          ))}
           <Collapse
             style={{ background: "white" }}
             bordered={false}
             expandIcon={({ isActive }) => (
               <CaretRightOutlined rotate={isActive ? 90 : 0} />
             )}
-            key={index1}
           >
-            <Panel header={y} key={index1}>
-              {semesters.map((s, index2) => (
-                <Collapse
-                  className={styles.sub_checkbox}
-                  bordered={false}
-                  expandIcon={({ isActive }) => (
-                    <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                  )}
-                  key={index2}
-                >
-                  <Panel header={s} key={index2}>
-                    {functions[index1 * 2 + index2].map((filter) =>
-                      filter.shifts?.length ? (
-                        <OptionWithShifts
-                          key={filter.id}
-                          filter={filter}
-                          handleToggle={handleToggle}
-                        />
-                      ) : (
-                        <Option
-                          key={filter.id}
-                          filter={filter}
-                          handleToggle={handleToggle}
-                        />
-                      )
-                    )}
-                  </Panel>
-                </Collapse>
-              ))}
+            <Panel header="2ⁿᵈ year" key="5">
+              {year_five.map((filter) =>
+                filter.shifts?.length ? (
+                  <OptionWithShifts
+                    key={filter.id}
+                    filter={filter}
+                    handleToggle={handleToggle}
+                  />
+                ) : (
+                  <div style={{ fontWeight: 400 }}>
+                    <Option
+                      key={filter.id}
+                      filter={filter}
+                      handleToggle={handleToggle}
+                    />
+                  </div>
+                )
+              )}
             </Panel>
           </Collapse>
-        ))}
-        <Collapse
-          style={{ background: "white" }}
-          bordered={false}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
-          )}
-        >
-          <Panel header="MEI | 2ⁿᵈ year" key="5">
-            {year_five.map((filter) =>
-              filter.shifts?.length ? (
-                <OptionWithShifts
+        </Panel>
+      </Collapse>
+
+      {/* Others */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="Others" key="0">
+          {others.map((filter) =>
+            filter.shifts?.length ? (
+              <OptionWithShifts
+                key={filter.id}
+                filter={filter}
+                handleToggle={handleToggle}
+              />
+            ) : (
+              <div style={{ fontWeight: 400 }}>
+                <Option
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
                 />
-              ) : (
-                <div style={{ fontWeight: 400 }}>
-                  <Option
-                    key={filter.id}
-                    filter={filter}
-                    handleToggle={handleToggle}
-                  />
-                </div>
-              )
-            )}
-          </Panel>
-        </Collapse>
-        <Collapse
-          style={{ background: "white" }}
-          bordered={false}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              </div>
+            )
           )}
-        >
-          <Panel header="Others" key="0">
-            {others.map((filter) =>
-              filter.shifts?.length ? (
-                <OptionWithShifts
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                />
-              ) : (
-                <div style={{ fontWeight: 400 }}>
-                  <Option
-                    key={filter.id}
-                    filter={filter}
-                    handleToggle={handleToggle}
-                  />
-                </div>
-              )
-            )}
-          </Panel>
-        </Collapse>
-      </Panel>
-    </Collapse>
+        </Panel>
+      </Collapse>
+    </div>
   );
 };
 

@@ -100,7 +100,7 @@ export default function Home({ events, filters }) {
             />
           </div>
 
-          <div id="APP">
+          <div id="APP" className={styles.calendar}>
             <Calendar
               localizer={localizer}
               selected={selectedEvent}
