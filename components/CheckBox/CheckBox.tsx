@@ -6,6 +6,12 @@ const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
+  React.useEffect(() => {
+    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? []
+    setChecked(stored)
+  }, [])
+  // handleFilters(Checked);
+
   let event: {
     map: any;
     id: number;
@@ -47,11 +53,18 @@ function CheckBox({ filters, handleFilters }) {
       newCheck.splice(currentId, 1);
     }
     setChecked(newCheck);
+    localStorage.setItem("checked", JSON.stringify(newCheck))
     handleFilters(newCheck);
   };
 
+  function isChecked(id) {
+    return !(Checked.indexOf(id) === -1)
+  }
   return (
     <Collapse>
+      <div>
+        Checked : {JSON.stringify(Checked)}
+      </div>
       <Panel header="Filters" key={0}>
         <Collapse>
           {semesters.map((b, index1) => (
@@ -69,11 +82,9 @@ function CheckBox({ filters, handleFilters }) {
                   <React.Fragment key={index}>
                     <div>
                       <Checkbox
-                        onChange={() => handleToggle(value.id)}
+                        onChange={_ => handleToggle(value.id)}
                         type="checkbox"
-                        checked={
-                          Checked.indexOf(value.id) === -1 ? false : true
-                        }
+                        checked={isChecked(value.id)}
                       />
                       <span className="pl-2">{value.name}</span>
                     </div>
