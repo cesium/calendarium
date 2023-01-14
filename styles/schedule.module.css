@@ -1,0 +1,15 @@
+.filters {
+  margin: 0 0 1rem 0;
+}
+
+.schedule {
+  position: relative;
+  z-index: 0;
+  padding-top: 4.9rem;
+}
+
+@media (max-width: 881px) {
+  .schedule {
+    padding-top: 0;
+  }
+}

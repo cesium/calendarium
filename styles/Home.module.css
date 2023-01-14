@@ -72,5 +72,17 @@
 }
 
 .filters {
-  padding: 0 0 1.7rem 0;
+  margin: 0 0 1rem 0;
+}
+
+.calendar {
+  position: relative;
+  z-index: 0;
+  padding-top: 4.9rem;
+}
+
+@media (max-width: 881px) {
+  .calendar {
+    padding-top: 0;
+  }
 }
