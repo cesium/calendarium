@@ -21,6 +21,11 @@ export const SelectSchedule = ({
 }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
+  React.useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("shifts")) ?? []
+    setSelectedFilters(stored)
+    handleFilters(stored)
+  }, [])
 
   // Arrays for each group and subgroup to build the filter
   const year_one_one = filters.filter(
@@ -54,8 +59,27 @@ export const SelectSchedule = ({
   const year_five = filters.filter((f) => f.groupId === 5);
 
   const others = filters.filter((f) => f.groupId === 0);
+  const ordinals = (n) => {
+    if (n % 10 < 4 && n % 10 && (n > 20 || n < 10)) return n + ['st', 'nd', 'rd'][n % 10 - 1];
+    else return n + 'th'
+  }
+  const semesters = {
+    'Others': {
+      0: []
+    },
+    'LEI': {
+      1: [1, 2],
+      2: [1, 2],
+      3: [1, 2],
+    },
+    'MEI': {
+      4: [1, 2],
+      5: [0]
+    }
+  }
 
-  // Function to the handle the change
+
+  // Function to handle the change
   const handleToggle = (filterId: number, shift?: string) => {
     const findedFilterIndex = selectedFilters.findIndex(
       (selectedFilter) =>
@@ -71,7 +95,7 @@ export const SelectSchedule = ({
     }
 
     setSelectedFilters(newSelctedFilters);
-
+    localStorage.setItem("shifts", JSON.stringify(newSelctedFilters))
     // Function to export the filters
     handleFilters(newSelctedFilters);
   };
@@ -80,6 +104,18 @@ export const SelectSchedule = ({
   CheckBox creation using Collapse for each subgroup and 
   mapping the values in each array
   */
+
+  const isChecked = (obj: { id, shift }) => {
+    let acc = false;
+    selectedFilters.forEach(element => {
+      if (obj.id == Number(element.id) && obj.shift == element.shift) {
+        acc = true
+      }
+
+    })
+    return acc
+  }
+
   return (
     <Collapse>
       <Panel header="Filters" key="panel">
@@ -93,12 +129,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -113,12 +151,15 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
+
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -137,12 +178,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -157,12 +200,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -181,12 +226,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -201,12 +248,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -225,12 +274,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -245,12 +296,14 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   ) : (
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   )
                 )}
@@ -267,12 +320,14 @@ export const SelectSchedule = ({
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               ) : (
                 <Option
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               )
             )}
@@ -287,12 +342,14 @@ export const SelectSchedule = ({
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               ) : (
                 <Option
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               )
             )}
@@ -306,17 +363,20 @@ export const SelectSchedule = ({
 interface IOptionProps {
   filter: IFilterDTO;
   handleToggle: (filterId: number, shiftOption?: string) => void;
+  isChecked: ({ id, shift }) => boolean
 }
 
-const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
+const OptionWithShifts = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   <p>
     {filter.name}: <br />
+
     {filter.shifts.map((shiftOption) => (
       <>
         <Checkbox
           key={filter.id}
           onChange={() => handleToggle(filter.id, shiftOption)}
           type="checkbox"
+          checked={isChecked({ id: filter.id, shift: shiftOption })}
         >
           {shiftOption}
         </Checkbox>
@@ -327,12 +387,16 @@ const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
   </p>
 );
 
-const Option = ({ filter, handleToggle }: IOptionProps) => (
+const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   <>
     <Checkbox
       key={filter.id}
-      onChange={() => handleToggle(filter.id)}
+      onChange={() => {
+        handleToggle(filter.id);
+      }
+      }
       type="checkbox"
+      checked={isChecked({ id: filter.id, shift: undefined })}
     >
       {filter.name}
     </Checkbox>

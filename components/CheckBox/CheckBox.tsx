@@ -9,8 +9,8 @@ function CheckBox({ filters, handleFilters }) {
   React.useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? []
     setChecked(stored)
+    handleFilters(stored)
   }, [])
-  // handleFilters(Checked);
 
   let event: {
     map: any;
@@ -62,9 +62,6 @@ function CheckBox({ filters, handleFilters }) {
   }
   return (
     <Collapse>
-      <div>
-        Checked : {JSON.stringify(Checked)}
-      </div>
       <Panel header="Filters" key={0}>
         <Collapse>
           {semesters.map((b, index1) => (
