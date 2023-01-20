@@ -20,13 +20,16 @@ interface ISelectScheduleProps {
 interface IOptionProps {
   filter: IFilterDTO;
   handleToggle: (filterId: number, shiftOption?: string) => void;
-  isChecked: ({ id, shift }) => boolean
+  isChecked: ({ id, shift }) => boolean;
 }
 
-const OptionWithShifts = ({ filter, handleToggle, isChecked }: IOptionProps) => (
+const OptionWithShifts = ({
+  filter,
+  handleToggle,
+  isChecked,
+}: IOptionProps) => (
   <p>
     {filter.name}: <br />
-
     {filter.shifts.map((shiftOption) => (
       <>
         <Checkbox
@@ -50,8 +53,7 @@ const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
       key={filter.id}
       onChange={() => {
         handleToggle(filter.id);
-      }
-      }
+      }}
       type="checkbox"
       checked={isChecked({ id: filter.id, shift: undefined })}
     >
@@ -69,10 +71,10 @@ export const SelectSchedule = ({
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("shifts")) ?? []
-    setSelectedFilters(stored)
-    handleFilters(stored)
-  }, [])
+    const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
+    setSelectedFilters(stored);
+    handleFilters(stored);
+  }, []);
 
   // Arrays for each group and subgroup to build the filter
 
@@ -135,7 +137,7 @@ export const SelectSchedule = ({
     }
 
     setSelectedFilters(newSelctedFilters);
-    localStorage.setItem("shifts", JSON.stringify(newSelctedFilters))
+    localStorage.setItem("shifts", JSON.stringify(newSelctedFilters));
     // Function to export the filters
     handleFilters(newSelctedFilters);
   };
@@ -146,16 +148,11 @@ export const SelectSchedule = ({
 
   const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
 
-  const isChecked = (obj: { id, shift }) => {
-    let acc = false;
-    selectedFilters.forEach(element => {
-      if (obj.id == Number(element.id) && obj.shift == element.shift) {
-        acc = true
-      }
-
-    })
-    return acc
-  }
+  const isChecked = (obj: { id; shift }) => {
+    return selectedFilters.some((element) => {
+      return obj.id === Number(element.id) && obj.shift === element.shift;
+    });
+  };
 
   return (
     <div className={styles.layer}>

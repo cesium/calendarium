@@ -9,10 +9,10 @@ const { Panel } = Collapse;
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
   React.useEffect(() => {
-    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? []
-    setChecked(stored)
-    handleFilters(stored)
-  }, [])
+    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
+    setChecked(stored);
+    handleFilters(stored);
+  }, []);
 
   let event: {
     map: any;
@@ -66,13 +66,14 @@ function CheckBox({ filters, handleFilters }) {
       newCheck.splice(currentId, 1);
     }
     setChecked(newCheck);
-    localStorage.setItem("checked", JSON.stringify(newCheck))
+    localStorage.setItem("checked", JSON.stringify(newCheck));
     handleFilters(newCheck);
   };
 
   function isChecked(id) {
-    return !(Checked.indexOf(id) === -1)
+    return !(Checked.indexOf(id) === -1);
   }
+
   return (
     <div className={styles.layer}>
       {menus.map((m, index) => (
