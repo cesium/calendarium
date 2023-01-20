@@ -17,6 +17,51 @@ interface ISelectScheduleProps {
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
 }
 
+interface IOptionProps {
+  filter: IFilterDTO;
+  handleToggle: (filterId: number, shiftOption?: string) => void;
+  isChecked: ({ id, shift }) => boolean
+}
+
+const OptionWithShifts = ({ filter, handleToggle, isChecked }: IOptionProps) => (
+  <p>
+    {filter.name}: <br />
+
+    {filter.shifts.map((shiftOption) => (
+      <>
+        <Checkbox
+          key={filter.id}
+          onChange={() => handleToggle(filter.id, shiftOption)}
+          type="checkbox"
+          checked={isChecked({ id: filter.id, shift: shiftOption })}
+        >
+          {shiftOption}
+        </Checkbox>
+
+        <br />
+      </>
+    ))}
+  </p>
+);
+
+const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
+  <>
+    <Checkbox
+      key={filter.id}
+      onChange={() => {
+        handleToggle(filter.id);
+      }
+      }
+      type="checkbox"
+      checked={isChecked({ id: filter.id, shift: undefined })}
+    >
+      {filter.name}
+    </Checkbox>
+
+    <br />
+  </>
+);
+
 export const SelectSchedule = ({
   filters,
   handleFilters,
@@ -100,11 +145,6 @@ export const SelectSchedule = ({
   const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
 
   const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
-
-  /* 
-  CheckBox creation using Collapse for each subgroup and 
-  mapping the values in each array
-  */
 
   const isChecked = (obj: { id, shift }) => {
     let acc = false;
@@ -294,48 +334,3 @@ export const SelectSchedule = ({
     </div>
   );
 };
-
-interface IOptionProps {
-  filter: IFilterDTO;
-  handleToggle: (filterId: number, shiftOption?: string) => void;
-  isChecked: ({ id, shift }) => boolean
-}
-
-const OptionWithShifts = ({ filter, handleToggle, isChecked }: IOptionProps) => (
-  <p>
-    {filter.name}: <br />
-
-    {filter.shifts.map((shiftOption) => (
-      <>
-        <Checkbox
-          key={filter.id}
-          onChange={() => handleToggle(filter.id, shiftOption)}
-          type="checkbox"
-          checked={isChecked({ id: filter.id, shift: shiftOption })}
-        >
-          {shiftOption}
-        </Checkbox>
-
-        <br />
-      </>
-    ))}
-  </p>
-);
-
-const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
-  <>
-    <Checkbox
-      key={filter.id}
-      onChange={() => {
-        handleToggle(filter.id);
-      }
-      }
-      type="checkbox"
-      checked={isChecked({ id: filter.id, shift: undefined })}
-    >
-      {filter.name}
-    </Checkbox>
-
-    <br />
-  </>
-);
