@@ -6,6 +6,7 @@ import styles from "../components/CheckBox/checkbox.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
+const storageKey = "checked-shifts"
 
 interface ISelectedFilter {
   id: number;
@@ -17,13 +18,19 @@ interface ISelectScheduleProps {
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
 }
 
+
+
 export const SelectSchedule = ({
   filters,
   handleFilters,
 }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
-
+  React.useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem(storageKey)) ?? []
+    setSelectedFilters(stored)
+    handleFilters(stored)
+  }, [])
   // Arrays for each group and subgroup to build the filter
 
   const year_one_one = filters.filter(
@@ -69,6 +76,7 @@ export const SelectSchedule = ({
     year_four_two,
   ];
 
+
   // Function to the handle the change
   const handleToggle = (filterId: number, shift?: string) => {
     const findedFilterIndex = selectedFilters.findIndex(
@@ -85,7 +93,7 @@ export const SelectSchedule = ({
     }
 
     setSelectedFilters(newSelctedFilters);
-
+    localStorage.setItem(storageKey, JSON.stringify(newSelctedFilters))
     // Function to export the filters
     handleFilters(newSelctedFilters);
   };
@@ -100,6 +108,13 @@ export const SelectSchedule = ({
   CheckBox creation using Collapse for each subgroup and 
   mapping the values in each array
   */
+
+  const isChecked = (obj: { id, shift }) => {
+    return selectedFilters.some(element => {
+      return obj.id === Number(element.id) && obj.shift === element.shift;
+    });
+  }
+
   return (
     <div className={styles.layer}>
       {/* LEI */}
@@ -138,12 +153,14 @@ export const SelectSchedule = ({
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         ) : (
                           <Option
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         )
                       )}
@@ -192,12 +209,14 @@ export const SelectSchedule = ({
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         ) : (
                           <Option
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         )
                       )}
@@ -221,6 +240,7 @@ export const SelectSchedule = ({
                     key={filter.id}
                     filter={filter}
                     handleToggle={handleToggle}
+                    isChecked={isChecked}
                   />
                 ) : (
                   <div style={{ fontWeight: 400 }}>
@@ -228,6 +248,7 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   </div>
                 )
@@ -253,6 +274,7 @@ export const SelectSchedule = ({
                 key={filter.id}
                 filter={filter}
                 handleToggle={handleToggle}
+                isChecked={isChecked}
               />
             ) : (
               <div style={{ fontWeight: 400 }}>
@@ -260,6 +282,7 @@ export const SelectSchedule = ({
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               </div>
             )
@@ -273,9 +296,10 @@ export const SelectSchedule = ({
 interface IOptionProps {
   filter: IFilterDTO;
   handleToggle: (filterId: number, shiftOption?: string) => void;
+  isChecked: ({ id, shift }) => boolean
 }
 
-const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
+const OptionWithShifts = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   <p>
     {filter.name}: <br />
     {filter.shifts.map((shiftOption) => (
@@ -284,6 +308,7 @@ const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
           key={filter.id}
           onChange={() => handleToggle(filter.id, shiftOption)}
           type="checkbox"
+          checked={isChecked({ id: filter.id, shift: shiftOption })}
         >
           {shiftOption}
         </Checkbox>
@@ -294,16 +319,16 @@ const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
   </p>
 );
 
-const Option = ({ filter, handleToggle }: IOptionProps) => (
-  <>
-    <Checkbox
-      key={filter.id}
-      onChange={() => handleToggle(filter.id)}
-      type="checkbox"
-    >
-      {filter.name}
-    </Checkbox>
+const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
 
-    <br />
-  </>
-);
+  <Checkbox
+    key={filter.id}
+    onChange={() => {
+      handleToggle(filter.id);
+    }
+    }
+    type="checkbox"
+    checked={isChecked({ id: filter.id, shift: undefined })}
+  >
+    {filter.name}
+  </Checkbox>)

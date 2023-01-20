@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
 import styles from "./checkbox.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
-
+const storageKey = "checked-events"
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem(storageKey )) ?? []
+    setChecked(stored)
+    handleFilters(stored)
+  },[])
 
   let event: {
     map: any;
@@ -61,6 +66,7 @@ function CheckBox({ filters, handleFilters }) {
       newCheck.splice(currentId, 1);
     }
     setChecked(newCheck);
+    localStorage.setItem(storageKey ,JSON.stringify(newCheck))
     handleFilters(newCheck);
   };
 
@@ -109,7 +115,7 @@ function CheckBox({ filters, handleFilters }) {
                               onChange={() => handleToggle(value.id)}
                               type="checkbox"
                               checked={
-                                Checked.indexOf(value.id) === -1 ? false : true
+                                Checked.includes(value.id)
                               }
                             >
                               {value.name}
