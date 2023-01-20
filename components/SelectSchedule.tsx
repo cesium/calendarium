@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
 import { IFilterDTO } from "../dtos";
+import styles from "../components/CheckBox/checkbox.module.scss";
+import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -28,6 +30,7 @@ export const SelectSchedule = ({
   }, [])
 
   // Arrays for each group and subgroup to build the filter
+
   const year_one_one = filters.filter(
     (f) => f.groupId === 1 && f.semester === 1
   );
@@ -59,25 +62,17 @@ export const SelectSchedule = ({
   const year_five = filters.filter((f) => f.groupId === 5);
 
   const others = filters.filter((f) => f.groupId === 0);
-  const ordinals = (n) => {
-    if (n % 10 < 4 && n % 10 && (n > 20 || n < 10)) return n + ['st', 'nd', 'rd'][n % 10 - 1];
-    else return n + 'th'
-  }
-  const semesters = {
-    'Others': {
-      0: []
-    },
-    'LEI': {
-      1: [1, 2],
-      2: [1, 2],
-      3: [1, 2],
-    },
-    'MEI': {
-      4: [1, 2],
-      5: [0]
-    }
-  }
 
+  const functions = [
+    year_one_one,
+    year_one_two,
+    year_two_one,
+    year_two_two,
+    year_three_one,
+    year_three_two,
+    year_four_one,
+    year_four_two,
+  ];
 
   // Function to handle the change
   const handleToggle = (filterId: number, shift?: string) => {
@@ -100,6 +95,12 @@ export const SelectSchedule = ({
     handleFilters(newSelctedFilters);
   };
 
+  const mei = ["1ˢᵗ year"];
+
+  const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
+
+  const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
+
   /* 
   CheckBox creation using Collapse for each subgroup and 
   mapping the values in each array
@@ -117,246 +118,180 @@ export const SelectSchedule = ({
   }
 
   return (
-    <Collapse>
-      <Panel header="Filters" key="panel">
-        <Collapse>
-          <Panel header="[LEI] 1st Year" key="1">
-            <Collapse>
-              <Panel header="1st Semester" key={""}>
-                {year_one_one.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
+    <div className={styles.layer}>
+      {/* LEI */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="LEI" key="panel">
+          {lei.map((y, index1) => (
+            <Collapse
+              style={{ background: "white" }}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+              key={index1}
+            >
+              <Panel header={y} key={index1}>
+                {semesters.map((s, index2) => (
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                    )}
+                    key={index2}
+                  >
+                    <Panel header={s} key={index2}>
+                      {functions[index1 * 2 + index2].map((filter) =>
+                        filter.shifts?.length ? (
+                          <OptionWithShifts
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                            isChecked={isChecked}
+                          />
+                        ) : (
+                          <Option
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                            isChecked={isChecked}
+                          />
+                        )
+                      )}
+                    </Panel>
+                  </Collapse>
+                ))}
+              </Panel>
+            </Collapse>
+          ))}
+        </Panel>
+      </Collapse>
+
+      {/* MEI */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="MEI" key="panel">
+          {mei.map((y, index1) => (
+            <Collapse
+              style={{ background: "white" }}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+              key={index1}
+            >
+              <Panel header={y} key={index1}>
+                {semesters.map((s, index2) => (
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                    )}
+                    key={index2}
+                  >
+                    <Panel header={s} key={index2}>
+                      {functions[(index1 + 3) * 2 + index2].map((filter) =>
+                        filter.shifts?.length ? (
+                          <OptionWithShifts
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                            isChecked={isChecked}
+                          />
+                        ) : (
+                          <Option
+                            key={filter.id}
+                            filter={filter}
+                            handleToggle={handleToggle}
+                            isChecked={isChecked}
+                          />
+                        )
+                      )}
+                    </Panel>
+                  </Collapse>
+                ))}
+              </Panel>
+            </Collapse>
+          ))}
+          <Collapse
+            style={{ background: "white" }}
+            bordered={false}
+            expandIcon={({ isActive }) => (
+              <CaretRightOutlined rotate={isActive ? 90 : 0} />
+            )}
+          >
+            <Panel header="2ⁿᵈ year" key="5">
+              {year_five.map((filter) =>
+                filter.shifts?.length ? (
+                  <OptionWithShifts
+                    key={filter.id}
+                    filter={filter}
+                    handleToggle={handleToggle}
+                    isChecked={isChecked}
+                  />
+                ) : (
+                  <div style={{ fontWeight: 400 }}>
                     <Option
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
                       isChecked={isChecked}
                     />
-                  )
-                )}
-              </Panel>
-            </Collapse>
+                  </div>
+                )
+              )}
+            </Panel>
+          </Collapse>
+        </Panel>
+      </Collapse>
 
-            <Collapse>
-              <Panel header="2nd Semester" key={""}>
-                {year_one_two.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
+      {/* Others */}
 
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-          </Panel>
-        </Collapse>
-
-        <Collapse>
-          <Panel header="[LEI] 2nd Year" key="2">
-            <Collapse>
-              <Panel header="1st Semester" key={""}>
-                {year_two_one.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-
-            <Collapse>
-              <Panel header="2nd Semester" key={""}>
-                {year_two_two.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-          </Panel>
-        </Collapse>
-
-        <Collapse>
-          <Panel header="[LEI] 3rd Year" key="3">
-            <Collapse>
-              <Panel header="1st Semester" key={""}>
-                {year_three_one.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-
-            <Collapse>
-              <Panel header="2nd Semester" key={""}>
-                {year_three_two.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-          </Panel>
-        </Collapse>
-
-        <Collapse>
-          <Panel header="[MEI] 1st Year" key="4">
-            <Collapse>
-              <Panel header="1st Semester" key={""}>
-                {year_four_one.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-
-            <Collapse>
-              <Panel header="2nd Semester" key={""}>
-                {year_four_two.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <Option
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  )
-                )}
-              </Panel>
-            </Collapse>
-          </Panel>
-        </Collapse>
-
-        <Collapse>
-          <Panel header="[MEI] 2nd Year" key="5">
-            {year_five.map((filter) =>
-              filter.shifts?.length ? (
-                <OptionWithShifts
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                  isChecked={isChecked}
-                />
-              ) : (
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header="Others" key="0">
+          {others.map((filter) =>
+            filter.shifts?.length ? (
+              <OptionWithShifts
+                key={filter.id}
+                filter={filter}
+                handleToggle={handleToggle}
+                isChecked={isChecked}
+              />
+            ) : (
+              <div style={{ fontWeight: 400 }}>
                 <Option
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
                   isChecked={isChecked}
                 />
-              )
-            )}
-          </Panel>
-        </Collapse>
-
-        <Collapse>
-          <Panel header="Others" key="0">
-            {others.map((filter) =>
-              filter.shifts?.length ? (
-                <OptionWithShifts
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                  isChecked={isChecked}
-                />
-              ) : (
-                <Option
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                  isChecked={isChecked}
-                />
-              )
-            )}
-          </Panel>
-        </Collapse>
-      </Panel>
-    </Collapse>
+              </div>
+            )
+          )}
+        </Panel>
+      </Collapse>
+    </div>
   );
 };
 

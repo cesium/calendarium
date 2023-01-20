@@ -1,0 +1,35 @@
+.checkbox {
+  display: inline-flex;
+  border-radius: 25px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+  width: 16rem;
+  background: white;
+  margin: 0 1rem 1rem 0;
+}
+
+.layer {
+  position: absolute;
+  z-index: 1;
+}
+
+@media (max-width: 881px) {
+  .checkbox {
+    display: inline-block;
+    width: 100%;
+  }
+  .layer {
+    position: relative;
+  }
+}
+
+.sub_checkbox {
+  background: white;
+  font-weight: 400;
+}
+
+.filters {
+  margin: 0 0 1rem 0;
+}

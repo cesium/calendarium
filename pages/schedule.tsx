@@ -14,6 +14,8 @@ import { IFilterDTO, IShiftDTO } from "../dtos";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
+import styles from "../styles/schedule.module.css";
+
 const localizer = momentLocalizer(moment);
 
 interface IFormatedShift {
@@ -94,7 +96,17 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         <link rel="icon" href="/favicon-calendarium.ico" />~
       </Head>
 
-      <div id="SCHEDULE">
+      <div className={styles.filters}>
+        <SelectSchedule
+          filters={filters}
+          handleFilters={(myFilters) => {
+            console.log(myFilters);
+            setSelectedFilters(myFilters);
+          }}
+        />
+      </div>
+
+      <div id="SCHEDULE" className={styles.schedule}>
         <Calendar
           toolbar={false}
           localizer={localizer}
@@ -107,16 +119,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           min={new Date("08:00 2022/01/01")}
           max={new Date("21:00 2022/01/01")}
           style={{ height: "90vh" }}
-        />
-      </div>
-
-      <div style={{ fontFamily: "Inter" }}>
-        <SelectSchedule
-          filters={filters}
-          handleFilters={(myFilters) => {
-            console.log(myFilters);
-            setSelectedFilters(myFilters);
-          }}
         />
       </div>
 
