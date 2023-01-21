@@ -17,12 +17,64 @@ interface ISelectScheduleProps {
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
 }
 
+interface IOptionProps {
+  filter: IFilterDTO;
+  handleToggle: (filterId: number, shiftOption?: string) => void;
+  isChecked: ({ id, shift }) => boolean;
+}
+
+const OptionWithShifts = ({
+  filter,
+  handleToggle,
+  isChecked,
+}: IOptionProps) => (
+  <p>
+    {filter.name}: <br />
+    {filter.shifts.map((shiftOption) => (
+      <>
+        <Checkbox
+          key={filter.id}
+          onChange={() => handleToggle(filter.id, shiftOption)}
+          type="checkbox"
+          checked={isChecked({ id: filter.id, shift: shiftOption })}
+        >
+          {shiftOption}
+        </Checkbox>
+
+        <br />
+      </>
+    ))}
+  </p>
+);
+
+const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
+  <>
+    <Checkbox
+      key={filter.id}
+      onChange={() => {
+        handleToggle(filter.id);
+      }}
+      type="checkbox"
+      checked={isChecked({ id: filter.id, shift: undefined })}
+    >
+      {filter.name}
+    </Checkbox>
+
+    <br />
+  </>
+);
+
 export const SelectSchedule = ({
   filters,
   handleFilters,
 }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
+  React.useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
+    setSelectedFilters(stored);
+    handleFilters(stored);
+  }, []);
 
   // Arrays for each group and subgroup to build the filter
 
@@ -69,7 +121,7 @@ export const SelectSchedule = ({
     year_four_two,
   ];
 
-  // Function to the handle the change
+  // Function to handle the change
   const handleToggle = (filterId: number, shift?: string) => {
     const findedFilterIndex = selectedFilters.findIndex(
       (selectedFilter) =>
@@ -85,7 +137,7 @@ export const SelectSchedule = ({
     }
 
     setSelectedFilters(newSelctedFilters);
-
+    localStorage.setItem("shifts", JSON.stringify(newSelctedFilters));
     // Function to export the filters
     handleFilters(newSelctedFilters);
   };
@@ -96,10 +148,12 @@ export const SelectSchedule = ({
 
   const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
 
-  /* 
-  CheckBox creation using Collapse for each subgroup and 
-  mapping the values in each array
-  */
+  const isChecked = (obj: { id; shift }) => {
+    return selectedFilters.some((element) => {
+      return obj.id === Number(element.id) && obj.shift === element.shift;
+    });
+  };
+
   return (
     <div className={styles.layer}>
       {/* LEI */}
@@ -138,12 +192,14 @@ export const SelectSchedule = ({
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         ) : (
                           <Option
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         )
                       )}
@@ -192,12 +248,14 @@ export const SelectSchedule = ({
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         ) : (
                           <Option
                             key={filter.id}
                             filter={filter}
                             handleToggle={handleToggle}
+                            isChecked={isChecked}
                           />
                         )
                       )}
@@ -221,6 +279,7 @@ export const SelectSchedule = ({
                     key={filter.id}
                     filter={filter}
                     handleToggle={handleToggle}
+                    isChecked={isChecked}
                   />
                 ) : (
                   <div style={{ fontWeight: 400 }}>
@@ -228,6 +287,7 @@ export const SelectSchedule = ({
                       key={filter.id}
                       filter={filter}
                       handleToggle={handleToggle}
+                      isChecked={isChecked}
                     />
                   </div>
                 )
@@ -253,6 +313,7 @@ export const SelectSchedule = ({
                 key={filter.id}
                 filter={filter}
                 handleToggle={handleToggle}
+                isChecked={isChecked}
               />
             ) : (
               <div style={{ fontWeight: 400 }}>
@@ -260,6 +321,7 @@ export const SelectSchedule = ({
                   key={filter.id}
                   filter={filter}
                   handleToggle={handleToggle}
+                  isChecked={isChecked}
                 />
               </div>
             )
@@ -269,41 +331,3 @@ export const SelectSchedule = ({
     </div>
   );
 };
-
-interface IOptionProps {
-  filter: IFilterDTO;
-  handleToggle: (filterId: number, shiftOption?: string) => void;
-}
-
-const OptionWithShifts = ({ filter, handleToggle }: IOptionProps) => (
-  <p>
-    {filter.name}: <br />
-    {filter.shifts.map((shiftOption) => (
-      <>
-        <Checkbox
-          key={filter.id}
-          onChange={() => handleToggle(filter.id, shiftOption)}
-          type="checkbox"
-        >
-          {shiftOption}
-        </Checkbox>
-
-        <br />
-      </>
-    ))}
-  </p>
-);
-
-const Option = ({ filter, handleToggle }: IOptionProps) => (
-  <>
-    <Checkbox
-      key={filter.id}
-      onChange={() => handleToggle(filter.id)}
-      type="checkbox"
-    >
-      {filter.name}
-    </Checkbox>
-
-    <br />
-  </>
-);
