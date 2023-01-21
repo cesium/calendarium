@@ -8,8 +8,7 @@ const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
-  const [AllChecked, setAllChecked] = React.useState<boolean[]>([])
-
+  const [AllChecked, setAllChecked] = React.useState<boolean[]>([]);
 
   let event: {
     map: any;
@@ -69,10 +68,10 @@ function CheckBox({ filters, handleFilters }) {
   const handleToggleAll = (values, index) => {
     const newCheck = [...Checked];
     const newAllCheck = [...AllChecked];
-    newAllCheck[index] = !newAllCheck[index]
+    newAllCheck[index] = !newAllCheck[index];
     if (newAllCheck[index])
       for (const value of values) {
-        if (!(newCheck.includes(value.id))) {
+        if (!newCheck.includes(value.id)) {
           newCheck.push(value.id);
         }
         setChecked(newCheck);
@@ -80,14 +79,14 @@ function CheckBox({ filters, handleFilters }) {
         handleFilters(newCheck);
       }
     else
-    for (const value of values) {
-      if ((newCheck.includes(value.id))) {
-        newCheck.splice(newCheck.indexOf(value.id));
+      for (const value of values) {
+        if (newCheck.includes(value.id)) {
+          newCheck.splice(newCheck.indexOf(value.id));
+        }
+        setChecked(newCheck);
+        setAllChecked(newAllCheck);
+        handleFilters(newCheck);
       }
-      setChecked(newCheck);
-      setAllChecked(newAllCheck);
-      handleFilters(newCheck);
-    } 
   };
 
   return (
@@ -102,7 +101,6 @@ function CheckBox({ filters, handleFilters }) {
           key={index}
         >
           <Panel header={m} key={index + 1}>
-            
             {courses[index].map((b, index1) => (
               <Collapse
                 style={{ background: "white" }}
@@ -113,24 +111,19 @@ function CheckBox({ filters, handleFilters }) {
                 key={index1}
               >
                 <Panel header={b} key={index1 + 1}>
-                <React.Fragment key={-1}>
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => handleToggleAll(event[index1], index1)}
-                  >{AllChecked[index1] ? "None" : "All"}
-                  </button>
-
-                  {/* <span className="pl-2">All</span> */}
-                </div>
-              </React.Fragment>
-                  <div style={{ fontWeight: 400 }}>
-                    {/* <div>
-                      <Checkbox type="checkbox" onChange={}>
-                        {" "}
-                        Check all
+                  <React.Fragment key={-1}>
+                    <div style={{ margin: "0 0 0.3rem 0" }}>
+                      <Checkbox
+                        type="Checkbox"
+                        onClick={() =>
+                          handleToggleAll(event[index1 + sync[index]], index1)
+                        }
+                      >
+                        All
                       </Checkbox>
-                    </div> */}
+                    </div>
+                  </React.Fragment>
+                  <div style={{ fontWeight: 400 }}>
                     {event[index1 + sync[index]]?.map(
                       (
                         value: {
@@ -175,12 +168,6 @@ function CheckBox({ filters, handleFilters }) {
       >
         <Panel header="Others" key="">
           <div style={{ fontWeight: 400 }}>
-            {/* <div>
-              <Checkbox type="checkbox" onChange={}>
-                {" "}
-                Check all
-              </Checkbox>
-            </div> */}
             {event[9]?.map(
               (
                 value: {
