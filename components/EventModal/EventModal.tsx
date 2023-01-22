@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import { group } from "console";
 import { useState } from "react";
 
 function EventModal({
@@ -33,7 +34,7 @@ function EventModal({
         onCancel={(_) => handleModalClose()}
       >
         <p>Data: {`${start_date} - ${end_date}`}</p>
-        <p>{groupId != 0 ? `Ano: ${groupId}º` : ""}</p>
+        <p>{groupId != 0 && groupId != 6 ? `Ano: ${groupId}º` : ""}</p>
       </Modal>
     </>
   );
