@@ -8,7 +8,6 @@ const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
-  const [AllChecked, setAllChecked] = React.useState<boolean[]>([]);
 
   React.useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
@@ -19,7 +18,6 @@ function CheckBox({ filters, handleFilters }) {
   React.useEffect(() => {
     const stored: boolean[] =
       JSON.parse(localStorage.getItem("allchecked")) ?? [];
-    setAllChecked(stored);
   }, []);
 
   let event: {
@@ -28,7 +26,7 @@ function CheckBox({ filters, handleFilters }) {
     name: string;
     groupId: number;
     semester: number;
-  }[] = [];
+  }[][] = [];
 
   const menus = ["LEI", "MEI"];
 
@@ -79,20 +77,25 @@ function CheckBox({ filters, handleFilters }) {
     handleFilters(newCheck);
   };
 
+
+  const allChecked = (index: number) => {
+    return !(event[index].some((elem) => { return !Checked.includes(elem.id) }))
+
+  }
+  const noneChecked = (index: number) => {
+    return !event[index].some((elem) => { return Checked.includes(elem.id) })
+  }
+
   const handleToggleAll = (values, index: number, index1: number) => {
     const newCheck = [...Checked];
-    const newAllCheck = [...AllChecked];
-    newAllCheck[index1 + sync[index]] = !newAllCheck[index1 + sync[index]];
 
-    if (newAllCheck[index1 + sync[index]])
+    if (!allChecked(index1 + sync[index]))
       for (const value of values) {
         if (!newCheck.includes(value.id)) {
           newCheck.push(value.id);
         }
         setChecked(newCheck);
         localStorage.setItem("checked", JSON.stringify(newCheck));
-        setAllChecked(newAllCheck);
-        localStorage.setItem("allchecked", JSON.stringify(newAllCheck));
         handleFilters(newCheck);
       }
     else
@@ -102,11 +105,10 @@ function CheckBox({ filters, handleFilters }) {
         }
         setChecked(newCheck);
         localStorage.setItem("checked", JSON.stringify(newCheck));
-        setAllChecked(newAllCheck);
-        localStorage.setItem("allchecked", JSON.stringify(newAllCheck));
         handleFilters(newCheck);
       }
   };
+
 
   return (
     <div className={styles.layer}>
@@ -141,7 +143,8 @@ function CheckBox({ filters, handleFilters }) {
                             index1
                           )
                         }
-                        checked={AllChecked[index1 + sync[index]]}
+                        checked={allChecked(index1 + sync[index])}
+                        indeterminate={!allChecked(index1 + sync[index]) && !noneChecked(index1 + sync[index])}
                       >
                         Select All
                       </Checkbox>
