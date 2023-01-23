@@ -15,11 +15,6 @@ function CheckBox({ filters, handleFilters }) {
     handleFilters(stored);
   }, []);
 
-  React.useEffect(() => {
-    const stored: boolean[] =
-      JSON.parse(localStorage.getItem("allchecked")) ?? [];
-  }, []);
-
   let event: {
     map: any;
     id: number;
@@ -77,38 +72,33 @@ function CheckBox({ filters, handleFilters }) {
     handleFilters(newCheck);
   };
 
-
-  const allChecked = (index: number) => {
-    return !(event[index].some((elem) => { return !Checked.includes(elem.id) }))
-
-  }
-  const noneChecked = (index: number) => {
-    return !event[index].some((elem) => { return Checked.includes(elem.id) })
-  }
-
-  const handleToggleAll = (values, index: number, index1: number) => {
-    const newCheck = [...Checked];
-
-    if (!allChecked(index1 + sync[index]))
-      for (const value of values) {
-        if (!newCheck.includes(value.id)) {
-          newCheck.push(value.id);
-        }
-        setChecked(newCheck);
-        localStorage.setItem("checked", JSON.stringify(newCheck));
-        handleFilters(newCheck);
-      }
-    else
-      for (const value of values) {
-        if (newCheck.includes(value.id)) {
-          newCheck.splice(newCheck.indexOf(value.id));
-        }
-        setChecked(newCheck);
-        localStorage.setItem("checked", JSON.stringify(newCheck));
-        handleFilters(newCheck);
-      }
+  const isAllChecked = (index: number) => {
+    return !event[index].some((elem) => {
+      return !Checked.includes(elem.id);
+    });
   };
 
+  const isNoneChecked = (index: number) => {
+    return !event[index].some((elem) => {
+      return Checked.includes(elem.id);
+    });
+  };
+
+  const handleToggleAll = (values, index: number, index1: number) => {
+    let newChecked = [...Checked];
+
+    if (!isAllChecked(index1 + sync[index])) {
+      values.map((event) => newChecked.push(event.id));
+    } else {
+      newChecked = newChecked.filter(
+        (eventId) => !values.find((value) => value.id === eventId)
+      );
+    }
+
+    setChecked(newChecked);
+    handleFilters(newChecked);
+    localStorage.setItem("checked", JSON.stringify(newChecked));
+  };
 
   return (
     <div className={styles.layer}>
@@ -133,10 +123,13 @@ function CheckBox({ filters, handleFilters }) {
               >
                 <Panel header={b} key={index1 + 1}>
                   <React.Fragment key={-1}>
-                    <div style={{
-                      padding: "0 0 5px 0",
-                      margin: "0 0 5px 0",
-                      borderBottom:"solid rgba(200,200,200,.5) 1px" }}>
+                    <div
+                      style={{
+                        padding: "0 0 5px 0",
+                        margin: "0 0 5px 0",
+                        borderBottom: "solid rgba(200,200,200,.5) 1px",
+                      }}
+                    >
                       <Checkbox
                         type="Checkbox"
                         onClick={() =>
@@ -146,8 +139,11 @@ function CheckBox({ filters, handleFilters }) {
                             index1
                           )
                         }
-                        checked={allChecked(index1 + sync[index])}
-                        indeterminate={!allChecked(index1 + sync[index]) && !noneChecked(index1 + sync[index])}
+                        checked={isAllChecked(index1 + sync[index])}
+                        indeterminate={
+                          !isAllChecked(index1 + sync[index]) &&
+                          !isNoneChecked(index1 + sync[index])
+                        }
                       >
                         Select All
                       </Checkbox>
