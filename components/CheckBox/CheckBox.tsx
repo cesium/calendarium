@@ -133,7 +133,10 @@ function CheckBox({ filters, handleFilters }) {
               >
                 <Panel header={b} key={index1 + 1}>
                   <React.Fragment key={-1}>
-                    <div style={{ margin: "0 0 0.5rem 0" }}>
+                    <div style={{
+                      padding: "0 0 5px 0",
+                      margin: "0 0 5px 0",
+                      borderBottom:"solid rgba(200,200,200,.5) 1px" }}>
                       <Checkbox
                         type="Checkbox"
                         onClick={() =>
