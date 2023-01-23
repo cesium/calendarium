@@ -316,49 +316,64 @@
     "id": 321,
     "name": "ADI",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 322,
     "name": "CG",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 323,
     "name": "IPM",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
   },
   {
     "id": 324,
     "name": "PL",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 325,
     "name": "SSI",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 326,
     "name": "AProj",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 327,
     "name": "EngWeb",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "TP1", "TP2"]
   },
   {
     "id": 328,
     "name": "MQ",
     "groupId": 3,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["T1", "TP1"]
+  },
+  {
+    "id": 329,
+    "name": "ATS",
+    "groupId": 3,
+    "semester": 2,
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 411,
