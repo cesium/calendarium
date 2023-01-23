@@ -51,38 +51,78 @@
     "name": "Análise",
     "groupId": 1,
     "semester": 2,
-    "shifts": ["TP2", "T2", "T3", "TP4"]
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 122,
     "name": "EPTN",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "T2",
+      "TP1",
+      "TP2",
+      "TP3",
+      "TP4",
+      "TP5",
+      "TP6",
+      "TP7",
+      "TP8"
+    ]
   },
   {
     "id": 123,
     "name": "LI2",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": ["PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7", "PL8"]
   },
   {
     "id": 124,
     "name": "Lógica",
     "groupId": 1,
     "semester": 2,
-    "shifts": ["TP2", "T2", "T3", "TP4"]
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 125,
     "name": "PI",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "T2",
+      "TP1",
+      "TP2",
+      "TP3",
+      "TP4",
+      "TP5",
+      "TP6",
+      "TP7",
+      "TP8",
+      "TP9"
+    ]
   },
   {
     "id": 126,
     "name": "SC",
     "groupId": 1,
-    "semester": 2
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9",
+      "PL10"
+    ]
   },
   {
     "id": 211,
