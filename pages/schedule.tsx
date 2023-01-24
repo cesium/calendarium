@@ -112,61 +112,70 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     formatEvents();
   }, [selectedFilters, formatEvents]);
 
+  const minDate = new Date();
+  minDate.setHours(8, 0, 0);
+
+  const maxDate = new Date();
+  maxDate.setHours(20, 0, 0);
+
   return (
     <Layout>
-      <Head>
-        <title>Schedule | Calendarium</title>
-        <meta name="Calendarium" content="Calendar of events and exams" />
-        <link rel="icon" href="/favicon-calendarium.ico" />~
-      </Head>
+      <div className="Schedule">
+        <Head>
+          <title>Schedule | Calendarium</title>
+          <meta name="Calendarium" content="Calendar of events and exams" />
+          <link rel="icon" href="/favicon-calendarium.ico" />~
+        </Head>
 
-      <div className={styles.filters}>
-        <SelectSchedule
-          filters={filters}
-          handleFilters={(myFilters) => {
-            console.log(myFilters);
-            setSelectedFilters(myFilters);
-          }}
-        />
+        <div className={styles.filters}>
+          <SelectSchedule
+            filters={filters}
+            handleFilters={(myFilters) => {
+              console.log(myFilters);
+              setSelectedFilters(myFilters);
+            }}
+          />
+        </div>
+
+        <div id="SCHEDULE" className={styles.schedule}>
+          <Calendar
+            toolbar={false}
+            localizer={localizer}
+            selected={selectedShift}
+            onSelectEvent={(shift) => handleSelection(shift)}
+            defaultDate={new Date()}
+            defaultView={"work_week"}
+            views={["day", "work_week"]}
+            min={minDate}
+            max={maxDate}
+            eventPropGetter={(event) => {
+              const newStyle = {
+                border: "0.2rem solid white",
+                backgroundColor: event.theoretical
+                  ? "var(--orange)"
+                  : "#c65932",
+                fontWeight: "500",
+                padding: "0.5rem",
+                borderRadius: "12px",
+              };
+
+              return { style: newStyle };
+            }}
+            formats={formats}
+            events={events}
+            className={styles.schedule_style}
+          />
+        </div>
+
+        {inspectShift && (
+          <EventModalShift
+            selectedShift={selectedShift}
+            setInspectShift={setInspectShift}
+          />
+        )}
+
+        <FeedbackForm />
       </div>
-
-      <div id="SCHEDULE" className={styles.schedule}>
-        <Calendar
-          toolbar={false}
-          localizer={localizer}
-          formats={formats}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          defaultView={"work_week"}
-          views={["day", "work_week"]}
-          defaultDate={new Date()}
-          min={new Date("08:00 2022/01/01")}
-          max={new Date("20:00 2022/01/01")}
-          onSelectEvent={(shift) => handleSelection(shift)}
-          className={styles.schedule_style}
-          eventPropGetter={(event) => {
-            const newStyle = {
-              border: "0.2rem solid white",
-              backgroundColor: event.theoretical ? "var(--orange)" : "#c65932",
-              fontWeight: "500",
-              padding: "0.5rem",
-              borderRadius: "12px",
-            };
-
-            return { style: newStyle };
-          }}
-        />
-      </div>
-
-      {inspectShift && (
-        <EventModalShift
-          selectedShift={selectedShift}
-          setInspectShift={setInspectShift}
-        />
-      )}
-
-      <FeedbackForm />
     </Layout>
   );
 }
