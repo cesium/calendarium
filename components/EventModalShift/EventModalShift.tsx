@@ -4,20 +4,27 @@ import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import { useState } from "react";
 
-function EventModal({
-  selectedEvent: { title, start, end, groupId },
-  setInspectEvent,
+function EventModalShift({
+  selectedShift: {
+    id,
+    title,
+    theoretical,
+    shift,
+    building,
+    room,
+    day,
+    start,
+    end,
+    filterId,
+  },
+  setInspectShift,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-
-  const start_date = new Date(start).toLocaleDateString("pt", {});
 
   const start_hour = new Date(start).toLocaleTimeString("pt", {
     hour: "numeric",
     minute: "numeric",
   });
-
-  const end_date = new Date(end).toLocaleDateString("pt", {});
 
   const end_hour = new Date(end).toLocaleTimeString("pt", {
     hour: "numeric",
@@ -26,8 +33,10 @@ function EventModal({
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setInspectEvent(false);
+    setInspectShift(false);
   };
+
+  const substrings = title.split("-");
 
   const style = {
     position: "absolute",
@@ -42,35 +51,34 @@ function EventModal({
     textAlign: "center",
   };
 
+  const ano = String(filterId)[0];
+  const semestre = String(filterId)[1];
+
   return (
     <div>
       <Modal open={isModalOpen} onClose={handleModalClose}>
         <Fade in={isModalOpen}>
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              {title}
+              {substrings[0]}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <p>
-                <i className="bi bi-calendar-fill"></i>{" "}
-                {start_date.localeCompare(end_date)
-                  ? `${start_date} - ${end_date}`
-                  : `${start_date}`}
-              </p>
-              {start_hour.localeCompare("00:00") ? (
+              {ano != "0" && ano != "6" ? (
                 <p>
-                  <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
+                  <i className="bi bi-mortarboard-fill"></i> {ano}º ano -{" "}
+                  {semestre}º sem
                 </p>
               ) : (
                 ""
               )}
-              {groupId != 0 && groupId != 6 ? (
-                <div>
-                  <i className="bi bi-mortarboard-fill"></i> {groupId}º ano
-                </div>
-              ) : (
-                ""
-              )}
+              <p>
+                <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
+              </p>
+              <p>
+                <i className="bi bi-geo-alt-fill"></i>{" "}
+                {building.includes("CP") ? "" : "Ed."} {building} - {room}
+              </p>
+              <i className="bi bi-briefcase-fill"></i> {shift}
             </Typography>
           </Box>
         </Fade>
@@ -79,4 +87,4 @@ function EventModal({
   );
 }
 
-export default EventModal;
+export default EventModalShift;

@@ -6,6 +6,7 @@ import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
 import FeedbackForm from "../components/FeedbackForm";
+import EventModalShift from "../components/EventModalShift";
 
 import Layout from "../components/Layout";
 import { SelectSchedule } from "../components/SelectSchedule";
@@ -44,10 +45,31 @@ interface ISchedulesProps {
 export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [events, setEvents] = useState<IFormatedShift[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
+  const [selectedShift, setSelectedShift] = useState<{
+    id: number;
+    title: string;
+    theoretical: boolean;
+    shift: string;
+    building: string;
+    room: string;
+    day: number;
+    start: string;
+    end: string;
+    filterId: number;
+  }>(shifts[0]);
+  const [inspectShift, setInspectShift] = useState(false);
+
+  const handleSelection = (shift) => {
+    setSelectedShift(shift);
+    setInspectShift(!inspectShift);
+  };
 
   const formats = useMemo(
     () => ({
       dayFormat: (date, _, localizer) => localizer.format(date, "ddd"),
+      eventTimeRangeFormat: () => {
+        return "";
+      },
     }),
     []
   );
@@ -67,7 +89,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
       return {
         ...shift,
-        title: `${shift.title} - ${shift.shift} | ${
+        title: `${shift.title} - ${shift.shift} I ${
           shift.building.includes("CP") ? "" : "Ed."
         } ${shift.building} - ${shift.room}`,
         start: moment()
@@ -116,13 +138,33 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           events={events}
           startAccessor="start"
           endAccessor="end"
-          defaultView="week"
+          defaultView={"work_week"}
+          views={["day", "work_week"]}
           defaultDate={new Date()}
           min={new Date("08:00 2022/01/01")}
-          max={new Date("21:00 2022/01/01")}
-          style={{ height: "90vh" }}
+          max={new Date("20:00 2022/01/01")}
+          onSelectEvent={(shift) => handleSelection(shift)}
+          className={styles.schedule_style}
+          eventPropGetter={(event) => {
+            const newStyle = {
+              border: "0.2rem solid white",
+              backgroundColor: event.theoretical ? "var(--orange)" : "#c65932",
+              fontWeight: "500",
+              padding: "0.5rem",
+              borderRadius: "12px",
+            };
+
+            return { style: newStyle };
+          }}
         />
       </div>
+
+      {inspectShift && (
+        <EventModalShift
+          selectedShift={selectedShift}
+          setInspectShift={setInspectShift}
+        />
+      )}
 
       <FeedbackForm />
     </Layout>

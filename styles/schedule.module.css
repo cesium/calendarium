@@ -13,3 +13,14 @@
     padding-top: 0;
   }
 }
+
+.schedule_style {
+  height: 90vh;
+  font-family: Inter;
+}
+
+@media (max-width: 400px) {
+  .schedule_style {
+    height: 70vh;
+  }
+}
