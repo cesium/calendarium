@@ -8,6 +8,7 @@ const { Panel } = Collapse;
 
 function CheckBox({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
+
   React.useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
@@ -20,7 +21,7 @@ function CheckBox({ filters, handleFilters }) {
     name: string;
     groupId: number;
     semester: number;
-  }[] = [];
+  }[][] = [];
 
   const menus = ["LEI", "MEI"];
 
@@ -65,14 +66,39 @@ function CheckBox({ filters, handleFilters }) {
     } else {
       newCheck.splice(currentId, 1);
     }
+
     setChecked(newCheck);
     localStorage.setItem("checked", JSON.stringify(newCheck));
     handleFilters(newCheck);
   };
 
-  function isChecked(id) {
-    return !(Checked.indexOf(id) === -1);
-  }
+  const isAllChecked = (index: number) => {
+    return !event[index].some((elem) => {
+      return !Checked.includes(elem.id);
+    });
+  };
+
+  const isNoneChecked = (index: number) => {
+    return !event[index].some((elem) => {
+      return Checked.includes(elem.id);
+    });
+  };
+
+  const handleToggleAll = (values, index: number, index1: number) => {
+    let newChecked = [...Checked];
+
+    if (!isAllChecked(index1 + sync[index])) {
+      values.map((event) => newChecked.push(event.id));
+    } else {
+      newChecked = newChecked.filter(
+        (eventId) => !values.find((value) => value.id === eventId)
+      );
+    }
+
+    setChecked(newChecked);
+    handleFilters(newChecked);
+    localStorage.setItem("checked", JSON.stringify(newChecked));
+  };
 
   return (
     <div className={styles.layer}>
@@ -96,13 +122,34 @@ function CheckBox({ filters, handleFilters }) {
                 key={index1}
               >
                 <Panel header={b} key={index1 + 1}>
-                  <div style={{ fontWeight: 400 }}>
-                    {/* <div>
-                      <Checkbox type="checkbox" onChange={}>
-                        {" "}
-                        Check all
+                  <React.Fragment key={-1}>
+                    <div
+                      style={{
+                        padding: "0 0 5px 0",
+                        margin: "0 0 5px 0",
+                        borderBottom: "solid rgba(200,200,200,.5) 1px",
+                      }}
+                    >
+                      <Checkbox
+                        type="Checkbox"
+                        onClick={() =>
+                          handleToggleAll(
+                            event[index1 + sync[index]],
+                            index,
+                            index1
+                          )
+                        }
+                        checked={isAllChecked(index1 + sync[index])}
+                        indeterminate={
+                          !isAllChecked(index1 + sync[index]) &&
+                          !isNoneChecked(index1 + sync[index])
+                        }
+                      >
+                        Select All
                       </Checkbox>
-                    </div> */}
+                    </div>
+                  </React.Fragment>
+                  <div style={{ fontWeight: 400 }}>
                     {event[index1 + sync[index]]?.map(
                       (
                         value: {
@@ -147,12 +194,6 @@ function CheckBox({ filters, handleFilters }) {
       >
         <Panel header="Others" key="">
           <div style={{ fontWeight: 400 }}>
-            {/* <div>
-              <Checkbox type="checkbox" onChange={}>
-                {" "}
-                Check all
-              </Checkbox>
-            </div> */}
             {event[9]?.map(
               (
                 value: {
