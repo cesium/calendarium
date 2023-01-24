@@ -92,53 +92,52 @@ export default function Home({ events, filters }) {
   return (
     <Layout isHome>
       <div className="Home">
-        <div className={styles.container}>
-          <Head>
-            <title>Home | Calendarium</title>
-            <meta name="Calendarium" content="Calendar of events and exams" />
-            <link rel="icon" href="/favicon-calendarium.ico" />
-          </Head>
+        <Head>
+          <title>Home | Calendarium</title>
+          <meta name="Calendarium" content="Calendar of events and exams" />
+          <link rel="icon" href="/favicon-calendarium.ico" />
+        </Head>
 
-          <div className={styles.filters}>
-            <CheckBox
-              filters={filters}
-              handleFilters={(myFilters) => handleFilters(myFilters)}
-            />
-          </div>
-
-          <div id="APP" className={styles.calendar}>
-            <Calendar
-              localizer={localizer}
-              selected={selectedEvent}
-              onSelectEvent={(event) => handleSelection(event)}
-              defaultDate={new Date()}
-              defaultView="month"
-              views={["day", "week", "month"]}
-              eventPropGetter={(event: { title; start; end; groupId }) => {
-                const newStyle = {
-                  backgroundColor: colors[event.groupId],
-                  fontWeight: "500",
-                  borderRadius: "10px",
-                  border: "2px solid white",
-                };
-
-                return { style: newStyle };
-              }}
-              formats={formats}
-              events={Events}
-              style={{ height: "90vh", fontFamily: "Inter" }}
-            />
-          </div>
-
-          {inspectEvent && (
-            <EventModal
-              selectedEvent={selectedEvent}
-              setInspectEvent={setInspectEvent}
-            />
-          )}
+        <div className={styles.filters}>
+          <CheckBox
+            filters={filters}
+            handleFilters={(myFilters) => handleFilters(myFilters)}
+          />
         </div>
+
+        <div id="APP" className={styles.calendar}>
+          <Calendar
+            localizer={localizer}
+            selected={selectedEvent}
+            onSelectEvent={(event) => handleSelection(event)}
+            defaultDate={new Date()}
+            defaultView="month"
+            views={["day", "week", "month"]}
+            eventPropGetter={(event: { title; start; end; groupId }) => {
+              const newStyle = {
+                backgroundColor: colors[event.groupId],
+                fontWeight: "500",
+                borderRadius: "10px",
+                border: "2px solid white",
+              };
+
+              return { style: newStyle };
+            }}
+            formats={formats}
+            events={Events}
+            style={{ height: "90vh", fontFamily: "Inter" }}
+          />
+        </div>
+
+        {inspectEvent && (
+          <EventModal
+            selectedEvent={selectedEvent}
+            setInspectEvent={setInspectEvent}
+          />
+        )}
+
+        <FeedbackForm />
       </div>
-      <FeedbackForm />
     </Layout>
   );
 }
