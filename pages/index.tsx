@@ -83,6 +83,12 @@ export default function Home({ events, filters }) {
     "#b70a0a",
   ];
 
+  const formats = {
+    eventTimeRangeFormat: () => {
+      return "";
+    },
+  };
+
   return (
     <Layout isHome>
       <div className="Home">
@@ -107,16 +113,20 @@ export default function Home({ events, filters }) {
               onSelectEvent={(event) => handleSelection(event)}
               defaultDate={new Date()}
               defaultView="month"
+              views={["day", "week", "month"]}
               eventPropGetter={(event: { title; start; end; groupId }) => {
                 const newStyle = {
                   backgroundColor: colors[event.groupId],
-                  border: "none",
+                  fontWeight: "500",
+                  borderRadius: "10px",
+                  border: "2px solid white",
                 };
 
                 return { style: newStyle };
               }}
+              formats={formats}
               events={Events}
-              style={{ height: "90vh" }}
+              style={{ height: "90vh", fontFamily: "Inter" }}
             />
           </div>
 

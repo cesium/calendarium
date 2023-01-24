@@ -15,6 +15,9 @@
     "test:format": "prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.6",
     "@types/react-big-calendar": "^0.38.1",
     "antd": "^4.22.1",
     "emailjs": "^4.0.0",
