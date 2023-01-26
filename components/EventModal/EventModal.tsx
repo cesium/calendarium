@@ -35,7 +35,7 @@ function EventModal({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 260,
+    width: 300,
     bgcolor: "white",
     boxShadow: 24,
     p: 4,
@@ -83,6 +83,15 @@ function EventModal({
                 <div>
                   <p></p>
                   <i className="bi bi-mortarboard-fill"></i> {groupId}º ano
+                </div>
+              ) : (
+                ""
+              )}
+              {groupId == 7 ? (
+                <div>
+                  <p></p>
+                  <i className="bi bi-link-45deg"></i>
+                  <a href="https://seium.org">seium.org</a>
                 </div>
               ) : (
                 ""
