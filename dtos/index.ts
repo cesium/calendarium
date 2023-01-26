@@ -8,6 +8,7 @@ export interface IFilterDTO {
 
 export interface IEventDTO {
   title: string;
+  place: string;
   start: string;
   end: string;
   groupId: number;
