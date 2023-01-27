@@ -63,7 +63,8 @@ function EventModal({
               {start_date.localeCompare(end_date)
                 ? `${start_date} - ${end_date}`
                 : `${start_date}`}
-              {start_hour.localeCompare("00:00") ? (
+              {start_hour.localeCompare("00:00") &&
+              !start_date.localeCompare(end_date) ? (
                 <div>
                   <p></p>
                   <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
