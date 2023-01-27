@@ -5,7 +5,7 @@ import Fade from "@mui/material/Fade";
 import { useState } from "react";
 
 function EventModal({
-  selectedEvent: { title, start, end, groupId },
+  selectedEvent: { title, place, start, end, groupId },
   setInspectEvent,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -35,7 +35,7 @@ function EventModal({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 260,
+    width: 300,
     bgcolor: "white",
     boxShadow: 24,
     p: 4,
@@ -47,26 +47,52 @@ function EventModal({
       <Modal open={isModalOpen} onClose={handleModalClose}>
         <Fade in={isModalOpen}>
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              style={{
+                padding: "0 0 0.75rem 0",
+                borderBottom: "solid rgba(200,200,200,.5) 1px",
+              }}
+            >
               {title}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <p>
-                <i className="bi bi-calendar-fill"></i>{" "}
-                {start_date.localeCompare(end_date)
-                  ? `${start_date} - ${end_date}`
-                  : `${start_date}`}
-              </p>
-              {start_hour.localeCompare("00:00") ? (
-                <p>
+              <i className="bi bi-calendar-fill"></i>{" "}
+              {start_date.localeCompare(end_date)
+                ? `${start_date} - ${end_date}`
+                : `${start_date}`}
+              {start_hour.localeCompare("00:00") &&
+              !start_date.localeCompare(end_date) ? (
+                <div>
+                  <p></p>
                   <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
-                </p>
+                </div>
               ) : (
                 ""
               )}
-              {groupId != 0 && groupId != 6 ? (
+              {place ? (
                 <div>
+                  <p></p>
+                  <i className="bi bi-geo-alt-fill"></i> {place}
+                </div>
+              ) : (
+                ""
+              )}
+              {groupId != 0 && groupId < 6 ? (
+                <div>
+                  <p></p>
                   <i className="bi bi-mortarboard-fill"></i> {groupId}º ano
+                </div>
+              ) : (
+                ""
+              )}
+              {groupId == 7 ? (
+                <div>
+                  <p></p>
+                  <i className="bi bi-link-45deg"></i>
+                  <a href="https://seium.org">seium.org</a>
                 </div>
               ) : (
                 ""

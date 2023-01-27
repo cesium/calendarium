@@ -45,6 +45,7 @@ export default function Home({ events, filters }) {
   const [Filters, setFilters] = useState(filters);
   const [selectedEvent, setSelectedEvent] = useState<{
     title;
+    place;
     start;
     end;
     groupId;
@@ -81,6 +82,7 @@ export default function Home({ events, filters }) {
     "#5ac77b",
     "#5532a8",
     "#b70a0a",
+    "#3408fd",
   ];
 
   const formats = {

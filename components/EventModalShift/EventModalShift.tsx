@@ -59,7 +59,15 @@ function EventModalShift({
       <Modal open={isModalOpen} onClose={handleModalClose}>
         <Fade in={isModalOpen}>
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              style={{
+                padding: "0 0 0.75rem 0",
+                borderBottom: "solid rgba(200,200,200,.5) 1px",
+              }}
+            >
               {substrings[0]}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
