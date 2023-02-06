@@ -4,7 +4,6 @@ import "antd/dist/antd.css";
 import { IFilterDTO } from "../../dtos";
 import styles from "./selectschedule.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
-import { clear } from "console";
 
 const { Panel } = Collapse;
 
