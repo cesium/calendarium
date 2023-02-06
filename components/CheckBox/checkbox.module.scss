@@ -15,6 +15,12 @@
   z-index: 1;
 }
 
+.items {
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 14.5rem;
+}
+
 @media (max-width: 881px) {
   .checkbox {
     display: inline-block;
@@ -22,6 +28,12 @@
   }
   .layer {
     position: relative;
+  }
+  .items {
+    max-height: none;
+    height: auto;
+    overflow-y: hidden;
+    width: auto;
   }
 }
 
