@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/antd.css";
-import { IFilterDTO } from "../dtos";
-import styles from "../components/CheckBox/checkbox.module.scss";
+import { IFilterDTO } from "../../dtos";
+import styles from "./selectschedule.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
+import { clear } from "console";
 
 const { Panel } = Collapse;
 
@@ -64,10 +65,7 @@ const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   </>
 );
 
-export const SelectSchedule = ({
-  filters,
-  handleFilters,
-}: ISelectScheduleProps) => {
+const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
@@ -142,6 +140,18 @@ export const SelectSchedule = ({
     handleFilters(newSelctedFilters);
   };
 
+  function clearSelection() {
+    if (
+      confirm(
+        "Are you sure you want to clear your schedule? This will remove all your selected classes."
+      )
+    ) {
+      setSelectedFilters([]);
+      localStorage.setItem("shifts", JSON.stringify([]));
+      handleFilters([]);
+    }
+  }
+
   const mei = ["1ˢᵗ year"];
 
   const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
@@ -155,7 +165,7 @@ export const SelectSchedule = ({
   };
 
   return (
-    <div className={styles.layer}>
+    <div className={styles.filters}>
       {/* LEI */}
 
       <Collapse
@@ -328,6 +338,12 @@ export const SelectSchedule = ({
           )}
         </Panel>
       </Collapse>
+
+      <button onClick={() => clearSelection()} className={styles.clearButton}>
+        Clear Schedule <i className="bi bi-stars"></i>
+      </button>
     </div>
   );
 };
+
+export default SelectSchedule;

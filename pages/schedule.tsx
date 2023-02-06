@@ -9,7 +9,7 @@ import FeedbackForm from "../components/FeedbackForm";
 import EventModalShift from "../components/EventModalShift";
 
 import Layout from "../components/Layout";
-import { SelectSchedule } from "../components/SelectSchedule";
+import SelectSchedule from "../components/SelectSchedule";
 
 import { IFilterDTO, IShiftDTO } from "../dtos";
 
