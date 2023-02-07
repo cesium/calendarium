@@ -1,12 +1,10 @@
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Fade from "@mui/material/Fade";
+import { Modal, Box, Typography, Grow } from "@mui/material";
 import { useState } from "react";
 
 function EventModal({
   selectedEvent: { title, place, start, end, groupId },
   setInspectEvent,
+  inspectEvent,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -25,16 +23,14 @@ function EventModal({
   });
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
     setInspectEvent(false);
   };
 
   const style = {
-    position: "absolute",
+    position: "absolute" as "absolute",
     borderRadius: "30px",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
     width: 300,
     bgcolor: "white",
     boxShadow: 24,
@@ -44,9 +40,9 @@ function EventModal({
 
   return (
     <div>
-      <Modal open={isModalOpen} onClose={handleModalClose}>
-        <Fade in={isModalOpen}>
-          <Box sx={style}>
+      <Modal open={inspectEvent} onClose={handleModalClose}>
+        <Grow in={inspectEvent}>
+          <Box sx={style} style={{ transform: "translate(-50%, -50%)" }}>
             <Typography
               id="modal-modal-title"
               variant="h6"
@@ -92,14 +88,19 @@ function EventModal({
                 <div>
                   <p></p>
                   <i className="bi bi-link-45deg"></i>
-                  <a href="https://seium.org">seium.org</a>
+                  <a
+                    href="https://seium.org"
+                    style={{ color: "rgb(24, 144, 255, 1)" }}
+                  >
+                    seium.org
+                  </a>
                 </div>
               ) : (
                 ""
               )}
             </Typography>
           </Box>
-        </Fade>
+        </Grow>
       </Modal>
     </div>
   );

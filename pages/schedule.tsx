@@ -10,7 +10,7 @@ import EventModalShift from "../components/EventModalShift";
 import Legend from "../components/Legend";
 
 import Layout from "../components/Layout";
-import { SelectSchedule } from "../components/SelectSchedule";
+import SelectSchedule from "../components/SelectSchedule";
 
 import { IFilterDTO, IShiftDTO } from "../dtos";
 
@@ -174,6 +174,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           <EventModalShift
             selectedShift={selectedShift}
             setInspectShift={setInspectShift}
+            inspectShift={inspectShift}
           />
         )}
 

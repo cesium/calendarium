@@ -1,4 +1,5 @@
 .filters {
+  width: 100%;
   margin: 0 0 1rem 0;
 }
 
@@ -8,7 +9,7 @@
   padding-top: 4.9rem;
 }
 
-@media (max-width: 881px) {
+@media (max-width: 1070px) {
   .schedule {
     padding-top: 0;
   }

@@ -93,9 +93,9 @@ export default function Home({ events, filters }) {
 
   return (
     <Layout isHome>
-      <div className="Home">
+      <div>
         <Head>
-          <title>Home | Calendarium</title>
+          <title>Events | Calendarium</title>
           <meta name="Calendarium" content="Calendar of events and exams" />
           <link rel="icon" href="/favicon-calendarium.ico" />
         </Head>
@@ -135,6 +135,7 @@ export default function Home({ events, filters }) {
           <EventModal
             selectedEvent={selectedEvent}
             setInspectEvent={setInspectEvent}
+            inspectEvent={inspectEvent}
           />
         )}
 

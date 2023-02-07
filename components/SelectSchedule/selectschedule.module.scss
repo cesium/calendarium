@@ -1,0 +1,82 @@
+.filters {
+  position: absolute;
+  z-index: 1;
+  padding: 0 2rem;
+  left: 0;
+  width: 100%;
+  padding-bottom: 4.9rem;
+}
+
+.clearButton {
+  position: absolute;
+  display: inline;
+  right: 2rem;
+
+  background: rgba(73, 103, 255, 0.9);
+  border-radius: 25px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+  margin: 2px 0 0 0;
+  transition: 150ms linear;
+  padding: 0.6rem;
+
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.22);
+
+  &:hover {
+    box-shadow: rgb(73, 103, 255, 0.8) 0 2px 12px 0px;
+  }
+}
+
+.checkbox {
+  display: inline-flex;
+  border-radius: 25px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+  width: 16rem;
+  background: white;
+  margin: 0 1rem 1rem 0;
+}
+
+.sub_checkbox {
+  background: white;
+  font-family: Inter;
+}
+
+.sub_sub_checkbox {
+  background: white;
+  font-weight: 400;
+}
+
+@media (max-width: 1070px) {
+  .filters {
+    position: relative;
+    padding: 0;
+  }
+  .checkbox {
+    display: inline-block;
+    width: 100%;
+  }
+  .clearButton {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem 0;
+    right: 0;
+  }
+}
