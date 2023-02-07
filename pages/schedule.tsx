@@ -7,7 +7,6 @@ import path from "path";
 import fsPromises from "fs/promises";
 import FeedbackForm from "../components/FeedbackForm";
 import EventModalShift from "../components/EventModalShift";
-import Legend from "../components/Legend";
 
 import Layout from "../components/Layout";
 import SelectSchedule from "../components/SelectSchedule";
@@ -167,8 +166,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             className={styles.schedule_style}
           />
         </div>
-
-        <Legend></Legend>
 
         {inspectShift && (
           <EventModalShift
