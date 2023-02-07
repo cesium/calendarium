@@ -1,7 +1,4 @@
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Fade from "@mui/material/Fade";
+import { Modal, Box, Typography, Grow } from "@mui/material";
 import { useState } from "react";
 
 function EventModalShift({
@@ -18,9 +15,8 @@ function EventModalShift({
     filterId,
   },
   setInspectShift,
+  inspectShift,
 }) {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
   const start_hour = new Date(start).toLocaleTimeString("pt", {
     hour: "numeric",
     minute: "numeric",
@@ -32,7 +28,6 @@ function EventModalShift({
   });
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
     setInspectShift(false);
   };
 
@@ -43,7 +38,6 @@ function EventModalShift({
     borderRadius: "30px",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
     width: 260,
     bgcolor: "white",
     boxShadow: 24,
@@ -56,9 +50,9 @@ function EventModalShift({
 
   return (
     <div>
-      <Modal open={isModalOpen} onClose={handleModalClose}>
-        <Fade in={isModalOpen}>
-          <Box sx={style}>
+      <Modal open={inspectShift} onClose={handleModalClose}>
+        <Grow in={inspectShift}>
+          <Box sx={style} style={{ transform: "translate(-50%, -50%)" }}>
             <Typography
               id="modal-modal-title"
               variant="h6"
@@ -89,7 +83,7 @@ function EventModalShift({
               <i className="bi bi-briefcase-fill"></i> {shift}
             </Typography>
           </Box>
-        </Fade>
+        </Grow>
       </Modal>
     </div>
   );

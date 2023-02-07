@@ -19,7 +19,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.6",
     "@types/react-big-calendar": "^0.38.1",
-    "antd": "^4.22.1",
+    "antd": "^5.1.0",
     "emailjs": "^4.0.0",
     "emailjs-com": "^3.2.0",
     "html2canvas": "^1.4.1",

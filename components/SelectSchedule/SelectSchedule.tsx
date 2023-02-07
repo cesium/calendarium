@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Checkbox, Collapse } from "antd";
-import "antd/dist/antd.css";
+import { Checkbox, Collapse, Popconfirm } from "antd";
+import "antd/dist/reset.css";
 import { IFilterDTO } from "../../dtos";
 import styles from "./selectschedule.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
@@ -140,15 +140,9 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   };
 
   function clearSelection() {
-    if (
-      confirm(
-        "Are you sure you want to clear your schedule? This will remove all your selected classes."
-      )
-    ) {
-      setSelectedFilters([]);
-      localStorage.setItem("shifts", JSON.stringify([]));
-      handleFilters([]);
-    }
+    setSelectedFilters([]);
+    localStorage.setItem("shifts", JSON.stringify([]));
+    handleFilters([]);
   }
 
   const mei = ["1ˢᵗ year"];
@@ -177,7 +171,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
         <Panel header="LEI" key="panel">
           {lei.map((y, index1) => (
             <Collapse
-              style={{ background: "white" }}
+              className={styles.sub_checkbox}
               bordered={false}
               expandIcon={({ isActive }) => (
                 <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -187,7 +181,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
               <Panel header={y} key={index1}>
                 {semesters.map((s, index2) => (
                   <Collapse
-                    className={styles.sub_checkbox}
+                    className={styles.sub_sub_checkbox}
                     bordered={false}
                     expandIcon={({ isActive }) => (
                       <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -233,7 +227,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
         <Panel header="MEI" key="panel">
           {mei.map((y, index1) => (
             <Collapse
-              style={{ background: "white" }}
+              className={styles.sub_checkbox}
               bordered={false}
               expandIcon={({ isActive }) => (
                 <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -243,7 +237,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
               <Panel header={y} key={index1}>
                 {semesters.map((s, index2) => (
                   <Collapse
-                    className={styles.sub_checkbox}
+                    className={styles.sub_sub_checkbox}
                     bordered={false}
                     expandIcon={({ isActive }) => (
                       <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -275,7 +269,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
             </Collapse>
           ))}
           <Collapse
-            style={{ background: "white" }}
+            className={styles.sub_checkbox}
             bordered={false}
             expandIcon={({ isActive }) => (
               <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -338,9 +332,26 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
         </Panel>
       </Collapse>
 
-      <button onClick={() => clearSelection()} className={styles.clearButton}>
-        Clear Schedule <i className="bi bi-stars"></i>
-      </button>
+      <Popconfirm
+        title="Are you sure?"
+        description="This will remove all your classes"
+        onConfirm={() => {
+          clearSelection();
+        }}
+        onCancel={() => {}}
+        okText="Ok"
+        cancelText="Cancel"
+        icon={
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: "#faad14" }}
+          ></i>
+        }
+      >
+        <button className={styles.clearButton}>
+          Clear Schedule <i className="bi bi-stars"></i>
+        </button>
+      </Popconfirm>
     </div>
   );
 };

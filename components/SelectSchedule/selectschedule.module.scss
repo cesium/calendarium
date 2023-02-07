@@ -10,7 +10,7 @@
 .clearButton {
   position: absolute;
   display: inline;
-  right: 3rem;
+  right: 2rem;
 
   background: rgba(73, 103, 255, 0.9);
   border-radius: 25px;
@@ -54,6 +54,11 @@
 }
 
 .sub_checkbox {
+  background: white;
+  font-family: Inter;
+}
+
+.sub_sub_checkbox {
   background: white;
   font-weight: 400;
 }

@@ -171,6 +171,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           <EventModalShift
             selectedShift={selectedShift}
             setInspectShift={setInspectShift}
+            inspectShift={inspectShift}
           />
         )}
 
