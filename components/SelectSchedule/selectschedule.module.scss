@@ -63,6 +63,12 @@
   font-weight: 400;
 }
 
+.items {
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 14.5rem;
+}
+
 @media (max-width: 1070px) {
   .filters {
     position: relative;
@@ -78,5 +84,11 @@
     width: 100%;
     margin: 0 0 1rem 0;
     right: 0;
+  }
+  .items {
+    max-height: none;
+    height: auto;
+    overflow-y: hidden;
+    width: auto;
   }
 }
