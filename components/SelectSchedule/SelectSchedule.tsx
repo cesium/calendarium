@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Checkbox, Collapse } from "antd";
-import "antd/dist/antd.css";
-import { IFilterDTO } from "../dtos";
-import styles from "../components/CheckBox/checkbox.module.scss";
+import { Checkbox, Collapse, Popconfirm } from "antd";
+import "antd/dist/reset.css";
+import { IFilterDTO } from "../../dtos";
+import styles from "./selectschedule.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
@@ -64,10 +64,7 @@ const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   </>
 );
 
-export const SelectSchedule = ({
-  filters,
-  handleFilters,
-}: ISelectScheduleProps) => {
+const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
@@ -142,6 +139,12 @@ export const SelectSchedule = ({
     handleFilters(newSelctedFilters);
   };
 
+  function clearSelection() {
+    setSelectedFilters([]);
+    localStorage.setItem("shifts", JSON.stringify([]));
+    handleFilters([]);
+  }
+
   const mei = ["1ˢᵗ year"];
 
   const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
@@ -155,7 +158,7 @@ export const SelectSchedule = ({
   };
 
   return (
-    <div className={styles.layer}>
+    <div className={styles.filters}>
       {/* LEI */}
 
       <Collapse
@@ -168,7 +171,7 @@ export const SelectSchedule = ({
         <Panel header="LEI" key="panel">
           {lei.map((y, index1) => (
             <Collapse
-              style={{ background: "white" }}
+              className={styles.sub_checkbox}
               bordered={false}
               expandIcon={({ isActive }) => (
                 <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -178,7 +181,7 @@ export const SelectSchedule = ({
               <Panel header={y} key={index1}>
                 {semesters.map((s, index2) => (
                   <Collapse
-                    className={styles.sub_checkbox}
+                    className={styles.sub_sub_checkbox}
                     bordered={false}
                     expandIcon={({ isActive }) => (
                       <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -224,7 +227,7 @@ export const SelectSchedule = ({
         <Panel header="MEI" key="panel">
           {mei.map((y, index1) => (
             <Collapse
-              style={{ background: "white" }}
+              className={styles.sub_checkbox}
               bordered={false}
               expandIcon={({ isActive }) => (
                 <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -234,7 +237,7 @@ export const SelectSchedule = ({
               <Panel header={y} key={index1}>
                 {semesters.map((s, index2) => (
                   <Collapse
-                    className={styles.sub_checkbox}
+                    className={styles.sub_sub_checkbox}
                     bordered={false}
                     expandIcon={({ isActive }) => (
                       <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -266,7 +269,7 @@ export const SelectSchedule = ({
             </Collapse>
           ))}
           <Collapse
-            style={{ background: "white" }}
+            className={styles.sub_checkbox}
             bordered={false}
             expandIcon={({ isActive }) => (
               <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -328,6 +331,29 @@ export const SelectSchedule = ({
           )}
         </Panel>
       </Collapse>
+
+      <Popconfirm
+        title="Are you sure?"
+        description="This will remove all your classes"
+        onConfirm={() => {
+          clearSelection();
+        }}
+        onCancel={() => {}}
+        okText="Ok"
+        cancelText="Cancel"
+        icon={
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: "#faad14" }}
+          ></i>
+        }
+      >
+        <button className={styles.clearButton}>
+          Clear Schedule <i className="bi bi-stars"></i>
+        </button>
+      </Popconfirm>
     </div>
   );
 };
+
+export default SelectSchedule;

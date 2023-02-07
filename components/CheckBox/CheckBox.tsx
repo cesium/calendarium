@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox, Collapse } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/reset.css";
 import styles from "./checkbox.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
 
@@ -114,7 +114,7 @@ function CheckBox({ filters, handleFilters }) {
           <Panel header={m} key={index + 1}>
             {courses[index].map((b, index1) => (
               <Collapse
-                style={{ background: "white" }}
+                className={styles.sub_checkbox}
                 bordered={false}
                 expandIcon={({ isActive }) => (
                   <CaretRightOutlined rotate={isActive ? 90 : 0} />

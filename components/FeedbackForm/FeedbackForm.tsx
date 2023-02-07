@@ -7,9 +7,12 @@ const FeedbackForm = () => {
       <p className={styles.title}>
         Anything wrong or missing? <i className="bi bi-bug-fill"></i>
       </p>
-      <Link href="https://forms.gle/C2uxuUKqoeqMWfcZ6">
+      <a
+        href="https://forms.gle/C2uxuUKqoeqMWfcZ6"
+        style={{ color: "rgb(24, 144, 255, 1)" }}
+      >
         Contact us and give your feedback
-      </Link>
+      </a>
     </div>
   );
 };
