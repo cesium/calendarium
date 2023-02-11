@@ -2965,7 +2965,7 @@
   {
     "id": 14307,
     "title": "Bases de Dados",
-    "theoretical": true,
+    "theoretical": false,
     "shift": "PL6",
     "building": "CP1",
     "room": "2.18",
@@ -2977,7 +2977,7 @@
   {
     "id": 14307,
     "title": "Bases de Dados",
-    "theoretical": true,
+    "theoretical": false,
     "shift": "PL8",
     "building": "CP1",
     "room": "2.20",
@@ -2989,7 +2989,7 @@
   {
     "id": 14307,
     "title": "Bases de Dados",
-    "theoretical": true,
+    "theoretical": false,
     "shift": "PL1",
     "building": "CP1",
     "room": "2.21",
