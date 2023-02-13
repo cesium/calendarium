@@ -1,0 +1,5 @@
+__pycache__
+geckodriver.log
+subjects.json
+shifts.json
+filters.json
