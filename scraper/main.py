@@ -4,45 +4,15 @@ from selenium import webdriver
 
 import json
 
+from modules.subjects_scraper import subjects_scraper
 from modules.course_scraper import course_scraper
-from subjects_scraper.subjects_scraper import subjects_scraper
 from modules.create_filters import create_filters
 
 print("Welcome to UMinho Schedule Scraper!")
 
-def get_subject_codes():
-    subjects_file = open("scraper/subjects.json", "r")
-
-    subjects = json.load(subjects_file)
-    subject_codes = {}
-    for subject in subjects:
-        subject_codes[subject["name"].lower()] = {
-            "id": subject["subjectId"],
-            "filterId": subject["id"]
-        }
-
-    subjects_file.close()
-
-    return subjects, subject_codes
-
-try:  
-    subjects, subject_codes = get_subject_codes()
-    print("\n-> Using subject codes from `subjects.json`")
-except FileNotFoundError:
-    print("\n`scraper/subjects.json` not founded. ")
-    print("Read about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation\n")
-
-    if input("Run subjects scraper? [y/N] ").lower() != "y":
-        print("\nLeaving ...")
-        exit()
-    else:
-        print("\nRunning subjects scraper: ====\n")
-        subjects_scraper()
-        print("\n==============================")
-    
-    subjects, subject_codes = get_subject_codes()
-
 driver = webdriver.Firefox()
+
+subjects, subject_codes = subjects_scraper(driver)
 
 print("\nScraping schedules from Licenciatura em Engenharia Informática:")
 shifts = course_scraper(driver, "Licenciatura em Engenharia Informática", subject_codes)

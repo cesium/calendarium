@@ -1,20 +1,48 @@
 #!/usr/bin/python
 
-from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver, WebElement
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 
-from json import dump as json_dump
+import json
 from time import sleep
 from unidecode import unidecode
 
-def subjects_scraper():
-    print("Welcome to UMinho Subjects Scraper!")
+def subjects_scraper(driver: WebDriver):
+    """
+    Scrape the courses's subjects on a given driver.
 
-    driver = webdriver.Firefox()
+    Parameters
+    ----------
+    driver : WebDriver
+        The selenium driver.
+
+    Returns
+    -------
+    [{
+        "id": int,
+        "subjectId": int,
+        "name": str,
+        "short_name": str,
+        "year": int,
+        "semester": int
+    }]
+    """
+
+    try:  
+        subjects, subject_codes = get_subject_codes_from_file()
+        print("\n-> Using subject codes from `subjects.json`")
+        return subjects, subject_codes
+    except FileNotFoundError:
+        pass
+    
+    print("\nRunning subjects scraper: ====")
+    
+    print("\nWelcome to UMinho Subjects Scraper!")
+    
+    print("\nRead about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation")
 
     print("\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
     subjects = scraper(driver, "Licenciatura em Engenharia Informática")
@@ -23,12 +51,14 @@ def subjects_scraper():
     subjects += scraper(driver, "Mestrado em Engenharia Informática", master=True)
 
     with open("scraper/subjects.json", "w") as outfile:
-        json_dump(subjects, outfile, indent=2, ensure_ascii=False)
+        json.dump(subjects, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Scraped {len(subjects)} subjects from the UMinho page!")
     print(f"Check them at scraper/subjects.json\n")
 
-    driver.close()
+    print("\n==============================")
+
+    return get_subject_codes_from_file()
 
 def scraper(driver: WebDriver, course_name: str, master: bool = False):
     """
@@ -150,6 +180,21 @@ def scraper(driver: WebDriver, course_name: str, master: bool = False):
             filter_id_counter += 1
 
     return subjects
+
+def  get_subject_codes_from_file():
+    subjects_file = open("scraper/subjects.json", "r")
+
+    subjects = json.load(subjects_file)
+    subject_codes = {}
+    for subject in subjects:
+        subject_codes[subject["name"].lower()] = {
+            "id": subject["subjectId"],
+            "filterId": subject["id"]
+        }
+
+    subjects_file.close()
+
+    return subjects, subject_codes
 
 def click_on_element(driver: WebDriver, element: WebElement):
     """

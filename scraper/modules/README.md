@@ -1,4 +1,6 @@
-# IDs Scraper
+## Subject ID and a Filter ID Scraper
+
+##### (subjects_scraper.py)
 
 [Calendarium](https://calendario.cesium.di.uminho.pt/) uses a subject ID and a filterID. The first is given by the university, the second is calculated with:
 
@@ -15,11 +17,10 @@ Where the `subject code` is the position of the subject in an alphabetic ordered
 
 The `filterID` of `Tópicos Matemática` will be `113`.
 
-## Scraping this values
+### Scraping this values
 
 On UMinho Courses pages, a list of all subjects, ordered first by year/semesters and next by alphabetic order, and the subject IDs are given. This is everything we need to complete `shifts.json` and generate a basic `filters.json` to Calendarium.
 
-### Running
+#### Output
 
-Just run the main script, that depends from this file, and it will be created.
-The scrape will be stored at `data/filters.json`.
+The scrape will be stored at `scraper/subjects.json`.
