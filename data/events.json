@@ -546,7 +546,7 @@
     "filterId": 1
   },
   {
-    "title": "SEI - Semana da Engenharia Informática",
+    "title": "[SEI] Semana da Engenharia Informática",
     "place": "Campus Gualtar",
     "start": "2023-02-14 10:00",
     "end": "2023-02-17 18:00",
@@ -664,5 +664,33 @@
     "end": "2023-06-19 23:59",
     "groupId": 2,
     "filterId": 226
+  },
+  {
+    "title": "[CoderDojo] Aniversário do Dojo",
+    "start": "2023-03-03 00:00",
+    "end": "2023-03-03 23:59",
+    "groupId": 8,
+    "filterId": 3 
+  },
+  {
+    "title": "[CoderDojo] Sessão de Aniversário",
+    "start": "2023-03-04 10:00",
+    "end": "2023-03-04 12:30",
+    "groupId": 8,
+    "filterId": 3 
+  },
+  {
+    "title": "[CoderDojo] Sessão",
+    "start": "2023-03-25 10:00",
+    "end": "2023-03-25 12:30",
+    "groupId": 8,
+    "filterId": 3 
+  },
+  {
+    "title": "[CoderDojo] Sessão",
+    "start": "2023-04-22 10:00",
+    "end": "2023-04-22 12:30",
+    "groupId": 8,
+    "filterId": 3 
   }
 ]

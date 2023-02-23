@@ -98,6 +98,20 @@ function EventModal({
               ) : (
                 ""
               )}
+              {groupId == 8 ? (
+                <div>
+                <p></p>
+                <i className="bi bi-link-45deg"></i>
+                <a
+                  href="https://coderdojobraga.org"
+                  style={{ color: "rgb(24, 144, 255, 1)" }}
+                >
+                  coderdojobraga.org
+                </a>
+              </div>
+              ) : (
+                ""
+              )}
             </Typography>
           </Box>
         </Grow>

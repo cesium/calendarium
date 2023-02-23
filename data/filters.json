@@ -12,6 +12,12 @@
     "semester": 0
   },
   {
+    "id": 3,
+    "name": "CoderDojo",
+    "groupId": 0,
+    "semester": 0
+  },
+  {
     "id": 1,
     "name": "UMinho",
     "groupId": 0,
