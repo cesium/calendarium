@@ -83,7 +83,7 @@ export default function Home({ events, filters }) {
     "#5532a8",
     "#b70a0a",
     "#3408fd",
-    "#642580"
+    "#642580",
   ];
 
   const formats = {
