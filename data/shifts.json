@@ -3088,7 +3088,7 @@
     "theoretical": true,
     "shift": "T2",
     "building": "CP1",
-    "room": "0.20",
+    "room": "0.08",
     "day": 4,
     "start": "11:00",
     "end": "13:00",
