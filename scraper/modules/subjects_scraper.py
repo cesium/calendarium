@@ -32,6 +32,13 @@ def subjects_scraper(driver: WebDriver):
     """
 
     try:  
+        subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
+    except FileNotFoundError:
+        print("\nFile `scraper/subjects_short_names.json` doesn't exists.")
+        print("Read more about at 'scraper/subjects_short_names_scraper/README.md'")
+        exit()
+
+    try:  
         subjects, subject_codes = get_subject_codes_from_file()
         print("\n-> Using subject codes from `subjects.json`")
         return subjects, subject_codes
@@ -45,10 +52,10 @@ def subjects_scraper(driver: WebDriver):
     print("\nRead about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation")
 
     print("\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
-    subjects = scraper(driver, "Licenciatura em Engenharia Informática")
+    subjects = scraper(driver, "Licenciatura em Engenharia Informática", subjects_short_names)
 
     print("\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
-    subjects += scraper(driver, "Mestrado em Engenharia Informática", master=True)
+    subjects += scraper(driver, "Mestrado em Engenharia Informática", subjects_short_names, master=True)
 
     with open("scraper/subjects.json", "w") as outfile:
         json.dump(subjects, outfile, indent=2, ensure_ascii=False)
@@ -60,7 +67,7 @@ def subjects_scraper(driver: WebDriver):
 
     return get_subject_codes_from_file()
 
-def scraper(driver: WebDriver, course_name: str, master: bool = False):
+def scraper(driver: WebDriver, course_name: str, short_names, master: bool = False):
     """
     Scrape subjects of a given course.
 
@@ -73,7 +80,17 @@ def scraper(driver: WebDriver, course_name: str, master: bool = False):
     The name of the course to scrape.
     Should be equal to the ones that are on the course picker.
 
-    master: bool
+    short_names : dict
+    Give to the scraper the short name for each subject.
+
+    {
+        str: { # subject Id 
+            "name": str, # complete name
+            "short_name": # short name
+        }
+    }
+
+    master: bool , optional
     Is this course a master?
 
     Returns
@@ -144,7 +161,6 @@ def scraper(driver: WebDriver, course_name: str, master: bool = False):
                 filter_id_counter = 1
             
             subject_name = subject_info[1].text
-            short_name = "".join([unidecode(word[0]) for word in subject_name.split(" ") if word[0].isupper()])
             
             # Getting subjectId ===
             more_info_button = get_future_element_with_timeout(subject_info[1], "a", exit_on_timeout=False)
@@ -167,6 +183,12 @@ def scraper(driver: WebDriver, course_name: str, master: bool = False):
             if subject_id == 0:
                 print(f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's subject ID. Using 0 as default.")
             # =====================
+
+            if subject_id in short_names.keys():
+                short_name = short_names[subject_id]["short_name"]
+            else:
+                short_name = "".join([unidecode(word[0]) for word in subject_name.split(" ") if word[0].isupper()])
+                print(f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's short name. Using initials to generate one ({short_name}).")
 
             subjects.append({
                 "id": int(f"{year_counter}{semester_counter}{filter_id_counter}"), # filterId
