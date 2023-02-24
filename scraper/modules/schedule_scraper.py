@@ -78,7 +78,7 @@ def schedule_scraper(driver: WebDriver, subject_codes: list[dict[str, int]]):
         if subject.lower() in subject_codes.keys():
           subject_ids = subject_codes[subject.lower()]
         else:
-          print(f"\t\033[93m\033[1mWARNING:\033[0m {subject} isn't present on filter.json. Using default values")
+          print(f"\t\033[93m\033[1mWARNING:\033[0m {subject} isn't present on scraper/subjects.json. Using default values")
           subject_ids = {
             "id": 0,
             "filterId": 0

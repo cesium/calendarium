@@ -57,6 +57,16 @@ def subjects_scraper(driver: WebDriver):
     print("\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
     subjects += scraper(driver, "Mestrado em Engenharia Informática", subjects_short_names, master=True)
 
+    print(f"\n\033[91m\033[1mWARNING:\033[0m Adding manually `Análise e Teste de Software` subject.")
+    subjects.append({
+        "id": 329,
+        "subjectId": 14322,
+        "name": "Análise e Teste de Software",
+        "short_name": "ATS",
+        "year": 3,
+        "semester": 2
+    })
+
     with open("scraper/subjects.json", "w") as outfile:
         json.dump(subjects, outfile, indent=2, ensure_ascii=False)
 
