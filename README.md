@@ -39,7 +39,7 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 
 - See only the activities that matter to you
 
-### Filter Memorization
+### Filter Memorization:
 
 - Find your selected Schedule and Events always there for you, even if you leave or refresh the page
 
