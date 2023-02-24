@@ -12,6 +12,10 @@
 
 Exams, projects, events and schedules. Your hub to everything LEI, MEI or even MIEI!
 
+Anything out of place? Give us your feedback using the [Suggestions Form](https://forms.gle/C2uxuUKqoeqMWfcZ6)!
+
+You can also fix it yourself following our [Helping Guide](HELPING_GUIDE.md) ;)
+
 ## 🤝 Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via discussions, issue, email, or any other method with the owners of this repository before making a change.
@@ -31,14 +35,18 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 - Month
 - Agenda
 
-### Event filtering:
+### Event & Schedule filtering:
 
-- See only the events that matter to you
+- See only the activities that matter to you
+
+### Filter Memorization
+
+- Find your selected Schedule and Events always there for you, even if you leave or refresh the page
+
+### Clear Schedule:
+
+- New schedule? Clear all your choices with one click and start again
 
 ### Export to PDF:
 
 - Export your calendar or schedule into PDF format
-
-### Suggestions:
-
-- Anything out of place? Give us your feedback using the [suggestions form](https://forms.gle/C2uxuUKqoeqMWfcZ6)!
