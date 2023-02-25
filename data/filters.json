@@ -1,11 +1,5 @@
 [
   {
-    "id": 2,
-    "name": "SEI",
-    "groupId": 0,
-    "semester": 0
-  },
-  {
     "id": 0,
     "name": "CeSIUM",
     "groupId": 0,
@@ -20,6 +14,18 @@
   {
     "id": 1,
     "name": "UMinho",
+    "groupId": 0,
+    "semester": 0
+  },
+  {
+    "id": 2,
+    "name": "SEI",
+    "groupId": 0,
+    "semester": 0
+  },
+  {
+    "id": 4,
+    "name": "JOIN",
     "groupId": 0,
     "semester": 0
   },
