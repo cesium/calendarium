@@ -98,6 +98,34 @@ function EventModal({
               ) : (
                 ""
               )}
+              {groupId == 8 ? (
+                <div>
+                  <p></p>
+                  <i className="bi bi-link-45deg"></i>
+                  <a
+                    href="https://coderdojobraga.org"
+                    style={{ color: "rgb(24, 144, 255, 1)" }}
+                  >
+                    coderdojobraga.org
+                  </a>
+                </div>
+              ) : (
+                ""
+              )}
+              {groupId == 9 ? (
+                <div>
+                  <p></p>
+                  <i className="bi bi-link-45deg"></i>
+                  <a
+                    href="https://join.di.uminho.pt"
+                    style={{ color: "rgb(24, 144, 255, 1)" }}
+                  >
+                    join.di.uminho.pt
+                  </a>
+                </div>
+              ) : (
+                ""
+              )}
             </Typography>
           </Box>
         </Grow>
