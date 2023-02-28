@@ -701,22 +701,6 @@
     "filterId": 4
   },
   {
-    "title": "[Análise]",
-    "place": "Campus Gualtar",
-    "start": "2023-02-14 10:00",
-    "end": "2023-02-17 18:00",
-    "groupId": 7,
-    "filterId": 2
-  },
-  {
-    "title": "[] Teste",
-    "place": "Campus Gualtar",
-    "start": "2023-02-14 10:00",
-    "end": "2023-02-17 18:00",
-    "groupId": 1,
-    "filterId": 2
-  },
-  {
     "title": "[Análise] Teste",
     "start": "2023-04-15 00:00",
     "end": "2023-04-15 23:59",
