@@ -24,7 +24,7 @@ git clone <https-link>
 ```
 
 > **Note**  
-> If you'd rather clone with SSH, copy the SSH key and run `git clone <ssh-key>`
+> If you'd rather clone with SSH, copy the SSH url and run `git clone <ssh-url>`
 
 **Now you have a copy of the repository that you can work with.**
 
