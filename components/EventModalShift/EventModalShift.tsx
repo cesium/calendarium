@@ -1,5 +1,4 @@
 import { Modal, Box, Typography, Grow } from "@mui/material";
-import { useState } from "react";
 
 function EventModalShift({
   selectedShift: {
@@ -16,6 +15,7 @@ function EventModalShift({
   },
   setInspectShift,
   inspectShift,
+  shifts,
 }) {
   const start_hour = new Date(start).toLocaleTimeString("pt", {
     hour: "numeric",
@@ -30,8 +30,6 @@ function EventModalShift({
   const handleModalClose = () => {
     setInspectShift(false);
   };
-
-  const substrings = title.split("-");
 
   const style = {
     position: "absolute",
@@ -48,6 +46,8 @@ function EventModalShift({
   const ano = String(filterId)[0];
   const semestre = String(filterId)[1];
 
+  const name = shifts.find((shift) => shift.id === id).title;
+
   return (
     <div>
       <Modal open={inspectShift} onClose={handleModalClose}>
@@ -62,7 +62,7 @@ function EventModalShift({
                 borderBottom: "solid rgba(200,200,200,.5) 1px",
               }}
             >
-              {substrings[0]}
+              {name}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {ano != "0" && ano != "6" ? (

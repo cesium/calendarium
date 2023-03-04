@@ -86,10 +86,11 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     const formatedEvents = filteredShifts.map((shift) => {
       const [startHour, startMinute] = shift.start.split(":");
       const [endHour, endMinute] = shift.end.split(":");
+      const filter = filters.find((filter) => filter.id === shift.filterId);
 
       return {
         ...shift,
-        title: `${shift.title} - ${shift.shift} I ${
+        title: `${filter.name} - ${shift.shift} I ${
           shift.building.includes("CP") ? "" : "Ed."
         } ${shift.building} - ${shift.room}`,
         start: moment()
@@ -172,6 +173,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             selectedShift={selectedShift}
             setInspectShift={setInspectShift}
             inspectShift={inspectShift}
+            shifts={shifts}
           />
         )}
 

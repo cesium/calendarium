@@ -546,11 +546,214 @@
     "filterId": 1
   },
   {
-    "title": "SEI - Semana da Engenharia Informática",
+    "title": "[SEI] Semana da Engenharia Informática",
     "place": "Campus Gualtar",
     "start": "2023-02-14 10:00",
     "end": "2023-02-17 18:00",
     "groupId": 7,
     "filterId": 2
+  },
+  {
+    "title": "[BD] 'Checkpoint'",
+    "start": "2023-03-27 00:00",
+    "end": "2023-03-31 23:59",
+    "groupId": 2,
+    "filterId": 221
+  },
+  {
+    "title": "[BD] Teste",
+    "start": "2023-06-02 00:00",
+    "end": "2023-06-02 23:59",
+    "groupId": 2,
+    "filterId": 221
+  },
+  {
+    "title": "[BD] Apresentação TP",
+    "start": "2023-06-05 00:00",
+    "end": "2023-06-09 23:59",
+    "groupId": 2,
+    "filterId": 221
+  },
+  {
+    "title": "[BD] Recurso",
+    "start": "2023-06-23 00:00",
+    "end": "2023-06-23 23:59",
+    "groupId": 2,
+    "filterId": 221
+  },
+  {
+    "title": "[IO] Entrega TP",
+    "start": "2023-03-25 00:00",
+    "end": "2023-03-25 23:59",
+    "groupId": 2,
+    "filterId": 222
+  },
+  {
+    "title": "[IO] Entrega TP",
+    "start": "2023-05-06 00:00",
+    "end": "2023-05-06 23:59",
+    "groupId": 2,
+    "filterId": 222
+  },
+  {
+    "title": "[IO] Teste",
+    "start": "2023-05-24 00:00",
+    "end": "2023-05-24 23:59",
+    "groupId": 2,
+    "filterId": 222
+  },
+  {
+    "title": "[IO] Recurso",
+    "start": "2023-06-14 00:00",
+    "end": "2023-06-14 23:59",
+    "groupId": 2,
+    "filterId": 222
+  },
+  {
+    "title": "[MNOnL] Teste",
+    "start": "2023-05-22 00:00",
+    "end": "2023-05-22 23:59",
+    "groupId": 2,
+    "filterId": 223
+  },
+  {
+    "title": "[POO] Entrega TP",
+    "start": "2023-05-11 00:00",
+    "end": "2023-05-11 23:59",
+    "groupId": 2,
+    "filterId": 224
+  },
+  {
+    "title": "[POO] Teste",
+    "start": "2023-05-31 00:00",
+    "end": "2023-05-31 23:59",
+    "groupId": 2,
+    "filterId": 224
+  },
+  {
+    "title": "[POO] Recurso",
+    "start": "2023-06-21 00:00",
+    "end": "2023-06-21 23:59",
+    "groupId": 2,
+    "filterId": 224
+  },
+  {
+    "title": "[SO] Entrega TP",
+    "start": "2023-05-13 00:00",
+    "end": "2023-05-13 23:59",
+    "groupId": 2,
+    "filterId": 226
+  },
+  {
+    "title": "[SO] Discussão TP",
+    "start": "2023-05-15 00:00",
+    "end": "2023-05-19 23:59",
+    "groupId": 2,
+    "filterId": 226
+  },
+  {
+    "title": "[SO] Teste",
+    "start": "2023-05-29 00:00",
+    "end": "2023-05-29 23:59",
+    "groupId": 2,
+    "filterId": 226
+  },
+  {
+    "title": "[SO] Recurso",
+    "start": "2023-06-19 00:00",
+    "end": "2023-06-19 23:59",
+    "groupId": 2,
+    "filterId": 226
+  },
+  {
+    "title": "[CoderDojo] Aniversário do Dojo",
+    "start": "2023-03-03 00:00",
+    "end": "2023-03-03 23:59",
+    "groupId": 8,
+    "filterId": 3
+  },
+  {
+    "title": "[CoderDojo] Sessão de Aniversário",
+    "start": "2023-03-04 10:00",
+    "end": "2023-03-04 12:30",
+    "groupId": 8,
+    "filterId": 3
+  },
+  {
+    "title": "[CoderDojo] Sessão",
+    "start": "2023-03-25 10:00",
+    "end": "2023-03-25 12:30",
+    "groupId": 8,
+    "filterId": 3
+  },
+  {
+    "title": "[CoderDojo] Sessão",
+    "start": "2023-04-22 10:00",
+    "end": "2023-04-22 12:30",
+    "groupId": 8,
+    "filterId": 3
+  },
+  {
+    "title": "[JOIN] Jornadas de Informática",
+    "start": "2023-06-5 00:00",
+    "end": "2023-06-7 23:59",
+    "groupId": 9,
+    "filterId": 4
+  },
+  {
+    "title": "[Análise] Teste",
+    "start": "2023-04-15 00:00",
+    "end": "2023-04-15 23:59",
+    "groupId": 1,
+    "filterId": 121
+  },
+  {
+    "title": "[Análise] Teste",
+    "start": "2023-05-30 00:00",
+    "end": "2023-05-30 23:59",
+    "groupId": 1,
+    "filterId": 121
+  },
+  {
+    "title": "[Análise] Recurso",
+    "start": "2023-06-17 00:00",
+    "end": "2023-06-17 23:59",
+    "groupId": 1,
+    "filterId": 121
+  },
+  {
+    "title": "[SC] Teste",
+    "start": "2023-03-29 00:00",
+    "end": "2023-03-29 23:59",
+    "groupId": 1,
+    "filterId": 126
+  },
+  {
+    "title": "[SC] Teste",
+    "start": "2023-06-1 00:00",
+    "end": "2023-06-1 23:59",
+    "groupId": 1,
+    "filterId": 126
+  },
+  {
+    "title": "[SC] Recurso",
+    "start": "2023-06-22 00:00",
+    "end": "2023-06-22 23:59",
+    "groupId": 1,
+    "filterId": 126
+  },
+  {
+    "title": "[EPTN] Teste",
+    "start": "2023-04-1 00:00",
+    "end": "2023-04-1 23:59",
+    "groupId": 1,
+    "filterId": 122
+  },
+  {
+    "title": "[EPTN] Teste",
+    "start": "2023-05-27 00:00",
+    "end": "2023-05-27 23:59",
+    "groupId": 1,
+    "filterId": 122
   }
 ]
