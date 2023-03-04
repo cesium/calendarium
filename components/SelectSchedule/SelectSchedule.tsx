@@ -28,23 +28,46 @@ const OptionWithShifts = ({
   handleToggle,
   isChecked,
 }: IOptionProps) => (
-  <p>
-    {filter.name}: <br />
-    {filter.shifts.map((shiftOption) => (
-      <>
-        <Checkbox
-          key={filter.id}
-          onChange={() => handleToggle(filter.id, shiftOption)}
-          type="checkbox"
-          checked={isChecked({ id: filter.id, shift: shiftOption })}
-        >
-          {shiftOption}
-        </Checkbox>
+  <>
+    <div className="flex row w-full">
+      <Collapse
+        className={styles.sub_sub_checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+        key={filter.id}
+      >
+        <Panel header={filter.name} key={filter.id}>
+          {filter.shifts.map((shiftOption) => (
+            <>
+              <Checkbox
+                key={filter.id}
+                onChange={() => handleToggle(filter.id, shiftOption)}
+                type="checkbox"
+                checked={isChecked({ id: filter.id, shift: shiftOption })}
+              >
+                {shiftOption}
+              </Checkbox>
 
-        <br />
-      </>
-    ))}
-  </p>
+              <br />
+            </>
+          ))}
+        </Panel>
+
+      </Collapse>
+      <span className="flex row items-center space-x-2 right-0 top-0 ">
+        {filter.shifts.map((shiftOption) => (
+          isChecked({ id: filter.id, shift: shiftOption }) ?
+            (<span className="bg-blue-200 rounded-lg p-2">
+              {shiftOption}
+            </span>)
+            : (<></>)
+
+        ))}
+      </span>
+    </div>
+  </>
 );
 
 const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
@@ -158,9 +181,9 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   };
 
   return (
+
     <div className={styles.filters}>
       {/* LEI */}
-
       <Collapse
         className={styles.checkbox}
         bordered={false}
@@ -302,11 +325,11 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
             </Collapse>
           </div>
         </Panel>
-      </Collapse>
+      </Collapse >
 
       {/* Others */}
 
-      <Collapse
+      < Collapse
         className={styles.checkbox}
         bordered={false}
         expandIcon={({ isActive }) => (
@@ -334,7 +357,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
             )
           )}
         </Panel>
-      </Collapse>
+      </Collapse >
 
       <Popconfirm
         title="Are you sure?"
@@ -342,7 +365,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
         onConfirm={() => {
           clearSelection();
         }}
-        onCancel={() => {}}
+        onCancel={() => { }}
         okText="Ok"
         cancelText="Cancel"
         icon={
@@ -356,7 +379,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
           Clear Schedule <i className="bi bi-stars"></i>
         </button>
       </Popconfirm>
-    </div>
+    </div >
   );
 };
 
