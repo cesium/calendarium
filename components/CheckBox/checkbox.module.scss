@@ -1,7 +1,7 @@
 .checkbox {
   display: inline-flex;
   border-radius: 25px;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow);
   font-family: Inter;
   font-size: 15px;
   font-weight: 500;
