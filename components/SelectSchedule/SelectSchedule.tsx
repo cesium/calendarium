@@ -27,9 +27,9 @@ const OptionWithShifts = ({
   filter,
   handleToggle,
   isChecked,
-}: IOptionProps) => (
-  <>
-    <div className="flex row w-full">
+}: IOptionProps) => {
+  return (
+    <div className="row flex w-full">
       <Collapse
         className={styles.sub_sub_checkbox}
         bordered={false}
@@ -49,26 +49,26 @@ const OptionWithShifts = ({
               >
                 {shiftOption}
               </Checkbox>
-
               <br />
             </>
           ))}
         </Panel>
-
       </Collapse>
-      <span className="flex row items-center space-x-2 right-0 top-0 ">
-        {filter.shifts.map((shiftOption) => (
-          isChecked({ id: filter.id, shift: shiftOption }) ?
-            (<span className="bg-blue-200 rounded-lg p-2">
-              {shiftOption}
-            </span>)
-            : (<></>)
 
-        ))}
-      </span>
+      <div className={styles.selected_schedules}>
+        {filter.shifts.map((shiftOption) =>
+          isChecked({ id: filter.id, shift: shiftOption }) ? (
+            <div className="mr-1 rounded-full bg-blue-200 p-1 font-bold">
+              {shiftOption}
+            </div>
+          ) : (
+            <></>
+          )
+        )}
+      </div>
     </div>
-  </>
-);
+  );
+};
 
 const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   <>
@@ -181,7 +181,6 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   };
 
   return (
-
     <div className={styles.filters}>
       {/* LEI */}
       <Collapse
@@ -325,11 +324,11 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
             </Collapse>
           </div>
         </Panel>
-      </Collapse >
+      </Collapse>
 
       {/* Others */}
 
-      < Collapse
+      <Collapse
         className={styles.checkbox}
         bordered={false}
         expandIcon={({ isActive }) => (
@@ -357,7 +356,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
             )
           )}
         </Panel>
-      </Collapse >
+      </Collapse>
 
       <Popconfirm
         title="Are you sure?"
@@ -365,7 +364,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
         onConfirm={() => {
           clearSelection();
         }}
-        onCancel={() => { }}
+        onCancel={() => {}}
         okText="Ok"
         cancelText="Cancel"
         icon={
@@ -379,7 +378,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
           Clear Schedule <i className="bi bi-stars"></i>
         </button>
       </Popconfirm>
-    </div >
+    </div>
   );
 };
 
