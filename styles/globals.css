@@ -45,6 +45,8 @@ a {
   --orange: #ed7950;
 
   --placeholder: #969cb3;
+
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* if body class is dark */

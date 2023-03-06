@@ -44,7 +44,7 @@
 .checkbox {
   display: inline-flex;
   border-radius: 25px;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow);
   font-family: Inter;
   font-size: 15px;
   font-weight: 500;
@@ -67,6 +67,14 @@
   max-height: 70vh;
   overflow-y: auto;
   width: 14.5rem;
+}
+
+.selected_schedules {
+  display: inline-flex;
+  position: relative;
+  margin-top: 10px;
+  height: fit-content;
+  font-size: x-small;
 }
 
 @media (max-width: 1070px) {
