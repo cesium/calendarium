@@ -755,5 +755,65 @@
     "end": "2023-05-27 23:59",
     "groupId": 1,
     "filterId": 122
+  },
+  {
+    "title": "[PI] Teste",
+    "start": "2023-05-23 00:00",
+    "end": "2023-05-23 23:59",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "place": "Online",
+    "start": "2023-03-08 19:00",
+    "end": "2023-03-08 19:30",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "place": "Online",
+    "start": "2023-03-22 19:00",
+    "end": "2023-03-22 19:30",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "place": "Online",
+    "start": "2023-04-19 19:00",
+    "end": "2023-04-19 19:30",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "place": "Online",
+    "start": "2023-05-03 19:00",
+    "end": "2023-05-03 19:30",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "start": "2023-03-27 00:00",
+    "end": "2023-04-01 23:59",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Miniteste",
+    "start": "2023-05-15 00:00",
+    "end": "2023-05-20 23:59",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Recurso",
+    "start": "2023-06-13 19:00",
+    "end": "2023-06-13 19:30",
+    "groupId": 1,
+    "filterId": 125
   }
 ]
