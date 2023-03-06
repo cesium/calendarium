@@ -3,119 +3,128 @@ from selenium.webdriver.common.by import By
 
 from modules.increment_time import increment_time, Time
 
+
 def schedule_scraper(driver: WebDriver, subject_codes: list[dict[str, int]]):
-  """
-  Scrape the UM schedule of a given driver.
-  Warning: the schedule need be already on the page.
+    """
+    Scrape the UM schedule of a given driver.
+    Warning: the schedule need be already on the page.
 
-  Parameters
-  ----------
-  driver : WebDriver
-    The selenium driver. Need have the schedule ready
+    Parameters
+    ----------
+    driver : WebDriver
+      The selenium driver. Need have the schedule ready
 
-  subject_codes : list[dict[str, int]]
-    Every subject has its subject ID and filter ID. This IDs are stored on a list of dicts with the format:
+    subject_codes : list[dict[str, int]]
+      Every subject has its subject ID and filter ID. This IDs are stored on a list of dicts with the format:
 
+      [{
+        "id": int,
+        "filterId": int
+      }]
+
+    Returns
+    -------
     [{
       "id": int,
+
+      "title": str,
+
+      "theoretical": bool,
+
+      "shift": string,
+
+      "building": string,
+      "room": string,
+
+      "day": int,
+
+      "start": string,
+      "end": string,
+
       "filterId": int
     }]
+    """
 
-  Returns
-  -------
-  [{
-    "id": int,
+    classes = []
 
-    "title": str,
+    cell_height = driver.find_element(
+        By.CSS_SELECTOR, '.rsContentTable tr').size["height"]
 
-    "theoretical": bool,
+    first_hour_on_schedule = driver.find_element(
+        By.CSS_SELECTOR, '.rsVerticalHeaderTable tbody tr th div').text.split(':')
+    first_time: Time = {
+        "hour": int(first_hour_on_schedule[0]),
+        "minute": int(first_hour_on_schedule[1])
+    }
 
-    "shift": string,
+    extracted_rows = driver.find_elements(
+        By.CSS_SELECTOR, '.rsContentTable tr')
 
-    "building": string,
-    "room": string,
+    for row_index, row in enumerate(extracted_rows):
+        # elapsed time in minutes = index * 30 -> each row is a 30 min block
+        start_time = increment_time(first_time, row_index * 30)
 
-    "day": int,
+        extracted_columns = row.find_elements(By.CSS_SELECTOR, 'td')
 
-    "start": string,
-    "end": string,
+        for column_index, column in enumerate(extracted_columns):
+            weekday = column_index
 
-    "filterId": int
-  }]
-  """
+            extracted_classes = column.find_elements(By.CSS_SELECTOR, '.rsApt')
 
-  classes = []
+            for class_container in extracted_classes:
+                class_info = class_container.find_elements(
+                    By.CSS_SELECTOR, '.rsAptContent')
 
-  cell_height = driver.find_element(By.CSS_SELECTOR, '.rsContentTable tr').size["height"]
+                if len(class_info) == 0:
+                    continue
 
-  first_hour_on_schedule = driver.find_element(By.CSS_SELECTOR, '.rsVerticalHeaderTable tbody tr th div').text.split(':')
-  first_time: Time = {
-    "hour": int(first_hour_on_schedule[0]),
-    "minute": int(first_hour_on_schedule[1])
-  }
+                subject, location, shift = class_info[0].text.split('\n')
 
-  extracted_rows = driver.find_elements(By.CSS_SELECTOR, '.rsContentTable tr')
+                if subject.lower() in subject_codes.keys():
+                    subject_ids = subject_codes[subject.lower()]
+                else:
+                    print(
+                        f"\t\033[93m\033[1mWARNING:\033[0m {subject} isn't present on scraper/subjects.json. Using default values")
+                    subject_ids = {
+                        "id": 0,
+                        "filterId": 0
+                    }
 
-  for row_index, row in enumerate(extracted_rows):
-    # elapsed time in minutes = index * 30 -> each row is a 30 min block
-    start_time = increment_time(first_time, row_index * 30)
+                duration_in_minutes = (
+                    (class_container.size["height"] + 4) / cell_height) * 30
+                end_time = increment_time(start_time, duration_in_minutes)
 
-    extracted_columns = row.find_elements(By.CSS_SELECTOR, 'td')
+                shift_type = "".join(
+                    [char for char in shift if char.isalpha()])
 
-    for column_index, column in enumerate(extracted_columns):
-      weekday = column_index
+                _, build, room = location.removeprefix(
+                    "[").removesuffix("]").split(" - ")
+                build_number = build.split(' ')[1]
 
-      extracted_classes = column.find_elements(By.CSS_SELECTOR, '.rsApt')
+                if int(build_number) <= 3:
+                    build_number = "CP" + build_number
 
-      for class_container in extracted_classes:
-        class_info = class_container.find_elements(By.CSS_SELECTOR, '.rsAptContent')
+                start_time_string = f"{start_time['hour']:02}:{start_time['minute']:02}"
+                end_time_string = f"{end_time['hour']:02}:{end_time['minute']:02}"
 
-        if len(class_info) == 0:
-          continue
+                classes.append({
+                    "id": subject_ids["id"],
 
-        subject, location, shift = class_info[0].text.split('\n')
+                    "title": subject,
 
-        if subject.lower() in subject_codes.keys():
-          subject_ids = subject_codes[subject.lower()]
-        else:
-          print(f"\t\033[93m\033[1mWARNING:\033[0m {subject} isn't present on scraper/subjects.json. Using default values")
-          subject_ids = {
-            "id": 0,
-            "filterId": 0
-          }
-        
-        duration_in_minutes = ((class_container.size["height"] + 4) / cell_height) * 30
-        end_time = increment_time(start_time, duration_in_minutes)
+                    "theoretical": shift_type.upper() == "T",
 
-        shift_type = "".join([char for char in shift if char.isalpha()])
+                    "shift": shift,
 
-        _, build, room = location.removeprefix("[").removesuffix("]").split(" - ")
-        build_number = build.split(' ')[1]
+                    "building": build_number,
+                    "room": f"{room}",
 
-        if int(build_number) <= 3:
-          build_number = "CP" + build_number
+                    "day": weekday,
 
-        start_time_string = f"{start_time['hour']:02}:{start_time['minute']:02}"
-        end_time_string = f"{end_time['hour']:02}:{end_time['minute']:02}"
+                    "start": start_time_string,
+                    "end": end_time_string,
 
-        classes.append({
-          "id": subject_ids["id"],
+                    "filterId": subject_ids["filterId"]
+                })
 
-          "title": subject,
-
-          "theoretical": shift_type.upper() == "T",
-
-          "shift": shift,
-
-          "building": build_number,
-          "room": f"{room}",
-
-          "day": weekday,
-
-          "start": start_time_string,
-          "end": end_time_string,
-
-          "filterId": subject_ids["filterId"]
-        })
-
-  return classes
+    return classes

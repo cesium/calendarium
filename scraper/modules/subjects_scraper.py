@@ -10,6 +10,7 @@ import json
 from time import sleep
 from unidecode import unidecode
 
+
 def subjects_scraper(driver: WebDriver):
     """
     Scrape the courses's subjects on a given driver.
@@ -31,33 +32,39 @@ def subjects_scraper(driver: WebDriver):
     }]
     """
 
-    try:  
-        subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
+    try:
+        subjects_short_names = json.load(
+            open('scraper/subjects_short_names.json'))
     except FileNotFoundError:
         print("\nFile `scraper/subjects_short_names.json` doesn't exists.")
         print("Read more about at 'scraper/subjects_short_names_scraper/README.md'")
         exit()
 
-    try:  
+    try:
         subjects, subject_codes = get_subject_codes_from_file()
         print("\n-> Using subject codes from `subjects.json`")
         return subjects, subject_codes
     except FileNotFoundError:
         pass
-    
+
     print("\nRunning subjects scraper: ====")
-    
+
     print("\nWelcome to UMinho Subjects Scraper!")
-    
+
     print("\nRead about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation")
 
-    print("\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
-    subjects = scraper(driver, "Licenciatura em Engenharia Informática", subjects_short_names)
+    print(
+        "\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
+    subjects = scraper(
+        driver, "Licenciatura em Engenharia Informática", subjects_short_names)
 
-    print("\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
-    subjects += scraper(driver, "Mestrado em Engenharia Informática", subjects_short_names, master=True)
+    print(
+        "\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
+    subjects += scraper(driver, "Mestrado em Engenharia Informática",
+                        subjects_short_names, master=True)
 
-    print(f"\n\033[91m\033[1mWARNING:\033[0m Adding manually `Análise e Teste de Software` subject.")
+    print(
+        f"\n\033[91m\033[1mWARNING:\033[0m Adding manually `Análise e Teste de Software` subject.")
     subjects.append({
         "id": 329,
         "subjectId": 14322,
@@ -76,6 +83,7 @@ def subjects_scraper(driver: WebDriver):
     print("\n==============================")
 
     return get_subject_codes_from_file()
+
 
 def scraper(driver: WebDriver, course_name: str, short_names, master: bool = False):
     """
@@ -114,32 +122,35 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
         "semester": int
     }]
     """
-    
+
     endpoint = "licenciaturas-e-mestrados-integrados" if not master else "Mestrados"
-    driver.get(f"https://www.uminho.pt/PT/ensino/oferta-educativa/paginas/{endpoint}.aspx")
+    driver.get(
+        f"https://www.uminho.pt/PT/ensino/oferta-educativa/paginas/{endpoint}.aspx")
 
     # search courses input
     driver.find_element(By.CSS_SELECTOR, "input.form-control") \
         .send_keys(course_name.removeprefix("Licenciatura em ").removeprefix("Mestrado em ").removeprefix("Mestrado Integrado em "))
-    
+
     # search button
     driver.find_element(By.CSS_SELECTOR, ".input-group-addon").click()
 
-    courses_pickers = driver.find_elements(By.CSS_SELECTOR, "div.row td .noshow")
+    courses_pickers = driver.find_elements(
+        By.CSS_SELECTOR, "div.row td .noshow")
 
     for picker in courses_pickers:
         if course_name in picker.text:
             click_on_element(driver, picker)
-    
-    
-    sleep(2) # Some JS should be running, and we need wait
 
-    tabs_available = driver.find_elements(By.CSS_SELECTOR, "ul.nav.nav-tabs li")
+    sleep(2)  # Some JS should be running, and we need wait
+
+    tabs_available = driver.find_elements(
+        By.CSS_SELECTOR, "ul.nav.nav-tabs li")
     for tab in tabs_available:
         if tab.text == "Plano de Estudos":
             tab.click()
-    
-    subjects_trs_amount = len(driver.find_elements(By.CSS_SELECTOR, ".col-md-12 tbody tr"))
+
+    subjects_trs_amount = len(driver.find_elements(
+        By.CSS_SELECTOR, ".col-md-12 tbody tr"))
 
     subjects = []
     year_counter = 1
@@ -147,61 +158,71 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
     filter_id_counter = 1
 
     for i in range(0, subjects_trs_amount):
-        subject = driver.find_elements(By.CSS_SELECTOR, ".col-md-12 tbody tr")[i]
+        subject = driver.find_elements(
+            By.CSS_SELECTOR, ".col-md-12 tbody tr")[i]
 
         subject_info = subject.find_elements(By.CSS_SELECTOR, "td")
 
-        if len(subject_info) == 2: # header
+        if len(subject_info) == 2:  # header
             year_span = subject_info[0].find_element(By.CSS_SELECTOR, "span")
-            year_counter = int(year_span.text.removeprefix("Ano ")) + (3 if master else 0)
+            year_counter = int(year_span.text.removeprefix(
+                "Ano ")) + (3 if master else 0)
 
-        elif len(subject_info) == 4: # subject
+        elif len(subject_info) == 4:  # subject
             semester_string = subject_info[0].text.removeprefix("S")
 
             if semester_string.isnumeric():
                 semester_counter = int(semester_string)
             elif semester_string != "":
                 semester_counter = 0
-            
+
             if subject_info[2].text == "":
                 # Opção UMinho / de mestrado
                 continue
-            
+
             if subjects != [] and (subjects[-1]["semester"] != semester_counter or subjects[-1]["year"] != year_counter):
                 filter_id_counter = 1
-            
+
             subject_name = subject_info[1].text
-            
+
             # Getting subjectId ===
-            more_info_button = get_future_element_with_timeout(subject_info[1], "a", exit_on_timeout=False)
+            more_info_button = get_future_element_with_timeout(
+                subject_info[1], "a", exit_on_timeout=False)
             if more_info_button:
                 click_on_element(driver, more_info_button)
 
                 sleep(1)
-                subject_id_span = driver.find_element(By.CSS_SELECTOR, ".modal-content .row .col-md-10 span")
+                subject_id_span = driver.find_element(
+                    By.CSS_SELECTOR, ".modal-content .row .col-md-10 span")
                 subject_id = subject_id_span.text or 0
 
                 close_button = driver.find_element(By.CSS_SELECTOR, ".close")
                 click_on_element(driver, close_button)
             else:
                 subject_id = 0
-            
+
             if filter_id_counter == 1:
-                print(f"\n\tScraping subjects from {year_counter} year and {semester_counter} semester.")
+                print(
+                    f"\n\tScraping subjects from {year_counter} year and {semester_counter} semester.")
             if semester_counter == 0:
-                print(f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's semester. Using 0 as default.")
+                print(
+                    f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's semester. Using 0 as default.")
             if subject_id == 0:
-                print(f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's subject ID. Using 0 as default.")
+                print(
+                    f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's subject ID. Using 0 as default.")
             # =====================
 
             if subject_id in short_names.keys():
                 short_name = short_names[subject_id]["short_name"]
             else:
-                short_name = "".join([unidecode(word[0]) for word in subject_name.split(" ") if word[0].isupper()])
-                print(f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's short name. Using initials to generate one ({short_name}).")
+                short_name = "".join(
+                    [unidecode(word[0]) for word in subject_name.split(" ") if word[0].isupper()])
+                print(
+                    f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's short name. Using initials to generate one ({short_name}).")
 
             subjects.append({
-                "id": int(f"{year_counter}{semester_counter}{filter_id_counter}"), # filterId
+                # filterId
+                "id": int(f"{year_counter}{semester_counter}{filter_id_counter}"),
                 "subjectId": int(subject_id),
                 "name": subject_name,
                 "short_name": short_name,
@@ -213,7 +234,8 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
 
     return subjects
 
-def  get_subject_codes_from_file():
+
+def get_subject_codes_from_file():
     subjects_file = open("scraper/subjects.json", "r")
 
     subjects = json.load(subjects_file)
@@ -227,6 +249,7 @@ def  get_subject_codes_from_file():
     subjects_file.close()
 
     return subjects, subject_codes
+
 
 def click_on_element(driver: WebDriver, element: WebElement):
     """
@@ -242,7 +265,8 @@ def click_on_element(driver: WebDriver, element: WebElement):
     """
     driver.execute_script("arguments[0].click();", element)
 
-def get_future_element_with_timeout(driver: WebDriver | WebElement, css_query: str, timeout: int = 3, exit_on_timeout = True):
+
+def get_future_element_with_timeout(driver: WebDriver | WebElement, css_query: str, timeout: int = 3, exit_on_timeout=True):
     """
     Returns a WebElement that will be created, in the future, on the DOM. Exists after a timeout. 
 
@@ -265,14 +289,16 @@ def get_future_element_with_timeout(driver: WebDriver | WebElement, css_query: s
     WebElement | None | exit()
     """
 
-    ignored_exceptions=(NoSuchElementException,StaleElementReferenceException)
+    ignored_exceptions = (NoSuchElementException,
+                          StaleElementReferenceException)
     try:
         element = WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions)\
-                    .until(presence_of_element_located((By.CSS_SELECTOR, css_query)))
-        
+            .until(presence_of_element_located((By.CSS_SELECTOR, css_query)))
+
     except TimeoutException:
         if exit_on_timeout:
-            print(f"Future Element '{css_query}' did not appear after {timeout} seconds.")
+            print(
+                f"Future Element '{css_query}' did not appear after {timeout} seconds.")
             print("Exiting ...")
             exit()
         else:
