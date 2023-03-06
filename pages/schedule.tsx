@@ -132,7 +132,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           <SelectSchedule
             filters={filters}
             handleFilters={(myFilters) => {
-              console.log(myFilters);
               setSelectedFilters(myFilters);
             }}
           />
