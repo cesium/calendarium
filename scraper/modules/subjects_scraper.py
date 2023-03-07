@@ -6,6 +6,8 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 
+from modules.subjects_short_names_scraper import get_subjects_short_names_scraper
+
 import json
 from time import sleep
 from unidecode import unidecode
@@ -34,9 +36,8 @@ def subjects_scraper(driver: WebDriver):
     try:  
         subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
     except FileNotFoundError:
-        print("\nFile `scraper/subjects_short_names.json` doesn't exists.")
-        print("Read more about at 'scraper/subjects_short_names_scraper/README.md'")
-        exit()
+        get_subjects_short_names_scraper()
+        subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
 
     try:  
         subjects, subject_codes = get_subject_codes_from_file()
