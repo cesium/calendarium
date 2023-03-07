@@ -815,5 +815,12 @@
     "end": "2023-06-13 19:30",
     "groupId": 1,
     "filterId": 125
+  },
+  {
+    "title": "[JORDI] Jornadas de Direito e Informática",
+    "start": "2023-04-17 00:00",
+    "end": "2023-04-19 23:59",
+    "groupId": 10,
+    "filterId": 5
   }
 ]

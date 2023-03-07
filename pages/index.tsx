@@ -85,6 +85,7 @@ export default function Home({ events, filters }) {
     "#3408fd",
     "#642580",
     "#FF0000",
+    "#1B69EE",
   ];
 
   const formats = {
