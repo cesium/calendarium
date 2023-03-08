@@ -2,11 +2,16 @@
 
 from selenium import webdriver
 
+from os import chdir
 import json
 
 from modules.subjects_scraper import subjects_scraper
 from modules.course_scraper import course_scraper
 from modules.create_filters import create_filters
+
+
+# To prevent paths problems, the code need be executed from project root
+chdir(__file__.replace("scraper/main.py", ""))
 
 print("Welcome to UMinho Schedule Scraper!")
 
