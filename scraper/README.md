@@ -6,40 +6,21 @@ Python script to scrape the University of Minho schedules pages to a JSON file.
 
 ### Install dependencies
 
-##### unidecode
-
-To create short names to subjects, removing accents from chars.
-Ex.: Álgebra Linear para a Engenharia -> ÁLE -> ALE
-
 ```bash
-$ pip install unidecode
+# Python dependecies: (any system with pip)
+pip install requests unidecode selenium
+
+# System dependecies:
+sudo pacman -S geckodriver firefox # Arch
 ```
 
-##### Selenium
-
-Used to scrape the webpage. On this case is impossible use libraries like `beautifulsoup` due the web stack used by UMinho.
-
-```bash
-$ pip install selenium
-```
-
-##### Geckodriver
-
-A selenium dependency to interact with browsers.
-
-```bash
-# Arch
-$ pacman -S geckodriver
-```
-
-##### Firefox
-
-The browser chosen to run with Selenium was Firefox.
-
-```bash
-# Arch
-$ pacman -S firefox
-```
+|     package     | usage          |
+|-----------------|----------------|
+|    requests     | To download previous commits files from our GitHub page and scrape subjects short names |
+|    unidecode    | To create short names to subjects (that weren't scraped), removing accents from chars. Ex.: Álgebra Linear para a Engenharia -> ÁLE -> ALE |
+|     selenium    | Used to scrape the webpage. On this case is impossible use libraries like `beautifulsoup` due the web stack used by UMinho |
+|    geckodriver  | A selenium dependency to interact with browsers |
+|     firefox     | The browser chosen to run with Selenium was Firefox |
 
 ### Running
 
