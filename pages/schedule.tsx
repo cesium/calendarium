@@ -90,9 +90,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
       return {
         ...shift,
-        title: `${filter.name} - ${shift.shift} I ${
-          shift.building.includes("CP") ? "" : "Ed."
-        } ${shift.building} - ${shift.room}`,
+        title: `${filter.name} - ${shift.shift}`,
         start: moment()
           .day(shift.day + 1)
           .hour(+startHour)
