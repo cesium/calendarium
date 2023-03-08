@@ -84,35 +84,43 @@ def create_filters(shifts: list[dict], subjects: list[dict]):
             "shifts": subject_shifts
         })
 
-    filters = [{
-        "id": 0,
-        "name": "CeSIUM",
-        "groupId": 0,
-        "semester": 0
-    },
+    filters = [
         {
-        "id": 1,
-        "name": "UMinho",
-        "groupId": 0,
-        "semester": 0
-    },
+            "id": 0,
+            "name": "CeSIUM",
+            "groupId": 0,
+            "semester": 0
+        },
         {
-        "id": 2,
-        "name": "SEI",
-        "groupId": 0,
-        "semester": 0
-    },
+            "id": 1,
+            "name": "UMinho",
+            "groupId": 0,
+            "semester": 0
+        },
         {
-        "id": 3,
-        "name": "CoderDojo",
-        "groupId": 0,
-        "semester": 0
-    },
+            "id": 2,
+            "name": "SEI",
+            "groupId": 0,
+            "semester": 0
+        },
         {
-        "id": 4,
-        "name": "JOIN",
-        "groupId": 0,
-        "semester": 0
-    },] + filters
+            "id": 3,
+            "name": "CoderDojo",
+            "groupId": 0,
+            "semester": 0
+        },
+        {
+            "id": 4,
+            "name": "JOIN",
+            "groupId": 0,
+            "semester": 0
+        },
+        {
+            "id": 5,
+            "name": "JORDI",
+            "groupId": 0,
+            "semester": 0
+        }
+    ] + filters
 
     return filters
