@@ -2,7 +2,7 @@
 
 ##### (subjects_short_names_scraper.py)
 
-[Calendarium](https://calendario.cesium.di.uminho.pt/) use some short names to easily identify some subjects. This names were chosen on previous versions of `filters.json`. 
+[Calendarium](https://calendario.cesium.di.uminho.pt/) use some short names to easily identify some subjects. This names were chosen on previous versions of `filters.json`.
 
 ### Scraping this values
 
@@ -14,7 +14,7 @@ If for some reason you want add some subjects (a new one) to this scrap, you can
 
 ```python
 manual_subject_names = {
-  str: { # subject Id 
+  str: { # subject Id
     "name": str, # complete name
     "short_name": # short name
   }
