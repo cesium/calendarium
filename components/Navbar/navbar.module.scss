@@ -18,10 +18,9 @@
 
   padding: 1rem 2rem;
   margin-bottom: 30px;
-  margin-top: 30px;
 
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 99px;
+  box-shadow: var(--shadow);
+  border-radius: 0 0 24px 24px;
   width: 100%;
   height: fit-content;
 
@@ -102,13 +101,13 @@
 
       &.activeLink::after {
         content: "";
-        height: 3px;
-        width: 100%;
+        height: 4px;
+        width: 50px;
         border-radius: 3px 3px 0 0;
 
         position: absolute;
         bottom: calc(-2rem + -4px);
-        left: 0;
+        left: calc(50% - 50px / 2);
 
         background: var(--orange);
       }
@@ -130,72 +129,27 @@
   .navbar {
     display: block;
 
-    margin-bottom: 30px;
-    margin-top: 30px;
-
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 30px;
-    width: 100%;
-    height: fit-content;
-
     .navbarButtons {
       display: block;
       width: fit-content;
       margin: auto;
       padding-top: 15px;
+      padding-bottom: 25px;
     }
 
     .cesiumLogo {
-      display: block;
-      cursor: pointer;
-      object-fit: contain;
       margin: auto;
       width: fit-content;
     }
 
     .links {
-      padding-top: 20px;
       margin: auto;
       width: fit-content;
 
-      .activeLink {
-        color: var(--black);
-      }
-
       a {
-        position: relative;
-        color: var(--placeholder);
-
-        & + a {
-          margin-left: 2rem;
-        }
-
-        &:hover {
-          color: var(--black);
-        }
-
         &.activeLink::after {
-          content: "";
-          height: 3px;
-          width: 100%;
-          border-radius: 3px 3px 0 0;
-
-          position: absolute;
           bottom: calc(-2rem + 16px);
-          left: 0;
-
-          background: var(--orange);
         }
-      }
-    }
-
-    .darkLink {
-      .activeLink {
-        color: var(--white);
-      }
-
-      a:hover {
-        color: var(--white);
       }
     }
   }

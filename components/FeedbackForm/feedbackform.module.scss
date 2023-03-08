@@ -2,20 +2,14 @@
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 999px;
+  box-shadow: var(--shadow);
+  border-radius: 24px 24px 0 0;
   width: 100%;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0 0 0;
   font-family: Inter;
 }
 
 .title {
   font-size: 16px;
   font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .footer {
-    border-radius: 30px;
-  }
 }

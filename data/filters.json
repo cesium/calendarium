@@ -6,6 +6,12 @@
     "semester": 0
   },
   {
+    "id": 3,
+    "name": "CoderDojo",
+    "groupId": 0,
+    "semester": 0
+  },
+  {
     "id": 1,
     "name": "UMinho",
     "groupId": 0,
@@ -18,14 +24,14 @@
     "semester": 0
   },
   {
-    "id": 3,
-    "name": "CoderDojo",
+    "id": 4,
+    "name": "JOIN",
     "groupId": 0,
     "semester": 0
   },
   {
-    "id": 4,
-    "name": "JOIN",
+    "id": 5,
+    "name": "JORDI",
     "groupId": 0,
     "semester": 0
   },

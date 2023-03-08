@@ -27,25 +27,48 @@ const OptionWithShifts = ({
   filter,
   handleToggle,
   isChecked,
-}: IOptionProps) => (
-  <p>
-    {filter.name}: <br />
-    {filter.shifts.map((shiftOption) => (
-      <>
-        <Checkbox
-          key={filter.id}
-          onChange={() => handleToggle(filter.id, shiftOption)}
-          type="checkbox"
-          checked={isChecked({ id: filter.id, shift: shiftOption })}
-        >
-          {shiftOption}
-        </Checkbox>
+}: IOptionProps) => {
+  return (
+    <div className="row flex w-full">
+      <Collapse
+        className={styles.sub_sub_checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+        key={filter.id}
+      >
+        <Panel header={filter.name} key={filter.id}>
+          {filter.shifts.map((shiftOption) => (
+            <>
+              <Checkbox
+                key={filter.id}
+                onChange={() => handleToggle(filter.id, shiftOption)}
+                type="checkbox"
+                checked={isChecked({ id: filter.id, shift: shiftOption })}
+              >
+                {shiftOption}
+              </Checkbox>
+              <br />
+            </>
+          ))}
+        </Panel>
+      </Collapse>
 
-        <br />
-      </>
-    ))}
-  </p>
-);
+      <div className={styles.selected_schedules}>
+        {filter.shifts.map((shiftOption) =>
+          isChecked({ id: filter.id, shift: shiftOption }) ? (
+            <div className="mr-1 rounded-full bg-blue-200 p-1 font-bold">
+              {shiftOption}
+            </div>
+          ) : (
+            <></>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   <>
@@ -160,7 +183,6 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   return (
     <div className={styles.filters}>
       {/* LEI */}
-
       <Collapse
         className={styles.checkbox}
         bordered={false}
