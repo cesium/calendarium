@@ -31,7 +31,7 @@ const OptionWithShifts = ({
   return (
     <div className="row flex w-full">
       <Collapse
-        className={styles.sub_sub_checkbox}
+        className={styles.sub_sub_sub_checkbox}
         bordered={false}
         expandIcon={({ isActive }) => (
           <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -270,7 +270,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
                       key={index2}
                     >
                       <Panel header={s} key={index2}>
-                        {functions[(index1 + 3) * 2 + index2].map((filter) =>
+                        {functions[6 + index2].map((filter) =>
                           filter.shifts?.length ? (
                             <OptionWithShifts
                               key={filter.id}
@@ -278,14 +278,7 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
                               handleToggle={handleToggle}
                               isChecked={isChecked}
                             />
-                          ) : (
-                            <Option
-                              key={filter.id}
-                              filter={filter}
-                              handleToggle={handleToggle}
-                              isChecked={isChecked}
-                            />
-                          )
+                          ) : null
                         )}
                       </Panel>
                     </Collapse>

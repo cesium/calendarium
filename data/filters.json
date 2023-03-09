@@ -72,7 +72,7 @@
   },
   {
     "id": 116,
-    "name": "B",
+    "name": "Bilinguismo",
     "groupId": 1,
     "semester": 1,
     "shifts": ["TP1"]
@@ -1025,7 +1025,7 @@
   },
   {
     "id": 501,
-    "name": "D",
+    "name": "Dissertação",
     "groupId": 5,
     "semester": 0,
     "shifts": []
