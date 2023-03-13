@@ -32,9 +32,11 @@ function CheckBox({ filters, handleFilters }) {
 
   const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
 
-  const courses = [lei, mei];
-
   const sync = [0, 6];
+
+  const event_index = (index: number, index1: number, index2) => {
+    return sync[index] + index1 * 2 + index2;
+  };
 
   event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1);
   event[1] = filters.filter((f) => f.groupId === 1 && f.semester === 2);
@@ -76,15 +78,10 @@ function CheckBox({ filters, handleFilters }) {
     });
   };
 
-  const handleToggleAll = (
-    values,
-    index: number,
-    index1: number,
-    index2: number
-  ) => {
+  const handleToggleAll = (values, index: number) => {
     let newChecked = [...Checked];
 
-    if (!isAllChecked(sync[index] + index1 * 2 + index2)) {
+    if (!isAllChecked(index)) {
       values.map((event) => newChecked.push(event.id));
     } else {
       newChecked = newChecked.filter(
@@ -99,110 +96,236 @@ function CheckBox({ filters, handleFilters }) {
 
   return (
     <div className={styles.layer}>
-      {menus.map((m, index) => (
-        <Collapse
-          className={styles.checkbox}
-          bordered={false}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
-          )}
-          key={index}
-        >
-          <Panel header={m} key={index + 1}>
-            <div className={styles.items}>
-              {courses[index].map((b, index1) => (
-                <Collapse
-                  className={styles.sub_checkbox}
-                  bordered={false}
-                  expandIcon={({ isActive }) => (
-                    <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                  )}
-                  key={index1}
-                >
-                  <Panel header={b} key={index1 + 1}>
-                    {semesters.map((s, index2) => (
-                      <Collapse
-                        className={styles.sub_checkbox}
-                        bordered={false}
-                        expandIcon={({ isActive }) => (
-                          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                        )}
-                        key={index2}
-                      >
-                        <Panel header={s} key={index2 + 1}>
-                          <React.Fragment key={-1}>
-                            <div
-                              style={{
-                                padding: "0 0 5px 0",
-                                margin: "0 0 5px 0",
-                                borderBottom: "solid rgba(200,200,200,.5) 1px",
-                              }}
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header={menus[0]} key="panel">
+          <div className={styles.items}>
+            {lei.map((b, index1) => (
+              <Collapse
+                className={styles.sub_checkbox}
+                bordered={false}
+                expandIcon={({ isActive }) => (
+                  <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                )}
+                key={index1}
+              >
+                <Panel header={b} key={index1 + 1}>
+                  {semesters.map((s, index2) => (
+                    <Collapse
+                      className={styles.sub_checkbox}
+                      bordered={false}
+                      expandIcon={({ isActive }) => (
+                        <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                      )}
+                      key={index2}
+                    >
+                      <Panel header={s} key={index2 + 1}>
+                        <React.Fragment key={-1}>
+                          <div
+                            style={{
+                              padding: "0 0 5px 0",
+                              margin: "0 0 5px 0",
+                              borderBottom: "solid rgba(200,200,200,.5) 1px",
+                            }}
+                          >
+                            <Checkbox
+                              type="Checkbox"
+                              onClick={() =>
+                                handleToggleAll(
+                                  event[event_index(0, index1, index2)],
+                                  event_index(0, index1, index2)
+                                )
+                              }
+                              checked={isAllChecked(
+                                event_index(0, index1, index2)
+                              )}
+                              indeterminate={
+                                !isAllChecked(event_index(0, index1, index2)) &&
+                                !isNoneChecked(event_index(0, index1, index2))
+                              }
                             >
-                              <Checkbox
-                                type="Checkbox"
-                                onClick={() =>
-                                  handleToggleAll(
-                                    event[sync[index] + index1 * 2 + index2],
-                                    index,
-                                    index1,
-                                    index2
-                                  )
-                                }
-                                checked={isAllChecked(
-                                  sync[index] + index1 * 2 + index2
-                                )}
-                                indeterminate={
-                                  !isAllChecked(
-                                    sync[index] + index1 * 2 + index2
-                                  ) &&
-                                  !isNoneChecked(
-                                    sync[index] + index1 * 2 + index2
-                                  )
-                                }
-                              >
-                                Select All
-                              </Checkbox>
-                            </div>
-                          </React.Fragment>
-                          <div style={{ fontWeight: 400 }}>
-                            {event[sync[index] + index1 * 2 + index2]?.map(
-                              (
-                                value: {
-                                  id: number;
-                                  name: string;
-                                  groupId: number;
-                                  semester: number;
-                                },
-                                index3: number
-                              ) => (
-                                <React.Fragment key={index3}>
-                                  <div>
-                                    <Checkbox
-                                      onChange={() => handleToggle(value.id)}
-                                      type="checkbox"
-                                      checked={
-                                        Checked.indexOf(value.id) === -1
-                                          ? false
-                                          : true
-                                      }
-                                    >
-                                      {value.name}
-                                    </Checkbox>
-                                  </div>
-                                </React.Fragment>
-                              )
-                            )}
+                              Select All
+                            </Checkbox>
                           </div>
-                        </Panel>
-                      </Collapse>
-                    ))}
-                  </Panel>
-                </Collapse>
-              ))}
-            </div>
-          </Panel>
-        </Collapse>
-      ))}
+                        </React.Fragment>
+                        <div style={{ fontWeight: 400 }}>
+                          {event[event_index(0, index1, index2)]?.map(
+                            (
+                              value: {
+                                id: number;
+                                name: string;
+                                groupId: number;
+                                semester: number;
+                              },
+                              index3: number
+                            ) => (
+                              <React.Fragment key={index3}>
+                                <div>
+                                  <Checkbox
+                                    onChange={() => handleToggle(value.id)}
+                                    type="checkbox"
+                                    checked={
+                                      Checked.indexOf(value.id) === -1
+                                        ? false
+                                        : true
+                                    }
+                                  >
+                                    {value.name}
+                                  </Checkbox>
+                                </div>
+                              </React.Fragment>
+                            )
+                          )}
+                        </div>
+                      </Panel>
+                    </Collapse>
+                  ))}
+                </Panel>
+              </Collapse>
+            ))}
+          </div>
+        </Panel>
+      </Collapse>
+
+      {/* MEI */}
+
+      <Collapse
+        className={styles.checkbox}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+      >
+        <Panel header={menus[1]} key="panel">
+          <div className={styles.items}>
+            {/* 1º ano */}
+
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
+              <Panel header={mei[0]} key="panel">
+                {semesters.map((s, index2) => (
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
+                    )}
+                    key={index2}
+                  >
+                    <Panel header={s} key={index2 + 1}>
+                      <React.Fragment key={-1}>
+                        <div
+                          style={{
+                            padding: "0 0 5px 0",
+                            margin: "0 0 5px 0",
+                            borderBottom: "solid rgba(200,200,200,.5) 1px",
+                          }}
+                        >
+                          <Checkbox
+                            type="Checkbox"
+                            onClick={() =>
+                              handleToggleAll(
+                                event[event_index(1, 0, index2)],
+                                event_index(1, 0, index2)
+                              )
+                            }
+                            checked={isAllChecked(event_index(1, 0, index2))}
+                            indeterminate={
+                              !isAllChecked(event_index(1, 0, index2)) &&
+                              !isNoneChecked(event_index(1, 0, index2))
+                            }
+                          >
+                            Select All
+                          </Checkbox>
+                        </div>
+                      </React.Fragment>
+                      <div style={{ fontWeight: 400 }}>
+                        {event[event_index(1, 0, index2)]?.map(
+                          (
+                            value: {
+                              id: number;
+                              name: string;
+                              groupId: number;
+                              semester: number;
+                            },
+                            index3: number
+                          ) => (
+                            <React.Fragment key={index3}>
+                              <div>
+                                <Checkbox
+                                  onChange={() => handleToggle(value.id)}
+                                  type="checkbox"
+                                  checked={
+                                    Checked.indexOf(value.id) === -1
+                                      ? false
+                                      : true
+                                  }
+                                >
+                                  {value.name}
+                                </Checkbox>
+                              </div>
+                            </React.Fragment>
+                          )
+                        )}
+                      </div>
+                    </Panel>
+                  </Collapse>
+                ))}
+              </Panel>
+            </Collapse>
+
+            {/* 2º ano */}
+
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+            >
+              <Panel header={mei[1]} key="panel">
+                <div style={{ fontWeight: 400 }}>
+                  {event[8]?.map(
+                    (
+                      value: {
+                        id: number;
+                        name: string;
+                        groupId: number;
+                        semester: number;
+                      },
+                      index: number
+                    ) => (
+                      <React.Fragment key={index}>
+                        <div>
+                          <Checkbox
+                            onChange={() => handleToggle(value.id)}
+                            type="checkbox"
+                            checked={
+                              Checked.indexOf(value.id) === -1 ? false : true
+                            }
+                          >
+                            {value.name}
+                          </Checkbox>
+                        </div>
+                      </React.Fragment>
+                    )
+                  )}
+                </div>
+              </Panel>
+            </Collapse>
+          </div>
+        </Panel>
+      </Collapse>
 
       {/* Others */}
 
