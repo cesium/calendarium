@@ -166,7 +166,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           />
         </div>
 
-        <Legend/>
+        <Legend />
 
         {inspectShift && (
           <EventModalShift
