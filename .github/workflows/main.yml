@@ -1,0 +1,28 @@
+name: Run Scraper
+
+on:
+  # run automatically every 48 hours
+  schedule:
+    - cron: "0 */48 * * *"
+    
+  push:
+    branches: dm/actions
+    
+env:
+  DEVOPS_DIR: calendarium
+
+jobs:
+  scraper:
+    name: Hello world
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check-out devops repository
+      uses: actions/checkout@v2
+      with:
+        repository: cesium/calendarium
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: ${{ env.DEVOPS_DIR }}
+
+    - name: UMinho Scraper
+      run: python ${{ env.DEVOPS_DIR }}/scraper/main.py
+      shell: sh
