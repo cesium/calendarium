@@ -32,8 +32,6 @@ export default function Home({ events, filters }) {
 
   Refer to https://github.com/cesium/calendarium/pull/39
   */
-  moment.tz.setDefault("Africa/Bamako");
-
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
