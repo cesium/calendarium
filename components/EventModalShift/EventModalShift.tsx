@@ -33,7 +33,7 @@ function EventModalShift({
 
   const style = {
     position: "absolute",
-    borderRadius: "30px",
+    borderRadius: "24px",
     top: "50%",
     left: "50%",
     width: 260,
