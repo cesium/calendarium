@@ -19,9 +19,3 @@
   height: 90vh;
   font-family: Inter;
 }
-
-@media (max-width: 400px) {
-  .schedule_style {
-    height: 70vh;
-  }
-}

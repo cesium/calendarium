@@ -27,8 +27,8 @@ function EventModal({
   };
 
   const style = {
-    position: "absolute" as "absolute",
-    borderRadius: "30px",
+    position: "absolute",
+    borderRadius: "24px",
     top: "50%",
     left: "50%",
     width: 300,
