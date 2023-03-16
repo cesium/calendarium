@@ -1,4 +1,4 @@
-export default function Legend() {
+export default function Label() {
   return (
     <div className="py-2" style={{ fontFamily: "Inter", fontSize: "14px " }}>
       <b>Fonte:</b>{" "}

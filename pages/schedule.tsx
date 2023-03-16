@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import Legend from "../components/Legend";
+import Label from "../components/Label";
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
@@ -166,7 +166,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           />
         </div>
 
-        <Legend />
+        <Label />
 
         {inspectShift && (
           <EventModalShift
