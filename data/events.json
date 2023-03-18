@@ -723,6 +723,7 @@
   },
   {
     "title": "[SC] Teste",
+    "place": "Cantina",
     "start": "2023-03-29 15:30",
     "end": "2023-03-29 16:30",
     "groupId": 1,
