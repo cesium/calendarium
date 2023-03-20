@@ -1070,5 +1070,19 @@
     "end": "2023-06-20 23:59",
     "groupId": 3,
     "filterId": 328
+  },
+  {
+    "title": "[Lógica] Teste",
+    "start": "2023-04-12 00:00",
+    "end": "2023-04-12 23:59",
+    "groupId": 1,
+    "filterId": 124
+  },
+  {
+    "title": "[Lógica] Recurso",
+    "start": "2023-06-15 00:00",
+    "end": "2023-06-15 23:59",
+    "groupId": 1,
+    "filterId": 124
   }
 ]
