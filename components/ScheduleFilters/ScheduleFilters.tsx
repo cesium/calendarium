@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Checkbox, Collapse, Popconfirm } from "antd";
 import "antd/dist/reset.css";
 import { IFilterDTO } from "../../dtos";
-import styles from "./selectschedule.module.scss";
+import styles from "./schedulefilters.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
@@ -87,7 +87,7 @@ const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
   </>
 );
 
-const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
+const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
@@ -375,4 +375,4 @@ const SelectSchedule = ({ filters, handleFilters }: ISelectScheduleProps) => {
   );
 };
 
-export default SelectSchedule;
+export default ScheduleFilters;

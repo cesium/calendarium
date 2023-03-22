@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as fs from "fs";
-import FeedbackForm from "../components/FeedbackForm";
+import Footer from "../components/Footer";
 import Head from "next/head";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment-timezone";
@@ -9,7 +9,7 @@ import styles from "../styles/Home.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
-import CheckBox from "../components/CheckBox";
+import EventFitlers from "../components/EventFilters";
 import EventModal from "../components/EventModal";
 
 const localizer = momentLocalizer(moment);
@@ -104,7 +104,7 @@ export default function Home({ events, filters }) {
         </Head>
 
         <div className={styles.filters}>
-          <CheckBox
+          <EventFitlers
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
           />
@@ -142,7 +142,7 @@ export default function Home({ events, filters }) {
           />
         )}
 
-        <FeedbackForm />
+        <Footer />
       </div>
     </Layout>
   );

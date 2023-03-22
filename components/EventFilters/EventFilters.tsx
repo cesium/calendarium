@@ -1,13 +1,12 @@
 import React from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/reset.css";
-import styles from "./checkbox.module.scss";
+import styles from "./eventfilters.module.scss";
 import { CaretRightOutlined } from "@ant-design/icons";
-import { NULL } from "sass";
 
 const { Panel } = Collapse;
 
-function CheckBox({ filters, handleFilters }) {
+function EventFilters({ filters, handleFilters }) {
   const [Checked, setChecked] = React.useState<number[]>([]);
 
   React.useEffect(() => {
@@ -368,4 +367,4 @@ function CheckBox({ filters, handleFilters }) {
   );
 }
 
-export default CheckBox;
+export default EventFilters;
