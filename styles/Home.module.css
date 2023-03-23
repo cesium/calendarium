@@ -8,8 +8,8 @@
 }
 
 .calendar {
-  height: calc(100vh - 4rem);
   z-index: 0;
+  height: calc(100vh - 4rem);
 }
 
 @media (max-width: 881px) {

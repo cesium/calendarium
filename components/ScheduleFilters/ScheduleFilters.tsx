@@ -205,7 +205,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                                 </div>
                                 <Panel header={filter.name} key={filter.id}>
                                   {filter.shifts.map((shiftOption) => (
-                                    <div>
+                                    <div key={filter.id + 1}>
                                       <Checkbox
                                         key={filter.id}
                                         onChange={() =>
@@ -264,7 +264,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                             filter.shifts?.length ? (
                               <Panel header={filter.name} key={filter.id}>
                                 {filter.shifts.map((shiftOption) => (
-                                  <div>
+                                  <div key={filter.id + 1}>
                                     <Checkbox
                                       key={filter.id}
                                       onChange={() =>
