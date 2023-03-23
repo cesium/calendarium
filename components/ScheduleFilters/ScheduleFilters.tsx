@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+
 import { Checkbox, Collapse, Popconfirm } from "antd";
-import "antd/dist/reset.css";
+
 import { IFilterDTO } from "../../dtos";
+
 import styles from "./schedulefilters.module.scss";
-import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -142,7 +143,29 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
   return (
     <div>
+      <Popconfirm
+        title="Are you sure?"
+        description="This will remove all your classes"
+        onConfirm={() => {
+          clearSelection();
+        }}
+        onCancel={() => {}}
+        okText="Ok"
+        cancelText="Cancel"
+        icon={
+          <i
+            className="bi bi-exclamation-circle-fill"
+            style={{ color: "#faad14" }}
+          ></i>
+        }
+      >
+        <button className={styles.clearButton}>
+          Clear Schedule <i className="bi bi-stars"></i>
+        </button>
+      </Popconfirm>
+
       {/* LEI */}
+
       <Collapse className={styles.checkbox} bordered={false}>
         <Panel header="LEI" key="panel">
           <div className={styles.items}>
@@ -167,25 +190,39 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                         >
                           {functions[index1 * 2 + index2].map((filter) =>
                             filter.shifts?.length ? (
-                              <Panel header={filter.name} key={filter.id}>
-                                {filter.shifts.map((shiftOption) => (
-                                  <div>
-                                  <Checkbox
-                                    key={filter.id}
-                                    onChange={() =>
-                                      handleToggle(filter.id, shiftOption)
-                                    }
-                                    type="checkbox"
-                                    checked={isChecked({
+                              <>
+                                <div className={styles.selected_schedules}>
+                                  {filter.shifts.map((shiftOption) =>
+                                    isChecked({
                                       id: filter.id,
                                       shift: shiftOption,
-                                    })}
-                                  >
-                                    {shiftOption}
-                                  </Checkbox>
-                                  </div>
-                                ))}
-                              </Panel>
+                                    }) ? (
+                                      <div className="ml-1 rounded-full bg-blue-200 p-1" />
+                                    ) : (
+                                      <></>
+                                    )
+                                  )}
+                                </div>
+                                <Panel header={filter.name} key={filter.id}>
+                                  {filter.shifts.map((shiftOption) => (
+                                    <div>
+                                      <Checkbox
+                                        key={filter.id}
+                                        onChange={() =>
+                                          handleToggle(filter.id, shiftOption)
+                                        }
+                                        type="checkbox"
+                                        checked={isChecked({
+                                          id: filter.id,
+                                          shift: shiftOption,
+                                        })}
+                                      >
+                                        {shiftOption}
+                                      </Checkbox>
+                                    </div>
+                                  ))}
+                                </Panel>
+                              </>
                             ) : null
                           )}
                         </Collapse>
@@ -228,19 +265,19 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                               <Panel header={filter.name} key={filter.id}>
                                 {filter.shifts.map((shiftOption) => (
                                   <div>
-                                  <Checkbox
-                                    key={filter.id}
-                                    onChange={() =>
-                                      handleToggle(filter.id, shiftOption)
-                                    }
-                                    type="checkbox"
-                                    checked={isChecked({
-                                      id: filter.id,
-                                      shift: shiftOption,
-                                    })}
-                                  >
-                                    {shiftOption}
-                                  </Checkbox>
+                                    <Checkbox
+                                      key={filter.id}
+                                      onChange={() =>
+                                        handleToggle(filter.id, shiftOption)
+                                      }
+                                      type="checkbox"
+                                      checked={isChecked({
+                                        id: filter.id,
+                                        shift: shiftOption,
+                                      })}
+                                    >
+                                      {shiftOption}
+                                    </Checkbox>
                                   </div>
                                 ))}
                               </Panel>
@@ -318,27 +355,6 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
           )}
         </Panel>
       </Collapse>
-
-      <Popconfirm
-        title="Are you sure?"
-        description="This will remove all your classes"
-        onConfirm={() => {
-          clearSelection();
-        }}
-        onCancel={() => {}}
-        okText="Ok"
-        cancelText="Cancel"
-        icon={
-          <i
-            className="bi bi-exclamation-circle-fill"
-            style={{ color: "#faad14" }}
-          ></i>
-        }
-      >
-        <button className={styles.clearButton}>
-          Clear Schedule <i className="bi bi-stars"></i>
-        </button>
-      </Popconfirm>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 .buttonPdf {
+  font-family: Inter;
   background: rgba(255, 118, 73, 0.9);
-  border-radius: 999px;
+  border-radius: 16px;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
@@ -13,11 +14,11 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: fit-content;
+  width: 100%;
   word-break: break-word;
   border: 0;
-  margin: 0 3px 0 3px;
   transition: 150ms linear;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
 
   &:hover {
     box-shadow: rgb(255, 118, 73, 0.8) 0 2px 12px 0px;
@@ -25,6 +26,7 @@
 }
 
 .links {
+  font-family: Inter;
   box-shadow: var(--shadow);
   padding: 1.2rem;
   border-radius: 16px;
@@ -37,6 +39,7 @@
   a {
     position: relative;
     color: var(--placeholder);
+    transition: color 300ms;
 
     & + a {
       margin-left: 2rem;
@@ -53,7 +56,7 @@
       border-radius: 3px 3px 0 0;
 
       position: absolute;
-      bottom: calc(-1rem - 2px);
+      bottom: calc(-1rem - 3px);
       left: calc(50% - 50px / 2);
 
       background: var(--orange);

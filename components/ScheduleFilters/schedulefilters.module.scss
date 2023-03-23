@@ -59,7 +59,7 @@
   border: 0;
   margin: 0 0 1rem 0;
   transition: 150ms linear;
-  padding: 0.6rem;
+  transform: translateY(-0.4rem);
 
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.22);
 
@@ -70,8 +70,12 @@
 
 .selected_schedules {
   display: inline-flex;
-  position: relative;
-  margin-top: 10px;
+  right: 5rem;
+  position: absolute;
+  margin-top: 1.2rem;
   height: fit-content;
+  width: 2rem;
+  overflow: hidden;
   font-size: x-small;
+  direction: rtl;
 }

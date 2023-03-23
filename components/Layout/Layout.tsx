@@ -1,6 +1,5 @@
 import { useState, ReactNode } from "react";
 
-import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 
@@ -13,15 +12,15 @@ interface ILayoutProps {
 
 const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
   return (
-    <div className="flex overflow-auto">
-      <div className="py-8">
+    <div className="flex">
+      <div>
         <Sidebar
           isHome={isHome}
           filters={filters}
           handleFilters={handleFilters}
         />
       </div>
-      <main className="flex-1 px-8 py-8">{children}</main>
+      <main className="ml-80 flex-1 px-8 py-8">{children}</main>
       {/* <Footer /> */}
     </div>
   );
