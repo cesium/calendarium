@@ -1,20 +1,28 @@
-import React, { ReactNode } from "react";
+import { useState, ReactNode } from "react";
+
 import Navbar from "../Navbar";
-import styles from "./layout.module.scss";
+import Sidebar from "../Sidebar";
+import Footer from "../Footer";
 
 interface ILayoutProps {
   children: ReactNode;
   isHome?: boolean;
+  filters?: any;
+  handleFilters?: any;
 }
 
-const Layout = ({ children, isHome }: ILayoutProps) => {
+const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
   return (
-    <div style={{ overflow: "auto" }}>
-      <div className={styles.main}>
-        <Navbar isHome={isHome} />
+    <div className="flex overflow-auto">
+      <div className="py-8">
+        <Sidebar
+          isHome={isHome}
+          filters={filters}
+          handleFilters={handleFilters}
+        />
       </div>
-
-      <main className={styles.main}>{children}</main>
+      <main className="flex-1 px-8 py-8">{children}</main>
+      {/* <Footer /> */}
     </div>
   );
 };

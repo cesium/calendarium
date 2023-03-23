@@ -118,22 +118,19 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   maxDate.setHours(20, 0, 0);
 
   return (
-    <Layout>
+    <Layout
+      isHome={false}
+      filters={filters}
+      handleFilters={(myFilters) => {
+        setSelectedFilters(myFilters);
+      }}
+    >
       <div className="Schedule">
         <Head>
           <title>Schedule | Calendarium</title>
           <meta name="Calendarium" content="Calendar of events and exams" />
           <link rel="icon" href="/favicon-calendarium.ico" />~
         </Head>
-
-        <div className={styles.filters}>
-          <ScheduleFilters
-            filters={filters}
-            handleFilters={(myFilters) => {
-              setSelectedFilters(myFilters);
-            }}
-          />
-        </div>
 
         <div id="SCHEDULE" className={styles.schedule}>
           <Calendar
@@ -165,7 +162,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           />
         </div>
 
-        <div
+        {/* <div
           className="py-2"
           style={{ fontFamily: "Inter", fontSize: "14px " }}
         >
@@ -173,7 +170,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           <a href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx">
             Horários UMinho
           </a>
-        </div>
+        </div> */}
 
         {inspectShift && (
           <ShiftModal
@@ -183,8 +180,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             shifts={shifts}
           />
         )}
-
-        <Footer />
       </div>
     </Layout>
   );

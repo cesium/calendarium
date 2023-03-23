@@ -4,15 +4,8 @@
 }
 
 .schedule {
-  position: relative;
+  height: calc(100vh - 4rem);
   z-index: 0;
-  padding-top: 4.9rem;
-}
-
-@media (max-width: 1070px) {
-  .schedule {
-    padding-top: 0;
-  }
 }
 
 .schedule_style {

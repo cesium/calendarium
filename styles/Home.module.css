@@ -8,18 +8,12 @@
 }
 
 .calendar {
-  position: relative;
+  height: calc(100vh - 4rem);
   z-index: 0;
-  padding-top: 4.9rem;
 }
 
 @media (max-width: 881px) {
   .calendar {
     padding-top: 0;
   }
-}
-
-.calendar_style {
-  height: 90vh;
-  font-family: Inter;
 }

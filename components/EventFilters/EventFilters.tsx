@@ -95,34 +95,24 @@ function EventFilters({ filters, handleFilters }) {
 
   return (
     <div className={styles.layer}>
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
+      {/* LEI */}
+
+      <Collapse className={styles.checkbox} bordered={false}>
         <Panel header={menus[0]} key="panel">
           <div className={styles.items}>
-            {lei.map((b, index1) => (
-              <Collapse
-                className={styles.sub_checkbox}
-                bordered={false}
-                expandIcon={({ isActive }) => (
-                  <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                )}
-                key={index1}
-              >
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              accordion
+            >
+              {lei.map((b, index1) => (
                 <Panel header={b} key={index1 + 1}>
-                  {semesters.map((s, index2) => (
-                    <Collapse
-                      className={styles.sub_checkbox}
-                      bordered={false}
-                      expandIcon={({ isActive }) => (
-                        <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                      )}
-                      key={index2}
-                    >
+                  <Collapse
+                    className={styles.sub_checkbox}
+                    bordered={false}
+                    accordion
+                  >
+                    {semesters.map((s, index2) => (
                       <Panel header={s} key={index2 + 1}>
                         <React.Fragment key={-1}>
                           <div
@@ -182,24 +172,18 @@ function EventFilters({ filters, handleFilters }) {
                           )}
                         </div>
                       </Panel>
-                    </Collapse>
-                  ))}
+                    ))}
+                  </Collapse>
                 </Panel>
-              </Collapse>
-            ))}
+              ))}
+            </Collapse>
           </div>
         </Panel>
       </Collapse>
 
       {/* MEI */}
 
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
+      <Collapse className={styles.checkbox} bordered={false}>
         <Panel header={menus[1]} key="panel">
           <div className={styles.items}>
             {/* 1º ano */}
@@ -207,20 +191,15 @@ function EventFilters({ filters, handleFilters }) {
             <Collapse
               className={styles.sub_checkbox}
               bordered={false}
-              expandIcon={({ isActive }) => (
-                <CaretRightOutlined rotate={isActive ? 90 : 0} />
-              )}
+              accordion
             >
-              <Panel header={mei[0]} key="panel">
-                {semesters.map((s, index2) => (
-                  <Collapse
-                    className={styles.sub_checkbox}
-                    bordered={false}
-                    expandIcon={({ isActive }) => (
-                      <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                    )}
-                    key={index2}
-                  >
+              <Panel header={mei[0]} key={0}>
+                <Collapse
+                  className={styles.sub_checkbox}
+                  bordered={false}
+                  accordion
+                >
+                  {semesters.map((s, index2) => (
                     <Panel header={s} key={index2 + 1}>
                       <React.Fragment key={-1}>
                         <div
@@ -278,21 +257,13 @@ function EventFilters({ filters, handleFilters }) {
                         )}
                       </div>
                     </Panel>
-                  </Collapse>
-                ))}
+                  ))}
+                </Collapse>
               </Panel>
-            </Collapse>
 
-            {/* 2º ano */}
+              {/* 2º ano */}
 
-            <Collapse
-              className={styles.sub_checkbox}
-              bordered={false}
-              expandIcon={({ isActive }) => (
-                <CaretRightOutlined rotate={isActive ? 90 : 0} />
-              )}
-            >
-              <Panel header={mei[1]} key="panel">
+              <Panel header={mei[1]} key={1}>
                 <div style={{ fontWeight: 400 }}>
                   {event[8]?.map(
                     (
@@ -328,13 +299,7 @@ function EventFilters({ filters, handleFilters }) {
 
       {/* Others */}
 
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
+      <Collapse className={styles.checkbox} bordered={false}>
         <Panel header="Others" key="">
           <div style={{ fontWeight: 400 }}>
             {event[9]?.map(
