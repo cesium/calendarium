@@ -14,11 +14,12 @@ import ScheduleFilters from "../ScheduleFilters";
 
 interface ISidebarProps {
   isHome?: boolean;
+  isOpen?: boolean;
   filters?: any;
   handleFilters?: any;
 }
 
-const Sidebar = ({ isHome, filters, handleFilters }: ISidebarProps) => {
+const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
   const exportPDF = () => {
     const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
 
@@ -35,14 +36,18 @@ const Sidebar = ({ isHome, filters, handleFilters }: ISidebarProps) => {
     });
   };
 
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white z-10 transition ease transform duration-300`;
+
   return (
     <div
-      className="width-96 absolute h-full overflow-x-hidden overflow-y-scroll rounded-r-3xl border py-8 pl-6 pr-8"
-      style={{ direction: "rtl" }}
+      className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
+      style={{ direction: "rtl", boxShadow: "var(--shadow)" }}
     >
       <div className="grid-cols-1 space-y-6" style={{ direction: "ltr" }}>
-        <div>
-          <div style={{ cursor: "pointer" }}>
+        <div className="flex hidden lg:block">
+          <div
+            style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
+          >
             <Link href="https://cesium.link/">
               <Image
                 width={260.89}
@@ -56,7 +61,7 @@ const Sidebar = ({ isHome, filters, handleFilters }: ISidebarProps) => {
 
         <div>
           <div className={styles.links}>
-            <div className="ml-2">
+            <div style={{ width: "fit-content", margin: "auto" }}>
               <ActiveLink href="/" activeClassName={styles.activeLink}>
                 <a>
                   <i className="bi bi-calendar-fill"></i> EVENTS

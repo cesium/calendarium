@@ -5,11 +5,12 @@
 
 .schedule {
   z-index: 0;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 5rem);
   transform: translateY(0.5rem);
 }
 
-.schedule_style {
-  height: 90vh;
-  font-family: Inter;
+@media (max-width: 1024px) {
+  .schedule {
+    height: calc(100vh - 10.2rem);
+  }
 }

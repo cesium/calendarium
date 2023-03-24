@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        mobile: "91vh",
+      },
+    },
   },
   darkMode: "media",
   plugins: [],

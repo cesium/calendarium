@@ -12,8 +12,8 @@
   height: calc(100vh - 4rem);
 }
 
-@media (max-width: 881px) {
+@media (max-width: 1024px) {
   .calendar {
-    padding-top: 0;
+    height: calc(100vh - 9.2rem);
   }
 }

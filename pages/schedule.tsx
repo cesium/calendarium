@@ -125,7 +125,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         setSelectedFilters(myFilters);
       }}
     >
-      <div className="Schedule">
+      <div>
         <Head>
           <title>Schedule | Calendarium</title>
           <meta name="Calendarium" content="Calendar of events and exams" />
@@ -165,6 +165,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               fontFamily: "Inter",
               fontSize: "14px",
               marginTop: "0.5rem",
+              paddingBottom: "1rem",
             }}
           >
             <b>Fonte:</b>{" "}
