@@ -27,6 +27,7 @@
 
 .links {
   font-family: Inter;
+  font-weight: 500;
   box-shadow: var(--shadow);
   padding: 1.2rem;
   border-radius: 16px;
@@ -61,11 +62,5 @@
 
       background: var(--orange);
     }
-  }
-}
-
-@media (max-width: 1024px) {
-  .mobile_height {
-    height: 91vh;
   }
 }

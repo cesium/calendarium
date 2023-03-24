@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Sidebar from "../Sidebar";
-import Footer from "../Footer";
+
+import styles from "./layout.module.scss";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -67,8 +68,17 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
           handleFilters={handleFilters}
         />
       </div>
+
+      <div className={`z-20 lg:block ${isOpen ? "block" : "hidden"}`}>
+        <button
+          onClick={() => window.open("https://forms.gle/C2uxuUKqoeqMWfcZ6")}
+          className={styles.buttonBug}
+        >
+          Report Bug <i title="Report Bug" className="bi bi-bug-fill"></i>
+        </button>
+      </div>
+
       <main className="flex-1 px-8 py-8 lg:ml-96">{children}</main>
-      {/* <Footer /> */}
     </div>
   );
 };

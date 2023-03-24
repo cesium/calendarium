@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        mobile: "91vh",
+        mobile: "calc(100vh - 5.2rem)",
       },
     },
   },

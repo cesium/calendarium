@@ -141,6 +141,32 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     });
   };
 
+  const checkedIndicator = (filter) => {
+    return (
+      <div className={styles.selected_schedules}>
+        {filter.shifts?.length ? (
+          filter.shifts.map((shiftOption) =>
+            isChecked({
+              id: filter.id,
+              shift: shiftOption,
+            }) ? (
+              <div className="ml-1 rounded-full bg-blue-200 p-1" />
+            ) : (
+              <></>
+            )
+          )
+        ) : isChecked({
+            id: filter.id,
+            shift: undefined,
+          }) ? (
+          <div className="ml-1 rounded-full bg-blue-200 p-1" />
+        ) : (
+          <></>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div>
       <Popconfirm
@@ -191,18 +217,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                           {functions[index1 * 2 + index2].map((filter) =>
                             filter.shifts?.length ? (
                               <>
-                                <div className={styles.selected_schedules}>
-                                  {filter.shifts.map((shiftOption) =>
-                                    isChecked({
-                                      id: filter.id,
-                                      shift: shiftOption,
-                                    }) ? (
-                                      <div className="ml-1 rounded-full bg-blue-200 p-1" />
-                                    ) : (
-                                      <></>
-                                    )
-                                  )}
-                                </div>
+                                {checkedIndicator(filter)}
                                 <Panel header={filter.name} key={filter.id}>
                                   {filter.shifts.map((shiftOption) => (
                                     <div key={filter.id + 1}>
@@ -262,25 +277,28 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                         >
                           {functions[6 + index2].map((filter) =>
                             filter.shifts?.length ? (
-                              <Panel header={filter.name} key={filter.id}>
-                                {filter.shifts.map((shiftOption) => (
-                                  <div key={filter.id + 1}>
-                                    <Checkbox
-                                      key={filter.id}
-                                      onChange={() =>
-                                        handleToggle(filter.id, shiftOption)
-                                      }
-                                      type="checkbox"
-                                      checked={isChecked({
-                                        id: filter.id,
-                                        shift: shiftOption,
-                                      })}
-                                    >
-                                      {shiftOption}
-                                    </Checkbox>
-                                  </div>
-                                ))}
-                              </Panel>
+                              <>
+                                {checkedIndicator(filter)}
+                                <Panel header={filter.name} key={filter.id}>
+                                  {filter.shifts.map((shiftOption) => (
+                                    <div key={filter.id + 1}>
+                                      <Checkbox
+                                        key={filter.id}
+                                        onChange={() =>
+                                          handleToggle(filter.id, shiftOption)
+                                        }
+                                        type="checkbox"
+                                        checked={isChecked({
+                                          id: filter.id,
+                                          shift: shiftOption,
+                                        })}
+                                      >
+                                        {shiftOption}
+                                      </Checkbox>
+                                    </div>
+                                  ))}
+                                </Panel>
+                              </>
                             ) : null
                           )}
                         </Collapse>
@@ -291,14 +309,11 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
               ))}
             </Collapse>
             <Collapse className={styles.sub_checkbox} bordered={false}>
+              {year_five.map((filter) => checkedIndicator(filter))}
               <Panel header="2ⁿᵈ year" key="5">
-                <Collapse
-                  className={styles.sub_sub_sub_checkbox}
-                  bordered={false}
-                  accordion
-                >
-                  {year_five.map((filter) =>
-                    filter.shifts?.length ? null : (
+                {year_five.map((filter) =>
+                  filter.shifts?.length ? null : (
+                    <>
                       <div style={{ fontWeight: 400 }}>
                         <Checkbox
                           key={filter.id}
@@ -314,9 +329,9 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                           {filter.name}
                         </Checkbox>
                       </div>
-                    )
-                  )}
-                </Collapse>
+                    </>
+                  )
+                )}
               </Panel>
             </Collapse>
           </div>
@@ -326,16 +341,10 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
       {/* Others */}
 
       <Collapse className={styles.checkbox} bordered={false}>
+        {others.map((filter) => checkedIndicator(filter))}
         <Panel header="Others" key="0">
           {others.map((filter) =>
-            filter.shifts?.length ? (
-              <OptionWithShifts
-                key={filter.id}
-                filter={filter}
-                handleToggle={handleToggle}
-                isChecked={isChecked}
-              />
-            ) : (
+            filter.shifts?.length ? null : (
               <div style={{ fontWeight: 400 }}>
                 <Checkbox
                   key={filter.id}

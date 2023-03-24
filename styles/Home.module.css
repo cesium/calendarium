@@ -12,6 +12,8 @@
   height: calc(100vh - 4rem);
 }
 
+/* could be 100vh, which would help mobile view a bit by increasing the amount of space.
+   however, it requires scrolling which goes against the objective of keeping it all in one view */
 @media (max-width: 1024px) {
   .calendar {
     height: calc(100vh - 9.2rem);

@@ -14,3 +14,7 @@
     height: calc(100vh - 10.2rem);
   }
 }
+
+.schedule_style {
+  font-family: Inter;
+}

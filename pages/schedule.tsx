@@ -1,19 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+
 import { GetStaticProps } from "next";
 import Head from "next/head";
+
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
-import Footer from "../components/Footer";
+
 import ShiftModal from "../components/ShiftModal";
-
 import Layout from "../components/Layout";
-import ScheduleFilters from "../components/ScheduleFilters";
-
 import { IFilterDTO, IShiftDTO } from "../dtos";
-
-import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import styles from "../styles/schedule.module.css";
 
