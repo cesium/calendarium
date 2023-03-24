@@ -1,17 +1,3 @@
-.dark {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  color: var(--white);
-}
-
-.light {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  color: var(--black);
-}
-
 .navbar {
   display: flex;
   align-items: center;
@@ -31,18 +17,6 @@
   .navbarButtons {
     margin: auto;
     width: fit-content;
-
-    .darkmode {
-      display: flex;
-      justify-content: center;
-      padding: 5px;
-      color: var(--black);
-      text-align: center;
-
-      &:hover {
-        opacity: 75%;
-      }
-    }
 
     .buttonPdf {
       background: rgba(255, 118, 73, 0.9);
@@ -111,16 +85,6 @@
 
         background: var(--orange);
       }
-    }
-  }
-
-  .darkLink {
-    .activeLink {
-      color: var(--white);
-    }
-
-    a:hover {
-      color: var(--white);
     }
   }
 }

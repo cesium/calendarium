@@ -5,11 +5,11 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
-import FeedbackForm from "../components/FeedbackForm";
-import EventModalShift from "../components/EventModalShift";
+import Footer from "../components/Footer";
+import ShiftModal from "../components/ShiftModal";
 
 import Layout from "../components/Layout";
-import SelectSchedule from "../components/SelectSchedule";
+import ScheduleFilters from "../components/ScheduleFilters";
 
 import { IFilterDTO, IShiftDTO } from "../dtos";
 
@@ -127,7 +127,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         </Head>
 
         <div className={styles.filters}>
-          <SelectSchedule
+          <ScheduleFilters
             filters={filters}
             handleFilters={(myFilters) => {
               setSelectedFilters(myFilters);
@@ -176,7 +176,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         </div>
 
         {inspectShift && (
-          <EventModalShift
+          <ShiftModal
             selectedShift={selectedShift}
             setInspectShift={setInspectShift}
             inspectShift={inspectShift}
@@ -184,7 +184,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           />
         )}
 
-        <FeedbackForm />
+        <Footer />
       </div>
     </Layout>
   );
