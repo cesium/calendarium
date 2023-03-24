@@ -1,6 +1,6 @@
 import { Modal, Box, Typography, Grow } from "@mui/material";
 
-function EventModalShift({
+function ShiftModal({
   selectedShift: {
     id,
     title,
@@ -89,4 +89,4 @@ function EventModalShift({
   );
 }
 
-export default EventModalShift;
+export default ShiftModal;

@@ -1,7 +1,6 @@
-import Link from "next/link";
-import styles from "./feedbackform.module.scss";
+import styles from "./footer.module.scss";
 
-const FeedbackForm = () => {
+const Footer = () => {
   return (
     <div className={styles.footer}>
       <p className={styles.title}>
@@ -17,4 +16,4 @@ const FeedbackForm = () => {
   );
 };
 
-export default FeedbackForm;
+export default Footer;
