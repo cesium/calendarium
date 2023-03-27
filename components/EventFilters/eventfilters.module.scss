@@ -28,3 +28,15 @@
 .filters {
   margin: 0 0 1rem 0;
 }
+
+.selected_schedules {
+  display: inline-flex;
+  right: 5rem;
+  position: absolute;
+  margin-top: 1.2rem;
+  height: fit-content;
+  width: 2rem;
+  overflow: hidden;
+  font-size: x-small;
+  direction: rtl;
+}
