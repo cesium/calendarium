@@ -20,7 +20,16 @@ interface ISidebarProps {
 }
 
 const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
-  const exportPDF = () => {
+ const exportPDF = async () => {
+    const input = document.getElementById(isHome ? "APP" : "SCHEDULE")?;
+    const canvas = await html2canvas(input, { logging: true });
+    const imgwidth = 208;
+    const imgHeight = (canvas.height * imgwidth) / canvas.width;
+    const imgData = canvas.toDataURL("img/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+    pdf.addImage(imgData, "PNG", 0, 0, imgwidth, imgHeight);
+    pdf.save("calendario.pdf");
+};
     const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
 
     html2canvas(input, {
