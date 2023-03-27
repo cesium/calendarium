@@ -3,7 +3,8 @@
   bottom: 1rem;
   right: 1rem;
   z-index: 20;
-  width: fit-content;
+  width: 3rem;
+  height: 3rem;
   margin: auto;
   font-family: Inter;
   background: gray;
@@ -25,7 +26,35 @@
   transition: 150ms linear;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
 
+  div {
+    text-align: right;
+  }
+
+  a {
+    position: absolute;
+    left: 0;
+    margin-left: 1.1rem;
+    opacity: 0;
+    transition: opacity 150ms;
+  }
+
   &:hover {
     box-shadow: gray 0 2px 12px 0px;
+    width: 9rem;
+
+    a {
+      opacity: 1;
+      transition-delay: 200ms;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .buttonBug {
+    width: 9rem;
+
+    a {
+      opacity: 1;
+    }
   }
 }

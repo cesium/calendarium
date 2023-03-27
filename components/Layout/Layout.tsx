@@ -74,7 +74,9 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
           onClick={() => window.open("https://forms.gle/C2uxuUKqoeqMWfcZ6")}
           className={styles.buttonBug}
         >
-          Report Bug <i title="Report Bug" className="bi bi-bug-fill"></i>
+          <div>
+            <a>Report Bug</a> <i className="bi bi-bug-fill"></i>
+          </div>
         </button>
       </div>
 
