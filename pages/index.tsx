@@ -98,7 +98,7 @@ export default function Home({ events, filters }) {
 
   return (
     <Layout
-      isHome={true}
+      isHome
       filters={filters}
       handleFilters={(myFilters) => handleFilters(myFilters)}
     >
