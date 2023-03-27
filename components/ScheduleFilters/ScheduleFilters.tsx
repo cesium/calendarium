@@ -160,8 +160,8 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
       {/* LEI */}
 
       {lei.map((y, index1) => (
-        <Collapse className={styles.checkbox} bordered={false}>
-          <Panel header={y} key={index1}>
+        <Collapse className={styles.checkbox} bordered={false} key={index1}>
+          <Panel header={y} key={index1 + 1}>
             <Collapse
               className={styles.sub_checkbox}
               bordered={false}
@@ -213,8 +213,8 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <>
         {mei.map((y, index1) => (
-          <Collapse className={styles.checkbox} bordered={false}>
-            <Panel header={y} key={index1}>
+          <Collapse className={styles.checkbox} bordered={false} key={index1}>
+            <Panel header={y} key={index1 + 1}>
               <Collapse
                 className={styles.sub_sub_checkbox}
                 bordered={false}
