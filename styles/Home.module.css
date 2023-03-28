@@ -8,18 +8,14 @@
 }
 
 .calendar {
-  position: relative;
   z-index: 0;
-  padding-top: 4.9rem;
+  height: calc(100vh - 4rem);
 }
 
-@media (max-width: 881px) {
+/* could be 100vh, which would help mobile view a bit by increasing the amount of space.
+   however, it requires scrolling which goes against the objective of keeping it all in one view */
+@media (max-width: 1024px) {
   .calendar {
-    padding-top: 0;
+    height: calc(100vh - 9.2rem);
   }
-}
-
-.calendar_style {
-  height: 90vh;
-  font-family: Inter;
 }

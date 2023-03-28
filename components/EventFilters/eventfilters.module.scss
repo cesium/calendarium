@@ -1,40 +1,23 @@
 .checkbox {
-  display: inline-flex;
-  border-radius: 24px;
+  width: 100%;
+  border-radius: 16px;
   box-shadow: var(--shadow);
   font-family: Inter;
   font-size: 15px;
   font-weight: 500;
-  width: 16rem;
   background: white;
   margin: 0 1rem 1rem 0;
 }
 
 .layer {
-  position: absolute;
   z-index: 1;
 }
 
 .items {
-  max-height: 70vh;
-  overflow-y: auto;
-  width: 14.5rem;
-}
-
-@media (max-width: 881px) {
-  .checkbox {
-    display: inline-block;
-    width: 100%;
-  }
-  .layer {
-    position: relative;
-  }
-  .items {
-    max-height: none;
-    height: auto;
-    overflow-y: hidden;
-    width: auto;
-  }
+  max-height: none;
+  height: auto;
+  overflow-y: hidden;
+  width: auto;
 }
 
 .sub_checkbox {
@@ -44,4 +27,16 @@
 
 .filters {
   margin: 0 0 1rem 0;
+}
+
+.selected_schedules {
+  display: inline-flex;
+  right: 5rem;
+  position: absolute;
+  margin-top: 1.2rem;
+  height: fit-content;
+  width: 2rem;
+  overflow: hidden;
+  font-size: x-small;
+  direction: rtl;
 }

@@ -1,16 +1,18 @@
 import { useState } from "react";
+
 import * as fs from "fs";
-import Footer from "../components/Footer";
+
 import Head from "next/head";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+
 import moment from "moment-timezone";
 
-import styles from "../styles/Home.module.css";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
-import EventFitlers from "../components/EventFilters";
 import EventModal from "../components/EventModal";
+
+import styles from "../styles/Home.module.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -95,20 +97,17 @@ export default function Home({ events, filters }) {
   };
 
   return (
-    <Layout isHome>
+    <Layout
+      isHome
+      filters={filters}
+      handleFilters={(myFilters) => handleFilters(myFilters)}
+    >
       <div>
         <Head>
           <title>Events | Calendarium</title>
           <meta name="Calendarium" content="Calendar of events and exams" />
           <link rel="icon" href="/favicon-calendarium.ico" />
         </Head>
-
-        <div className={styles.filters}>
-          <EventFitlers
-            filters={filters}
-            handleFilters={(myFilters) => handleFilters(myFilters)}
-          />
-        </div>
 
         <div id="APP" className={styles.calendar}>
           <Calendar
@@ -130,7 +129,7 @@ export default function Home({ events, filters }) {
             }}
             formats={formats}
             events={Events}
-            style={{ height: "90vh", fontFamily: "Inter" }}
+            style={{ fontFamily: "Inter" }}
           />
         </div>
 
@@ -141,8 +140,6 @@ export default function Home({ events, filters }) {
             inspectEvent={inspectEvent}
           />
         )}
-
-        <Footer />
       </div>
     </Layout>
   );
