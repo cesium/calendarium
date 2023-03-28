@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+
 import { Checkbox, Collapse, Popconfirm } from "antd";
-import "antd/dist/reset.css";
+
 import { IFilterDTO } from "../../dtos";
+
 import styles from "./schedulefilters.module.scss";
-import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -16,76 +17,6 @@ interface ISelectScheduleProps {
   filters: IFilterDTO[];
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
 }
-
-interface IOptionProps {
-  filter: IFilterDTO;
-  handleToggle: (filterId: number, shiftOption?: string) => void;
-  isChecked: ({ id, shift }) => boolean;
-}
-
-const OptionWithShifts = ({
-  filter,
-  handleToggle,
-  isChecked,
-}: IOptionProps) => {
-  return (
-    <div className="row flex w-full">
-      <Collapse
-        className={styles.sub_sub_sub_checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-        key={filter.id}
-      >
-        <Panel header={filter.name} key={filter.id}>
-          {filter.shifts.map((shiftOption) => (
-            <>
-              <Checkbox
-                key={filter.id}
-                onChange={() => handleToggle(filter.id, shiftOption)}
-                type="checkbox"
-                checked={isChecked({ id: filter.id, shift: shiftOption })}
-              >
-                {shiftOption}
-              </Checkbox>
-              <br />
-            </>
-          ))}
-        </Panel>
-      </Collapse>
-
-      <div className={styles.selected_schedules}>
-        {filter.shifts.map((shiftOption) =>
-          isChecked({ id: filter.id, shift: shiftOption }) ? (
-            <div className="mr-1 rounded-full bg-blue-200 p-1 font-bold">
-              {shiftOption}
-            </div>
-          ) : (
-            <></>
-          )
-        )}
-      </div>
-    </div>
-  );
-};
-
-const Option = ({ filter, handleToggle, isChecked }: IOptionProps) => (
-  <>
-    <Checkbox
-      key={filter.id}
-      onChange={() => {
-        handleToggle(filter.id);
-      }}
-      type="checkbox"
-      checked={isChecked({ id: filter.id, shift: undefined })}
-    >
-      {filter.name}
-    </Checkbox>
-
-    <br />
-  </>
-);
 
 const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
@@ -168,7 +99,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     handleFilters([]);
   }
 
-  const mei = ["1ˢᵗ year"];
+  const mei = ["4ᵗʰ year"];
 
   const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
 
@@ -180,177 +111,31 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     });
   };
 
+  const CheckedIndicator = ({ filter }: { filter: IFilterDTO }) => {
+    if (isChecked({ id: filter.id, shift: undefined })) {
+      return (
+        <div className={styles.selected_schedules}>
+          <div className="ml-1 rounded-full bg-blue-200 p-1" />
+        </div>
+      );
+    }
+
+    const isSomeChecked = filter.shifts?.some((shiftOption) =>
+      isChecked({
+        id: filter.id,
+        shift: shiftOption,
+      })
+    );
+
+    return (
+      <div className={styles.selected_schedules}>
+        {isSomeChecked && <div className="ml-1 rounded-full bg-blue-200 p-1" />}
+      </div>
+    );
+  };
+
   return (
-    <div className={styles.filters}>
-      {/* LEI */}
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
-        <Panel header="LEI" key="panel">
-          <div className={styles.items}>
-            {lei.map((y, index1) => (
-              <Collapse
-                className={styles.sub_checkbox}
-                bordered={false}
-                expandIcon={({ isActive }) => (
-                  <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                )}
-                key={index1}
-              >
-                <Panel header={y} key={index1}>
-                  {semesters.map((s, index2) => (
-                    <Collapse
-                      className={styles.sub_sub_checkbox}
-                      bordered={false}
-                      expandIcon={({ isActive }) => (
-                        <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                      )}
-                      key={index2}
-                    >
-                      <Panel header={s} key={index2}>
-                        {functions[index1 * 2 + index2].map((filter) =>
-                          filter.shifts?.length ? (
-                            <OptionWithShifts
-                              key={filter.id}
-                              filter={filter}
-                              handleToggle={handleToggle}
-                              isChecked={isChecked}
-                            />
-                          ) : (
-                            <Option
-                              key={filter.id}
-                              filter={filter}
-                              handleToggle={handleToggle}
-                              isChecked={isChecked}
-                            />
-                          )
-                        )}
-                      </Panel>
-                    </Collapse>
-                  ))}
-                </Panel>
-              </Collapse>
-            ))}
-          </div>
-        </Panel>
-      </Collapse>
-
-      {/* MEI */}
-
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
-        <Panel header="MEI" key="panel">
-          <div className={styles.items}>
-            {mei.map((y, index1) => (
-              <Collapse
-                className={styles.sub_checkbox}
-                bordered={false}
-                expandIcon={({ isActive }) => (
-                  <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                )}
-                key={index1}
-              >
-                <Panel header={y} key={index1}>
-                  {semesters.map((s, index2) => (
-                    <Collapse
-                      className={styles.sub_sub_checkbox}
-                      bordered={false}
-                      expandIcon={({ isActive }) => (
-                        <CaretRightOutlined rotate={isActive ? 90 : 0} />
-                      )}
-                      key={index2}
-                    >
-                      <Panel header={s} key={index2}>
-                        {functions[6 + index2].map((filter) =>
-                          filter.shifts?.length ? (
-                            <OptionWithShifts
-                              key={filter.id}
-                              filter={filter}
-                              handleToggle={handleToggle}
-                              isChecked={isChecked}
-                            />
-                          ) : null
-                        )}
-                      </Panel>
-                    </Collapse>
-                  ))}
-                </Panel>
-              </Collapse>
-            ))}
-            <Collapse
-              className={styles.sub_checkbox}
-              bordered={false}
-              expandIcon={({ isActive }) => (
-                <CaretRightOutlined rotate={isActive ? 90 : 0} />
-              )}
-            >
-              <Panel header="2ⁿᵈ year" key="5">
-                {year_five.map((filter) =>
-                  filter.shifts?.length ? (
-                    <OptionWithShifts
-                      key={filter.id}
-                      filter={filter}
-                      handleToggle={handleToggle}
-                      isChecked={isChecked}
-                    />
-                  ) : (
-                    <div style={{ fontWeight: 400 }}>
-                      <Option
-                        key={filter.id}
-                        filter={filter}
-                        handleToggle={handleToggle}
-                        isChecked={isChecked}
-                      />
-                    </div>
-                  )
-                )}
-              </Panel>
-            </Collapse>
-          </div>
-        </Panel>
-      </Collapse>
-
-      {/* Others */}
-
-      <Collapse
-        className={styles.checkbox}
-        bordered={false}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-      >
-        <Panel header="Others" key="0">
-          {others.map((filter) =>
-            filter.shifts?.length ? (
-              <OptionWithShifts
-                key={filter.id}
-                filter={filter}
-                handleToggle={handleToggle}
-                isChecked={isChecked}
-              />
-            ) : (
-              <div style={{ fontWeight: 400 }}>
-                <Option
-                  key={filter.id}
-                  filter={filter}
-                  handleToggle={handleToggle}
-                  isChecked={isChecked}
-                />
-              </div>
-            )
-          )}
-        </Panel>
-      </Collapse>
-
+    <div>
       <Popconfirm
         title="Are you sure?"
         description="This will remove all your classes"
@@ -371,6 +156,168 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
           Clear Schedule <i className="bi bi-stars"></i>
         </button>
       </Popconfirm>
+
+      {/* LEI */}
+
+      <Collapse className={styles.checkbox} bordered={false} accordion>
+        {lei.map((y, index1) => (
+          <Panel header={y} key={index1 + 1}>
+            <Collapse
+              className={styles.sub_checkbox}
+              bordered={false}
+              accordion
+            >
+              {semesters.map((s, index2) => (
+                <Panel header={s} key={index2}>
+                  <Collapse
+                    className={styles.sub_sub_sub_checkbox}
+                    bordered={false}
+                    accordion
+                  >
+                    {functions[index1 * 2 + index2].map(
+                      (filter) =>
+                        filter.shifts?.length && (
+                          <>
+                            <CheckedIndicator filter={filter} />
+                            <Panel header={filter.name} key={filter.id}>
+                              {filter.shifts.map((shiftOption) => (
+                                <div key={filter.id + 1}>
+                                  <Checkbox
+                                    key={filter.id}
+                                    onChange={() =>
+                                      handleToggle(filter.id, shiftOption)
+                                    }
+                                    type="checkbox"
+                                    checked={isChecked({
+                                      id: filter.id,
+                                      shift: shiftOption,
+                                    })}
+                                  >
+                                    {shiftOption}
+                                  </Checkbox>
+                                </div>
+                              ))}
+                            </Panel>
+                          </>
+                        )
+                    )}
+                  </Collapse>
+                </Panel>
+              ))}
+            </Collapse>
+          </Panel>
+        ))}
+      </Collapse>
+
+      {/* MEI */}
+
+      <Collapse className={styles.checkbox} bordered={false} accordion>
+        {mei.map((y, index1) => (
+          <Panel header={y} key={index1 + 1}>
+            <Collapse
+              className={styles.sub_sub_checkbox}
+              bordered={false}
+              accordion
+            >
+              {semesters.map((s, index2) => (
+                <Panel header={s} key={index2}>
+                  <Collapse
+                    className={styles.sub_sub_sub_checkbox}
+                    bordered={false}
+                    accordion
+                  >
+                    {functions[6 + index2].map(
+                      (filter) =>
+                        filter.shifts?.length && (
+                          <>
+                            <CheckedIndicator filter={filter} />
+                            <Panel header={filter.name} key={filter.id}>
+                              {filter.shifts.map((shiftOption) => (
+                                <div key={filter.id + 1}>
+                                  <Checkbox
+                                    key={filter.id}
+                                    onChange={() =>
+                                      handleToggle(filter.id, shiftOption)
+                                    }
+                                    type="checkbox"
+                                    checked={isChecked({
+                                      id: filter.id,
+                                      shift: shiftOption,
+                                    })}
+                                  >
+                                    {shiftOption}
+                                  </Checkbox>
+                                </div>
+                              ))}
+                            </Panel>
+                          </>
+                        )
+                    )}
+                  </Collapse>
+                </Panel>
+              ))}
+            </Collapse>
+          </Panel>
+        ))}
+
+        {year_five.map((filter) => (
+          <CheckedIndicator filter={filter} key={filter.id} />
+        ))}
+        <Panel header="5ᵗʰ year" key="5">
+          {year_five.map(
+            (filter) =>
+              !filter.shifts?.length && (
+                <>
+                  <div style={{ fontWeight: 400 }}>
+                    <Checkbox
+                      key={filter.id}
+                      onChange={() => {
+                        handleToggle(filter.id);
+                      }}
+                      type="checkbox"
+                      checked={isChecked({
+                        id: filter.id,
+                        shift: undefined,
+                      })}
+                    >
+                      {filter.name}
+                    </Checkbox>
+                  </div>
+                </>
+              )
+          )}
+        </Panel>
+      </Collapse>
+
+      {/* Others */}
+
+      <Collapse className={styles.checkbox} bordered={false}>
+        {others.map((filter) => (
+          <CheckedIndicator filter={filter} key={filter.id} />
+        ))}
+        <Panel header="Others" key="0">
+          {others.map(
+            (filter) =>
+              !filter.shifts?.length && (
+                <div style={{ fontWeight: 400 }}>
+                  <Checkbox
+                    key={filter.id}
+                    onChange={() => {
+                      handleToggle(filter.id);
+                    }}
+                    type="checkbox"
+                    checked={isChecked({
+                      id: filter.id,
+                      shift: undefined,
+                    })}
+                  >
+                    {filter.name}
+                  </Checkbox>
+                </div>
+              )
+          )}
+        </Panel>
+      </Collapse>
     </div>
   );
 };

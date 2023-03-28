@@ -1,19 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+
 import { GetStaticProps } from "next";
 import Head from "next/head";
+
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
 import moment from "moment";
 import path from "path";
 import fsPromises from "fs/promises";
-import Footer from "../components/Footer";
+
 import ShiftModal from "../components/ShiftModal";
-
 import Layout from "../components/Layout";
-import ScheduleFilters from "../components/ScheduleFilters";
-
 import { IFilterDTO, IShiftDTO } from "../dtos";
-
-import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import styles from "../styles/schedule.module.css";
 
@@ -118,22 +117,19 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   maxDate.setHours(20, 0, 0);
 
   return (
-    <Layout>
-      <div className="Schedule">
+    <Layout
+      isHome={false}
+      filters={filters}
+      handleFilters={(myFilters) => {
+        setSelectedFilters(myFilters);
+      }}
+    >
+      <div>
         <Head>
           <title>Schedule | Calendarium</title>
           <meta name="Calendarium" content="Calendar of events and exams" />
           <link rel="icon" href="/favicon-calendarium.ico" />~
         </Head>
-
-        <div className={styles.filters}>
-          <ScheduleFilters
-            filters={filters}
-            handleFilters={(myFilters) => {
-              setSelectedFilters(myFilters);
-            }}
-          />
-        </div>
 
         <div id="SCHEDULE" className={styles.schedule}>
           <Calendar
@@ -163,16 +159,19 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             events={events}
             className={styles.schedule_style}
           />
-        </div>
-
-        <div
-          className="py-2"
-          style={{ fontFamily: "Inter", fontSize: "14px " }}
-        >
-          <b>Fonte:</b>{" "}
-          <a href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx">
-            Horários UMinho
-          </a>
+          <div
+            style={{
+              fontFamily: "Inter",
+              fontSize: "14px",
+              marginTop: "0.5rem",
+              paddingBottom: "1rem",
+            }}
+          >
+            <b>Fonte:</b>{" "}
+            <a href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx">
+              Horários UMinho
+            </a>
+          </div>
         </div>
 
         {inspectShift && (
@@ -183,8 +182,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             shifts={shifts}
           />
         )}
-
-        <Footer />
       </div>
     </Layout>
   );

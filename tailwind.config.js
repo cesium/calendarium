@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        mobile: "calc(100vh - 5.2rem)",
+      },
+    },
   },
   darkMode: "media",
   plugins: [],
