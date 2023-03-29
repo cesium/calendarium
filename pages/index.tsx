@@ -147,7 +147,6 @@ export default function Home({ events, filters }) {
 
 export async function getStaticProps() {
   //Refer to the above comment
-  moment.tz.setDefault("Africa/Bamako");
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
   const events = JSON.parse(fs.readFileSync("data/events.json", "utf-8"));
   return {
