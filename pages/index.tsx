@@ -17,24 +17,6 @@ import styles from "../styles/Home.module.css";
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
-  /*
-  We set the timezone to UTC. This needs to be done
-  because react-big-calendar displays the times in
-  local time, but in the json they are read in UTC. 
-  
-  So if the json says an event is from
-  14:00 to 16:00, if we are in France in the summer
-  it would display from 16:00 to 18:00
-  
-  We don't want that, we always want
-  the same result no matter the timezone.
-
-  Bamako is the capital of Mali, which is in UTC and
-  (very important) does not implement day light savings
-
-  Refer to https://github.com/cesium/calendarium/pull/39
-  */
-
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
