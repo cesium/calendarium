@@ -15,6 +15,7 @@
     "test:format": "prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.30.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.6",

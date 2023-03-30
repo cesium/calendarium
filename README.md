@@ -8,6 +8,8 @@
   </a>
 </h1>
 
+[netlify-status]: https://app.netlify.com/sites/cesium-calendarium/deploys
+
 > 📅 Calendar with special events, due dates and week schedule
 
 Exams, projects, events and schedules. Your hub to everything LEI, MEI or even MIEI!
