@@ -65,17 +65,18 @@ Where `<branch>` is the name of your branch.
 > **Note**  
 > The `filterId` is composed of: `<course-year><course-semester><curricular-unit-number>`.
 > For example: `221` (Bases de Dados).
+> Check out the `filterId` of each class by searching its name on `shifts.json` or checking the `id` parameter in `filters.json`.
 
 Check out this example:
 
 ```json
 {
-  "title": "SEI - Semana da Engenharia Informática",
-  "place": "Campus Gualtar",
-  "start": "2023-02-14 10:00",
-  "end": "2023-02-17 18:00",
-  "groupId": 7,
-  "filterId": 2
+  "title": "[Lógica] Teste",
+  "place": "CP2 - 0.20 + 1.01 + 1.05 + 1.07 + 2.01 + 2.02",
+  "start": "2023-04-12 17:30",
+  "end": "2023-04-12 20:30",
+  "groupId": 1,
+  "filterId": 124
 }
 ```
 
@@ -101,6 +102,7 @@ Check out this example:
 > **Note**  
 > The `filterId` is composed of: `<course-year><course-semester><curricular-unit-number>`.
 > For example: `221` (Bases de Dados).
+> Check out the `filterId` of each class by searching its name on `shifts.json` or checking the `id` parameter in `filters.json`.
 
 Check out this example:
 
