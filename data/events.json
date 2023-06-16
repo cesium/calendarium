@@ -21,6 +21,13 @@
     "filterId": 111
   },
   {
+    "title": "[AL] Época Especial",
+    "start": "2023-07-19 09:00",
+    "end": "2023-07-19 12:00",
+    "groupId": 1,
+    "filterId": 111
+  },
+  {
     "title": "[Cálculo] Teste",
     "start": "2022-11-02 00:00",
     "end": "2022-11-02 23:59",
@@ -38,6 +45,13 @@
     "title": "[Cálculo] Recurso",
     "start": "2023-02-03 09:00",
     "end": "2023-02-03 12:00",
+    "groupId": 1,
+    "filterId": 112
+  },
+  {
+    "title": "[Cálculo] Época Especial",
+    "start": "2023-07-18 09:00",
+    "end": "2023-07-18 12:00",
     "groupId": 1,
     "filterId": 112
   },
@@ -77,6 +91,13 @@
     "filterId": 114
   },
   {
+    "title": "[PF] Época Especial",
+    "start": "2023-07-17 09:00",
+    "end": "2023-07-17 12:00",
+    "groupId": 1,
+    "filterId": 114
+  },
+  {
     "title": "[TMD] Teste",
     "start": "2022-11-04 00:00",
     "end": "2022-11-04 23:59",
@@ -94,6 +115,13 @@
     "title": "[TMD] Recurso",
     "start": "2023-02-01 09:00",
     "end": "2023-02-01 12:00",
+    "groupId": 1,
+    "filterId": 115
+  },
+  {
+    "title": "[TMD] Época Especial",
+    "start": "2023-07-20 09:00",
+    "end": "2023-07-20 12:00",
     "groupId": 1,
     "filterId": 115
   },
@@ -119,6 +147,13 @@
     "filterId": 211
   },
   {
+    "title": "[AlgC] Época Especial",
+    "start": "2023-07-14 14:30",
+    "end": "2023-07-14 17:30",
+    "groupId": 2,
+    "filterId": 211
+  },
+  {
     "title": "[ArqC] Teste",
     "start": "2022-11-04 00:00",
     "end": "2022-11-04 23:59",
@@ -136,6 +171,13 @@
     "title": "[ArqC] Recurso",
     "start": "2023-01-26 14:00",
     "end": "2023-01-26 17:00",
+    "groupId": 2,
+    "filterId": 212
+  },
+  {
+    "title": "[ArqC] Época Especial",
+    "start": "2023-07-19 14:30",
+    "end": "2023-07-19 17:30",
     "groupId": 2,
     "filterId": 212
   },
@@ -161,9 +203,23 @@
     "filterId": 213
   },
   {
+    "title": "[EA] Época Especial",
+    "start": "2023-07-21 14:30",
+    "end": "2023-07-21 17:30",
+    "groupId": 2,
+    "filterId": 213
+  },
+  {
     "title": "[FM] Recurso",
     "start": "2023-01-24 14:00",
     "end": "2023-01-24 17:00",
+    "groupId": 2,
+    "filterId": 214
+  },
+  {
+    "title": "[FM] Época Especial",
+    "start": "2023-07-18 14:30",
+    "end": "2023-07-18 17:30",
     "groupId": 2,
     "filterId": 214
   },
@@ -185,6 +241,13 @@
     "title": "[FCD] Recurso",
     "start": "2023-01-31 14:00",
     "end": "2023-01-31 17:00",
+    "groupId": 2,
+    "filterId": 215
+  },
+  {
+    "title": "[FCD] Época Especial",
+    "start": "2023-07-20 14:30",
+    "end": "2023-07-20 17:30",
     "groupId": 2,
     "filterId": 215
   },
@@ -225,6 +288,13 @@
     "filterId": 311
   },
   {
+    "title": "[CP] Época Especial",
+    "start": "2023-07-15 09:00",
+    "end": "2023-07-15 12:00",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
     "title": "[CC] Entrega TP",
     "start": "2023-01-02 00:00",
     "end": "2023-01-02 23:59",
@@ -249,6 +319,13 @@
     "title": "[CC] Recurso",
     "start": "2023-02-01 14:00",
     "end": "2023-02-01 17:00",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[CC] Época Especial",
+    "start": "2023-07-19 09:00",
+    "end": "2023-07-19 12:00",
     "groupId": 3,
     "filterId": 312
   },
@@ -288,6 +365,13 @@
     "filterId": 313
   },
   {
+    "title": "[DSS] Época Especial",
+    "start": "2023-07-12 09:00",
+    "end": "2023-07-12 12:00",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
     "title": "[IA] Entrega TP",
     "start": "2022-12-16 00:00",
     "end": "2022-12-16 23:59",
@@ -305,6 +389,13 @@
     "title": "[IA] Recurso",
     "start": "2023-01-25 14:00",
     "end": "2023-01-25 17:00",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Época Especial",
+    "start": "2023-07-17 09:00",
+    "end": "2023-07-17 12:00",
     "groupId": 3,
     "filterId": 314
   },
@@ -347,6 +438,13 @@
     "title": "[SD] Recurso",
     "start": "2023-01-23 00:00",
     "end": "2023-01-23 23:59",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[SD] Época Especial",
+    "start": "2023-07-18 09:00",
+    "end": "2023-07-18 12:00",
     "groupId": 3,
     "filterId": 316
   },
@@ -599,6 +697,13 @@
     "filterId": 221
   },
   {
+    "title": "[BD] Época Especial",
+    "start": "2023-07-13 14:30",
+    "end": "2023-07-13 17:30",
+    "groupId": 2,
+    "filterId": 221
+  },
+  {
     "title": "[IO] Entrega TP",
     "start": "2023-03-25 00:00",
     "end": "2023-03-25 23:59",
@@ -625,6 +730,13 @@
     "place": "CP2 - 0.13 + 1.01 + 1.03",
     "start": "2023-06-14 14:30",
     "end": "2023-06-14 17:30",
+    "groupId": 2,
+    "filterId": 222
+  },
+  {
+    "title": "[IO] Época Especial",
+    "start": "2023-07-10 14:30",
+    "end": "2023-07-10 17:30",
     "groupId": 2,
     "filterId": 222
   },
@@ -659,6 +771,13 @@
     "filterId": 223
   },
   {
+    "title": "[MNOnL] Época Especial",
+    "start": "2023-07-22 09:00",
+    "end": "2023-07-22 12:00",
+    "groupId": 2,
+    "filterId": 223
+  },
+  {
     "title": "[POO] Entrega TP",
     "start": "2023-05-14 00:00",
     "end": "2023-05-14 23:59",
@@ -689,6 +808,13 @@
     "filterId": 224
   },
   {
+    "title": "[POO] Época Especial",
+    "start": "2023-07-11 14:30",
+    "end": "2023-07-11 17:30",
+    "groupId": 2,
+    "filterId": 224
+  },
+  {
     "title": "[RC] Teste",
     "place": "CP2 - 0.11 + 0.20 + 1.03 + 1.05 + 1.07",
     "start": "2023-05-26 00:00",
@@ -701,6 +827,13 @@
     "place": "CP2 - 1.01 + 1.03 + 1.05 + 1.10",
     "start": "2023-06-16 14:30",
     "end": "2023-06-16 17:30",
+    "groupId": 2,
+    "filterId": 225
+  },
+  {
+    "title": "[RC] Época Especial",
+    "start": "2023-07-17 14:30",
+    "end": "2023-07-17 17:30",
     "groupId": 2,
     "filterId": 225
   },
@@ -731,6 +864,13 @@
     "place": "CP2 - 1.01 + 1.03 + 1.05 + 1.07",
     "start": "2023-06-19 14:30",
     "end": "2023-06-19 17:30",
+    "groupId": 2,
+    "filterId": 226
+  },
+  {
+    "title": "[SO] Época Especial",
+    "start": "2023-07-12 14:30",
+    "end": "2023-07-12 17:30",
     "groupId": 2,
     "filterId": 226
   },
@@ -794,6 +934,13 @@
     "filterId": 121
   },
   {
+    "title": "[Análise] Época Especial",
+    "start": "2023-07-11 09:00",
+    "end": "2023-07-11 12:00",
+    "groupId": 1,
+    "filterId": 121
+  },
+  {
     "title": "[SC] Teste",
     "place": "Cantina",
     "start": "2023-03-29 15:30",
@@ -818,6 +965,13 @@
     "filterId": 126
   },
   {
+    "title": "[SC] Época Especial",
+    "start": "2023-07-10 09:00",
+    "end": "2023-07-10 12:00",
+    "groupId": 1,
+    "filterId": 126
+  },
+  {
     "title": "[EPTN] Teste",
     "start": "2023-04-1 00:00",
     "end": "2023-04-1 23:59",
@@ -837,6 +991,13 @@
     "place": "CP2 - 1.03 + 1.05 + 1.07",
     "start": "2023-06-20 09:00",
     "end": "2023-06-20 12:00",
+    "groupId": 1,
+    "filterId": 122
+  },
+  {
+    "title": "[EPTN] Época Especial",
+    "start": "2023-07-13 09:00",
+    "end": "2023-07-13 12:00",
     "groupId": 1,
     "filterId": 122
   },
@@ -906,6 +1067,13 @@
     "place": "CP2 - 0.11 + 0.20 + 1.01 + 1.03 + 1.05 + 1.07 + 1.09",
     "start": "2023-06-13 09:00",
     "end": "2023-06-13 12:00",
+    "groupId": 1,
+    "filterId": 125
+  },
+  {
+    "title": "[PI] Época Especial",
+    "start": "2023-07-14 09:00",
+    "end": "2023-07-14 12:00",
     "groupId": 1,
     "filterId": 125
   },
@@ -1053,9 +1221,39 @@
     "filterId": 323
   },
   {
+    "title": "[IPM] Recurso",
+    "place": "CP2 - 1.01 + 1.09",
+    "start": "2023-06-22 14:30",
+    "end": "2023-06-22 17:30",
+    "groupId": 3,
+    "filterId": 323
+  },
+  {
+    "title": "[IPM] Época Especial",
+    "start": "2023-07-11 09:00",
+    "end": "2023-07-11 12:00",
+    "groupId": 3,
+    "filterId": 323
+  },
+  {
     "title": "[CG] Teste",
     "start": "2023-05-27 00:00",
     "end": "2023-05-27 23:59",
+    "groupId": 3,
+    "filterId": 322
+  },
+  {
+    "title": "[CG] Recurso",
+    "place": "CP2 - 0.11 + 1.07 + 1.15",
+    "start": "2023-06-17 09:00",
+    "end": "2023-06-17 12:00",
+    "groupId": 3,
+    "filterId": 322
+  },
+  {
+    "title": "[CG] Época Especial",
+    "start": "2023-07-20 09:00",
+    "end": "2023-07-20 12:00",
     "groupId": 3,
     "filterId": 322
   },
@@ -1068,10 +1266,40 @@
     "filterId": 324
   },
   {
+    "title": "[PL] Recurso",
+    "place": "CP2 - 1.01 + 1.03",
+    "start": "2023-06-13 14:30",
+    "end": "2023-06-13 17:30",
+    "groupId": 3,
+    "filterId": 324
+  },
+  {
+    "title": "[PL] Época Especial",
+    "start": "2023-07-13 09:00",
+    "end": "2023-07-13 12:00",
+    "groupId": 3,
+    "filterId": 324
+  },
+  {
     "title": "[ADI] Teste",
     "place": "CP1 - 0.20 | CP2 - 1.03 + 1.05",
     "start": "2023-05-25 00:00",
     "end": "2023-05-25 23:59",
+    "groupId": 3,
+    "filterId": 321
+  },
+  {
+    "title": "[ADI] Recurso",
+    "place": "CP2 - 0.20 + 1.01",
+    "start": "2023-06-15 14:30",
+    "end": "2023-06-15 17:30",
+    "groupId": 3,
+    "filterId": 321
+  },
+  {
+    "title": "[ADI] Época Especial",
+    "start": "2023-07-14 09:00",
+    "end": "2023-07-14 12:00",
     "groupId": 3,
     "filterId": 321
   },
@@ -1106,38 +1334,6 @@
     "end": "2023-05-30 23:59",
     "groupId": 3,
     "filterId": 328
-  },
-  {
-    "title": "[IPM] Recurso",
-    "place": "CP2 - 1.01 + 1.09",
-    "start": "2023-06-22 14:30",
-    "end": "2023-06-22 17:30",
-    "groupId": 3,
-    "filterId": 323
-  },
-  {
-    "title": "[CG] Recurso",
-    "place": "CP2 - 0.11 + 1.07 + 1.15",
-    "start": "2023-06-17 09:00",
-    "end": "2023-06-17 12:00",
-    "groupId": 3,
-    "filterId": 322
-  },
-  {
-    "title": "[PL] Recurso",
-    "place": "CP2 - 1.01 + 1.03",
-    "start": "2023-06-13 14:30",
-    "end": "2023-06-13 17:30",
-    "groupId": 3,
-    "filterId": 324
-  },
-  {
-    "title": "[ADI] Recurso",
-    "place": "CP2 - 0.20 + 1.01",
-    "start": "2023-06-15 14:30",
-    "end": "2023-06-15 17:30",
-    "groupId": 3,
-    "filterId": 321
   },
   {
     "title": "[SSI] Recurso",
@@ -1200,6 +1396,13 @@
     "place": "CP2 - 1.03 + 1.05 + 1.07",
     "start": "2023-06-15 09:00",
     "end": "2023-06-15 12:00",
+    "groupId": 1,
+    "filterId": 124
+  },
+  {
+    "title": "[Lógica] Época Especial",
+    "start": "2023-07-12 09:00",
+    "end": "2023-07-12 12:00",
     "groupId": 1,
     "filterId": 124
   }
