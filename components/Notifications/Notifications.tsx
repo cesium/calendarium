@@ -2,15 +2,14 @@ import React from "react";
 
 import data from "../../data/notifications.json";
 
-const Banner = ({ type, description, date }: any) => {
+const Banner = ({ type, description, date, isOpen }: any) => {
   const [isDismissed, setIsDismissed] = React.useState(true);
 
   React.useEffect(() => {
     const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
 
     // se a notificação foi dismissed
-    if (datesArray.includes(date)) setIsDismissed(true);
-    else setIsDismissed(false);
+    if (!datesArray.includes(date)) setIsDismissed(false);
   }, [date]);
 
   function handleDismiss(dismissed: boolean) {
@@ -25,7 +24,7 @@ const Banner = ({ type, description, date }: any) => {
   return (
     <div
       className={`${
-        isDismissed ? "translate-y-full" : ""
+        isDismissed || isOpen ? "translate-y-full" : ""
       } ease fixed inset-x-0 bottom-0 z-20 transform transition duration-300 sm:flex sm:justify-center sm:pb-4 lg:px-8`}
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium px-6 py-2.5 sm:rounded-2xl sm:py-3 sm:pl-4 sm:pr-3.5">
@@ -57,7 +56,7 @@ const Banner = ({ type, description, date }: any) => {
   );
 };
 
-const Notifications = () => {
+const Notifications = ({ isOpen }) => {
   const notifications = data;
 
   const currentDate = new Date();
@@ -81,6 +80,7 @@ const Notifications = () => {
               type={notification.type}
               description={notification.description}
               date={notification.date}
+              isOpen={isOpen}
             />
           );
         })}
