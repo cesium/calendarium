@@ -25,7 +25,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
     setSelectedFilters(stored);
     handleFilters(stored);
-  }, []);
+  }, [handleFilters]);
 
   // Arrays for each group and subgroup to build the filter
 

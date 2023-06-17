@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Sidebar from "../Sidebar";
+import Notifications from "../Notifications";
 
 import styles from "./layout.module.scss";
 
@@ -44,6 +45,8 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
           }`}
         />
       </button>
+
+      <Notifications />
 
       <div className="px-8 pt-8 lg:hidden">
         <div
