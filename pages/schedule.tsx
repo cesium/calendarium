@@ -104,7 +104,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     });
 
     setEvents(formatedEvents);
-  }, [shifts, selectedFilters, filters]);
+  }, [shifts, selectedFilters]);
 
   useEffect(() => {
     formatEvents();

@@ -13,7 +13,7 @@ function EventFilters({ filters, handleFilters }) {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
     handleFilters(stored);
-  }, [handleFilters]);
+  }, []);
 
   let event: {
     map: any;
