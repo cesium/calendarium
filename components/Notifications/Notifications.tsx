@@ -8,7 +8,7 @@ const Banner = ({ type, description, date, isOpen }: any) => {
   React.useEffect(() => {
     const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
 
-    // se a notificação foi dismissed
+    // se a notificação não foi dismissed
     if (!datesArray.includes(date)) setIsDismissed(false);
   }, [date]);
 
@@ -25,9 +25,9 @@ const Banner = ({ type, description, date, isOpen }: any) => {
     <div
       className={`${
         isDismissed || isOpen ? "translate-y-full" : ""
-      } ease fixed inset-x-0 bottom-0 z-20 transform transition duration-300 sm:flex sm:justify-center sm:pb-4 lg:px-8`}
+      } ease fixed inset-x-0 bottom-0 z-20 transform transition duration-300 sm:flex sm:justify-center sm:pb-4`}
     >
-      <div className="flex items-center justify-between gap-x-6 bg-cesium px-6 py-2.5 sm:rounded-2xl sm:py-3 sm:pl-4 sm:pr-3.5">
+      <div className="flex items-center justify-between gap-x-6 bg-cesium px-6 py-2.5 sm:rounded-2xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="select-none text-sm leading-6 text-white">
           <a>
             <strong className="font-semibold">
@@ -49,7 +49,7 @@ const Banner = ({ type, description, date, isOpen }: any) => {
           className="-m-1.5 flex-none p-1.5"
           onClick={() => handleDismiss(true)}
         >
-          <i className="bi bi-x-circle" style={{ color: "white" }} />
+          <i className="bi bi-x-circle text-white" />
         </button>
       </div>
     </div>
@@ -58,7 +58,6 @@ const Banner = ({ type, description, date, isOpen }: any) => {
 
 const Notifications = ({ isOpen }) => {
   const notifications = data;
-
   const currentDate = new Date();
 
   return (
