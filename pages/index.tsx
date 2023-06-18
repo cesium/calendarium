@@ -57,6 +57,17 @@ export default function Home({ events, filters }) {
     setInspectEvent(!inspectEvent);
   };
 
+  function reduceOpacity(hexColor) {
+    // Convert HEX color code to RGBA color code
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5, 7), 16);
+    let a = 0.25; // 25% opacity
+    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    return rgbaColor;
+  }
+
   const colors = [
     "#f07c54",
     "#f0c954",
@@ -75,7 +86,15 @@ export default function Home({ events, filters }) {
     eventTimeRangeFormat: () => {
       return "";
     },
+    timeGutterFormat: (date, culture, localizer) =>
+      localizer.format(date, "h A", culture).replace(/^0+/, ""),
   };
+
+  const minDate = new Date();
+  minDate.setHours(8, 0, 0);
+
+  const maxDate = new Date();
+  maxDate.setHours(20, 0, 0);
 
   return (
     <Layout
@@ -92,25 +111,25 @@ export default function Home({ events, filters }) {
 
         <div id="APP" className={styles.calendar}>
           <Calendar
+            className={styles.react_big_calendar}
             localizer={localizer}
             selected={selectedEvent}
             onSelectEvent={(event) => handleSelection(event)}
             defaultDate={new Date()}
             defaultView="month"
-            views={["day", "week", "month"]}
+            views={["week", "month"]}
+            min={minDate}
+            max={maxDate}
             eventPropGetter={(event: { title; start; end; groupId }) => {
               const newStyle = {
-                backgroundColor: colors[event.groupId],
-                fontWeight: "500",
-                borderRadius: "10px",
-                border: "2px solid white",
+                backgroundColor: reduceOpacity(colors[event.groupId]),
+                color: colors[event.groupId],
               };
 
               return { style: newStyle };
             }}
             formats={formats}
             events={Events}
-            style={{ fontFamily: "Inter" }}
           />
         </div>
 

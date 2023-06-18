@@ -69,6 +69,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       eventTimeRangeFormat: () => {
         return "";
       },
+      timeGutterFormat: (date, culture, localizer) =>
+        localizer.format(date, "h A", culture).replace(/^0+/, ""),
     }),
     []
   );
@@ -116,6 +118,17 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
+  function reduceOpacity(hexColor) {
+    // Convert HEX color code to RGBA color code
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5, 7), 16);
+    let a = 0.25; // 25% opacity
+    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    return rgbaColor;
+  }
+
   return (
     <Layout
       isHome={false}
@@ -146,8 +159,9 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               const newStyle = {
                 border: "0.2rem solid white",
                 backgroundColor: event.theoretical
-                  ? "var(--orange)"
-                  : "#c65932",
+                  ? reduceOpacity("#ed7950")
+                  : reduceOpacity("#c65932"),
+                color: event.theoretical ? "#ed7950" : "#c65932",
                 fontWeight: "500",
                 padding: "0.5rem",
                 borderRadius: "12px",
