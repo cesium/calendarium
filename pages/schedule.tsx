@@ -170,6 +170,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               return { style: newStyle };
             }}
             formats={formats}
+            dayLayoutAlgorithm={"overlap"}
             events={events}
             className={styles.schedule_style}
           />

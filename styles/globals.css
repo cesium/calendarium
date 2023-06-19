@@ -104,12 +104,20 @@ a {
 }
 
 .rbc-calendar .rbc-toolbar {
+  flex-wrap: nowrap;
   font-weight: 500;
 }
 
 .rbc-calendar .rbc-month-view {
+  overflow: hidden;
   border: 1px solid rgb(203 213 225);
   border-radius: 8px;
+}
+
+.rbc-calendar .rbc-toolbar .rbc-toolbar-label {
+  @media (max-width: 640px) {
+    font-size: small;
+  }
 }
 
 .rbc-calendar .rbc-toolbar button {
@@ -287,11 +295,11 @@ a {
 }
 
 .rbc-calendar .rbc-show-more {
-  background-color: rgba(0, 0, 0, 0);
-  font-weight: 400;
-  font-size: 12px;
   margin-left: 5px;
+  font-size: 12px;
+  font-weight: 400;
   color: rgb(107 114 128);
+  background-color: rgba(0, 0, 0, 0);
 
   @media (max-width: 640px) {
     font-size: 8px;
