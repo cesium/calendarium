@@ -69,17 +69,17 @@ export default function Home({ events, filters }) {
   }
 
   const colors = [
-    "#f07c54",
-    "#f0c954",
-    "#7b54f0",
-    "#f0547b",
-    "#5ac77b",
-    "#5532a8",
-    "#b70a0a",
-    "#3408fd",
-    "#642580",
-    "#FF0000",
-    "#1B69EE",
+    "#f07c54", // cesium
+    "#4BC0D9", // 1st year
+    "#7b54f0", // 2nd year
+    "#f0547b", // 3rd year
+    "#5ac77b", // 4th year
+    "#395B50", // 5th year
+    "#b70a0a", // uminho
+    "#3408fd", // sei
+    "#642580", // coderdojo
+    "#FF0000", // join
+    "#1B69EE", // jordi
   ];
 
   const formats = {

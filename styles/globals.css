@@ -215,8 +215,8 @@ a {
 .rbc-calendar .rbc-events-container .rbc-event {
   margin: auto;
   font-weight: 500;
-  border: 2px solid white;
-  border-radius: 8px;
+  border: 3px solid white;
+  border-radius: 10px;
 }
 
 .rbc-calendar .rbc-events-container .rbc-event-content {
@@ -281,7 +281,7 @@ a {
   font-weight: 500;
 }
 
-.rbc-calendar .rbc-event.rbc-event-allday {
+.rbc-calendar .rbc-allday-cell .rbc-event.rbc-event-allday {
   margin-top: 0.25rem;
   margin-bottom: 0;
 }
