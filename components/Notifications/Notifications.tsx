@@ -2,24 +2,31 @@ import React from "react";
 
 import data from "../../data/notifications.json";
 
-const Banner = ({ type, description, date, isOpen }: any) => {
+const Banner = ({
+  type,
+  description,
+  date,
+  isOpen,
+  isMultiple,
+  handleDismissAll,
+  allDismissed,
+}: any) => {
   const [isDismissed, setIsDismissed] = React.useState(true);
 
-  React.useEffect(() => {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
-
-    // if notification not dismissed
-    if (!datesArray.includes(date)) setIsDismissed(false);
-  }, [date]);
-
-  function handleDismiss(dismissed: boolean) {
-    setIsDismissed(dismissed);
+  function handleDismiss() {
+    setIsDismissed(true);
 
     // saves notification to local storage
     let datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
     datesArray.push(date);
     localStorage.setItem("notifications", JSON.stringify(datesArray));
   }
+
+  React.useEffect(() => {
+    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+    if (allDismissed || datesArray.includes(date)) setIsDismissed(true);
+    else setIsDismissed(false);
+  }, [allDismissed, date]);
 
   return (
     <div
@@ -43,36 +50,81 @@ const Banner = ({ type, description, date, isOpen }: any) => {
             {description}
           </a>
         </div>
-        <button
-          title="Dismiss"
-          type="button"
-          className="-m-1.5 flex-none p-1.5"
-          onClick={() => handleDismiss(true)}
-        >
-          <i className="bi bi-x-circle text-white" />
-        </button>
+        <div>
+          {isMultiple && (
+            <>
+              <button
+                title="Dismiss All"
+                type="button"
+                className="-m-1.5 mr-0.5 flex-none p-1.5"
+                onClick={() => handleDismissAll()}
+              >
+                <i className="bi bi-bell-slash text-white"></i>
+              </button>{" "}
+            </>
+          )}
+          <button
+            title="Dismiss"
+            type="button"
+            className="-m-1.5 flex-none p-1.5"
+            onClick={() => handleDismiss()}
+          >
+            <i className="bi bi-x-circle-fill text-white" />
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 const Notifications = ({ isOpen }) => {
+  const [allDismissed, setAllDismissed] = React.useState(false);
+
   const notifications = data;
   const currentDate = new Date();
+
+  let datesArray = [];
+
+  React.useEffect(() => {
+    datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+  });
+
+  function handleDismissAll() {
+    setAllDismissed(true);
+
+    localStorage.setItem(
+      "notifications",
+      JSON.stringify(
+        notifications
+          .filter((not) => {
+            const difMs = currentDate.getTime() - Date.parse(not.date);
+            const difDays = difMs / (1000 * 3600 * 24);
+            return (
+              difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date)
+            );
+          })
+          .map((not) => not.date)
+      )
+    );
+  }
 
   return (
     <>
       {notifications
         // filters notifications that were published in the last 7 days
+        // filters notifications that were already dismissed
         .filter((not) => {
           const difMs = currentDate.getTime() - Date.parse(not.date);
           const difDays = difMs / (1000 * 3600 * 24);
-          return difDays >= 0 && difDays <= 7;
+          return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
         })
         // orders notifications by date
         .sort((a, b) => (Date.parse(a.date) < Date.parse(b.date) ? -1 : 1))
         // maps notifications to Banner component
         .map((notification, index: number) => {
+          let isMultiple = true;
+          if (index === 0) isMultiple = false;
+
           return (
             <Banner
               key={index}
@@ -80,6 +132,9 @@ const Notifications = ({ isOpen }) => {
               description={notification.description}
               date={notification.date}
               isOpen={isOpen}
+              isMultiple={isMultiple}
+              handleDismissAll={handleDismissAll}
+              allDismissed={allDismissed}
             />
           );
         })}
