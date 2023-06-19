@@ -74,7 +74,7 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
 
       <div
         className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${
-          isOpen ? "" : "translate-y-full"
+          !isOpen && "translate-y-full"
         }`}
       >
         <button
