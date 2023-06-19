@@ -50,13 +50,13 @@ const Banner = ({
             {description}
           </a>
         </div>
-        <div>
+        <div className="flex justify-between gap-x-5 sm:gap-x-3">
           {isMultiple && (
             <>
               <button
                 title="Dismiss All"
                 type="button"
-                className="-m-1.5 mr-0.5 flex-none p-1.5"
+                className="-m-1.5 mr-0.5 flex-none"
                 onClick={() => handleDismissAll()}
               >
                 <i className="bi bi-bell-slash text-white"></i>
