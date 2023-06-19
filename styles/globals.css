@@ -113,11 +113,11 @@ a {
 }
 
 .rbc-calendar .rbc-toolbar button {
+  font-weight: 500;
   color: #111827;
   border: 1px solid rgb(203 213 225);
-  box-shadow: none;
   border-radius: 8px;
-  font-weight: 500;
+  box-shadow: none;
 }
 
 .rbc-calendar .rbc-toolbar button:hover {
@@ -156,9 +156,9 @@ a {
 }
 
 .rbc-calendar .rbc-header {
-  color: #374151;
-  font-weight: 500;
   padding: 0.15rem;
+  font-weight: 500;
+  color: #374151;
 }
 
 .rbc-calendar .rbc-off-range-bg {
@@ -170,9 +170,9 @@ a {
 }
 
 .rbc-calendar .rbc-date-cell {
-  text-align: left;
   padding: 5px 0 5px 9px;
   font-size: small;
+  text-align: left;
 }
 
 .rbc-calendar .rbc-month-row {
@@ -192,12 +192,12 @@ a {
 }
 
 .rbc-calendar .rbc-row-segment .rbc-event {
-  font-weight: 500;
-  border-radius: 8px;
   width: calc(100% - 0.5rem);
   margin: auto;
   margin-bottom: 0.25rem;
+  font-weight: 500;
   border: none;
+  border-radius: 8px;
 }
 
 .rbc-calendar .rbc-today {
@@ -213,10 +213,10 @@ a {
 }
 
 .rbc-calendar .rbc-events-container .rbc-event {
-  font-weight: 500;
-  border-radius: 8px;
   margin: auto;
+  font-weight: 500;
   border: 2px solid white;
+  border-radius: 8px;
 }
 
 .rbc-calendar .rbc-events-container .rbc-event-content {
@@ -232,9 +232,9 @@ a {
 }
 
 .rbc-calendar .rbc-current-time-indicator {
-  border-radius: 100%;
   height: 2px;
   background-color: var(--orange);
+  border-radius: 12px;
 }
 
 .rbc-calendar .rbc-time-view-resources .rbc-time-header-gutter {
@@ -266,17 +266,39 @@ a {
 }
 
 .rbc-calendar .rbc-time-view {
-  border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgb(203 213 225);
+  border-radius: 8px;
 }
 
 .rbc-calendar .rbc-label {
-  text-align: left;
   font-size: small;
   color: rgb(55 65 81);
+  text-align: left;
 }
 
 .rbc-calendar .rbc-row.rbc-time-header-cell .rbc-button-link {
   font-weight: 500;
+}
+
+.rbc-calendar .rbc-event.rbc-event-allday {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.rbc-calendar .rbc-show-more {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 5px;
+  color: rgb(107 114 128);
+
+  @media (max-width: 640px) {
+    font-size: 8px;
+  }
+}
+
+.rbc-calendar .rbc-show-more:hover,
+.rbc-show-more:focus {
+  opacity: 75%;
 }
