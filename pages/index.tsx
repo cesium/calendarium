@@ -6,7 +6,7 @@ import Head from "next/head";
 
 import moment from "moment-timezone";
 
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, Navigate, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
@@ -96,6 +96,48 @@ export default function Home({ events, filters }) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
+  const CustomToolbar = ({ label, onNavigate, onView }) => {
+    const [activeView, setActiveView] = useState("month");
+
+    const handleViewChange = (view) => {
+      onView(view);
+      setActiveView(view);
+    };
+
+    return (
+      <div className="rbc-toolbar">
+        <span className="rbc-btn-group">
+          <button type="button" onClick={() => onNavigate(Navigate.TODAY)}>
+            <i className="bi bi-calendar3-event"></i>
+          </button>
+          <button type="button" onClick={() => onNavigate(Navigate.PREVIOUS)}>
+            <i className="bi bi-caret-left-fill"></i>
+          </button>
+          <button type="button" onClick={() => onNavigate(Navigate.NEXT)}>
+            <i className="bi bi-caret-right-fill"></i>
+          </button>
+        </span>
+        <span className="rbc-toolbar-label">{label}</span>
+        <span className="rbc-btn-group">
+          <button
+            type="button"
+            className={activeView === "week" && "rbc-active"}
+            onClick={() => handleViewChange("week")}
+          >
+            <i className="bi bi-calendar3-week"></i>
+          </button>
+          <button
+            type="button"
+            className={activeView === "month" && "rbc-active"}
+            onClick={() => handleViewChange("month")}
+          >
+            <i className="bi bi-calendar3"></i>
+          </button>
+        </span>
+      </div>
+    );
+  };
+
   return (
     <Layout
       isHome
@@ -129,7 +171,11 @@ export default function Home({ events, filters }) {
               return { style: newStyle };
             }}
             formats={formats}
+            dayLayoutAlgorithm={"no-overlap"}
             events={Events}
+            components={{
+              toolbar: CustomToolbar,
+            }}
           />
         </div>
 
