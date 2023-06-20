@@ -68,7 +68,7 @@ Where `<branch>` is the name of your branch.
 > Check out the `filterId` of each class by searching its name on `shifts.json` or checking the `id` parameter in `filters.json`.
 
 > **Note**
-> For all-day events, `start` and `end` should be equal and composed of: `<event-date> 00:00`. And for multiple-days events: `start: <event-start-date> 00:00` & `end: <event-end-date> 23:59`. Check out the example bellow.
+> For all-day events, `start` and `end` should be equal and composed of: `<event-date> 00:00`. And for multiple-days events: `start: <event-start-date> 00:00` & `end: <event-end-date> 23:59`. Check out the example below.
 
 Check out this example:
 
