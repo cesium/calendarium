@@ -294,6 +294,11 @@ a {
   margin-bottom: 0;
 }
 
+.rbc-calendar .rbc-allday-cell .rbc-event {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
 .rbc-calendar .rbc-show-more {
   margin-left: 5px;
   font-size: 12px;

@@ -152,7 +152,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             onSelectEvent={(shift) => handleSelection(shift)}
             defaultDate={new Date()}
             defaultView={"work_week"}
-            views={["day", "work_week"]}
+            views={["work_week"]}
             min={minDate}
             max={maxDate}
             eventPropGetter={(event) => {

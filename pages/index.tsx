@@ -159,7 +159,7 @@ export default function Home({ events, filters }) {
             onSelectEvent={(event) => handleSelection(event)}
             defaultDate={new Date()}
             defaultView="month"
-            views={["week", "month"]}
+            views={["day", "week", "month"]}
             min={minDate}
             max={maxDate}
             eventPropGetter={(event: { title; start; end; groupId }) => {
