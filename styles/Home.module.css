@@ -19,3 +19,7 @@
     height: calc(100vh - 9.2rem);
   }
 }
+
+.react_big_calendar {
+  font-family: Inter;
+}
