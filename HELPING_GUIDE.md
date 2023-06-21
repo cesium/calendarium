@@ -56,7 +56,7 @@ Where `<branch>` is the name of your branch.
 **Understanding `events.json`**
 
 - `title` - event title
-- `place` - where the event takes place (optional)
+- `place` - where the event takes place _(optional)_
 - `start` - **date and time** of when the event starts
 - `end` - **date and time** of when the event ends
 - `groupId` - an ID composed of the course year
@@ -66,6 +66,9 @@ Where `<branch>` is the name of your branch.
 > The `filterId` is composed of: `<course-year><course-semester><curricular-unit-number>`.
 > For example: `221` (Bases de Dados).
 > Check out the `filterId` of each class by searching its name on `shifts.json` or checking the `id` parameter in `filters.json`.
+
+> **Note**
+> For all-day events, `start` and `end` should be equal and composed of: `<event-date> 00:00`. And for multiple-days events: `start: <event-start-date> 00:00` & `end: <event-end-date> 23:59`. Check out the example below.
 
 Check out this example:
 
@@ -77,6 +80,30 @@ Check out this example:
   "end": "2023-04-12 20:30",
   "groupId": 1,
   "filterId": 124
+}
+```
+
+For All-Day events:
+
+```json
+{
+  "title": "[POO] Entrega TP",
+  "start": "2023-05-14 00:00",
+  "end": "2023-05-14 00:00",
+  "groupId": 2,
+  "filterId": 224
+}
+```
+
+For Multiple-Days events:
+
+```json
+{
+  "title": "[POO] Apresentação TP",
+  "start": "2023-05-15 00:00",
+  "end": "2023-05-19 23:59",
+  "groupId": 2,
+  "filterId": 224
 }
 ```
 

@@ -6,7 +6,7 @@ import Head from "next/head";
 
 import moment from "moment-timezone";
 
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, Navigate, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
@@ -57,24 +57,85 @@ export default function Home({ events, filters }) {
     setInspectEvent(!inspectEvent);
   };
 
+  function reduceOpacity(hexColor) {
+    // Convert HEX color code to RGBA color code
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5, 7), 16);
+    let a = 0.25; // 25% opacity
+    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    return rgbaColor;
+  }
+
   const colors = [
-    "#f07c54",
-    "#f0c954",
-    "#7b54f0",
-    "#f0547b",
-    "#5ac77b",
-    "#5532a8",
-    "#b70a0a",
-    "#3408fd",
-    "#642580",
-    "#FF0000",
-    "#1B69EE",
+    "#f07c54", // cesium
+    "#4BC0D9", // 1st year
+    "#7b54f0", // 2nd year
+    "#f0547b", // 3rd year
+    "#5ac77b", // 4th year
+    "#395B50", // 5th year
+    "#b70a0a", // uminho
+    "#3408fd", // sei
+    "#642580", // coderdojo
+    "#FF0000", // join
+    "#1B69EE", // jordi
   ];
 
   const formats = {
     eventTimeRangeFormat: () => {
       return "";
     },
+    timeGutterFormat: (date, culture, localizer) =>
+      localizer.format(date, "h A", culture).replace(/^0+/, ""),
+  };
+
+  const minDate = new Date();
+  minDate.setHours(8, 0, 0);
+
+  const maxDate = new Date();
+  maxDate.setHours(20, 0, 0);
+
+  const CustomToolbar = ({ label, onNavigate, onView }) => {
+    const [activeView, setActiveView] = useState("month");
+
+    const handleViewChange = (view) => {
+      onView(view);
+      setActiveView(view);
+    };
+
+    return (
+      <div className="rbc-toolbar">
+        <span className="rbc-btn-group">
+          <button type="button" onClick={() => onNavigate(Navigate.TODAY)}>
+            <i className="bi bi-calendar3-event"></i>
+          </button>
+          <button type="button" onClick={() => onNavigate(Navigate.PREVIOUS)}>
+            <i className="bi bi-caret-left-fill"></i>
+          </button>
+          <button type="button" onClick={() => onNavigate(Navigate.NEXT)}>
+            <i className="bi bi-caret-right-fill"></i>
+          </button>
+        </span>
+        <span className="rbc-toolbar-label">{label}</span>
+        <span className="rbc-btn-group">
+          <button
+            type="button"
+            className={activeView === "week" && "rbc-active"}
+            onClick={() => handleViewChange("week")}
+          >
+            <i className="bi bi-calendar3-week"></i>
+          </button>
+          <button
+            type="button"
+            className={activeView === "month" && "rbc-active"}
+            onClick={() => handleViewChange("month")}
+          >
+            <i className="bi bi-calendar3"></i>
+          </button>
+        </span>
+      </div>
+    );
   };
 
   return (
@@ -92,25 +153,29 @@ export default function Home({ events, filters }) {
 
         <div id="APP" className={styles.calendar}>
           <Calendar
+            className={styles.react_big_calendar}
             localizer={localizer}
             selected={selectedEvent}
             onSelectEvent={(event) => handleSelection(event)}
             defaultDate={new Date()}
             defaultView="month"
             views={["day", "week", "month"]}
+            min={minDate}
+            max={maxDate}
             eventPropGetter={(event: { title; start; end; groupId }) => {
               const newStyle = {
-                backgroundColor: colors[event.groupId],
-                fontWeight: "500",
-                borderRadius: "10px",
-                border: "2px solid white",
+                backgroundColor: reduceOpacity(colors[event.groupId]),
+                color: colors[event.groupId],
               };
 
               return { style: newStyle };
             }}
             formats={formats}
+            dayLayoutAlgorithm={"no-overlap"}
             events={Events}
-            style={{ fontFamily: "Inter" }}
+            components={{
+              toolbar: CustomToolbar,
+            }}
           />
         </div>
 
