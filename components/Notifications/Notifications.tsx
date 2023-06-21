@@ -9,12 +9,15 @@ const Banner = ({
   isOpen,
   isMultiple,
   handleDismissAll,
-  allDismissed,
+  index,
+  total,
+  setTotal,
 }: any) => {
   const [isDismissed, setIsDismissed] = React.useState(true);
 
   function handleDismiss() {
-    setIsDismissed(true);
+    // decrements total notifications
+    setTotal(total - 1);
 
     // saves notification to local storage
     let datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
@@ -23,10 +26,10 @@ const Banner = ({
   }
 
   React.useEffect(() => {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
-    if (allDismissed || datesArray.includes(date)) setIsDismissed(true);
-    else setIsDismissed(false);
-  }, [allDismissed, date]);
+    // notification on top -> visible
+    // notification not on top / dismissed -> hidden
+    setIsDismissed(total - 1 !== index);
+  }, [total, index]);
 
   return (
     <div
@@ -78,30 +81,33 @@ const Banner = ({
 };
 
 const Notifications = ({ isOpen }) => {
-  const [allDismissed, setAllDismissed] = React.useState(false);
-
-  const notifications = data;
-  const currentDate = new Date();
-
-  let datesArray = [];
+  const [datesArray, setDatesArray] = React.useState([]);
 
   React.useEffect(() => {
-    datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
-  });
+    setDatesArray(JSON.parse(localStorage.getItem("notifications")) || []);
+  }, []);
+
+  const currentDate = new Date();
+  const notifications = data
+    // filters notifications that were published in the last 7 days
+    // filters notifications that were already dismissed
+    .filter((not) => {
+      const difMs = currentDate.getTime() - Date.parse(not.date);
+      const difDays = difMs / (1000 * 3600 * 24);
+      return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
+    });
+
+  const [total, setTotal] = React.useState(notifications.length);
 
   function handleDismissAll() {
-    setAllDismissed(true);
+    setTotal(0);
 
     localStorage.setItem(
       "notifications",
       JSON.stringify(
         notifications
           .filter((not) => {
-            const difMs = currentDate.getTime() - Date.parse(not.date);
-            const difDays = difMs / (1000 * 3600 * 24);
-            return (
-              difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date)
-            );
+            return !datesArray.includes(not.date);
           })
           .map((not) => not.date)
       )
@@ -111,13 +117,6 @@ const Notifications = ({ isOpen }) => {
   return (
     <>
       {notifications
-        // filters notifications that were published in the last 7 days
-        // filters notifications that were already dismissed
-        .filter((not) => {
-          const difMs = currentDate.getTime() - Date.parse(not.date);
-          const difDays = difMs / (1000 * 3600 * 24);
-          return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
-        })
         // orders notifications by date
         .sort((a, b) => (Date.parse(a.date) < Date.parse(b.date) ? -1 : 1))
         // maps notifications to Banner component
@@ -134,7 +133,9 @@ const Notifications = ({ isOpen }) => {
               isOpen={isOpen}
               isMultiple={isMultiple}
               handleDismissAll={handleDismissAll}
-              allDismissed={allDismissed}
+              index={index}
+              total={total}
+              setTotal={setTotal}
             />
           );
         })}

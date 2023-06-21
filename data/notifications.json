@@ -3,5 +3,10 @@
     "type": "Events",
     "description": "LEI - Exames de Época Especial adicionados",
     "date": "2023-06-16 19:02"
+  },
+  {
+    "type": "Updates",
+    "description": "Nova UI & UX Melhorada!",
+    "date": "2023-06-21 23:00"
   }
 ]
