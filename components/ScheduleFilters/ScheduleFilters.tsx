@@ -161,14 +161,14 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {lei.map((y, index1) => (
-          <Panel header={y} key={index1 + 1}>
+          <Panel header={y} key={index1 + Math.random()}>
             <Collapse
               className={styles.sub_checkbox}
               bordered={false}
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={index2}>
+                <Panel header={s} key={index2 + Math.random()}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
@@ -180,23 +180,25 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                           <>
                             <CheckedIndicator filter={filter} />
                             <Panel header={filter.name} key={filter.id}>
-                              {filter.shifts.map((shiftOption) => (
-                                <div key={filter.id + 1}>
-                                  <Checkbox
-                                    key={filter.id}
-                                    onChange={() =>
-                                      handleToggle(filter.id, shiftOption)
-                                    }
-                                    type="checkbox"
-                                    checked={isChecked({
-                                      id: filter.id,
-                                      shift: shiftOption,
-                                    })}
-                                  >
-                                    {shiftOption}
-                                  </Checkbox>
-                                </div>
-                              ))}
+                              {filter.shifts.map(
+                                (shiftOption, index: number) => (
+                                  <div key={filter.id + index}>
+                                    <Checkbox
+                                      key={filter.id + index + 1}
+                                      onChange={() =>
+                                        handleToggle(filter.id, shiftOption)
+                                      }
+                                      type="checkbox"
+                                      checked={isChecked({
+                                        id: filter.id,
+                                        shift: shiftOption,
+                                      })}
+                                    >
+                                      {shiftOption}
+                                    </Checkbox>
+                                  </div>
+                                )
+                              )}
                             </Panel>
                           </>
                         )
@@ -213,14 +215,14 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {mei.map((y, index1) => (
-          <Panel header={y} key={index1 + 1}>
+          <Panel header={y} key={index1 + Math.random()}>
             <Collapse
               className={styles.sub_sub_checkbox}
               bordered={false}
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={index2}>
+                <Panel header={s} key={index2 + Math.random()}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
@@ -232,23 +234,25 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
                           <>
                             <CheckedIndicator filter={filter} />
                             <Panel header={filter.name} key={filter.id}>
-                              {filter.shifts.map((shiftOption) => (
-                                <div key={filter.id + 1}>
-                                  <Checkbox
-                                    key={filter.id}
-                                    onChange={() =>
-                                      handleToggle(filter.id, shiftOption)
-                                    }
-                                    type="checkbox"
-                                    checked={isChecked({
-                                      id: filter.id,
-                                      shift: shiftOption,
-                                    })}
-                                  >
-                                    {shiftOption}
-                                  </Checkbox>
-                                </div>
-                              ))}
+                              {filter.shifts.map(
+                                (shiftOption, index: number) => (
+                                  <div key={filter.id + index}>
+                                    <Checkbox
+                                      key={filter.id + index + 1}
+                                      onChange={() =>
+                                        handleToggle(filter.id, shiftOption)
+                                      }
+                                      type="checkbox"
+                                      checked={isChecked({
+                                        id: filter.id,
+                                        shift: shiftOption,
+                                      })}
+                                    >
+                                      {shiftOption}
+                                    </Checkbox>
+                                  </div>
+                                )
+                              )}
                             </Panel>
                           </>
                         )
@@ -295,13 +299,13 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
         {others.map((filter) => (
           <CheckedIndicator filter={filter} key={filter.id} />
         ))}
-        <Panel header="Others" key="0">
+        <Panel header="Others" key={Math.random()}>
           {others.map(
-            (filter) =>
+            (filter, index) =>
               !filter.shifts?.length && (
                 <div style={{ fontWeight: 400 }}>
                   <Checkbox
-                    key={filter.id}
+                    key={filter.id + index}
                     onChange={() => {
                       handleToggle(filter.id);
                     }}

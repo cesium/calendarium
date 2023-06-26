@@ -110,7 +110,7 @@ function EventFilters({ filters, handleFilters }) {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {lei.map((b, index1) => (
-          <Panel header={b} key={index1 + 1}>
+          <Panel header={b} key={index1 + Math.random()}>
             <Collapse
               className={styles.sub_checkbox}
               bordered={false}
@@ -119,7 +119,7 @@ function EventFilters({ filters, handleFilters }) {
               {semesters.map((s, index2) => (
                 <>
                   <CheckedIndicator index={event_index(0, index1, index2)} />
-                  <Panel header={s} key={index2 + 1}>
+                  <Panel header={s} key={index2 + Math.random()}>
                     <React.Fragment key={-1}>
                       <div
                         style={{
@@ -157,7 +157,7 @@ function EventFilters({ filters, handleFilters }) {
                           },
                           index3: number
                         ) => (
-                          <React.Fragment key={index3}>
+                          <React.Fragment key={index3 + Math.random()}>
                             <div>
                               <Checkbox
                                 onChange={() => handleToggle(value.id)}
@@ -188,13 +188,13 @@ function EventFilters({ filters, handleFilters }) {
       {/* 4º ano */}
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
-        <Panel header={mei[0]} key={0}>
+        <Panel header={mei[0]} key={Math.random()}>
           <Collapse className={styles.sub_checkbox} bordered={false} accordion>
             {semesters.map((s, index2) => (
               <>
                 <CheckedIndicator index={event_index(1, 0, index2)} />
-                <Panel header={s} key={index2 + 1}>
-                  <React.Fragment key={-1}>
+                <Panel header={s} key={index2 + Math.random()}>
+                  <React.Fragment key={index2 + 1 + Math.random()}>
                     <div
                       style={{
                         padding: "0 0 5px 0",
@@ -231,7 +231,7 @@ function EventFilters({ filters, handleFilters }) {
                         },
                         index3: number
                       ) => (
-                        <React.Fragment key={index3}>
+                        <React.Fragment key={index3 + Math.random()}>
                           <div>
                             <Checkbox
                               onChange={() => handleToggle(value.id)}
@@ -257,7 +257,7 @@ function EventFilters({ filters, handleFilters }) {
 
         <>
           <CheckedIndicator index={8} />
-          <Panel header={mei[1]} key={1}>
+          <Panel header={mei[1]} key={Math.random()}>
             <div style={{ fontWeight: 400 }}>
               {event[8]?.map(
                 (
@@ -269,7 +269,7 @@ function EventFilters({ filters, handleFilters }) {
                   },
                   index: number
                 ) => (
-                  <React.Fragment key={index}>
+                  <React.Fragment key={index + Math.random()}>
                     <div>
                       <Checkbox
                         onChange={() => handleToggle(value.id)}
@@ -293,7 +293,7 @@ function EventFilters({ filters, handleFilters }) {
 
       <Collapse className={styles.checkbox} bordered={false}>
         <CheckedIndicator index={9} />
-        <Panel header="Others" key="">
+        <Panel header="Others" key={Math.random()}>
           <div style={{ fontWeight: 400 }}>
             {event[9]?.map(
               (
@@ -305,7 +305,7 @@ function EventFilters({ filters, handleFilters }) {
                 },
                 index: number
               ) => (
-                <React.Fragment key={index}>
+                <React.Fragment key={index + Math.random()}>
                   <div>
                     <Checkbox
                       onChange={() => handleToggle(value.id)}

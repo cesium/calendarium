@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Sidebar from "../Sidebar";
+import Notifications from "../Notifications";
 
 import styles from "./layout.module.scss";
 
@@ -45,6 +46,8 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
         />
       </button>
 
+      <Notifications isOpen={isOpen} />
+
       <div className="px-8 pt-8 lg:hidden">
         <div
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
@@ -69,7 +72,11 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
         />
       </div>
 
-      <div className={`z-20 lg:block ${isOpen ? "block" : "hidden"}`}>
+      <div
+        className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${
+          !isOpen && "translate-y-full"
+        }`}
+      >
         <button
           onClick={() => window.open("https://forms.gle/C2uxuUKqoeqMWfcZ6")}
           className={styles.buttonBug}

@@ -39,7 +39,7 @@ const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
       style={{ direction: "rtl" }}
     >
       <div className="grid-cols-1 space-y-6" style={{ direction: "ltr" }}>
-        <div className="flex hidden lg:block">
+        <div className="hidden lg:block">
           <div
             style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
           >

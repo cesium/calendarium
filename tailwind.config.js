@@ -8,6 +8,9 @@ module.exports = {
       spacing: {
         mobile: "calc(100vh - 5.2rem)",
       },
+      colors: {
+        cesium: "#ed7950",
+      },
     },
   },
   darkMode: "media",
