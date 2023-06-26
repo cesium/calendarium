@@ -11,18 +11,17 @@ const Banner = ({
   handleDismissAll,
   index,
   total,
-  setTotal,
+  update,
 }: any) => {
   const [isDismissed, setIsDismissed] = React.useState(true);
 
   function handleDismiss() {
-    // decrements total notifications
-    setTotal(total - 1);
-
     // saves notification to local storage
     let datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
     datesArray.push(date);
     localStorage.setItem("notifications", JSON.stringify(datesArray));
+
+    update();
   }
 
   React.useEffect(() => {
@@ -60,7 +59,10 @@ const Banner = ({
                 title="Dismiss All"
                 type="button"
                 className="-m-1.5 mr-0.5 flex-none"
-                onClick={() => handleDismissAll()}
+                onClick={() => {
+                  setIsDismissed(true);
+                  setTimeout(handleDismissAll, 300);
+                }}
               >
                 <i className="bi bi-bell-slash text-white"></i>
               </button>{" "}
@@ -70,7 +72,10 @@ const Banner = ({
             title="Dismiss"
             type="button"
             className="-m-1.5 flex-none p-1.5"
-            onClick={() => handleDismiss()}
+            onClick={() => {
+              setIsDismissed(true);
+              setTimeout(handleDismiss, 300);
+            }}
           >
             <i className="bi bi-x-circle-fill text-white" />
           </button>
@@ -81,26 +86,26 @@ const Banner = ({
 };
 
 const Notifications = ({ isOpen }) => {
-  const [datesArray, setDatesArray] = React.useState([]);
-
-  React.useEffect(() => {
-    setDatesArray(JSON.parse(localStorage.getItem("notifications")) || []);
-  }, []);
-
+  const [notifications, setNotifications] = React.useState([]);
   const currentDate = new Date();
-  const notifications = data
-    // filters notifications that were published in the last 7 days
-    // filters notifications that were already dismissed
-    .filter((not) => {
-      const difMs = currentDate.getTime() - Date.parse(not.date);
-      const difDays = difMs / (1000 * 3600 * 24);
-      return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
-    });
 
-  const [total, setTotal] = React.useState(notifications.length);
+  function updateNotifications() {
+    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+
+    setNotifications(
+      data
+        // filters notifications that were published in the last 7 days
+        // filters notifications that were already dismissed
+        .filter((not) => {
+          const difMs = currentDate.getTime() - Date.parse(not.date);
+          const difDays = difMs / (1000 * 3600 * 24);
+          return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
+        })
+    );
+  }
 
   function handleDismissAll() {
-    setTotal(0);
+    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
 
     localStorage.setItem(
       "notifications",
@@ -112,7 +117,13 @@ const Notifications = ({ isOpen }) => {
           .map((not) => not.date)
       )
     );
+
+    updateNotifications();
   }
+
+  React.useEffect(() => {
+    updateNotifications();
+  }, []);
 
   return (
     <>
@@ -134,8 +145,8 @@ const Notifications = ({ isOpen }) => {
               isMultiple={isMultiple}
               handleDismissAll={handleDismissAll}
               index={index}
-              total={total}
-              setTotal={setTotal}
+              total={notifications.length}
+              update={updateNotifications}
             />
           );
         })}
