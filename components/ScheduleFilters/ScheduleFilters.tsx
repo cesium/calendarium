@@ -161,14 +161,14 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {lei.map((y, index1) => (
-          <Panel header={y} key={index1 + Math.random()}>
+          <Panel header={y} key={index1}>
             <Collapse
               className={styles.sub_checkbox}
               bordered={false}
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={index2 + Math.random()}>
+                <Panel header={s} key={10 + index1 * 100 + index2}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
@@ -215,14 +215,14 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {mei.map((y, index1) => (
-          <Panel header={y} key={index1 + Math.random()}>
+          <Panel header={y} key={index1 + 1000}>
             <Collapse
               className={styles.sub_sub_checkbox}
               bordered={false}
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={index2 + Math.random()}>
+                <Panel header={s} key={1000 + 10 + index1 * 100 + index2}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
@@ -299,7 +299,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
         {others.map((filter) => (
           <CheckedIndicator filter={filter} key={filter.id} />
         ))}
-        <Panel header="Others" key={Math.random()}>
+        <Panel header="Others" key={"Others"}>
           {others.map(
             (filter, index) =>
               !filter.shifts?.length && (
