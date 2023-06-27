@@ -140,7 +140,6 @@ function EventFilters({ filters, handleFilters }) {
                             !isAllChecked(event_index(0, index1, index2)) &&
                             !isNoneChecked(event_index(0, index1, index2))
                           }
-                          key={(100 + index1 * 100 + index2 * 50) * 1000}
                         >
                           Select All
                         </Checkbox>
@@ -169,14 +168,6 @@ function EventFilters({ filters, handleFilters }) {
                                     ? false
                                     : true
                                 }
-                                key={
-                                  (100 +
-                                    index1 * 100 +
-                                    index2 * 50 +
-                                    index3 +
-                                    1) *
-                                  1000
-                                }
                               >
                                 {value.name}
                               </Checkbox>
@@ -198,7 +189,7 @@ function EventFilters({ filters, handleFilters }) {
       {/* 4º ano */}
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
-        <Panel header={mei[0]} key={2625273}>
+        <Panel header={mei[0]} key="4">
           <Collapse className={styles.sub_checkbox} bordered={false} accordion>
             {semesters.map((s, index2) => (
               <>
@@ -249,7 +240,6 @@ function EventFilters({ filters, handleFilters }) {
                               checked={
                                 Checked.indexOf(value.id) === -1 ? false : true
                               }
-                              key={(100 + index2 * 50 + index3 + 1) * 1000}
                             >
                               {value.name}
                             </Checkbox>
@@ -268,7 +258,7 @@ function EventFilters({ filters, handleFilters }) {
 
         <>
           <CheckedIndicator index={1} />
-          <Panel header={mei[1]} key={23141251}>
+          <Panel header={mei[1]} key="5">
             <div style={{ fontWeight: 400 }}>
               {event[8]?.map(
                 (
@@ -288,7 +278,6 @@ function EventFilters({ filters, handleFilters }) {
                         checked={
                           Checked.indexOf(value.id) === -1 ? false : true
                         }
-                        key={(100 + 100 + index) * 1000}
                       >
                         {value.name}
                       </Checkbox>
@@ -305,7 +294,7 @@ function EventFilters({ filters, handleFilters }) {
 
       <Collapse className={styles.checkbox} bordered={false}>
         <CheckedIndicator index={0} />
-        <Panel header="Others" key={2314134}>
+        <Panel header="Others" key="Others">
           <div style={{ fontWeight: 400 }}>
             {event[9]?.map(
               (
