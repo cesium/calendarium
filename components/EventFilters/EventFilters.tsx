@@ -118,7 +118,7 @@ function EventFilters({ filters, handleFilters }) {
               {semesters.map((s, index2) => (
                 <>
                   <CheckedIndicator index={event_index(0, index1, index2)} />
-                  <Panel header={s} key={10 + index1 * 100 + index2}>
+                  <Panel header={s} key={10 + index1 * 10 + index2}>
                     <React.Fragment key={100 + index1 * 100 + index2 * 50}>
                       <div
                         style={{

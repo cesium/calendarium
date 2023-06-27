@@ -168,7 +168,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={10 + index1 * 100 + index2}>
+                <Panel header={s} key={10 + index1 * 10 + index2}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
@@ -222,7 +222,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
               accordion
             >
               {semesters.map((s, index2) => (
-                <Panel header={s} key={1000 + 10 + index1 * 100 + index2}>
+                <Panel header={s} key={1000 + 10 + index1 * 10 + index2}>
                   <Collapse
                     className={styles.sub_sub_sub_checkbox}
                     bordered={false}
