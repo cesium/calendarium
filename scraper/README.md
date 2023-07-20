@@ -10,8 +10,8 @@ Some subjects that aren't present at UMinho webpage or some CeSIUM events need t
 
 To get the best possible output edit the following arrays:
 
-* filters at `scraper/modules/create_filters.py`
-* manual_subjects at `scraper/modules/subjects_scraper.py`
+- filters at `scraper/modules/create_filters.py`
+- manual_subjects at `scraper/modules/subjects_scraper.py`
 
 For a better understanding read [this](https://github.com/cesium/calendarium/tree/master/scraper/modules#subjects-short-name) documentation.
 
@@ -21,7 +21,7 @@ If you gonna scrape the schedules to use at the website maybe is better to delet
 rm scraper/*.json
 ```
 
-And finally, the scraper is not perfect, due the Framework used by UMinho. Please read carefully the script output. 
+And finally, the scraper is not perfect, due the Framework used by UMinho. Please read carefully the script output.
 
 ### Install dependencies
 
