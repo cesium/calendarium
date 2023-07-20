@@ -1,12 +1,11 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 from modules.schedule_scraper import schedule_scraper
 
 from time import sleep
 from json import loads as json_loads
-
-from modules.schedule_scraper import schedule_scraper
 
 
 def course_scraper(driver: WebDriver, course_name: str, subject_codes: list[dict[str, int]]):
@@ -100,11 +99,17 @@ def course_scraper(driver: WebDriver, course_name: str, subject_codes: list[dict
                 By.ID, "ctl00_ctl40_g_e84a3962_8ce0_47bf_a5c3_d5f9dd3927ef_ctl00_btnSearchHorario")
 
             print(
-                f"Scraping schedule from {semester_num} semester of year {university_year} of course {course_name}")
+                f"\tScraping schedule from {semester_num} semester of year {university_year} of course {course_name}")
 
             date_input.send_keys(semesters_date)
             search_button.click()
 
-            classes += schedule_scraper(driver, subject_codes)
+            try:
+                new_classes_schedule = schedule_scraper(driver, subject_codes)
+            except NoSuchElementException:
+                print(f"\t\t\033[91m\033[1mWARNING:\033[0m Schedules not available for {semester_num} semester of year {university_year} ")
+                new_classes_schedule = []
+            
+            classes += new_classes_schedule
 
     return classes

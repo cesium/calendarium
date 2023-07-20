@@ -34,6 +34,7 @@ def subjects_scraper(driver: WebDriver):
     }]
     """
 
+    # To compatibility with old version of Calendarium, we use the subjects short names available at GitHub
     try:
         subjects_short_names = json.load(
             open('scraper/subjects_short_names.json'))
@@ -41,6 +42,7 @@ def subjects_scraper(driver: WebDriver):
         get_subjects_short_names_scraper()
         subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
 
+    # This function will store the return at a file. If the file already exists, we can skip this function
     try:
         subjects, subject_codes = get_subject_codes_from_file()
         print("\n-> Using subject codes from `subjects.json`")
@@ -52,7 +54,9 @@ def subjects_scraper(driver: WebDriver):
 
     print("\nWelcome to UMinho Subjects Scraper!")
 
-    print("\nRead about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation")
+    print("\nRead about 'Subject IDs and Filter Ids' or `subjects_scraper` on documentation.")
+
+    print(f"\n\033[32m\033[1mNOTE:\033[0m You gonna probably see some \033[93m\033[1mWARNING\033[0m messages. Is important correct them, before go to production, in `scraper/subjects.json`, `data/shifts.json` and `data/filters.json`.")
 
     print(
         "\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
@@ -68,17 +72,21 @@ def subjects_scraper(driver: WebDriver):
     # Make here your manual editions
     # ===============================
 
-    print(
-        f"\n\033[91m\033[1mWARNING:\033[0m Adding manually `Análise e Teste de Software` subject.")
-    subjects.append({
+    manual_subjects = [{
         "id": 329,
         "subjectId": 14322,
         "name": "Análise e Teste de Software",
         "short_name": "ATS",
         "year": 3,
         "semester": 2
-    })
+    }]
+
+    print("")
+    for subject in manual_subjects:
+        print(f"\033[91m\033[1mWARNING:\033[0m Adding manually `{subject['name']}` subject.")
     
+    subjects += manual_subjects
+
     # =====================
 
     with open("scraper/subjects.json", "w") as outfile:
@@ -147,11 +155,12 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
     for picker in courses_pickers:
         if course_name in picker.text:
             click_on_element(driver, picker)
+    
+    # Inside Course Page
 
-    sleep(2)  # Some JS should be running, and we need wait
+    tabs_container = get_future_element_with_timeout(driver, "ul.nav.nav-tabs", timeout=30)
+    tabs_available = tabs_container.find_elements(By.CSS_SELECTOR, "ul.nav.nav-tabs li")
 
-    tabs_available = driver.find_elements(
-        By.CSS_SELECTOR, "ul.nav.nav-tabs li")
     for tab in tabs_available:
         if tab.text == "Plano de Estudos":
             tab.click()
@@ -165,42 +174,48 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
     filter_id_counter = 1
 
     for i in range(0, subjects_trs_amount):
-        subject = driver.find_elements(
+        table_rows = driver.find_elements(
             By.CSS_SELECTOR, ".col-md-12 tbody tr")[i]
 
-        subject_info = subject.find_elements(By.CSS_SELECTOR, "td")
+        table_row_cells = table_rows.find_elements(By.CSS_SELECTOR, "td")
 
-        if len(subject_info) == 2:  # header
-            year_span = subject_info[0].find_element(By.CSS_SELECTOR, "span")
+        if len(table_row_cells) == 2:  # header
+            year_span = table_row_cells[0].find_element(By.CSS_SELECTOR, "span")
             year_counter = int(year_span.text.removeprefix(
                 "Ano ")) + (3 if master else 0)
 
-        elif len(subject_info) == 4:  # subject
-            semester_string = subject_info[0].text.removeprefix("S")
+        elif len(table_row_cells) == 4:  # subject
+            semester_string = table_row_cells[0].text.removeprefix("S")
 
             if semester_string.isnumeric():
                 semester_counter = int(semester_string)
             elif semester_string != "":
                 semester_counter = 0
 
-            if subject_info[2].text == "":
+            if table_row_cells[2].text == "":
                 # Opção UMinho / de mestrado
                 continue
 
+            # Reset filter_id_counter each time the semester changes
             if subjects != [] and (subjects[-1]["semester"] != semester_counter or subjects[-1]["year"] != year_counter):
                 filter_id_counter = 1
 
-            subject_name = subject_info[1].text
+            subject_name = table_row_cells[1].text
 
             # Getting subjectId ===
-            more_info_button = get_future_element_with_timeout(
-                subject_info[1], "a", exit_on_timeout=False)
+            more_info_button = get_future_element_with_timeout(table_row_cells[1], "a", exit_on_timeout=False)
+
             if more_info_button:
                 click_on_element(driver, more_info_button)
 
-                sleep(1)
-                subject_id_span = driver.find_element(
-                    By.CSS_SELECTOR, ".modal-content .row .col-md-10 span")
+                latest_id = f'{subjects[-1]["subjectId"]}' if len(subjects) > 0 else ""
+
+                # Even with the wait_until_update function I prefer use a delay to the website load completely the data
+                sleep(0.6)
+                wait_until_element_text_updates_with_timeout(driver, "#myModalUC .modal-content .row .col-md-10 span", latest_id, timeout=15, exit_on_timeout=False)
+                sleep(0.6)
+
+                subject_id_span = driver.find_element(By.CSS_SELECTOR, ".modal-content .row .col-md-10 span")
                 subject_id = subject_id_span.text or 0
 
                 close_button = driver.find_element(By.CSS_SELECTOR, ".close")
@@ -312,3 +327,58 @@ def get_future_element_with_timeout(driver: WebDriver | WebElement, css_query: s
             return None
 
     return element
+
+def wait_until_element_text_updates_with_timeout(driver: WebDriver | WebElement, css_query: str, previous_value: str, value_can_be_empty = False, timeout: int = 3, frequency = 0.5, exit_on_timeout=True):
+    """
+    Returns when the element's innerText update.
+
+    Parameters
+    ----------
+    driver : WebDriver | WebElement
+    The selenium driver or element.
+
+    css_query : string
+    The css query to select the web element.
+
+    previous_value : int
+    The initial value of the element's innerText.
+
+    value_can_be_empty : bool
+    The innerText can be ""?
+    
+    timeout : int
+    How long takes the function to give up and exit the program if not found an element.
+
+    frequency : int
+    How much time takes between each check for the update
+
+    exit_on_timeout : bool
+    After the timeout it should exit the script or return None
+
+    Returns
+    -------
+    WebElement | None | exit()
+    """
+
+    waited_time = 0
+
+    while waited_time + frequency < timeout:
+        waited_time += frequency
+
+        try:
+            element = driver.find_element(By.CSS_SELECTOR, css_query)
+
+            if element.text != previous_value and (element.text != "" or value_can_be_empty):
+                return True
+        
+        except StaleElementReferenceException:
+            continue
+        
+        sleep(frequency)
+        
+    if exit_on_timeout:
+        print(f"\nElement's innerText didn't changed after {timeout} seconds.")
+        print("Exiting ...")
+        exit()
+    else:
+        return False
