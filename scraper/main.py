@@ -19,6 +19,10 @@ driver = webdriver.Firefox()
 
 subjects, subject_codes = subjects_scraper(driver)
 
+print("Running schedules scraper: ====")
+
+print(f"\n\033[32m\033[1mNOTE:\033[0m You gonna probably see some \033[93m\033[1mWARNING\033[0m messages. Is important correct them, before go to production, in `data/shifts.json` and `data/filters.json`.")
+
 print("\nScraping schedules from Licenciatura em Engenharia Informática:")
 shifts = course_scraper(
     driver, "Licenciatura em Engenharia Informática", subject_codes)

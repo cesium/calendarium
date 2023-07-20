@@ -57,15 +57,14 @@ If for some reason you want add some subjects (a not scraped one) to this list, 
 # Make here your manual editions
 # ===============================
 
-print(f"\n\033[91m\033[1mWARNING:\033[0m Adding manually `{subject name}` subject.")
-subjects.append({
-    "id": int, # filterID
-    "subjectId": int,
-    "name": str, # complete subject name
-    "short_name": str, # short subject name
-    "year": int,
-    "semester": int
-})
+manual_subjects = [{
+  "id": int, # filterID
+  "subjectId": int,
+  "name": str, # complete subject name
+  "short_name": str, # short subject name
+  "year": int,
+  "semester": int
+}]
 
 # =====================
 ```
