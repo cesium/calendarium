@@ -27,7 +27,7 @@ And finally, the scraper is not perfect, due the Framework used by UMinho. Pleas
 
 ```bash
 # Python dependecies: (any system with pip)
-pip install requests unidecode selenium
+pip install -r requirements.txt
 
 # System dependecies:
 sudo pacman -S geckodriver firefox # Arch
