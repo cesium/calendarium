@@ -12,7 +12,7 @@
     "filterId": 114
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL2",
@@ -72,7 +72,7 @@
     "filterId": 114
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL1",
@@ -84,7 +84,7 @@
     "filterId": 113
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL6",
@@ -96,7 +96,7 @@
     "filterId": 113
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL8",
@@ -132,7 +132,7 @@
     "filterId": 111
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL5",
@@ -144,7 +144,7 @@
     "filterId": 113
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL3",
@@ -300,7 +300,7 @@
     "filterId": 114
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL4",
@@ -312,7 +312,7 @@
     "filterId": 113
   },
   {
-    "id": 0,
+    "id": 14295,
     "title": "Laboratórios de Informática I",
     "theoretical": false,
     "shift": "PL7",
@@ -477,7 +477,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1113
+    "filterId": 1114
   },
   {
     "id": 10892,
@@ -489,7 +489,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1114
+    "filterId": 1115
   },
   {
     "id": 15417,
@@ -501,7 +501,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1112
+    "filterId": 1113
   },
   {
     "id": 0,
@@ -525,7 +525,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1117
+    "filterId": 1119
   },
   {
     "id": 10886,
@@ -537,7 +537,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1118
+    "filterId": 1120
   },
   {
     "id": 12365,
@@ -549,7 +549,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1115
+    "filterId": 1117
   },
   {
     "id": 13403,
@@ -561,7 +561,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1116
+    "filterId": 1118
   },
   {
     "id": 13556,
@@ -600,7 +600,7 @@
     "filterId": 0
   },
   {
-    "id": 0,
+    "id": 15419,
     "title": "Bilinguismo",
     "theoretical": false,
     "shift": "TP1",
@@ -621,10 +621,10 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1110
+    "filterId": 1111
   },
   {
-    "id": 0,
+    "id": 11738,
     "title": "Inglês Académico",
     "theoretical": false,
     "shift": "TP1",
@@ -633,7 +633,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1111
+    "filterId": 1112
   },
   {
     "id": 0,
@@ -768,7 +768,7 @@
     "filterId": 213
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": true,
     "shift": "T1",
@@ -852,7 +852,7 @@
     "filterId": 213
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP5",
@@ -876,7 +876,7 @@
     "filterId": 215
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL6",
@@ -924,7 +924,7 @@
     "filterId": 215
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL10",
@@ -936,7 +936,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL8",
@@ -960,7 +960,7 @@
     "filterId": 212
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP6",
@@ -996,7 +996,7 @@
     "filterId": 214
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL1",
@@ -1008,7 +1008,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL3",
@@ -1020,7 +1020,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": true,
     "shift": "T2",
@@ -1032,7 +1032,7 @@
     "filterId": 211
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP4",
@@ -1056,7 +1056,7 @@
     "filterId": 212
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL2",
@@ -1068,7 +1068,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL4",
@@ -1080,7 +1080,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL9",
@@ -1092,7 +1092,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP7",
@@ -1116,7 +1116,7 @@
     "filterId": 214
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL12",
@@ -1152,7 +1152,7 @@
     "filterId": 215
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL7",
@@ -1176,7 +1176,7 @@
     "filterId": 212
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP2",
@@ -1188,7 +1188,7 @@
     "filterId": 211
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP3",
@@ -1212,7 +1212,7 @@
     "filterId": 212
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL11",
@@ -1224,7 +1224,7 @@
     "filterId": 216
   },
   {
-    "id": 0,
+    "id": 14297,
     "title": "Laboratórios de Informática III",
     "theoretical": false,
     "shift": "PL5",
@@ -1272,7 +1272,7 @@
     "filterId": 212
   },
   {
-    "id": 0,
+    "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP1",
@@ -1872,7 +1872,7 @@
     "filterId": 414
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL2",
@@ -1884,7 +1884,7 @@
     "filterId": 413
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL1",
@@ -1896,7 +1896,7 @@
     "filterId": 413
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL6",
@@ -1908,7 +1908,7 @@
     "filterId": 413
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL3",
@@ -2052,7 +2052,7 @@
     "filterId": 412
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": true,
     "shift": "T1",
@@ -2208,7 +2208,7 @@
     "filterId": 414
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL4",
@@ -2220,7 +2220,7 @@
     "filterId": 413
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL5",
@@ -2232,7 +2232,7 @@
     "filterId": 413
   },
   {
-    "id": 0,
+    "id": 14596,
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL7",
