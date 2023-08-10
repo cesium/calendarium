@@ -8,7 +8,7 @@ manual_subject_names = {
     # UMinho Optional Subjects
     "15419": {
         "name": "Bilinguismo",
-        "short_name": "B",
+        "short_name": "Bilinguismo",
     },
     "13556": {
         "name": "Cidadania Digital",
