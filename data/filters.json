@@ -208,42 +208,55 @@
     "name": "AC",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6", "TP7"]
   },
   {
     "id": 212,
     "name": "ArqC",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7"]
   },
   {
     "id": 213,
     "name": "EA",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5"]
   },
   {
     "id": 214,
     "name": "FM",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4"]
   },
   {
     "id": 215,
     "name": "FCD",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5"]
   },
   {
     "id": 216,
     "name": "LII",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": [
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9",
+      "PL10",
+      "PL11",
+      "PL12"
+    ]
   },
   {
     "id": 221,
@@ -292,28 +305,28 @@
     "name": "CP",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5"]
   },
   {
     "id": 312,
     "name": "CC",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "T2", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7"]
   },
   {
     "id": 313,
     "name": "DSS",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 314,
     "name": "IA",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 315,
@@ -327,7 +340,7 @@
     "name": "SD",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7"]
   },
   {
     "id": 321,
