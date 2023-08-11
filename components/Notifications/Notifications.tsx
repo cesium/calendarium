@@ -2,8 +2,6 @@ import React from "react";
 
 import data from "../../data/notifications.json";
 
-// test
-
 type BannerProps = {
   type: string;
   description: string;
