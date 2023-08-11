@@ -2,6 +2,18 @@ import React from "react";
 
 import data from "../../data/notifications.json";
 
+type BannerProps = {
+  type: string;
+  description: string;
+  date: string;
+  isOpen: boolean;
+  isMultiple: boolean;
+  handleDismissAll: any;
+  index: number;
+  total: number;
+  update: any;
+};
+
 const Banner = ({
   type,
   description,
@@ -12,7 +24,7 @@ const Banner = ({
   index,
   total,
   update,
-}: any) => {
+}: BannerProps) => {
   const [isDismissed, setIsDismissed] = React.useState(true);
 
   function handleDismiss() {
@@ -85,7 +97,7 @@ const Banner = ({
   );
 };
 
-const Notifications = ({ isOpen }) => {
+const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   const [notifications, setNotifications] = React.useState([]);
   const currentDate = new Date();
 
