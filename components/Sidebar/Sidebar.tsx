@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { useState } from "react";
-
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
