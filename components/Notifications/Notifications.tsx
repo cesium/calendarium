@@ -128,8 +128,8 @@ const Notifications = ({ isOpen }) => {
   return (
     <>
       {notifications
-        // orders notifications by date
-        .sort((a, b) => (Date.parse(a.date) < Date.parse(b.date) ? -1 : 1))
+        // orders notifications by date, from oldest to newest
+        .sort((a, b) => (Date.parse(a.date) < Date.parse(b.date) ? 1 : -1))
         // maps notifications to Banner component
         .map((notification, index: number) => {
           let isMultiple = true;
