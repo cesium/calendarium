@@ -22,8 +22,6 @@ function EventFilters({ filters, handleFilters }) {
     semester: number;
   }[][] = [];
 
-  const menus = ["LEI", "MEI"];
-
   const mei = ["4ᵗʰ year", "5ᵗʰ year"];
 
   const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
