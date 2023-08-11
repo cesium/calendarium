@@ -1419,5 +1419,138 @@
     "end": "2023-07-12 12:00",
     "groupId": 1,
     "filterId": 124
+  },
+  {
+    "title": "[UMinho] Renovação de Inscrição",
+    "start": "2023-09-05 00:00",
+    "end": "2023-09-08 23:59",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Início de Semestre (1º)",
+    "start": "2023-09-11 00:00",
+    "end": "2023-09-11 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Férias Natal",
+    "start": "2023-12-18 00:00",
+    "end": "2023-12-30 23:59",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Fim de Semestre (1º)",
+    "start": "2024-02-03 00:00",
+    "end": "2024-02-03 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Início de Semestre (2º)",
+    "start": "2024-02-05 00:00",
+    "end": "2024-02-05 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Férias Páscoa",
+    "start": "2024-03-25 00:00",
+    "end": "2024-04-01 23:59",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Fim de Semestre (2º)",
+    "start": "2024-06-22 00:00",
+    "end": "2024-06-22 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Lançamento de Pautas (1º Sem)",
+    "start": "2024-02-16 00:00",
+    "end": "2024-02-16 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Lançamento de Pautas (2º Sem)",
+    "start": "2024-06-27 00:00",
+    "end": "2024-06-27 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2023-10-05 00:00",
+    "end": "2023-10-05 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2023-11-01 00:00",
+    "end": "2023-11-01 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2023-12-01 00:00",
+    "end": "2023-12-01 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2023-12-08 00:00",
+    "end": "2023-12-08 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2024-04-25 00:00",
+    "end": "2024-04-25 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2024-05-01 00:00",
+    "end": "2024-05-01 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2024-05-30 00:00",
+    "end": "2024-05-30 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Feriado",
+    "start": "2024-06-10 00:00",
+    "end": "2024-06-10 00:00",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Inscrição Exames Melhoria (1º Sem)",
+    "start": "2024-01-03 00:00",
+    "end": "2024-01-05 23:59",
+    "groupId": 6,
+    "filterId": 1
+  },
+  {
+    "title": "[UMinho] Inscrição Exames Melhoria (2º Sem)",
+    "start": "2024-05-22 00:00",
+    "end": "2024-05-24 23:59",
+    "groupId": 6,
+    "filterId": 1
   }
 ]
