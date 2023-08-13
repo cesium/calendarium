@@ -290,36 +290,40 @@ function EventFilters({ filters, handleFilters }) {
 
       {/* Others */}
 
-      <Collapse className={styles.checkbox} bordered={false}>
-        <CheckedIndicator index={0} />
-        <Panel header="Others" key="Others">
-          <div style={{ fontWeight: 400 }}>
-            {event[9]?.map(
-              (
-                value: {
-                  id: number;
-                  name: string;
-                  groupId: number;
-                  semester: number;
-                },
-                index: number
-              ) => (
-                <React.Fragment key={100 + index}>
-                  <div>
-                    <Checkbox
-                      onChange={() => handleToggle(value.id)}
-                      type="checkbox"
-                      checked={Checked.indexOf(value.id) === -1 ? false : true}
-                    >
-                      {value.name}
-                    </Checkbox>
-                  </div>
-                </React.Fragment>
-              )
-            )}
-          </div>
-        </Panel>
-      </Collapse>
+      {event[9].length > 0 && (
+        <Collapse className={styles.checkbox} bordered={false}>
+          <CheckedIndicator index={0} />
+          <Panel header="Others" key="Others">
+            <div style={{ fontWeight: 400 }}>
+              {event[9]?.map(
+                (
+                  value: {
+                    id: number;
+                    name: string;
+                    groupId: number;
+                    semester: number;
+                  },
+                  index: number
+                ) => (
+                  <React.Fragment key={100 + index}>
+                    <div>
+                      <Checkbox
+                        onChange={() => handleToggle(value.id)}
+                        type="checkbox"
+                        checked={
+                          Checked.indexOf(value.id) === -1 ? false : true
+                        }
+                      >
+                        {value.name}
+                      </Checkbox>
+                    </div>
+                  </React.Fragment>
+                )
+              )}
+            </div>
+          </Panel>
+        </Collapse>
+      )}
     </div>
   );
 }

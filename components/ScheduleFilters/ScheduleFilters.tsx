@@ -135,7 +135,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
   };
 
   return (
-    <div>
+    <div className={styles.layer}>
       <Popconfirm
         title="Are you sure?"
         description="This will remove all your classes"
@@ -295,33 +295,35 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       {/* Others */}
 
-      <Collapse className={styles.checkbox} bordered={false}>
-        {others.map((filter) => (
-          <CheckedIndicator filter={filter} key={filter.id} />
-        ))}
-        <Panel header="Others" key={"Others"}>
-          {others.map(
-            (filter, index) =>
-              !filter.shifts?.length && (
-                <div style={{ fontWeight: 400 }}>
-                  <Checkbox
-                    key={filter.id + index}
-                    onChange={() => {
-                      handleToggle(filter.id);
-                    }}
-                    type="checkbox"
-                    checked={isChecked({
-                      id: filter.id,
-                      shift: undefined,
-                    })}
-                  >
-                    {filter.name}
-                  </Checkbox>
-                </div>
-              )
-          )}
-        </Panel>
-      </Collapse>
+      {others.length > 0 && (
+        <Collapse className={styles.checkbox} bordered={false}>
+          {others.map((filter) => (
+            <CheckedIndicator filter={filter} key={filter.id} />
+          ))}
+          <Panel header="Others" key={"Others"}>
+            {others.map(
+              (filter, index) =>
+                !filter.shifts?.length && (
+                  <div style={{ fontWeight: 400 }}>
+                    <Checkbox
+                      key={filter.id + index}
+                      onChange={() => {
+                        handleToggle(filter.id);
+                      }}
+                      type="checkbox"
+                      checked={isChecked({
+                        id: filter.id,
+                        shift: undefined,
+                      })}
+                    >
+                      {filter.name}
+                    </Checkbox>
+                  </div>
+                )
+            )}
+          </Panel>
+        </Collapse>
+      )}
     </div>
   );
 };
