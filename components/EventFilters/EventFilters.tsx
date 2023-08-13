@@ -36,18 +36,18 @@ function EventFilters({ filters, handleFilters }) {
     return sync[index] + index1 * 2 + index2;
   };
 
-  event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1);
-  event[1] = filters.filter((f) => f.groupId === 1 && f.semester === 2);
-  event[2] = filters.filter((f) => f.groupId === 2 && f.semester === 1);
-  event[3] = filters.filter((f) => f.groupId === 2 && f.semester === 2);
-  event[4] = filters.filter((f) => f.groupId === 3 && f.semester === 1);
-  event[5] = filters.filter((f) => f.groupId === 3 && f.semester === 2);
+  event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1); // 1st year 1st semester
+  event[1] = filters.filter((f) => f.groupId === 1 && f.semester === 2); // 1st year 2nd semester
+  event[2] = filters.filter((f) => f.groupId === 2 && f.semester === 1); // 2nd year 1st semester
+  event[3] = filters.filter((f) => f.groupId === 2 && f.semester === 2); // 2nd year 2nd semester
+  event[4] = filters.filter((f) => f.groupId === 3 && f.semester === 1); // 3rd year 1st semester
+  event[5] = filters.filter((f) => f.groupId === 3 && f.semester === 2); // 3rd year 2nd semester
 
-  event[6] = filters.filter((f) => f.groupId === 4 && f.semester === 1);
-  event[7] = filters.filter((f) => f.groupId === 4 && f.semester === 2);
-  event[8] = filters.filter((f) => f.groupId === 5);
+  event[6] = filters.filter((f) => f.groupId === 4 && f.semester === 1); // 4th year 1st semester
+  event[7] = filters.filter((f) => f.groupId === 4 && f.semester === 2); // 4th year 2nd semester
+  event[8] = filters.filter((f) => f.groupId === 5); // 5th year
 
-  event[9] = filters.filter((f) => f.groupId === 0);
+  event[9] = filters.filter((f) => f.groupId === 0); // others
 
   const handleToggle = (value: number) => {
     const currentId = Checked.indexOf(value);
