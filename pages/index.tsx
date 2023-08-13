@@ -40,13 +40,15 @@ export default function Home({ events, filters }) {
     let newEvents = [...events];
 
     if (filters.length > 0) {
-      newEvents = newEvents.filter((ev) => filters.includes(ev.filterId));
+      newEvents = newEvents.filter(
+        (ev) => filters.includes(ev.filterId) || ev.filterId === -1
+      ); // -1 is an id dedicated to always active events
     }
 
     setEvents(newEvents);
   };
 
-  const handleFilters = (myFilters) => {
+  const handleFilters = (myFilters: number[]) => {
     const newFilters = { ...myFilters };
     setFilters(newFilters);
     showNewEvents(newFilters);
