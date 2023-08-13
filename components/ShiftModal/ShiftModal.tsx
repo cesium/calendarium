@@ -1,18 +1,7 @@
 import { Modal, Box, Typography, Grow } from "@mui/material";
 
 function ShiftModal({
-  selectedShift: {
-    id,
-    title,
-    theoretical,
-    shift,
-    building,
-    room,
-    day,
-    start,
-    end,
-    filterId,
-  },
+  selectedShift: { id, shift, building, room, start, end, filterId },
   setInspectShift,
   inspectShift,
   shifts,

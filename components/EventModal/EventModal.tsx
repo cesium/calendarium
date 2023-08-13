@@ -1,13 +1,10 @@
 import { Modal, Box, Typography, Grow } from "@mui/material";
-import { useState } from "react";
 
 function EventModal({
   selectedEvent: { title, place, start, end, groupId },
   setInspectEvent,
   inspectEvent,
 }) {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
   const start_date = new Date(start).toLocaleDateString("pt", {});
 
   const start_hour = new Date(start).toLocaleTimeString("pt", {
