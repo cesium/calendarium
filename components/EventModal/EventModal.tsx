@@ -1,20 +1,28 @@
-import { Modal, Box, Typography, Grow } from "@mui/material";
+import { Modal, Box, Typography, Fade, Backdrop } from "@mui/material";
+
+import { IEventDTO } from "../../dtos";
+
+type EventModalProps = {
+  selectedEvent: IEventDTO;
+  setInspectEvent: (boolean) => void;
+  inspectEvent: boolean;
+};
 
 function EventModal({
-  selectedEvent: { title, place, start, end, groupId },
+  selectedEvent,
   setInspectEvent,
   inspectEvent,
-}) {
-  const start_date = new Date(start).toLocaleDateString("pt", {});
+}: EventModalProps) {
+  const start_date = new Date(selectedEvent.start).toLocaleDateString("pt", {});
 
-  const start_hour = new Date(start).toLocaleTimeString("pt", {
+  const start_hour = new Date(selectedEvent.start).toLocaleTimeString("pt", {
     hour: "numeric",
     minute: "numeric",
   });
 
-  const end_date = new Date(end).toLocaleDateString("pt", {});
+  const end_date = new Date(selectedEvent.end).toLocaleDateString("pt", {});
 
-  const end_hour = new Date(end).toLocaleTimeString("pt", {
+  const end_hour = new Date(selectedEvent.end).toLocaleTimeString("pt", {
     hour: "numeric",
     minute: "numeric",
   });
@@ -23,109 +31,78 @@ function EventModal({
     setInspectEvent(false);
   };
 
-  const style = {
-    position: "absolute",
-    borderRadius: "24px",
-    top: "50%",
-    left: "50%",
-    width: 300,
-    bgcolor: "white",
-    boxShadow: 24,
-    p: 4,
-    textAlign: "center",
-  };
-
   return (
     <div>
-      <Modal open={inspectEvent} onClose={handleModalClose}>
-        <Grow in={inspectEvent}>
-          <Box sx={style} style={{ transform: "translate(-50%, -50%)" }}>
+      <Modal
+        open={inspectEvent}
+        onClose={handleModalClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{ backdrop: { timeout: 300 } }}
+      >
+        <Fade in={inspectEvent}>
+          <Box className="h-fit absolute top-1/2 left-1/2 w-72 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border bg-white p-6 text-center shadow-xl">
             <Typography
               id="modal-modal-title"
+              className="border-b pb-3"
               variant="h6"
               component="h2"
-              style={{
-                padding: "0 0 0.75rem 0",
-                borderBottom: "solid rgba(200,200,200,.5) 1px",
-              }}
             >
-              {title}
+              {selectedEvent.title}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <i className="bi bi-calendar-fill"></i>{" "}
-              {start_date.localeCompare(end_date)
-                ? `${start_date} - ${end_date}`
-                : `${start_date}`}
-              {start_hour.localeCompare("00:00") &&
-              !start_date.localeCompare(end_date) ? (
+              {/* DATE & TIME */}
+              <div>
+                <i className="bi bi-calendar-fill"></i>{" "}
+                {start_date.localeCompare(end_date)
+                  ? `${start_date} - ${end_date}`
+                  : `${start_date}`}
+                {start_hour.localeCompare("00:00") &&
+                !start_date.localeCompare(end_date) ? (
+                  <div>
+                    <p></p>
+                    <i className="bi bi-clock-fill"></i> {start_hour} -{" "}
+                    {end_hour}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              {/* PLACE */}
+              {selectedEvent.place ? (
                 <div>
                   <p></p>
-                  <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
+                  <i className="bi bi-geo-alt-fill"></i> {selectedEvent.place}
                 </div>
               ) : (
                 ""
               )}
-              {place ? (
+              {/* YEAR */}
+              {selectedEvent.groupId > 0 && selectedEvent.groupId < 6 ? (
                 <div>
                   <p></p>
-                  <i className="bi bi-geo-alt-fill"></i> {place}
+                  <i className="bi bi-mortarboard-fill"></i>{" "}
+                  {selectedEvent.groupId}º ano
                 </div>
               ) : (
                 ""
               )}
-              {groupId != 0 && groupId < 6 ? (
-                <div>
-                  <p></p>
-                  <i className="bi bi-mortarboard-fill"></i> {groupId}º ano
-                </div>
-              ) : (
-                ""
-              )}
-              {groupId == 7 ? (
+              {/* LINK */}
+              {selectedEvent.link && (
                 <div>
                   <p></p>
                   <i className="bi bi-link-45deg"></i>
                   <a
-                    href="https://seium.org"
+                    href={selectedEvent.link}
                     style={{ color: "rgb(24, 144, 255, 1)" }}
                   >
-                    seium.org
+                    {selectedEvent.link.replace("https://", "")}
                   </a>
                 </div>
-              ) : (
-                ""
-              )}
-              {groupId == 8 ? (
-                <div>
-                  <p></p>
-                  <i className="bi bi-link-45deg"></i>
-                  <a
-                    href="https://coderdojobraga.org"
-                    style={{ color: "rgb(24, 144, 255, 1)" }}
-                  >
-                    coderdojobraga.org
-                  </a>
-                </div>
-              ) : (
-                ""
-              )}
-              {groupId == 9 ? (
-                <div>
-                  <p></p>
-                  <i className="bi bi-link-45deg"></i>
-                  <a
-                    href="https://join.di.uminho.pt"
-                    style={{ color: "rgb(24, 144, 255, 1)" }}
-                  >
-                    join.di.uminho.pt
-                  </a>
-                </div>
-              ) : (
-                ""
               )}
             </Typography>
           </Box>
-        </Grow>
+        </Fade>
       </Modal>
     </div>
   );

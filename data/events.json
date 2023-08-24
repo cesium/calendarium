@@ -653,6 +653,7 @@
   },
   {
     "title": "[SEI] Semana da Engenharia Informática",
+    "link": "https://seium.org",
     "place": "Campus Gualtar",
     "start": "2023-02-14 10:00",
     "end": "2023-02-17 18:00",
@@ -904,6 +905,7 @@
   },
   {
     "title": "[JOIN] Jornadas de Informática",
+    "link": "https://join.di.uminho.pt",
     "start": "2023-06-5 00:00",
     "end": "2023-06-7 00:00",
     "groupId": 9,
@@ -1079,6 +1081,7 @@
   },
   {
     "title": "[JORDI] Jornadas de Direito e Informática",
+    "link": "https://www.jordium.pt",
     "start": "2023-04-17 00:00",
     "end": "2023-04-19 00:00",
     "groupId": 10,

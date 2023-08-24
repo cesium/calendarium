@@ -9,6 +9,7 @@ export interface IFilterDTO {
 export interface IEventDTO {
   title: string;
   place: string;
+  link: string;
   start: string;
   end: string;
   groupId: number;
