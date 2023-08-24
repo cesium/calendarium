@@ -44,18 +44,7 @@ interface ISchedulesProps {
 export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [events, setEvents] = useState<IFormatedShift[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
-  const [selectedShift, setSelectedShift] = useState<{
-    id: number;
-    title: string;
-    theoretical: boolean;
-    shift: string;
-    building: string;
-    room: string;
-    day: number;
-    start: string;
-    end: string;
-    filterId: number;
-  }>(shifts[0]);
+  const [selectedShift, setSelectedShift] = useState<IShiftDTO>(shifts[0]);
   const [inspectShift, setInspectShift] = useState(false);
 
   const handleSelection = (shift) => {
@@ -189,14 +178,12 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           </div>
         </div>
 
-        {inspectShift && (
-          <ShiftModal
-            selectedShift={selectedShift}
-            setInspectShift={setInspectShift}
-            inspectShift={inspectShift}
-            shifts={shifts}
-          />
-        )}
+        <ShiftModal
+          selectedShift={selectedShift}
+          setInspectShift={setInspectShift}
+          inspectShift={inspectShift}
+          shifts={shifts}
+        />
       </div>
     </Layout>
   );

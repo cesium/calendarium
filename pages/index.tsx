@@ -14,6 +14,8 @@ import EventModal from "../components/EventModal";
 
 import styles from "../styles/Home.module.css";
 
+import { IEventDTO } from "../dtos";
+
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
@@ -26,13 +28,7 @@ export default function Home({ events, filters }) {
 
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
-  const [selectedEvent, setSelectedEvent] = useState<{
-    title;
-    place;
-    start;
-    end;
-    groupId;
-  }>(events[0]);
+  const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
   const [inspectEvent, setInspectEvent] = useState(false);
 
   const showNewEvents = (f) => {
@@ -181,13 +177,11 @@ export default function Home({ events, filters }) {
           />
         </div>
 
-        {inspectEvent && (
-          <EventModal
-            selectedEvent={selectedEvent}
-            setInspectEvent={setInspectEvent}
-            inspectEvent={inspectEvent}
-          />
-        )}
+        <EventModal
+          selectedEvent={selectedEvent}
+          setInspectEvent={setInspectEvent}
+          inspectEvent={inspectEvent}
+        />
       </div>
     </Layout>
   );
