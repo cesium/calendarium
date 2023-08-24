@@ -57,6 +57,7 @@ Where `<branch>` is the name of your branch.
 
 - `title` - event title
 - `place` - where the event takes place _(optional)_
+- `link` - a relevant link _(optional)_
 - `start` - **date and time** of when the event starts
 - `end` - **date and time** of when the event ends
 - `groupId` - an ID composed of the course year
