@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import * as fs from "fs";
 
@@ -29,7 +29,64 @@ export default function Home({ events, filters }) {
   const [Events, setEvents] = useState(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
   const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
-  const [inspectEvent, setInspectEvent] = useState(false);
+  const [inspectEvent, setInspectEvent] = useState<boolean>(false);
+
+  const defaultColors = [
+    "#f07c54", // cesium
+    "#4BC0D9", // 1st year
+    "#7b54f0", // 2nd year
+    "#f0547b", // 3rd year
+    "#5ac77b", // 4th year
+    "#395B50", // 5th year
+    "#b70a0a", // uminho
+    "#3408fd", // sei
+    "#642580", // coderdojo
+    "#FF0000", // join
+    "#1B69EE", // jordi
+  ];
+
+  const [theme, setTheme] = useState<string>("Modern");
+  const [colors, setColors] = useState<string[]>(defaultColors);
+  const [opacity, setOpacity] = useState<boolean>(true);
+
+  function reduceOpacity(hexColor) {
+    // Convert HEX color code to RGBA color code
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5, 7), 16);
+    let a = 0.25; // 25% opacity
+    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    return rgbaColor;
+  }
+
+  function saveTheme() {
+    const theme = localStorage.getItem("theme");
+    const colors = localStorage.getItem("colors");
+    const opacity = localStorage.getItem("opacity");
+
+    switch (theme) {
+      case "Modern": {
+        setColors(defaultColors);
+        setOpacity(true);
+        break;
+      }
+      case "Classic": {
+        setColors(defaultColors);
+        setOpacity(false);
+        break;
+      }
+      case "Custom": {
+        setColors(colors.split(","));
+        setOpacity(opacity === "true");
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    saveTheme();
+  }, []);
 
   const showNewEvents = (f) => {
     const filters = Object.values(f);
@@ -54,31 +111,6 @@ export default function Home({ events, filters }) {
     setSelectedEvent(event);
     setInspectEvent(!inspectEvent);
   };
-
-  function reduceOpacity(hexColor) {
-    // Convert HEX color code to RGBA color code
-    let r = parseInt(hexColor.slice(1, 3), 16);
-    let g = parseInt(hexColor.slice(3, 5), 16);
-    let b = parseInt(hexColor.slice(5, 7), 16);
-    let a = 0.25; // 25% opacity
-    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-
-    return rgbaColor;
-  }
-
-  const colors = [
-    "#f07c54", // cesium
-    "#4BC0D9", // 1st year
-    "#7b54f0", // 2nd year
-    "#f0547b", // 3rd year
-    "#5ac77b", // 4th year
-    "#395B50", // 5th year
-    "#b70a0a", // uminho
-    "#3408fd", // sei
-    "#642580", // coderdojo
-    "#FF0000", // join
-    "#1B69EE", // jordi
-  ];
 
   const formats = {
     eventTimeRangeFormat: () => {
@@ -141,6 +173,7 @@ export default function Home({ events, filters }) {
       isHome
       filters={filters}
       handleFilters={(myFilters) => handleFilters(myFilters)}
+      saveTheme={saveTheme}
     >
       <div>
         <Head>
@@ -162,8 +195,10 @@ export default function Home({ events, filters }) {
             max={maxDate}
             eventPropGetter={(event: { title; start; end; groupId }) => {
               const newStyle = {
-                backgroundColor: reduceOpacity(colors[event.groupId]),
-                color: colors[event.groupId],
+                backgroundColor: opacity
+                  ? reduceOpacity(colors[event.groupId])
+                  : colors[event.groupId],
+                color: opacity ? colors[event.groupId] : "white",
               };
 
               return { style: newStyle };

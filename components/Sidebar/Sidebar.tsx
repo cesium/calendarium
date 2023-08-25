@@ -11,6 +11,7 @@ import styles from "./sidebar.module.scss";
 import ActiveLink from "../ActiveLink";
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
+import Settings from "../Settings";
 
 import { Popconfirm } from "antd";
 
@@ -19,9 +20,16 @@ interface ISidebarProps {
   isOpen?: boolean;
   filters?: any;
   handleFilters?: any;
+  saveTheme: any;
 }
 
-const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
+const Sidebar = ({
+  isHome,
+  isOpen,
+  filters,
+  handleFilters,
+  saveTheme,
+}: ISidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
 
@@ -123,27 +131,7 @@ const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
         </div>
 
         {isSettings ? (
-          <div className="h-full w-full space-y-3 rounded-2xl p-4 shadow-default">
-            <div className="text-center text-lg font-medium">Settings</div>
-            <div className="border-b" />
-            <div>
-              <label
-                htmlFor="theme"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Theme
-              </label>
-              <select
-                id="theme"
-                name="theme"
-                className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                defaultValue="Default"
-              >
-                <option>Default</option>
-                <option>Classic</option>
-              </select>
-            </div>
-          </div>
+          <Settings saveTheme={saveTheme} />
         ) : isHome ? (
           <EventFilters
             filters={filters}
