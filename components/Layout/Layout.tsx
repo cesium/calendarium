@@ -22,7 +22,7 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
   return (
     <div className="lg:flex">
       <button
-        className="group absolute z-20 mt-8 ml-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div

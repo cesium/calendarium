@@ -16,9 +16,14 @@ interface ISelectedFilter {
 interface ISelectScheduleProps {
   filters: IFilterDTO[];
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
+  clearSchedule: boolean;
 }
 
-const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
+const ScheduleFilters = ({
+  filters,
+  handleFilters,
+  clearSchedule,
+}: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
@@ -26,6 +31,10 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     setSelectedFilters(stored);
     handleFilters(stored);
   }, []);
+
+  React.useEffect(() => {
+    clearSchedule && clearSelection();
+  }, [clearSchedule]);
 
   // Arrays for each group and subgroup to build the filter
 
@@ -136,7 +145,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
   return (
     <div className={styles.layer}>
-      <Popconfirm
+      {/* <Popconfirm
         title="Are you sure?"
         description="This will remove all your classes"
         onConfirm={() => {
@@ -152,10 +161,10 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
           ></i>
         }
       >
-        <button className={styles.clearButton}>
+        <button className="mb-3 h-10 w-full -translate-y-3 transform rounded-2xl bg-indigo-500 p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           Clear Schedule <i className="bi bi-stars"></i>
         </button>
-      </Popconfirm>
+      </Popconfirm> */}
 
       {/* LEI */}
 

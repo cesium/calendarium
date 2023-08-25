@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,6 +12,8 @@ import ActiveLink from "../ActiveLink";
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 
+import { Popconfirm } from "antd";
+
 interface ISidebarProps {
   isHome?: boolean;
   isOpen?: boolean;
@@ -18,6 +22,14 @@ interface ISidebarProps {
 }
 
 const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
+  const [isSettings, setIsSettings] = useState(false);
+  const [clear, setClear] = useState(false);
+
+  function clearSchedule() {
+    setClear(true);
+    setTimeout(() => setClear(false), 300);
+  }
+
   const exportPDF = async () => {
     const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
     const canvas = await html2canvas(input, { logging: true });
@@ -69,13 +81,70 @@ const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
           </div>
         </div>
 
-        <div>
-          <button onClick={() => exportPDF()} className={styles.buttonPdf}>
-            Export <i className="bi bi-file-earmark-pdf-fill"></i>
-          </button>
+        <div className="space-y-2">
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setIsSettings(!isSettings)}
+              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+            >
+              {isSettings ? (
+                <i className="bi bi-gear-fill"></i>
+              ) : (
+                <i className="bi bi-gear"></i>
+              )}
+            </button>
+            <button
+              onClick={() => exportPDF()}
+              className="h-10 w-full rounded-2xl bg-cesium-400 p-2 font-medium text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-400/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500"
+            >
+              Export <i className="bi bi-file-earmark-pdf-fill"></i>
+            </button>
+          </div>
+          {!isHome && (
+            <Popconfirm
+              title="Are you sure?"
+              description="This will remove all your classes"
+              onConfirm={() => clearSchedule()}
+              onCancel={() => {}}
+              okText="Ok"
+              cancelText="Cancel"
+              icon={
+                <i
+                  className="bi bi-exclamation-circle-fill"
+                  style={{ color: "#faad14" }}
+                ></i>
+              }
+            >
+              <button className="mb-3 h-10 w-full rounded-2xl bg-indigo-500 p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Clear Schedule <i className="bi bi-stars"></i>
+              </button>
+            </Popconfirm>
+          )}
         </div>
 
-        {isHome ? (
+        {isSettings ? (
+          <div className="h-full w-full space-y-3 rounded-2xl p-4 shadow-default">
+            <div className="text-center text-lg font-medium">Settings</div>
+            <div className="border-b" />
+            <div>
+              <label
+                htmlFor="theme"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Theme
+              </label>
+              <select
+                id="theme"
+                name="theme"
+                className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                defaultValue="Default"
+              >
+                <option>Default</option>
+                <option>Classic</option>
+              </select>
+            </div>
+          </div>
+        ) : isHome ? (
           <EventFilters
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
@@ -84,6 +153,7 @@ const Sidebar = ({ isHome, isOpen, filters, handleFilters }: ISidebarProps) => {
           <ScheduleFilters
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
+            clearSchedule={clear}
           />
         )}
       </div>

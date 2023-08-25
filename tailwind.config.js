@@ -9,10 +9,16 @@ module.exports = {
         mobile: "calc(100vh - 5.2rem)",
       },
       colors: {
-        cesium: "#ed7950",
+        cesium: {
+          400: "#ed7950",
+          500: "#b55b3b",
+        },
+      },
+      boxShadow: {
+        default: "0 0 10px rgba(0, 0, 0, 0.1)",
       },
     },
   },
   darkMode: "media",
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
