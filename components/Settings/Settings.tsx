@@ -250,7 +250,7 @@ const Settings = ({ saveTheme, filters }) => {
             </div>
           ) : checkedFilters.length > 0 ? (
             <div id="bySubject" className="space-y-4">
-              <div className="flex flex-col place-content-between items-center space-y-2">
+              <div className="space-y-2">
                 <div className="grid h-full w-full grid-flow-row grid-cols-3 gap-1">
                   {checkedFilters.map((filterId, index) => (
                     <button
