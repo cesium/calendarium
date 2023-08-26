@@ -390,7 +390,7 @@ const Settings = ({
               Select at least one subject.
             </div>
           )}
-          {checkedThings.length > 0 && (
+          {(customType === "Year" || checkedThings.length > 0) && (
             <button
               type="button"
               className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
