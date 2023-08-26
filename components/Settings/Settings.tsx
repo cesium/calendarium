@@ -4,26 +4,74 @@ import { Switch } from "@headlessui/react";
 
 import { HexColorPicker } from "react-colorful";
 
-const Settings = ({ saveTheme }) => {
-  const defaultColors = [
-    "#f07c54", // cesium
-    "#4BC0D9", // 1st year
-    "#7b54f0", // 2nd year
-    "#f0547b", // 3rd year
-    "#5ac77b", // 4th year
-    "#395B50", // 5th year
-    "#b70a0a", // uminho
-    "#3408fd", // sei
-    "#642580", // coderdojo
-    "#FF0000", // join
-    "#1B69EE", // jordi
-  ];
+import { reduceOpacity, defaultColors } from "../../utils/utils";
 
+export type SubjectColor = {
+  filterId: number;
+  color: string;
+};
+
+const Settings = ({ saveTheme, filters }) => {
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
   const [openColor, setOpenColor] = useState<number>(1);
   const [customType, setCustomType] = useState<string>("Year");
+  const [checkedFilters, setCheckedFilters] = useState<number[]>([]);
+  const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
+
+  function initializeSubjectColors() {
+    const newSubjectColors: SubjectColor[] = [];
+    filters.forEach((f) => {
+      newSubjectColors.push({
+        filterId: f.id,
+        color: defaultColors[f.groupId],
+      });
+    });
+    setSubjectColors(newSubjectColors);
+    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
+  }
+
+  function getSubjectColor(index: number) {
+    return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+      .color;
+  }
+
+  function getBgSubjectColor(index: number) {
+    if (opacity)
+      return reduceOpacity(
+        subjectColors.find((sc) => sc.filterId === checkedFilters[index]).color
+      );
+    else
+      return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+        .color;
+  }
+
+  function getTextSubjectColor(index: number) {
+    if (opacity)
+      return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+        .color;
+    else return "white";
+  }
+
+  function updateSubjectColors(newColor: string) {
+    const newSubjectColors = [...subjectColors];
+    newSubjectColors.find(
+      (sc) => sc.filterId === checkedFilters[openColor]
+    ).color = newColor;
+    setSubjectColors(newSubjectColors);
+    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
+  }
+
+  function getBgColor(index: number) {
+    if (opacity) return reduceOpacity(colors[index]);
+    else return colors[index];
+  }
+
+  function getTextColor(index: number) {
+    if (opacity) return colors[index];
+    else return "white";
+  }
 
   function updateColors(newColor: string) {
     const newColors = [...colors];
@@ -35,6 +83,7 @@ const Settings = ({ saveTheme }) => {
   function updateTheme(newTheme: string) {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    saveTheme();
   }
 
   function updateOpacity(updateOpacity: boolean) {
@@ -45,6 +94,13 @@ const Settings = ({ saveTheme }) => {
   function updateCustomType(newCustomType: string) {
     setCustomType(newCustomType);
     localStorage.setItem("customType", newCustomType);
+    saveTheme();
+  }
+
+  function backToSubjectDefault() {
+    initializeSubjectColors();
+    setOpacity(true);
+    localStorage.setItem("opacity", "true");
   }
 
   function backToDefault() {
@@ -57,16 +113,28 @@ const Settings = ({ saveTheme }) => {
   function getSettings() {
     const theme = localStorage.getItem("theme");
     const colors = localStorage.getItem("colors");
-    const opacity = localStorage.getItem("opacity");
+    const opacity = localStorage.getItem("opacity") === "true";
     const customType = localStorage.getItem("customType");
+    const checkedFilters: number[] = JSON.parse(
+      localStorage.getItem("checked")
+    );
+    const subjectColors: SubjectColor[] = JSON.parse(
+      localStorage.getItem("subjectColors")
+    );
 
     if (theme) setTheme(theme);
 
     if (colors) setColors(colors.split(","));
 
-    if (opacity) setOpacity(opacity === "true");
+    if (opacity) setOpacity(opacity);
 
     if (customType) setCustomType(customType);
+
+    if (checkedFilters) setCheckedFilters(checkedFilters);
+
+    if (subjectColors && subjectColors.length > 0)
+      setSubjectColors(subjectColors);
+    else initializeSubjectColors();
   }
 
   useEffect(() => {
@@ -74,7 +142,7 @@ const Settings = ({ saveTheme }) => {
   }, []);
 
   return (
-    <div className="h-full w-full space-y-4 rounded-2xl p-4 shadow-default">
+    <div className="h-full w-full space-y-4 overflow-hidden rounded-2xl p-4 shadow-default">
       <div className="text-center text-lg font-medium text-gray-900">
         Settings
       </div>
@@ -89,7 +157,7 @@ const Settings = ({ saveTheme }) => {
         <select
           id="theme"
           name="theme"
-          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-400"
+          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
           defaultValue="Modern"
           value={theme}
           onChange={(e) => updateTheme(e.target.value)}
@@ -112,7 +180,7 @@ const Settings = ({ saveTheme }) => {
             <select
               id="theme"
               name="theme"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-400"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
               defaultValue="Year"
               value={customType}
               onChange={(e) => updateCustomType(e.target.value)}
@@ -129,15 +197,18 @@ const Settings = ({ saveTheme }) => {
                   {colors.slice(1, 6).map((color, index) => (
                     <button
                       key={index}
-                      className="flex h-9 w-full place-content-center items-center rounded-lg text-white"
-                      style={{ backgroundColor: color }}
+                      className="flex h-9 w-full place-content-center items-center rounded-xl font-medium"
+                      style={{
+                        backgroundColor: getBgColor(index + 1),
+                        color: getTextColor(index + 1),
+                      }}
                       onClick={() => setOpenColor(index + 1)}
                     >
                       {index + 1}º
                     </button>
                   ))}
                 </div>
-                <div className="">
+                <div>
                   <HexColorPicker
                     color={colors[openColor]}
                     onChange={(newColor) => updateColors(newColor)}
@@ -150,7 +221,7 @@ const Settings = ({ saveTheme }) => {
                     checked={opacity}
                     onChange={updateOpacity}
                     className={`${
-                      opacity ? "bg-cesium-400" : "bg-gray-200"
+                      opacity ? "bg-cesium-900" : "bg-gray-200"
                     } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"}`}
                   >
                     <span className="sr-only">Use setting</span>
@@ -170,26 +241,88 @@ const Settings = ({ saveTheme }) => {
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
                   onClick={backToDefault}
                 >
                   Back to Default
                 </button>
               </div>
             </div>
+          ) : checkedFilters.length > 0 ? (
+            <div id="bySubject" className="space-y-4">
+              <div className="flex flex-col place-content-between items-center space-y-2">
+                <div className="grid h-full w-full grid-flow-row grid-cols-3 gap-1">
+                  {checkedFilters.map((filterId, index) => (
+                    <button
+                      key={index}
+                      className="h-7 w-full place-content-center items-center rounded-xl text-sm font-medium"
+                      style={{
+                        backgroundColor: getBgSubjectColor(index),
+                        color: getTextSubjectColor(index),
+                      }}
+                      onClick={() => setOpenColor(index)}
+                    >
+                      {filters
+                        .filter((f) => f.id === filterId)
+                        .map((f) => f.name)}
+                    </button>
+                  ))}
+                </div>
+                <div>
+                  <HexColorPicker
+                    color={getSubjectColor(openColor)}
+                    onChange={(newColor) => updateSubjectColors(newColor)}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-row place-content-between">
+                <Switch.Group as="div" className="flex items-center">
+                  <Switch
+                    checked={opacity}
+                    onChange={updateOpacity}
+                    className={`${
+                      opacity ? "bg-cesium-900" : "bg-gray-200"
+                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"}`}
+                  >
+                    <span className="sr-only">Use setting</span>
+                    <span
+                      aria-hidden="true"
+                      className={`${
+                        opacity ? "translate-x-5" : "translate-x-0"
+                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
+                    />
+                  </Switch>
+                  <Switch.Label
+                    as="span"
+                    className="ml-3 text-sm font-medium text-gray-900"
+                  >
+                    Opacity
+                  </Switch.Label>
+                </Switch.Group>
+                <button
+                  type="button"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  onClick={backToSubjectDefault}
+                >
+                  Back to Default
+                </button>
+              </div>
+            </div>
           ) : (
-            <></>
+            <div className="text-gray-900">
+              <i className="bi bi-exclamation-circle-fill text-warning" />{" "}
+              Select at least one subject.
+            </div>
           )}
+          <button
+            type="button"
+            className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
+            onClick={saveTheme}
+          >
+            Save
+          </button>
         </>
       )}
-
-      <button
-        type="button"
-        className="w-full rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-        onClick={saveTheme}
-      >
-        Save
-      </button>
     </div>
   );
 };

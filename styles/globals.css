@@ -315,3 +315,13 @@ a {
 .rbc-show-more:focus {
   opacity: 75%;
 }
+
+#bySubject .react-colorful {
+  width: calc(100vw - 6rem);
+}
+
+@media (min-width: 1024px) {
+  #bySubject .react-colorful {
+    width: 18rem;
+  }
+}

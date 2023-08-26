@@ -28,13 +28,3 @@ export interface IShiftDTO {
   end: string;
   filterId: number;
 }
-
-export interface ThemeDTO {
-  theme: string;
-  colors: string[];
-  opacity: boolean;
-  setTheme: (theme: string) => void;
-  setColors: (colors: string[]) => void;
-  setOpacity: (opacity: boolean) => void;
-  updateTheme: () => void;
-}

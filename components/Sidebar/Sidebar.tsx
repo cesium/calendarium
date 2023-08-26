@@ -103,7 +103,7 @@ const Sidebar = ({
             </button>
             <button
               onClick={() => exportPDF()}
-              className="h-10 w-full rounded-2xl bg-cesium-400 p-2 font-medium text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-400/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500"
+              className="h-10 w-full rounded-2xl bg-cesium-900 p-2 font-medium text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-900/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500"
             >
               Export <i className="bi bi-file-earmark-pdf-fill"></i>
             </button>
@@ -117,13 +117,11 @@ const Sidebar = ({
               okText="Ok"
               cancelText="Cancel"
               icon={
-                <i
-                  className="bi bi-exclamation-circle-fill"
-                  style={{ color: "#faad14" }}
-                ></i>
+                <i className="bi bi-exclamation-circle-fill text-warning"></i>
               }
+              okButtonProps={{ className: "bg-blue-600" }}
             >
-              <button className="mb-3 h-10 w-full rounded-2xl bg-indigo-500 p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <button className="mb-3 h-10 w-full rounded-2xl bg-highlight p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-highlight/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Clear Schedule <i className="bi bi-stars"></i>
               </button>
             </Popconfirm>
@@ -131,7 +129,7 @@ const Sidebar = ({
         </div>
 
         {isSettings ? (
-          <Settings saveTheme={saveTheme} />
+          <Settings saveTheme={saveTheme} filters={filters} />
         ) : isHome ? (
           <EventFilters
             filters={filters}
