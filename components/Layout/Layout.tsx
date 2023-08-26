@@ -74,6 +74,7 @@ const Layout = ({
         <Sidebar
           isHome={isHome}
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
           filters={filters}
           handleFilters={handleFilters}
           saveTheme={saveTheme}

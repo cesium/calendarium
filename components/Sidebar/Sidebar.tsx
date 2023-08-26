@@ -18,6 +18,7 @@ import { Popconfirm } from "antd";
 interface ISidebarProps {
   isHome?: boolean;
   isOpen?: boolean;
+  setIsOpen?: (isOpen: boolean) => void;
   filters?: any;
   handleFilters?: any;
   saveTheme: any;
@@ -26,6 +27,7 @@ interface ISidebarProps {
 const Sidebar = ({
   isHome,
   isOpen,
+  setIsOpen,
   filters,
   handleFilters,
   saveTheme,
@@ -129,7 +131,12 @@ const Sidebar = ({
         </div>
 
         {isSettings ? (
-          <Settings saveTheme={saveTheme} filters={filters} />
+          <Settings
+            saveTheme={saveTheme}
+            filters={filters}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
         ) : isHome ? (
           <EventFilters
             filters={filters}

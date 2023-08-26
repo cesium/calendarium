@@ -4,6 +4,7 @@ import { Switch } from "@headlessui/react";
 
 import { HexColorPicker } from "react-colorful";
 
+import { IFilterDTO } from "../../dtos";
 import { reduceOpacity, defaultColors } from "../../utils/utils";
 
 export type SubjectColor = {
@@ -11,7 +12,14 @@ export type SubjectColor = {
   color: string;
 };
 
-const Settings = ({ saveTheme, filters }) => {
+type SettingsProps = {
+  saveTheme: () => void;
+  filters: IFilterDTO[];
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
+
+const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
@@ -84,6 +92,7 @@ const Settings = ({ saveTheme, filters }) => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     saveTheme();
+    isOpen && newTheme !== "Custom" && setIsOpen(false);
   }
 
   function updateOpacity(updateOpacity: boolean) {
@@ -317,7 +326,10 @@ const Settings = ({ saveTheme, filters }) => {
           <button
             type="button"
             className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
-            onClick={saveTheme}
+            onClick={() => {
+              saveTheme();
+              isOpen && setIsOpen(false);
+            }}
           >
             Save
           </button>
