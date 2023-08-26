@@ -37,7 +37,7 @@ export default function Home({ events, filters }) {
   const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
   const [customType, setCustomType] = useState<string>("Year");
 
-  // returns the default color if it was not found (not changed by the user)
+  // note: returns the default color if it was not found in the subjectColors array
   function getSubjectColor(event: IEventDTO) {
     const color = subjectColors.find(
       (sc) => sc.filterId === event.filterId
@@ -48,11 +48,9 @@ export default function Home({ events, filters }) {
   function getBgColor(event: IEventDTO) {
     let color: string = "#000000";
 
-    if (theme === "Modern") {
-      color = reduceOpacity(defaultColors[event.groupId]);
-    } else if (theme === "Classic") {
-      color = defaultColors[event.groupId];
-    } else if (theme === "Custom") {
+    if (theme === "Modern") color = reduceOpacity(defaultColors[event.groupId]);
+    else if (theme === "Classic") color = defaultColors[event.groupId];
+    else if (theme === "Custom") {
       if (customType === "Year") {
         opacity
           ? (color = reduceOpacity(colors[event.groupId]))
@@ -70,11 +68,9 @@ export default function Home({ events, filters }) {
   function getTextColor(event: IEventDTO) {
     let color: string = "#000000";
 
-    if (theme === "Modern") {
-      color = defaultColors[event.groupId];
-    } else if (theme === "Classic") {
-      color = "white";
-    } else if (theme === "Custom") {
+    if (theme === "Modern") color = defaultColors[event.groupId];
+    else if (theme === "Classic") color = "white";
+    else if (theme === "Custom") {
       if (customType === "Year") {
         opacity ? (color = colors[event.groupId]) : (color = "white");
       } else if (customType === "Subject") {
@@ -95,32 +91,20 @@ export default function Home({ events, filters }) {
 
     theme && setTheme(theme);
 
-    switch (theme) {
-      case "Modern": {
-        setColors(defaultColors);
-        setOpacity(true);
-        break;
-      }
-      case "Classic": {
-        setColors(defaultColors);
-        setOpacity(false);
-        break;
-      }
-      case "Custom": {
-        setCustomType(customType);
-        switch (customType) {
-          case "Year": {
-            colors ? setColors(colors.split(",")) : setColors(defaultColors);
-            opacity ? setOpacity(opacity === "true") : setOpacity(true);
-            break;
-          }
-          case "Subject": {
-            opacity ? setOpacity(opacity === "true") : setOpacity(true);
-            subjectColors && setSubjectColors(subjectColors);
-            break;
-          }
+    if (theme === "Custom") {
+      setCustomType(customType);
+
+      switch (customType) {
+        case "Year": {
+          colors ? setColors(colors.split(",")) : setColors(defaultColors);
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          break;
         }
-        break;
+        case "Subject": {
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          subjectColors && setSubjectColors(subjectColors);
+          break;
+        }
       }
     }
   }

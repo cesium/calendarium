@@ -10,10 +10,10 @@ import styles from "./layout.module.scss";
 
 interface ILayoutProps {
   children: ReactNode;
-  isHome?: boolean;
-  filters?: any;
-  handleFilters?: any;
-  saveTheme?: any;
+  isHome: boolean;
+  filters: any;
+  handleFilters: any;
+  saveTheme?: () => void;
 }
 
 const Layout = ({

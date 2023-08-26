@@ -21,7 +21,7 @@ interface ISidebarProps {
   setIsOpen?: (isOpen: boolean) => void;
   filters?: any;
   handleFilters?: any;
-  saveTheme: any;
+  saveTheme: () => void;
 }
 
 const Sidebar = ({
@@ -96,6 +96,7 @@ const Sidebar = ({
             <button
               onClick={() => setIsSettings(!isSettings)}
               className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+              title="Settings"
             >
               {isSettings ? (
                 <i className="bi bi-gear-fill"></i>
@@ -112,16 +113,27 @@ const Sidebar = ({
           </div>
           {!isHome && (
             <Popconfirm
-              title="Are you sure?"
-              description="This will remove all your classes"
+              title={isSettings ? "ERROR" : "Are you sure?"}
+              description={
+                isSettings
+                  ? "You can't clear your schedule while in settings."
+                  : "This will remove all your classes."
+              }
               onConfirm={() => clearSchedule()}
               onCancel={() => {}}
               okText="Ok"
-              cancelText="Cancel"
+              cancelText={"Cancel"}
               icon={
-                <i className="bi bi-exclamation-circle-fill text-warning"></i>
+                isSettings ? (
+                  <i className="bi bi-exclamation-circle-fill text-error"></i>
+                ) : (
+                  <i className="bi bi-question-circle-fill text-warning"></i>
+                )
               }
-              okButtonProps={{ className: "bg-blue-600" }}
+              okButtonProps={{
+                className: `${isSettings ? "hidden" : "bg-blue-500"}`,
+              }}
+              cancelButtonProps={{ className: `${isSettings && "hidden"}` }}
             >
               <button className="mb-3 h-10 w-full rounded-2xl bg-highlight p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-highlight/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Clear Schedule <i className="bi bi-stars"></i>
@@ -136,6 +148,7 @@ const Sidebar = ({
             filters={filters}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            isHome={isHome}
           />
         ) : isHome ? (
           <EventFilters

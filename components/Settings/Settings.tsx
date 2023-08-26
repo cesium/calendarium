@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 
 import { Switch } from "@headlessui/react";
 
-import { HexColorPicker } from "react-colorful";
+import { HexColorPicker, HexColorInput } from "react-colorful";
 
 import { IFilterDTO } from "../../dtos";
 import { reduceOpacity, defaultColors } from "../../utils/utils";
@@ -17,16 +17,26 @@ type SettingsProps = {
   filters: IFilterDTO[];
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  isHome: boolean;
 };
 
-const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
+const Settings = ({
+  saveTheme,
+  filters,
+  isOpen,
+  setIsOpen,
+  isHome,
+}: SettingsProps) => {
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
-  const [openColor, setOpenColor] = useState<number>(1);
+  const [openColor, setOpenColor] = useState<number>(0);
   const [customType, setCustomType] = useState<string>("Year");
   const [checkedFilters, setCheckedFilters] = useState<number[]>([]);
   const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
+  const [checkedClasses, setCheckedClasses] = useState<number[]>([]);
+
+  const checkedThings = isHome ? checkedFilters : checkedClasses;
 
   function initializeSubjectColors() {
     const newSubjectColors: SubjectColor[] = [];
@@ -41,23 +51,23 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
   }
 
   function getSubjectColor(index: number) {
-    return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+    return subjectColors.find((sc) => sc.filterId === checkedThings[index])
       .color;
   }
 
   function getBgSubjectColor(index: number) {
     if (opacity)
       return reduceOpacity(
-        subjectColors.find((sc) => sc.filterId === checkedFilters[index]).color
+        subjectColors.find((sc) => sc.filterId === checkedThings[index]).color
       );
     else
-      return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+      return subjectColors.find((sc) => sc.filterId === checkedThings[index])
         .color;
   }
 
   function getTextSubjectColor(index: number) {
     if (opacity)
-      return subjectColors.find((sc) => sc.filterId === checkedFilters[index])
+      return subjectColors.find((sc) => sc.filterId === checkedThings[index])
         .color;
     else return "white";
   }
@@ -65,25 +75,25 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
   function updateSubjectColors(newColor: string) {
     const newSubjectColors = [...subjectColors];
     newSubjectColors.find(
-      (sc) => sc.filterId === checkedFilters[openColor]
+      (sc) => sc.filterId === checkedThings[openColor]
     ).color = newColor;
     setSubjectColors(newSubjectColors);
     localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
   }
 
   function getBgColor(index: number) {
-    if (opacity) return reduceOpacity(colors[index]);
-    else return colors[index];
+    if (opacity) return reduceOpacity(colors[index + 1]);
+    else return colors[index + 1];
   }
 
   function getTextColor(index: number) {
-    if (opacity) return colors[index];
+    if (opacity) return colors[index + 1];
     else return "white";
   }
 
   function updateColors(newColor: string) {
     const newColors = [...colors];
-    newColors[openColor] = newColor;
+    newColors[openColor + 1] = newColor;
     setColors(newColors);
     localStorage.setItem("colors", newColors.join(","));
   }
@@ -103,11 +113,24 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
   function updateCustomType(newCustomType: string) {
     setCustomType(newCustomType);
     localStorage.setItem("customType", newCustomType);
+    setOpenColor(0);
     saveTheme();
   }
 
   function backToSubjectDefault() {
-    initializeSubjectColors();
+    const newSubjectColors = [...subjectColors];
+
+    checkedThings.forEach((filterId) => {
+      const subjectColor = newSubjectColors.find(
+        (sc) => sc.filterId === filterId
+      );
+      subjectColor.color =
+        defaultColors[filters.find((f) => f.id === filterId).groupId];
+    });
+
+    setSubjectColors(newSubjectColors);
+    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
+
     setOpacity(true);
     localStorage.setItem("opacity", "true");
   }
@@ -131,6 +154,10 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
       localStorage.getItem("subjectColors")
     );
 
+    const checkedShifts: { id: number; shift: string }[] = JSON.parse(
+      localStorage.getItem("shifts")
+    );
+
     if (theme) setTheme(theme);
 
     if (colors) setColors(colors.split(","));
@@ -144,6 +171,16 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
     if (subjectColors && subjectColors.length > 0)
       setSubjectColors(subjectColors);
     else initializeSubjectColors();
+
+    if (checkedShifts) {
+      const checkedClasses: number[] = checkedShifts.map(
+        (s: { id: number; shift: string }) => s.id
+      );
+      const uniqueCheckedClasses: number[] = Array.from(
+        new Set(checkedClasses)
+      );
+      setCheckedClasses(uniqueCheckedClasses);
+    }
   }
 
   useEffect(() => {
@@ -151,7 +188,7 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
   }, []);
 
   return (
-    <div className="h-full w-full space-y-4 overflow-hidden rounded-2xl p-4 shadow-default">
+    <div className="h-full w-full select-none space-y-4 overflow-hidden rounded-2xl p-4 shadow-default">
       <div className="text-center text-lg font-medium text-gray-900">
         Settings
       </div>
@@ -178,7 +215,7 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
       </div>
 
       {theme === "Custom" && (
-        <>
+        <div className="space-y-4">
           <div className="flex flex-row place-content-between items-center">
             <label
               htmlFor="theme"
@@ -200,26 +237,42 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
           </div>
 
           {customType === "Year" ? (
-            <div className="space-y-4">
-              <div className="flex flex-row place-content-center items-center space-x-2">
-                <div className="w-full flex-col space-y-1">
-                  {colors.slice(1, 6).map((color, index) => (
-                    <button
-                      key={index}
-                      className="flex h-9 w-full place-content-center items-center rounded-xl font-medium"
-                      style={{
-                        backgroundColor: getBgColor(index + 1),
-                        color: getTextColor(index + 1),
-                      }}
-                      onClick={() => setOpenColor(index + 1)}
-                    >
-                      {index + 1}º
-                    </button>
-                  ))}
+            <div id="byYear" className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex flex-row place-content-center items-center space-x-2">
+                  <div className="w-full flex-col space-y-1">
+                    {colors.slice(1, 6).map((color, index) => (
+                      <button
+                        key={index}
+                        className="flex h-9 w-full place-content-center items-center rounded-xl font-medium"
+                        style={{
+                          backgroundColor: getBgColor(index),
+                          color: getTextColor(index),
+                          fontWeight: openColor === index && 900,
+                        }}
+                        onClick={() => setOpenColor(index)}
+                      >
+                        {index + 1}º
+                      </button>
+                    ))}
+                  </div>
+                  <div>
+                    <HexColorPicker
+                      color={colors[openColor + 1]}
+                      onChange={(newColor) => updateColors(newColor)}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <HexColorPicker
-                    color={colors[openColor]}
+                <div className="flex flex-row items-center space-x-2">
+                  <div
+                    title="A Hex color code, for example: #ed7950"
+                    className="cursor-default text-sm font-medium text-gray-900"
+                  >
+                    Hex:
+                  </div>
+                  <HexColorInput
+                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center text-gray-900 focus:border-cesium-900 focus:ring-0"
+                    color={colors[openColor + 1]}
                     onChange={(newColor) => updateColors(newColor)}
                   />
                 </div>
@@ -257,17 +310,18 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
                 </button>
               </div>
             </div>
-          ) : checkedFilters.length > 0 ? (
+          ) : checkedThings.length > 0 ? (
             <div id="bySubject" className="space-y-4">
               <div className="space-y-2">
                 <div className="grid h-full w-full grid-flow-row grid-cols-3 gap-1">
-                  {checkedFilters.map((filterId, index) => (
+                  {checkedThings.map((filterId, index) => (
                     <button
                       key={index}
                       className="h-7 w-full place-content-center items-center rounded-xl text-sm font-medium"
                       style={{
                         backgroundColor: getBgSubjectColor(index),
                         color: getTextSubjectColor(index),
+                        fontWeight: openColor === index && 900,
                       }}
                       onClick={() => setOpenColor(index)}
                     >
@@ -279,6 +333,19 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
                 </div>
                 <div>
                   <HexColorPicker
+                    color={getSubjectColor(openColor)}
+                    onChange={(newColor) => updateSubjectColors(newColor)}
+                  />
+                </div>
+                <div className="flex flex-row items-center space-x-2">
+                  <div
+                    title="A Hex color code, for example: #ed7950"
+                    className="cursor-default text-sm font-medium text-gray-900"
+                  >
+                    Hex:
+                  </div>
+                  <HexColorInput
+                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center text-gray-900 focus:border-cesium-900 focus:ring-0"
                     color={getSubjectColor(openColor)}
                     onChange={(newColor) => updateSubjectColors(newColor)}
                   />
@@ -323,17 +390,19 @@ const Settings = ({ saveTheme, filters, isOpen, setIsOpen }: SettingsProps) => {
               Select at least one subject.
             </div>
           )}
-          <button
-            type="button"
-            className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
-            onClick={() => {
-              saveTheme();
-              isOpen && setIsOpen(false);
-            }}
-          >
-            Save
-          </button>
-        </>
+          {checkedThings.length > 0 && (
+            <button
+              type="button"
+              className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
+              onClick={() => {
+                saveTheme();
+                isOpen && setIsOpen(false);
+              }}
+            >
+              Save
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
