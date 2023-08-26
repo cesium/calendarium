@@ -10,9 +10,19 @@ module.exports = {
       },
       colors: {
         cesium: {
-          400: "#ed7950",
-          500: "#b55b3b",
+          100: "#FFEDE7",
+          200: "#FBE4DC",
+          300: "#F9D7CA",
+          400: "#F7C9B9",
+          500: "#F5BCA7",
+          600: "#F3AE95",
+          700: "#F1A184",
+          800: "#F5BCA7",
+          900: "#ED8661",
         },
+        highlight: "#7950ED",
+        warning: "#EDC850",
+        error: "#D53932",
       },
       boxShadow: {
         default: "0 0 10px rgba(0, 0, 0, 0.1)",
