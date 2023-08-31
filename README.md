@@ -35,7 +35,6 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 - Day
 - Week
 - Month
-- Agenda
 
 ### Event & Schedule filtering:
 
@@ -52,3 +51,11 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 ### Export to PDF:
 
 - Export your calendar or schedule into PDF format
+
+### Notifications
+
+- Get updated on the latest changes to the platform and know when new information is added
+
+### Color Themes
+
+- Customize your calendar view with a choice of themes or create your own!
