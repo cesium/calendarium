@@ -1,5 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap");
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
@@ -314,4 +314,22 @@ a {
 .rbc-calendar .rbc-show-more:hover,
 .rbc-show-more:focus {
   opacity: 75%;
+}
+
+#bySubject .react-colorful {
+  width: calc(100vw - 6rem);
+}
+
+#byYear .react-colorful {
+  width: calc(86vw - 6rem);
+}
+
+@media (min-width: 1024px) {
+  #bySubject .react-colorful {
+    width: 18rem;
+  }
+
+  #byYear .react-colorful {
+    width: 14rem;
+  }
 }
