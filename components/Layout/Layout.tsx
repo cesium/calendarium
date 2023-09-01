@@ -10,19 +10,26 @@ import styles from "./layout.module.scss";
 
 interface ILayoutProps {
   children: ReactNode;
-  isHome?: boolean;
-  filters?: any;
-  handleFilters?: any;
+  isHome: boolean;
+  filters: any;
+  handleFilters: any;
+  saveTheme?: () => void;
 }
 
-const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
+const Layout = ({
+  children,
+  isHome,
+  filters,
+  handleFilters,
+  saveTheme,
+}: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300`;
 
   return (
     <div className="lg:flex">
       <button
-        className="group absolute z-20 mt-8 ml-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
@@ -67,8 +74,10 @@ const Layout = ({ children, isHome, filters, handleFilters }: ILayoutProps) => {
         <Sidebar
           isHome={isHome}
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
           filters={filters}
           handleFilters={handleFilters}
+          saveTheme={saveTheme}
         />
       </div>
 

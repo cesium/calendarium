@@ -13,6 +13,9 @@ import fsPromises from "fs/promises";
 import ShiftModal from "../components/ShiftModal";
 import Layout from "../components/Layout";
 import { IFilterDTO, IShiftDTO } from "../dtos";
+import { reduceOpacity } from "../utils/utils";
+import { SubjectColor } from "../components/Settings/Settings";
+import { defaultColors } from "../utils/utils";
 
 import styles from "../styles/schedule.module.css";
 
@@ -46,6 +49,91 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   const [selectedShift, setSelectedShift] = useState<IShiftDTO>(shifts[0]);
   const [inspectShift, setInspectShift] = useState(false);
+
+  const [theme, setTheme] = useState<string>("Modern");
+  const [colors, setColors] = useState<string[]>(defaultColors);
+  const [opacity, setOpacity] = useState<boolean>(true);
+  const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
+  const [customType, setCustomType] = useState<string>("Year");
+
+  function getDefaultColor(event: IFormatedShift) {
+    return defaultColors[String(event.filterId)[0]];
+  }
+
+  // note: returns the default color if it was not found in the subjectColors array
+  function getSubjectColor(event: IFormatedShift) {
+    const color = subjectColors.find(
+      (sc) => sc.filterId === event.filterId
+    )?.color;
+    return color ? color : getDefaultColor(event);
+  }
+
+  function getBgColor(event: IFormatedShift) {
+    let color: string = "#000000";
+
+    if (theme === "Modern") color = reduceOpacity(getDefaultColor(event));
+    else if (theme === "Classic") color = getDefaultColor(event);
+    else if (theme === "Custom") {
+      if (customType === "Year") {
+        opacity
+          ? (color = reduceOpacity(colors[String(event.filterId)[0]]))
+          : (color = colors[String(event.filterId)[0]]);
+      } else if (customType === "Subject") {
+        opacity
+          ? (color = reduceOpacity(getSubjectColor(event)))
+          : (color = getSubjectColor(event));
+      }
+    }
+
+    return color;
+  }
+
+  function getTextColor(event: IFormatedShift) {
+    let color: string = "#000000";
+
+    if (theme === "Modern") color = getDefaultColor(event);
+    else if (theme === "Classic") color = "white";
+    else if (theme === "Custom") {
+      if (customType === "Year") {
+        opacity
+          ? (color = colors[String(event.filterId)[0]])
+          : (color = "white");
+      } else if (customType === "Subject") {
+        opacity ? (color = getSubjectColor(event)) : (color = "white");
+      }
+    }
+
+    return color;
+  }
+
+  function saveTheme() {
+    const theme = localStorage.getItem("theme");
+    const colors = localStorage.getItem("colors");
+    const opacity = localStorage.getItem("opacity");
+    const customType = localStorage.getItem("customType");
+    const subjectColors: SubjectColor[] =
+      JSON.parse(localStorage.getItem("subjectColors")) ?? [];
+
+    theme && setTheme(theme);
+    !customType && localStorage.setItem("customType", "Subject");
+
+    if (theme === "Custom") {
+      setCustomType(customType);
+
+      switch (customType) {
+        case "Year": {
+          colors ? setColors(colors.split(",")) : setColors(defaultColors);
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          break;
+        }
+        case "Subject": {
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          subjectColors && setSubjectColors(subjectColors);
+          break;
+        }
+      }
+    }
+  }
 
   const handleSelection = (shift) => {
     setSelectedShift(shift);
@@ -101,22 +189,15 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     formatEvents();
   }, [selectedFilters, formatEvents]);
 
+  useEffect(() => {
+    saveTheme();
+  }, []);
+
   const minDate = new Date();
   minDate.setHours(8, 0, 0);
 
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
-
-  function reduceOpacity(hexColor) {
-    // Convert HEX color code to RGBA color code
-    let r = parseInt(hexColor.slice(1, 3), 16);
-    let g = parseInt(hexColor.slice(3, 5), 16);
-    let b = parseInt(hexColor.slice(5, 7), 16);
-    let a = 0.25; // 25% opacity
-    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-
-    return rgbaColor;
-  }
 
   return (
     <Layout
@@ -125,6 +206,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       handleFilters={(myFilters) => {
         setSelectedFilters(myFilters);
       }}
+      saveTheme={saveTheme}
     >
       <div>
         <Head>
@@ -147,10 +229,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             eventPropGetter={(event) => {
               const newStyle = {
                 border: "0.2rem solid white",
-                backgroundColor: event.theoretical
-                  ? reduceOpacity("#ed7950")
-                  : reduceOpacity("#c65932"),
-                color: event.theoretical ? "#ed7950" : "#c65932",
+                backgroundColor: getBgColor(event),
+                color: getTextColor(event),
                 fontWeight: "500",
                 padding: "0.5rem",
                 borderRadius: "12px",

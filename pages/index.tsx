@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import * as fs from "fs";
 
@@ -11,10 +11,10 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
-
 import styles from "../styles/Home.module.css";
-
 import { IEventDTO } from "../dtos";
+import { reduceOpacity, defaultColors } from "../utils/utils";
+import { SubjectColor } from "../components/Settings/Settings";
 
 const localizer = momentLocalizer(moment);
 
@@ -26,10 +26,92 @@ export default function Home({ events, filters }) {
     return event;
   };
 
-  const [Events, setEvents] = useState(events.map(configureDates));
+  const [Events, setEvents] = useState<IEventDTO[]>(events.map(configureDates));
   const [Filters, setFilters] = useState(filters);
   const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
-  const [inspectEvent, setInspectEvent] = useState(false);
+  const [inspectEvent, setInspectEvent] = useState<boolean>(false);
+
+  const [theme, setTheme] = useState<string>("Modern");
+  const [colors, setColors] = useState<string[]>(defaultColors);
+  const [opacity, setOpacity] = useState<boolean>(true);
+  const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
+  const [customType, setCustomType] = useState<string>("Year");
+
+  // note: returns the default color if it was not found in the subjectColors array
+  function getSubjectColor(event: IEventDTO) {
+    const color = subjectColors.find(
+      (sc) => sc.filterId === event.filterId
+    )?.color;
+    return color ? color : defaultColors[event.groupId];
+  }
+
+  function getBgColor(event: IEventDTO) {
+    let color: string = "#000000";
+
+    if (theme === "Modern") color = reduceOpacity(defaultColors[event.groupId]);
+    else if (theme === "Classic") color = defaultColors[event.groupId];
+    else if (theme === "Custom") {
+      if (customType === "Year") {
+        opacity
+          ? (color = reduceOpacity(colors[event.groupId]))
+          : (color = colors[event.groupId]);
+      } else if (customType === "Subject") {
+        opacity
+          ? (color = reduceOpacity(getSubjectColor(event)))
+          : (color = getSubjectColor(event));
+      }
+    }
+
+    return color;
+  }
+
+  function getTextColor(event: IEventDTO) {
+    let color: string = "#000000";
+
+    if (theme === "Modern") color = defaultColors[event.groupId];
+    else if (theme === "Classic") color = "white";
+    else if (theme === "Custom") {
+      if (customType === "Year") {
+        opacity ? (color = colors[event.groupId]) : (color = "white");
+      } else if (customType === "Subject") {
+        opacity ? (color = getSubjectColor(event)) : (color = "white");
+      }
+    }
+
+    return color;
+  }
+
+  function saveTheme() {
+    const theme = localStorage.getItem("theme");
+    const colors = localStorage.getItem("colors");
+    const opacity = localStorage.getItem("opacity");
+    const customType = localStorage.getItem("customType") ?? "Year";
+    const subjectColors: SubjectColor[] =
+      JSON.parse(localStorage.getItem("subjectColors")) ?? [];
+
+    theme && setTheme(theme);
+
+    if (theme === "Custom") {
+      setCustomType(customType);
+
+      switch (customType) {
+        case "Year": {
+          colors ? setColors(colors.split(",")) : setColors(defaultColors);
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          break;
+        }
+        case "Subject": {
+          opacity ? setOpacity(opacity === "true") : setOpacity(true);
+          subjectColors && setSubjectColors(subjectColors);
+          break;
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    saveTheme();
+  }, []);
 
   const showNewEvents = (f) => {
     const filters = Object.values(f);
@@ -54,31 +136,6 @@ export default function Home({ events, filters }) {
     setSelectedEvent(event);
     setInspectEvent(!inspectEvent);
   };
-
-  function reduceOpacity(hexColor) {
-    // Convert HEX color code to RGBA color code
-    let r = parseInt(hexColor.slice(1, 3), 16);
-    let g = parseInt(hexColor.slice(3, 5), 16);
-    let b = parseInt(hexColor.slice(5, 7), 16);
-    let a = 0.25; // 25% opacity
-    let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-
-    return rgbaColor;
-  }
-
-  const colors = [
-    "#f07c54", // cesium
-    "#4BC0D9", // 1st year
-    "#7b54f0", // 2nd year
-    "#f0547b", // 3rd year
-    "#5ac77b", // 4th year
-    "#395B50", // 5th year
-    "#b70a0a", // uminho
-    "#3408fd", // sei
-    "#642580", // coderdojo
-    "#FF0000", // join
-    "#1B69EE", // jordi
-  ];
 
   const formats = {
     eventTimeRangeFormat: () => {
@@ -141,6 +198,7 @@ export default function Home({ events, filters }) {
       isHome
       filters={filters}
       handleFilters={(myFilters) => handleFilters(myFilters)}
+      saveTheme={saveTheme}
     >
       <div>
         <Head>
@@ -160,10 +218,10 @@ export default function Home({ events, filters }) {
             views={["day", "week", "month"]}
             min={minDate}
             max={maxDate}
-            eventPropGetter={(event: { title; start; end; groupId }) => {
+            eventPropGetter={(event: IEventDTO) => {
               const newStyle = {
-                backgroundColor: reduceOpacity(colors[event.groupId]),
-                color: colors[event.groupId],
+                backgroundColor: getBgColor(event),
+                color: getTextColor(event),
               };
 
               return { style: newStyle };

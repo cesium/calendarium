@@ -16,9 +16,14 @@ interface ISelectedFilter {
 interface ISelectScheduleProps {
   filters: IFilterDTO[];
   handleFilters: (selectedFilter: ISelectedFilter[]) => void;
+  clearSchedule: boolean;
 }
 
-const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
+const ScheduleFilters = ({
+  filters,
+  handleFilters,
+  clearSchedule,
+}: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   React.useEffect(() => {
@@ -26,6 +31,10 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     setSelectedFilters(stored);
     handleFilters(stored);
   }, []);
+
+  React.useEffect(() => {
+    clearSchedule && clearSelection();
+  }, [clearSchedule]);
 
   // Arrays for each group and subgroup to build the filter
 
@@ -112,6 +121,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
   };
 
   const CheckedIndicator = ({ filter }: { filter: IFilterDTO }) => {
+    // for the 5th year & others
     if (isChecked({ id: filter.id, shift: undefined })) {
       return (
         <div className={styles.selected_schedules}>
@@ -120,6 +130,7 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
       );
     }
 
+    // for the other years
     const isSomeChecked = filter.shifts?.some((shiftOption) =>
       isChecked({
         id: filter.id,
@@ -134,80 +145,113 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
     );
   };
 
+  const YearCheckedIndicator = ({ groupId }: { groupId: number }) => {
+    const isSomeChecked = filters
+      .filter((f) => f.groupId === groupId)
+      .some((filter) => {
+        return filter.shifts?.some((shiftOption) =>
+          isChecked({
+            id: filter.id,
+            shift: shiftOption,
+          })
+        );
+      });
+
+    return (
+      <div className={styles.selected_schedules}>
+        {isSomeChecked && <div className="ml-1 rounded-full bg-blue-200 p-1" />}
+      </div>
+    );
+  };
+
+  const SemesterCheckedIndicator = ({
+    groupId,
+    semester,
+  }: {
+    groupId: number;
+    semester: number;
+  }) => {
+    const isSomeChecked = filters
+      .filter((f) => f.groupId === groupId && f.semester === semester)
+      .some((filter) => {
+        return filter.shifts?.some((shiftOption) =>
+          isChecked({
+            id: filter.id,
+            shift: shiftOption,
+          })
+        );
+      });
+
+    return (
+      <div className={styles.selected_schedules}>
+        {isSomeChecked && <div className="ml-1 rounded-full bg-blue-200 p-1" />}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.layer}>
-      <Popconfirm
-        title="Are you sure?"
-        description="This will remove all your classes"
-        onConfirm={() => {
-          clearSelection();
-        }}
-        onCancel={() => {}}
-        okText="Ok"
-        cancelText="Cancel"
-        icon={
-          <i
-            className="bi bi-exclamation-circle-fill"
-            style={{ color: "#faad14" }}
-          ></i>
-        }
-      >
-        <button className={styles.clearButton}>
-          Clear Schedule <i className="bi bi-stars"></i>
-        </button>
-      </Popconfirm>
-
       {/* LEI */}
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {lei.map((y, index1) => (
-          <Panel header={y} key={index1}>
-            <Collapse
-              className={styles.sub_checkbox}
-              bordered={false}
-              accordion
-            >
-              {semesters.map((s, index2) => (
-                <Panel header={s} key={10 + index1 * 10 + index2}>
-                  <Collapse
-                    className={styles.sub_sub_sub_checkbox}
-                    bordered={false}
-                    accordion
-                  >
-                    {functions[index1 * 2 + index2].map(
-                      (filter) =>
-                        filter.shifts?.length && (
-                          <>
-                            <CheckedIndicator filter={filter} />
-                            <Panel header={filter.name} key={filter.id}>
-                              {filter.shifts.map(
-                                (shiftOption, index: number) => (
-                                  <div key={filter.id + index}>
-                                    <Checkbox
-                                      key={filter.id + index + 1}
-                                      onChange={() =>
-                                        handleToggle(filter.id, shiftOption)
-                                      }
-                                      type="checkbox"
-                                      checked={isChecked({
-                                        id: filter.id,
-                                        shift: shiftOption,
-                                      })}
-                                    >
-                                      {shiftOption}
-                                    </Checkbox>
-                                  </div>
-                                )
-                              )}
-                            </Panel>
-                          </>
-                        )
-                    )}
-                  </Collapse>
-                </Panel>
-              ))}
-            </Collapse>
-          </Panel>
+          <>
+            <YearCheckedIndicator key={index1 - 3} groupId={index1 + 1} />
+            <Panel header={y} key={index1}>
+              <Collapse
+                className={styles.sub_checkbox}
+                bordered={false}
+                accordion
+              >
+                {semesters.map((s, index2) => (
+                  <>
+                    <SemesterCheckedIndicator
+                      key={10 + index1 * 10 + index2 - 1000}
+                      groupId={index1 + 1}
+                      semester={index2 + 1}
+                    />
+                    <Panel header={s} key={10 + index1 * 10 + index2}>
+                      <Collapse
+                        className={styles.sub_sub_sub_checkbox}
+                        bordered={false}
+                        accordion
+                      >
+                        {functions[index1 * 2 + index2].map(
+                          (filter) =>
+                            filter.shifts?.length && (
+                              <>
+                                <CheckedIndicator filter={filter} />
+                                <Panel header={filter.name} key={filter.id}>
+                                  {filter.shifts.map(
+                                    (shiftOption, index: number) => (
+                                      <div key={filter.id + index}>
+                                        <Checkbox
+                                          key={filter.id + index + 1}
+                                          onChange={() =>
+                                            handleToggle(filter.id, shiftOption)
+                                          }
+                                          type="checkbox"
+                                          checked={isChecked({
+                                            id: filter.id,
+                                            shift: shiftOption,
+                                          })}
+                                        >
+                                          {shiftOption}
+                                        </Checkbox>
+                                      </div>
+                                    )
+                                  )}
+                                </Panel>
+                              </>
+                            )
+                        )}
+                      </Collapse>
+                    </Panel>
+                  </>
+                ))}
+              </Collapse>
+            </Panel>
+          </>
         ))}
       </Collapse>
 
@@ -215,53 +259,66 @@ const ScheduleFilters = ({ filters, handleFilters }: ISelectScheduleProps) => {
 
       <Collapse className={styles.checkbox} bordered={false} accordion>
         {mei.map((y, index1) => (
-          <Panel header={y} key={index1 + 1000}>
-            <Collapse
-              className={styles.sub_sub_checkbox}
-              bordered={false}
-              accordion
-            >
-              {semesters.map((s, index2) => (
-                <Panel header={s} key={1000 + 10 + index1 * 10 + index2}>
-                  <Collapse
-                    className={styles.sub_sub_sub_checkbox}
-                    bordered={false}
-                    accordion
-                  >
-                    {functions[6 + index2].map(
-                      (filter) =>
-                        filter.shifts?.length && (
-                          <>
-                            <CheckedIndicator filter={filter} />
-                            <Panel header={filter.name} key={filter.id}>
-                              {filter.shifts.map(
-                                (shiftOption, index: number) => (
-                                  <div key={filter.id + index}>
-                                    <Checkbox
-                                      key={filter.id + index + 1}
-                                      onChange={() =>
-                                        handleToggle(filter.id, shiftOption)
-                                      }
-                                      type="checkbox"
-                                      checked={isChecked({
-                                        id: filter.id,
-                                        shift: shiftOption,
-                                      })}
-                                    >
-                                      {shiftOption}
-                                    </Checkbox>
-                                  </div>
-                                )
-                              )}
-                            </Panel>
-                          </>
-                        )
-                    )}
-                  </Collapse>
-                </Panel>
-              ))}
-            </Collapse>
-          </Panel>
+          <>
+            <YearCheckedIndicator
+              key={index1 + 1000 - 2000}
+              groupId={index1 + 4}
+            />
+            <Panel header={y} key={index1 + 1000}>
+              <Collapse
+                className={styles.sub_sub_checkbox}
+                bordered={false}
+                accordion
+              >
+                {semesters.map((s, index2) => (
+                  <>
+                    <SemesterCheckedIndicator
+                      key={1000 + 10 + index1 * 10 + index2 - 3000}
+                      groupId={index1 + 4}
+                      semester={index2 + 1}
+                    />
+                    <Panel header={s} key={1000 + 10 + index1 * 10 + index2}>
+                      <Collapse
+                        className={styles.sub_sub_sub_checkbox}
+                        bordered={false}
+                        accordion
+                      >
+                        {functions[6 + index2].map(
+                          (filter) =>
+                            filter.shifts?.length && (
+                              <>
+                                <CheckedIndicator filter={filter} />
+                                <Panel header={filter.name} key={filter.id}>
+                                  {filter.shifts.map(
+                                    (shiftOption, index: number) => (
+                                      <div key={filter.id + index}>
+                                        <Checkbox
+                                          key={filter.id + index + 1}
+                                          onChange={() =>
+                                            handleToggle(filter.id, shiftOption)
+                                          }
+                                          type="checkbox"
+                                          checked={isChecked({
+                                            id: filter.id,
+                                            shift: shiftOption,
+                                          })}
+                                        >
+                                          {shiftOption}
+                                        </Checkbox>
+                                      </div>
+                                    )
+                                  )}
+                                </Panel>
+                              </>
+                            )
+                        )}
+                      </Collapse>
+                    </Panel>
+                  </>
+                ))}
+              </Collapse>
+            </Panel>
+          </>
         ))}
 
         {year_five.map((filter) => (
