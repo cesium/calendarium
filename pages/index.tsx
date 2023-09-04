@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
 
 import * as fs from "fs";
 
 import Head from "next/head";
-import { useSearchParams } from "next/navigation";
 
 import moment from "moment-timezone";
 
