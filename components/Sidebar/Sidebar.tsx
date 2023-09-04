@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -93,9 +94,10 @@ const Sidebar = ({
 
         <div className="space-y-2">
           <div className="flex space-x-2">
+            {/* Settings Button */}
             <button
               onClick={() => setIsSettings(!isSettings)}
-              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
               title="Settings"
             >
               {isSettings ? (
@@ -104,12 +106,60 @@ const Sidebar = ({
                 <i className="bi bi-gear"></i>
               )}
             </button>
-            <button
-              onClick={() => exportPDF()}
-              className="h-10 w-full rounded-2xl bg-cesium-900 p-2 font-medium text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-900/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500"
-            >
-              Export <i className="bi bi-file-earmark-pdf-fill"></i>
-            </button>
+            {/* Export button */}
+            <Menu as="div" className="relative inline-block w-full text-left">
+              <div>
+                <Menu.Button className="inline-flex h-10 w-full place-content-center items-center rounded-2xl bg-cesium-900 p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-900/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500">
+                  Export <i className="bi bi-chevron-down ml-1"></i>
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-2xl bg-white font-medium text-cesium-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="grid grid-cols-1 py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={`${
+                            active && "bg-cesium-100"
+                          } 'block text-sm' px-4 py-2`}
+                          title="Save to ICS file. Note that this will only export the events that are currently visible in the calendar."
+                          onClick={() => ""}
+                        >
+                          <div className="flex place-content-between space-x-6">
+                            <a>Calendar</a>
+                            <i className="bi bi-chevron-right"></i>
+                          </div>
+                        </button>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={`${
+                            active && "bg-cesium-100"
+                          } 'block text-sm' px-4 py-2`}
+                          onClick={() => exportPDF()}
+                        >
+                          <div className="flex place-content-between space-x-6">
+                            <a>PDF</a>
+                            <i className="bi bi-file-earmark-pdf"></i>
+                          </div>
+                        </button>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
           </div>
           {!isHome && (
             <Popconfirm
