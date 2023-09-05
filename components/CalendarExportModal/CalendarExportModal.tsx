@@ -86,18 +86,18 @@ const CalendarExportModal = ({
                       </a>
                       .
                       <p />
-                      <a className="font-bold">2.</a> On the left, next to
-                      "Other calendars", click Add{" "}
+                      <a className="font-bold">2.</a> On the left, next to{" "}
+                      {'"Other calendars"'}, click Add{" "}
                       <i className="bi bi-plus"></i>{" "}
                       <i className="bi bi-chevron-right"></i>{" "}
                       <text className="font-medium">From URL</text>.
                       <p />
-                      <a className="font-bold">3.</a> Enter the above calendar's
+                      <a className="font-bold">3.</a> Enter the above calendar{"\'"}s
                       address.
                       <p />
                       <a className="font-bold">4.</a> Click{" "}
                       <a className="font-medium">Add calendar</a>. The calendar
-                      appears on the left, under "Other calendars".
+                      appears on the left, under {'"Other calendars"'}.
                       <p />
                       <a
                         href="https://support.google.com/calendar/answer/37100?hl=en&co=GENIE.Platform=Desktop"
@@ -112,19 +112,19 @@ const CalendarExportModal = ({
                       <a className="font-bold">1.</a> On your iPhone, open{" "}
                       <a className="font-medium">Calendar</a>.
                       <p />
-                      <a className="font-bold">2.</a> On the bottom, click
-                      "Calendars".
+                      <a className="font-bold">2.</a> On the bottom, click{" "}
+                      {'"Calendars"'}.
                       <p />
-                      <a className="font-bold">3.</a> On the bottom left, click
-                      "Add Calendar" <i className="bi bi-chevron-right"></i>{" "}
+                      <a className="font-bold">3.</a> On the bottom left, click{" "}
+                      {'"Add Calendar"'} <i className="bi bi-chevron-right"></i>{" "}
                       <a className="font-medium">Add Subscription Calendar</a>.
                       <p />
-                      <a className="font-bold">3.</a> Enter the above calendar's
+                      <a className="font-bold">3.</a> Enter the above calendar{"\'"}s
                       address.
                       <p />
                       <a className="font-bold">4.</a> Click{" "}
                       <a className="font-medium">Subscribe</a>. The calendar
-                      appears under "Calendars".
+                      appears under {'"Calendars"'}.
                       <p />
                       <i className="bi bi-lightbulb"></i> You can also{" "}
                       <a
