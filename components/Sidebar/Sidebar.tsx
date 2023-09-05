@@ -1,5 +1,4 @@
-import { useState, Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
+import { useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -13,8 +12,8 @@ import ActiveLink from "../ActiveLink";
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 import Settings from "../Settings";
-
-import { Popconfirm } from "antd";
+import ExportButton from "../ExportButton";
+import ClearScheduleButton from "../ClearScheduleButton";
 
 interface ISidebarProps {
   isHome?: boolean;
@@ -107,88 +106,14 @@ const Sidebar = ({
               )}
             </button>
             {/* Export button */}
-            <Menu as="div" className="relative inline-block w-full text-left">
-              <div>
-                <Menu.Button className="inline-flex h-10 w-full place-content-center items-center rounded-2xl bg-cesium-900 p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-900/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500">
-                  Export <i className="bi bi-chevron-down ml-1"></i>
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-2xl bg-white font-medium text-cesium-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="grid grid-cols-1 py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active && "bg-cesium-100"
-                          } 'block text-sm' px-4 py-2`}
-                          title="Save to ICS file. Note that this will only export the events that are currently visible in the calendar."
-                          onClick={() => ""}
-                        >
-                          <div className="flex place-content-between space-x-6">
-                            <a>Calendar</a>
-                            <i className="bi bi-chevron-right"></i>
-                          </div>
-                        </button>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active && "bg-cesium-100"
-                          } 'block text-sm' px-4 py-2`}
-                          onClick={() => exportPDF()}
-                        >
-                          <div className="flex place-content-between space-x-6">
-                            <a>PDF</a>
-                            <i className="bi bi-file-earmark-pdf"></i>
-                          </div>
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+            <ExportButton exportPDF={exportPDF} isHome={isHome} />
           </div>
+          {/* Clear Schedule button */}
           {!isHome && (
-            <Popconfirm
-              title={isSettings ? "ERROR" : "Are you sure?"}
-              description={
-                isSettings
-                  ? "You can't clear your schedule while in settings."
-                  : "This will remove all your classes."
-              }
-              onConfirm={() => clearSchedule()}
-              onCancel={() => {}}
-              okText="Ok"
-              cancelText={"Cancel"}
-              icon={
-                isSettings ? (
-                  <i className="bi bi-exclamation-circle-fill text-error"></i>
-                ) : (
-                  <i className="bi bi-question-circle-fill text-warning"></i>
-                )
-              }
-              okButtonProps={{
-                className: `${isSettings ? "hidden" : "bg-blue-500"}`,
-              }}
-              cancelButtonProps={{ className: `${isSettings && "hidden"}` }}
-            >
-              <button className="mb-3 h-10 w-full rounded-2xl bg-highlight p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-highlight/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Clear Schedule <i className="bi bi-stars"></i>
-              </button>
-            </Popconfirm>
+            <ClearScheduleButton
+              isSettings={isSettings}
+              clearSchedule={clearSchedule}
+            />
           )}
         </div>
 
