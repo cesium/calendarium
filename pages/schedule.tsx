@@ -21,11 +21,11 @@ import styles from "../styles/schedule.module.css";
 
 const localizer = momentLocalizer(moment);
 
-interface IFormatedShift {
+export interface IFormatedShift {
   id: number;
   title: string;
   theoretical: boolean;
-  shift?: string;
+  shift: string;
   building: string;
   room: string;
   day: number;
@@ -49,6 +49,13 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
   const [selectedShift, setSelectedShift] = useState<IShiftDTO>(shifts[0]);
   const [inspectShift, setInspectShift] = useState(false);
+
+  const handleSelection = (shift) => {
+    setSelectedShift(shift);
+    setInspectShift(!inspectShift);
+  };
+
+  // THEMES
 
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
@@ -134,11 +141,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       }
     }
   }
-
-  const handleSelection = (shift) => {
-    setSelectedShift(shift);
-    setInspectShift(!inspectShift);
-  };
 
   const formats = useMemo(
     () => ({
