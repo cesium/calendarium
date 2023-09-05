@@ -72,7 +72,7 @@ const CalendarExportModal = ({
 
                 <Collapse
                   accordion
-                  className="w-72 rounded-xl bg-white text-left shadow-sm lg:w-96"
+                  className="w-72 rounded-xl border-gray-300 bg-white text-left shadow-sm lg:w-96"
                 >
                   <Collapse.Panel header="Google Calendar" key="1">
                     <div className="text-gray-900">
