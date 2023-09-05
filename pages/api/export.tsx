@@ -9,23 +9,22 @@ import { createEvents, DateArray, EventAttributes } from "ics";
 
 import moment from "moment";
 
+// Converts Date object into DateArray type, needed by "ics" package
+function buildDateArray(date: Date): DateArray {
+  return [
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+  ];
+}
+
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: EventAttributes[] = events.map((event: IFormatedEvent) => {
-    const s: DateArray = [
-      event.start.getFullYear(),
-      event.start.getMonth() + 1,
-      event.start.getDate(),
-      event.start.getHours(),
-      event.start.getMinutes(),
-    ];
-    const e: DateArray = [
-      event.end.getFullYear(),
-      event.end.getMonth() + 1,
-      event.end.getDate(),
-      event.end.getHours(),
-      event.end.getMinutes(),
-    ];
+    const s: DateArray = buildDateArray(event.start);
+    const e: DateArray = buildDateArray(event.end);
 
     const icsEvent: EventAttributes = {
       title: event.title,
@@ -43,6 +42,7 @@ function convertEventsToICS(events: IFormatedEvent[]) {
   return icsEvents;
 }
 
+// Handle the export of events (Event page)
 function handleEventExport(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader(
     "Content-Disposition",
@@ -68,17 +68,21 @@ function handleEventExport(req: NextApiRequest, res: NextApiResponse) {
   const events = eventsData.map(configureDates);
 
   if (valid) {
+    // Parse the subjects query string
     const subjectsInput: string = req.query.subjects as string;
     const subjects: number[] = subjectsInput.split(",").map(Number);
 
+    // Filter events based on the query params
     const filteredEvents: IFormatedEvent[] = events.filter(
       (event: IFormatedEvent) => {
         return subjects.includes(event.filterId) || event.filterId === -1;
       }
     );
 
+    // Convert events to ICS format
     const icsEvents: EventAttributes[] = convertEventsToICS(filteredEvents);
 
+    // Create ICS file and return it
     createEvents(icsEvents, (error, value) => {
       if (error) {
         console.log(error);
@@ -87,25 +91,14 @@ function handleEventExport(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).send(value);
     });
-  } else res.status(400).send("Invalid request");
+  } else res.status(400).send("Invalid request\n");
 }
 
+// Convert shifts to ICS format
 function convertShiftsToICS(shifts: IFormatedShift[]) {
   const icsShifts: EventAttributes[] = shifts.map((shift: IFormatedShift) => {
-    const s: DateArray = [
-      shift.start.getFullYear(),
-      shift.start.getMonth() + 1,
-      shift.start.getDate(),
-      shift.start.getHours(),
-      shift.start.getMinutes(),
-    ];
-    const e: DateArray = [
-      shift.end.getFullYear(),
-      shift.end.getMonth() + 1,
-      shift.end.getDate(),
-      shift.end.getHours(),
-      shift.end.getMinutes(),
-    ];
+    const s: DateArray = buildDateArray(shift.start);
+    const e: DateArray = buildDateArray(shift.end);
 
     // Fetch filter data from JSON
     const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
@@ -130,6 +123,7 @@ function convertShiftsToICS(shifts: IFormatedShift[]) {
   return icsShifts;
 }
 
+// Handle export of a schedule (Schedule page)
 function handleScheduleExport(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader(
     "Content-Disposition",
@@ -143,7 +137,7 @@ function handleScheduleExport(req: NextApiRequest, res: NextApiResponse) {
   // Fetch shift data from JSON
   const shiftsData = JSON.parse(fs.readFileSync("data/shifts.json", "utf-8"));
 
-  // Convert the start and end date strings of a shift into Date objectse
+  // Convert the start and end date strings of a shift into Date objects
   const configureDates = (shift) => {
     const [startHour, startMinute] = shift.start.split(":");
     const [endHour, endMinute] = shift.end.split(":");
@@ -166,6 +160,7 @@ function handleScheduleExport(req: NextApiRequest, res: NextApiResponse) {
   const shifts = shiftsData.map(configureDates);
 
   if (valid) {
+    // Parse the classes query string
     const classesInput: string = req.query.classes as string;
     const classesString: string[] = classesInput.split(";");
     const classes: { id: number; shift: string }[] = classesString.map(
@@ -175,14 +170,17 @@ function handleScheduleExport(req: NextApiRequest, res: NextApiResponse) {
       }
     );
 
+    // Filter shifts based on the query params
     const filteredShifts: IFormatedShift[] = shifts.filter(
       (s: IFormatedShift) => {
         return classes.find((c) => c.id === s.filterId && c.shift === s.shift);
       }
     );
 
+    // Convert shifts to ICS format
     const icsShifts: EventAttributes[] = convertShiftsToICS(filteredShifts);
 
+    // Create ICS file and return it
     createEvents(icsShifts, (error, value) => {
       if (error) {
         console.log(error);
@@ -191,7 +189,7 @@ function handleScheduleExport(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).send(value);
     });
-  } else res.status(400).send("Invalid request");
+  } else res.status(400).send("Invalid request\n");
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -199,5 +197,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.query.subjects) handleEventExport(req, res);
   else if (req.query.classes) handleScheduleExport(req, res);
-  else res.status(400).send("Invalid request");
+  else res.status(400).send("Invalid request\n");
 };
