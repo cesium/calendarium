@@ -92,8 +92,8 @@ const CalendarExportModal = ({
                       <i className="bi bi-chevron-right"></i>{" "}
                       <text className="font-medium">From URL</text>.
                       <p />
-                      <a className="font-bold">3.</a> Enter the above calendar{"\'"}s
-                      address.
+                      <a className="font-bold">3.</a> Enter the above calendar
+                      {"'"}s address.
                       <p />
                       <a className="font-bold">4.</a> Click{" "}
                       <a className="font-medium">Add calendar</a>. The calendar
@@ -119,8 +119,8 @@ const CalendarExportModal = ({
                       {'"Add Calendar"'} <i className="bi bi-chevron-right"></i>{" "}
                       <a className="font-medium">Add Subscription Calendar</a>.
                       <p />
-                      <a className="font-bold">3.</a> Enter the above calendar{"\'"}s
-                      address.
+                      <a className="font-bold">3.</a> Enter the above calendar
+                      {"'"}s address.
                       <p />
                       <a className="font-bold">4.</a> Click{" "}
                       <a className="font-medium">Subscribe</a>. The calendar
