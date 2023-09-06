@@ -86,13 +86,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       shift.start = moment()
         .day(shift.day + 1)
-        .hour(startHour)
-        .minute(startMinute)
+        .hour(+startHour)
+        .minute(+startMinute)
         .toDate();
       shift.end = moment()
         .day(shift.day + 1)
-        .hour(endHour)
-        .minute(endMinute)
+        .hour(+endHour)
+        .minute(+endMinute)
         .toDate();
 
       return shift;

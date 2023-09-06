@@ -65,8 +65,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = moment(event.start).toDate();
-      event.end = moment(event.end).toDate();
+      event.start = new Date();
+      event.end = new Date();
       return event;
     };
 
