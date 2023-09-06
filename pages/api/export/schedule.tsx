@@ -127,7 +127,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Create ICS file and return it
     createEvents(icsShifts, (error, value) => {
       if (error) {
-        console.log(error);
+        console.error(error);
+        res.status(400).send("Error in createEvents()");
         return;
       }
 
