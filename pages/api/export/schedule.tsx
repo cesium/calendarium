@@ -21,7 +21,12 @@ function convertShiftsToICS(shifts: IFormatedShift[]) {
     const e: DateArray = buildDateArray(shift.end);
 
     // Fetch filter data from JSON
-    const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
+    const filterFilePath = path.join(process.cwd(), "data/filters.json");
+    const filtersBuffer = fsPromises.readFile(filterFilePath);
+    const filters: IFilterDTO[] = JSON.parse(
+      filtersBuffer as unknown as string
+    );
+
     const filter = filters.find((filter) => filter.id === shift.filterId);
 
     const icsShift: EventAttributes = {
@@ -32,8 +37,8 @@ function convertShiftsToICS(shifts: IFormatedShift[]) {
       } - ${shift.room}`,
       start: s,
       end: e,
-      startInputType: "utc",
-      endInputType: "utc",
+      startInputType: "local",
+      endInputType: "local",
       recurrenceRule: "FREQ=WEEKLY;INTERVAL=1",
     };
 
