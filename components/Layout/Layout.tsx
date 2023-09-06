@@ -8,8 +8,6 @@ import Notifications from "../Notifications";
 
 import styles from "./layout.module.scss";
 
-import { EventAttributes } from "ics";
-
 interface ILayoutProps {
   children: ReactNode;
   isHome: boolean;
