@@ -22,7 +22,6 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       start: event.start,
       end: event.end,
       url: event.link,
-      timezone: "Europe/Lisbon",
     };
 
     return icsEvent;
