@@ -11,6 +11,9 @@ import moment from "moment";
 
 import { buildDateArray } from "../../../utils/utils";
 
+import path from "path";
+import fsPromises from "fs/promises";
+
 // Convert shifts to ICS format
 function convertShiftsToICS(shifts: IFormatedShift[]) {
   const icsShifts: EventAttributes[] = shifts.map((shift: IFormatedShift) => {
@@ -29,8 +32,8 @@ function convertShiftsToICS(shifts: IFormatedShift[]) {
       } - ${shift.room}`,
       start: s,
       end: e,
-      startInputType: "local",
-      endInputType: "local",
+      startInputType: "utc",
+      endInputType: "utc",
       recurrenceRule: "FREQ=WEEKLY;INTERVAL=1",
     };
 
@@ -48,9 +51,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   // Fetch filter data from JSON
-  const filters: IFilterDTO[] = JSON.parse(
-    fs.readFileSync("data/filters.json", "utf-8")
-  );
+  const filterFilePath = path.join(process.cwd(), "data/filters.json");
+  const filtersBuffer = await fsPromises.readFile(filterFilePath);
+  const filters: IFilterDTO[] = JSON.parse(filtersBuffer as unknown as string);
 
   // Fetch query keys
   const queryEntries: [string, string | string[]][] = Object.entries(req.query);
@@ -76,8 +79,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (valid) {
     // Fetch shift data from JSON
+    const shiftsFilePath = path.join(process.cwd(), "data/shifts.json");
+    const shiftsBuffer = await fsPromises.readFile(shiftsFilePath);
     const shiftsData: IShiftDTO[] = JSON.parse(
-      fs.readFileSync("data/shifts.json", "utf-8")
+      shiftsBuffer as unknown as string
     );
 
     // Convert the start and end date strings of a shift into Date objects
@@ -128,7 +133,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     createEvents(icsShifts, (error, value) => {
       if (error) {
         console.error(error);
-        res.status(400).send("Error in createEvents()");
         return;
       }
 
