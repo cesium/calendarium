@@ -19,7 +19,7 @@
     "@emotion/styled": "^11.10.5",
     "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.11.6",
-    "@netlify/plugin-nextjs": "^4.30.4",
+    "@netlify/plugin-nextjs": "^4.40.1",
     "@tailwindcss/forms": "^0.5.5",
     "@types/react-big-calendar": "^0.38.1",
     "antd": "^5.1.0",
