@@ -28,10 +28,10 @@ export const defaultColors = [
 // Converts Date object into DateArray type, needed by "ics" package
 export function buildDateArray(date: Date): DateArray {
   return [
-    date.getUTCFullYear(),
-    date.getUTCMonth() + 1,
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
   ];
 }
