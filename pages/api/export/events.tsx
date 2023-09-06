@@ -10,22 +10,22 @@ import { buildDateArray } from "../../../utils/utils";
 import path from "path";
 import fsPromises from "fs/promises";
 
+import moment from "moment";
+
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: EventAttributes[] = events.map((event: IFormatedEvent) => {
-    const s: DateArray = buildDateArray(event.start);
-    const e: DateArray = buildDateArray(event.end);
+    const start: DateArray = buildDateArray(event.start);
+    const end: DateArray = buildDateArray(event.end);
 
     const icsEvent: EventAttributes = {
       title: event.title,
       location: event.place,
-      start: s,
-      end: e,
-      url: event.link,
+      start: start,
       startInputType: "utc",
+      end: end,
       endInputType: "utc",
-      startOutputType: "utc",
-      endOutputType: "utc",
+      url: event.link,
     };
 
     return icsEvent;
@@ -67,8 +67,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
+      event.start = moment.tz(event.start, "Europe/Lisbon").utc();
+      event.end = moment.tz(event.end, "Europe/Lisbon").utc();
       return event;
     };
 

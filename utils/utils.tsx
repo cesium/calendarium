@@ -26,12 +26,12 @@ export const defaultColors = [
 ];
 
 // Converts Date object into DateArray type, needed by "ics" package
-export function buildDateArray(date: Date): DateArray {
+export function buildDateArray(date): DateArray {
   return [
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
+    date.get("year"),
+    date.get("month") + 1,
+    date.get("date"),
+    date.get("hour"),
+    date.get("minute"),
   ];
 }
