@@ -38,13 +38,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     "attachment; filename=calendarium-events.ics"
   );
 
-  const basePath = process.env.NETLIFY_BUILD_BASE || process.cwd();
-
   // Fetch filter data from JSON
-  const filters = JSON.parse(
-    fs.readFileSync(`${basePath}/data/filters.json`, "utf-8")
+  const filters: IFilterDTO[] = JSON.parse(
+    fs.readFileSync("data/filters.json", "utf-8")
   );
-
   // Fetch filter names
   const filtersNames: string[] = filters.map((f) => f.name);
 
@@ -59,7 +56,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (valid) {
     // Fetch event data from JSON
     const eventsData: IEventDTO[] = JSON.parse(
-      fs.readFileSync(`${basePath}/data/events.json`, "utf-8")
+      fs.readFileSync("data/events.json", "utf-8")
     );
 
     // Converts the start and end date strings of an event into Date objects
