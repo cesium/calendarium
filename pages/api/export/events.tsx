@@ -9,6 +9,9 @@ import { createEvents, DateArray, EventAttributes } from "ics";
 
 import { buildDateArray } from "../../../utils/utils";
 
+import path from "path";
+import fsPromises from "fs/promises";
+
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: EventAttributes[] = events.map((event: IFormatedEvent) => {
@@ -42,9 +45,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("Content-Type and Content-Disposition SET\n");
 
   // Fetch filter data from JSON
-  const filters: IFilterDTO[] = JSON.parse(
-    fs.readFileSync("data/filters.json", "utf-8")
-  );
+  const filterFilePath = path.join(process.cwd(), "data/filters.json");
+  const filtersBuffer = await fsPromises.readFile(filterFilePath);
+  const filters = JSON.parse(filtersBuffer as unknown as string);
+  //   const filters: IFilterDTO[] = JSON.parse(
+  //     fs.readFileSync("data/filters.json", "utf-8")
+  //   );
   console.log("Filters fetched from JSON\n");
   console.log("Filters: ", filters, "\n");
   // Fetch filter names
@@ -65,9 +71,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (valid) {
     console.log("API request is valid\n");
     // Fetch event data from JSON
-    const eventsData: IEventDTO[] = JSON.parse(
-      fs.readFileSync("data/events.json", "utf-8")
-    );
+    const eventsFilePath = path.join(process.cwd(), "data/events.json");
+    const eventsBuffer = await fsPromises.readFile(eventsFilePath);
+    const eventsData = JSON.parse(eventsBuffer as unknown as string);
+    // const eventsData: IEventDTO[] = JSON.parse(
+    //   fs.readFileSync("data/events.json", "utf-8")
+    // );
     console.log("Events fetched from JSON\n");
     console.log("Events: ", eventsData, "\n");
 
