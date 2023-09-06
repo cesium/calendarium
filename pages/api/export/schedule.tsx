@@ -60,14 +60,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const [key, value] = entry;
         const filter = filters.find((f) => f.name === key);
 
-        return (
-          filter &&
-          (Array.isArray(value)
-            ? (value as string[])
-                .map((v) => filter.shifts.includes(v))
-                .every((v) => v === true)
-            : filter.shifts.includes(value))
-        );
+        if (!filter)
+          // Filter not found, invalid query parameter
+          return false;
+
+        if (Array.isArray(value))
+          // Handle array of values
+          return value.every((v) => filter.shifts.includes(v));
+        // Handle single value
+        else return filter.shifts.includes(value);
       })
       .every((v) => v === true);
 
