@@ -10,8 +10,6 @@ import { buildDateArray } from "../../../utils/utils";
 import path from "path";
 import fsPromises from "fs/promises";
 
-import moment from "moment";
-
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: EventAttributes[] = events.map((event: IFormatedEvent) => {
@@ -65,8 +63,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = new Date();
-      event.end = new Date();
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
       return event;
     };
 
