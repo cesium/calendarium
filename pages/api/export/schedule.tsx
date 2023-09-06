@@ -3,32 +3,31 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { IFormatedShift } from "../../schedule";
 import { IShiftDTO, IFilterDTO } from "../../../dtos";
 
-import { createEvents, DateArray, EventAttributes } from "ics";
+import ical from "ical-generator";
+import { ICalEventData, ICalEventRepeatingFreq } from "ical-generator";
 
 import moment from "moment";
-
-import { buildDateArray } from "../../../utils/utils";
 
 import path from "path";
 import fsPromises from "fs/promises";
 
 // Convert shifts to ICS format
 function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
-  const icsShifts: EventAttributes[] = shifts.map((shift: IFormatedShift) => {
-    const s: DateArray = buildDateArray(shift.start);
-    const e: DateArray = buildDateArray(shift.end);
-
+  const icsShifts: ICalEventData[] = shifts.map((shift) => {
     const filter = filters.find((filter) => filter.id === shift.filterId);
 
-    const icsShift: EventAttributes = {
-      title: `${filter.name} - ${shift.shift}`,
+    const icsShift: ICalEventData = {
+      summary: `${filter.name} - ${shift.shift}`,
       description: shift.title,
       location: `${shift.building.includes("CP") ? "" : "Ed. "}${
         shift.building
       } - ${shift.room}`,
-      start: s,
-      end: e,
-      recurrenceRule: "FREQ=WEEKLY;INTERVAL=1",
+      start: shift.start,
+      end: shift.end,
+      repeating: {
+        freq: "WEEKLY" as ICalEventRepeatingFreq,
+        interval: 1,
+      },
     };
 
     return icsShift;
@@ -122,19 +121,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     // Convert shifts to ICS format
-    const icsShifts: EventAttributes[] = convertShiftsToICS(
+    const icsShifts: ICalEventData[] = convertShiftsToICS(
       filteredShifts,
       filters
     );
 
     // Create ICS file and return it
-    createEvents(icsShifts, (error, value) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
+    const calendar = ical({ name: "Calendarium-Schedule", events: icsShifts });
 
-      res.status(200).send(value);
-    });
+    // Send ICS file
+    res.status(200).send(calendar.toString());
   } else res.status(400).send("Invalid request\n");
 };

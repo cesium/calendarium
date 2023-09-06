@@ -6,12 +6,8 @@ import { IEventDTO, IFilterDTO } from "../../../dtos";
 import ical from "ical-generator";
 import { ICalEventData } from "ical-generator";
 
-import { buildDateArray } from "../../../utils/utils";
-
 import path from "path";
 import fsPromises from "fs/promises";
-
-import moment from "moment";
 
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {

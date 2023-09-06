@@ -1,5 +1,3 @@
-import { DateArray } from "ics";
-
 export function reduceOpacity(hexColor) {
   // Convert HEX color code to RGBA color code
   let r = parseInt(hexColor.slice(1, 3), 16);
@@ -24,14 +22,3 @@ export const defaultColors = [
   "#FF0000", // join
   "#1B69EE", // jordi
 ];
-
-// Converts Date object into DateArray type, needed by "ics" package
-export function buildDateArray(date): DateArray {
-  return [
-    date.get("year"),
-    date.get("month") + 1,
-    date.get("date"),
-    date.get("hour"),
-    date.get("minute"),
-  ];
-}
