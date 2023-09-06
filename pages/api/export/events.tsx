@@ -22,10 +22,10 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       start: s,
       end: e,
       url: event.link,
-      startInputType: "local",
-      endInputType: "local",
-      startOutputType: "utc",
-      endOutputType: "utc",
+      startInputType: "utc",
+      endInputType: "utc",
+      startOutputType: "local",
+      endOutputType: "local",
     };
 
     return icsEvent;
