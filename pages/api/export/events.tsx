@@ -3,7 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { IFormatedEvent } from "../..";
 import { IEventDTO, IFilterDTO } from "../../../dtos";
 
-import { createEvents, DateArray, EventAttributes } from "ics";
+import ical from "ical-generator";
+import { ICalEventData } from "ical-generator";
 
 import { buildDateArray } from "../../../utils/utils";
 
@@ -14,18 +15,14 @@ import moment from "moment";
 
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
-  const icsEvents: EventAttributes[] = events.map((event: IFormatedEvent) => {
-    const start: DateArray = buildDateArray(event.start);
-    const end: DateArray = buildDateArray(event.end);
-
-    const icsEvent: EventAttributes = {
-      title: event.title,
+  const icsEvents: ICalEventData[] = events.map((event) => {
+    const icsEvent: ICalEventData = {
+      summary: event.title,
       location: event.place,
-      start: start,
-      startInputType: "utc",
-      end: end,
-      endInputType: "utc",
+      start: event.start,
+      end: event.end,
       url: event.link,
+      timezone: "Europe/Lisbon",
     };
 
     return icsEvent;
@@ -67,8 +64,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = moment.tz(event.start, "Europe/Lisbon").utc();
-      event.end = moment.tz(event.end, "Europe/Lisbon").utc();
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
       return event;
     };
 
@@ -88,16 +85,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     // Convert events to ICS format
-    const icsEvents: EventAttributes[] = convertEventsToICS(filteredEvents);
+    const icsEvents: ICalEventData[] = convertEventsToICS(filteredEvents);
 
     // Create ICS file and return it
-    createEvents(icsEvents, (error, value) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
+    const calendar = ical({ name: "Calendarium-Events", events: icsEvents });
 
-      res.status(200).send(value);
-    });
+    // Send ICS file
+    res.status(200).send(calendar.toString());
   } else res.status(400).send("Invalid request\n");
 };
