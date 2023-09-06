@@ -23,6 +23,9 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       end: e,
       url: event.link,
       startInputType: "utc",
+      endInputType: "utc",
+      startOutputType: "utc",
+      endOutputType: "utc",
     };
 
     return icsEvent;
