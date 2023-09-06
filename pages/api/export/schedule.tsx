@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import * as fs from "fs";
-
 import { IFormatedShift } from "../../schedule";
 import { IShiftDTO, IFilterDTO } from "../../../dtos";
 
@@ -92,11 +90,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .day(shift.day + 1)
         .hour(startHour)
         .minute(startMinute)
+        .tz("Europe/Lisbon")
         .toDate();
       shift.end = moment()
         .day(shift.day + 1)
         .hour(endHour)
         .minute(endMinute)
+        .tz("Europe/Lisbon")
         .toDate();
 
       return shift;
