@@ -15,17 +15,10 @@ import path from "path";
 import fsPromises from "fs/promises";
 
 // Convert shifts to ICS format
-function convertShiftsToICS(shifts: IFormatedShift[]) {
+function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
   const icsShifts: EventAttributes[] = shifts.map((shift: IFormatedShift) => {
     const s: DateArray = buildDateArray(shift.start);
     const e: DateArray = buildDateArray(shift.end);
-
-    // Fetch filter data from JSON
-    const filterFilePath = path.join(process.cwd(), "data/filters.json");
-    const filtersBuffer = fsPromises.readFile(filterFilePath);
-    const filters: IFilterDTO[] = JSON.parse(
-      filtersBuffer as unknown as string
-    );
 
     const filter = filters.find((filter) => filter.id === shift.filterId);
 
@@ -132,7 +125,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     // Convert shifts to ICS format
-    const icsShifts: EventAttributes[] = convertShiftsToICS(filteredShifts);
+    const icsShifts: EventAttributes[] = convertShiftsToICS(
+      filteredShifts,
+      filters
+    );
 
     // Create ICS file and return it
     createEvents(icsShifts, (error, value) => {
