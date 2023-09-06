@@ -28,8 +28,6 @@ function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
       } - ${shift.room}`,
       start: s,
       end: e,
-      startInputType: "local",
-      endInputType: "local",
       recurrenceRule: "FREQ=WEEKLY;INTERVAL=1",
     };
 
@@ -90,13 +88,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .day(shift.day + 1)
         .hour(startHour)
         .minute(startMinute)
-        .tz("Europe/Lisbon")
         .toDate();
       shift.end = moment()
         .day(shift.day + 1)
         .hour(endHour)
         .minute(endMinute)
-        .tz("Europe/Lisbon")
         .toDate();
 
       return shift;

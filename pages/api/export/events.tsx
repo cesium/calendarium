@@ -24,8 +24,6 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       start: s,
       end: e,
       url: event.link,
-      startInputType: "local",
-      endInputType: "local",
     };
 
     return icsEvent;
@@ -67,8 +65,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = moment(event.start).tz("Europe/Lisbon").toDate();
-      event.end = moment(event.end).tz("Europe/Lisbon").toDate();
+      event.start = moment(event.start).toDate();
+      event.end = moment(event.end).toDate();
       return event;
     };
 
