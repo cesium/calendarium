@@ -143,8 +143,10 @@ const CalendarExportModal = ({
                       <div className="text-justify">
                         The URL above allows you to{" "}
                         <a className="font-medium">subscribe</a> to your active{" "}
-                        {isHome ? "events" : "schedule"} in Calendarium, using
-                        your favorite calendar app.
+                        <a className="font-medium">
+                          {isHome ? "events" : "schedule"}
+                        </a>{" "}
+                        in Calendarium, using your favorite calendar app.
                         <p />
                         This means that you will be able to see your{" "}
                         {isHome ? "events" : "schedule"} in your calendar app,
@@ -153,6 +155,16 @@ const CalendarExportModal = ({
                         <p />
                         Your {isHome ? "events" : "schedule"} will be
                         automatically synced with Calendarium.
+                        <p />
+                        <div className="rounded-lg bg-blue-500/20 p-3">
+                          <i className="bi bi-info-circle-fill text-blue-500"></i>{" "}
+                          To export your{" "}
+                          <a className="font-medium">
+                            {isHome ? "schedule" : "events"}
+                          </a>{" "}
+                          please navigate to{" "}
+                          {isHome ? "/schedule" : "the main page"}.
+                        </div>
                         <p />
                         <div className="rounded-lg bg-warning/20 p-3">
                           <i className="bi bi-exclamation-triangle-fill text-warning"></i>{" "}
