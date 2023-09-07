@@ -23,5 +23,10 @@
     "type": "Updates",
     "description": "Tu pediste, nós entregamos! O Calendarium tem agora mais cor. Acessa a nova secção de configurações para mudares o tema de cores dos teus eventos, ou costumiza o teu próprio!",
     "date": "2023-09-10 10:00"
+  },
+  {
+    "type": "Updates",
+    "description": "Sincroniza os teus eventos e horário com o Google Calendar ou outra app de calendário! Seleciona Export > Calendar e sabe mais.",
+    "date": "2023-09-07 10:05"
   }
 ]
