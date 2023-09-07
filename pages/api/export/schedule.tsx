@@ -50,6 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Fetch query keys
   const queryEntries: [string, string | string[]][] = Object.entries(req.query);
+  res.write(JSON.stringify(queryEntries));
 
   // Check if the API request is valid
   const valid: boolean =
