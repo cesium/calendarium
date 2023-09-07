@@ -3,12 +3,15 @@ import { Menu, Transition } from "@headlessui/react";
 
 import CalendarExportModal from "../CalendarExportModal";
 
+import { IFilterDTO } from "../../dtos";
+
 type ExportButtonProps = {
   exportPDF: () => void;
   isHome: boolean;
+  filters: IFilterDTO[];
 };
 
-const ExportButton = ({ exportPDF, isHome }: ExportButtonProps) => {
+const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -71,6 +74,7 @@ const ExportButton = ({ exportPDF, isHome }: ExportButtonProps) => {
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
         isHome={isHome}
+        filters={filters}
       />
     </div>
   );

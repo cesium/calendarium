@@ -15,11 +15,13 @@ import Settings from "../Settings";
 import ExportButton from "../ExportButton";
 import ClearScheduleButton from "../ClearScheduleButton";
 
+import { IFilterDTO } from "../../dtos";
+
 interface ISidebarProps {
   isHome?: boolean;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
-  filters?: any;
+  filters?: IFilterDTO[];
   handleFilters?: any;
   saveTheme: () => void;
 }
@@ -106,7 +108,11 @@ const Sidebar = ({
               )}
             </button>
             {/* Export button */}
-            <ExportButton exportPDF={exportPDF} isHome={isHome} />
+            <ExportButton
+              exportPDF={exportPDF}
+              isHome={isHome}
+              filters={filters}
+            />
           </div>
           {/* Clear Schedule button */}
           {!isHome && (
