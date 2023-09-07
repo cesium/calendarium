@@ -9,8 +9,6 @@ import { ICalEventData } from "ical-generator";
 import path from "path";
 import fsPromises from "fs/promises";
 
-import moment from "moment-timezone";
-
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: ICalEventData[] = events.map((event) => {
@@ -19,7 +17,7 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       location: event.place,
       start: event.start,
       end: event.end,
-      url: event.link,
+      url: event.link
     };
 
     return icsEvent;
@@ -61,8 +59,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
-      event.start = moment(event.start).tz("Europe/Lisbon").toDate();
-      event.end = moment(event.end).tz("Europe/Lisbon").toDate();
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
       return event;
     };
 
