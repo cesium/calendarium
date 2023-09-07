@@ -157,8 +157,8 @@ const CalendarExportModal = ({
                         <div className="rounded-lg bg-warning/20 p-3">
                           <i className="bi bi-exclamation-triangle-fill text-warning"></i>{" "}
                           If you make any changes to your{" "}
-                          {isHome ? "events" : "schedule"} in Calendarium,
-                          you'll need to{" "}
+                          {isHome ? "events" : "schedule"} in Calendarium, you
+                          {"'"}ll need to{" "}
                           <a className="font-medium">
                             re-export and re-subscribe to the calendar
                           </a>
