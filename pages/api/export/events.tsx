@@ -9,6 +9,8 @@ import { ICalEventData } from "ical-generator";
 import path from "path";
 import fsPromises from "fs/promises";
 
+const academicYear: Date = new Date(new Date().getFullYear(), 8, 1); // 8 = September (0-11)
+
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: ICalEventData[] = events.map((event) => {
@@ -79,7 +81,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Filter events based on the query params
     const filteredEvents: IFormatedEvent[] = events.filter(
       (event: IFormatedEvent) => {
-        return checked.includes(event.filterId) || event.filterId === -1;
+        return (
+          (checked.includes(event.filterId) || event.filterId === -1) &&
+          event.start >= academicYear
+        );
       }
     );
 
