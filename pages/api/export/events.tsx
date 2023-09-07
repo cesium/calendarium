@@ -83,7 +83,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const icsEvents: ICalEventData[] = convertEventsToICS(filteredEvents);
 
     // Create ICS file and return it
-    const calendar = ical({ name: "Calendarium-Events", events: icsEvents });
+    const calendar = ical({
+      name: "Calendarium-Events",
+      events: icsEvents,
+      timezone: "Europe/Lisbon",
+    });
 
     // Send ICS file
     res.status(200).send(calendar.toString());
