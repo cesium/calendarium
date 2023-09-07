@@ -17,7 +17,7 @@ function convertEventsToICS(events: IFormatedEvent[]) {
       location: event.place,
       start: event.start,
       end: event.end,
-      url: event.link
+      url: event.link,
     };
 
     return icsEvent;
