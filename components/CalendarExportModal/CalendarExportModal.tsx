@@ -151,10 +151,19 @@ const CalendarExportModal = ({
                         and add event notifications, change colors and make
                         other customizations.
                         <p />
-                        <a className="font-medium">
-                          Your schedule will be automatically synced with
-                          Calendarium.
-                        </a>
+                        Your {isHome ? "events" : "schedule"} will be
+                        automatically synced with Calendarium.
+                        <p />
+                        <div className="rounded-lg bg-warning/20 p-3">
+                          <i className="bi bi-exclamation-triangle-fill text-warning"></i>{" "}
+                          If you make any changes to your{" "}
+                          {isHome ? "events" : "schedule"} in Calendarium,
+                          you'll need to{" "}
+                          <a className="font-medium">
+                            re-export and re-subscribe to the calendar
+                          </a>
+                          .
+                        </div>
                       </div>
                     </Collapse.Panel>
                   </Collapse>
