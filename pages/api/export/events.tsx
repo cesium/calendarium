@@ -17,10 +17,10 @@ function convertEventsToICS(events: IFormatedEvent[]) {
 
     const icsEvent: ICalEventData = {
       summary: event.title,
+      description: event.link,
       location: event.place,
       start: event.start,
       end: event.end,
-      url: event.link,
       allDay: allDay,
     };
 
