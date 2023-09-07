@@ -12,21 +12,11 @@ import fsPromises from "fs/promises";
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: ICalEventData[] = events.map((event) => {
-    const allDay: boolean =
-      event.start.getHours() === 0 && event.end.getHours() === 0;
-
     const icsEvent: ICalEventData = {
       summary: event.title,
       location: event.place,
-      start: allDay
-        ? new Date(
-            event.start.getFullYear(),
-            event.start.getMonth(),
-            event.start.getDate() + 1
-          )
-        : event.start,
-      end: allDay ? null : event.end,
-      allDay: allDay,
+      start: event.start,
+      end: event.end,
       url: event.link,
     };
 
