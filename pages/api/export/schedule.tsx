@@ -28,7 +28,6 @@ function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
         freq: "WEEKLY" as ICalEventRepeatingFreq,
         interval: 1,
       },
-      timezone: "Europe/Lisbon",
     };
 
     return icsShift;
@@ -145,7 +144,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     // Create ICS file and return it
-    const calendar = ical({ name: "Calendarium-Schedule", events: icsShifts });
+    const calendar = ical({
+      name: "Calendarium - Schedule",
+      events: icsShifts,
+      timezone: "Europe/Lisbon",
+    });
 
     // Send ICS file
     res.status(200).send(calendar.toString());

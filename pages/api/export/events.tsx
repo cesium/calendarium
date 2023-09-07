@@ -12,12 +12,16 @@ import fsPromises from "fs/promises";
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
   const icsEvents: ICalEventData[] = events.map((event) => {
+    const allDay: boolean =
+      event.start.getHours() === 0 && event.end.getHours() === 0;
+
     const icsEvent: ICalEventData = {
       summary: event.title,
       location: event.place,
       start: event.start,
       end: event.end,
       url: event.link,
+      allDay: allDay,
     };
 
     return icsEvent;
@@ -84,7 +88,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Create ICS file and return it
     const calendar = ical({
-      name: "Calendarium-Events",
+      name: "Calendarium - Events",
       events: icsEvents,
       timezone: "Europe/Lisbon",
     });
