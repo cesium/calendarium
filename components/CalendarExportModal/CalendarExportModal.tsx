@@ -253,7 +253,7 @@ const CalendarExportModal = ({
                         <a className="font-medium">Subscribe from web</a>.
                         <p />
                         <text className="font-bold">5.</text> Enter the above
-                        calendar's address.
+                        calendar{"'"}s address.
                         <p />
                         <text className="font-bold">6.</text> Select{" "}
                         <a className="font-medium">Import</a>.
