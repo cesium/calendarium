@@ -49,28 +49,44 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const filters: IFilterDTO[] = JSON.parse(filtersBuffer as unknown as string);
 
   // Fetch query keys
-  const queryEntries: [string, string | string[]][] = Object.entries(req.query);
-  res.write(JSON.stringify(queryEntries));
+  const queryEntriesData: [string, string | string[]][] = Object.entries(
+    req.query
+  );
+
+  /* Normalize the format of queryEntries, this is needed because the deployed version of the app
+   * will, for a reason I'm yet to understand, parse the query as [string, string][] instead of [string, string | string[]][].
+   * For example: - local environment: [["CP",["T1","PL1"]],["DSS",["T1","TP1"]]]
+   *              - deployed environment: [["CP","T1, PL1"],["DSS","T1, TP1"]]
+   */
+  const queryEntries: [string, string | string[]][] = queryEntriesData.map(
+    (entry: [string, string | string[]]) => {
+      const [key, value] = entry;
+
+      if (!Array.isArray(value) && value.includes(",") && value.includes(" ")) {
+        return [key, value.split(",").map((v) => v.trim())];
+      }
+      if (!Array.isArray(value) && value.includes(",")) {
+        return [key, value.split(",")];
+      }
+
+      return entry;
+    }
+  );
 
   // Check if the API request is valid
   const valid: boolean =
     queryEntries.length > 0 &&
-    queryEntries
-      .map((entry) => {
-        const [key, value] = entry;
-        const filter = filters.find((f) => f.name === key);
+    queryEntries.every((entry) => {
+      const [key, value] = entry;
+      const filter = filters.find((f) => f.name === key);
 
-        if (!filter)
-          // Filter not found, invalid query parameter
-          return false;
-
-        if (Array.isArray(value))
-          // Handle array of values
-          return value.every((v) => filter.shifts.includes(v));
-        // Handle single value
-        else return filter.shifts.includes(value);
-      })
-      .every((v) => v === true);
+      return (
+        filter &&
+        (Array.isArray(value)
+          ? value.every((v) => filter.shifts.includes(v))
+          : filter.shifts.includes(value))
+      );
+    });
 
   if (valid) {
     // Fetch shift data from JSON
