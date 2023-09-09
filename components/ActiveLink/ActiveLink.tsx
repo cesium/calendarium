@@ -17,7 +17,7 @@ const ActiveLink = ({
   const className = asPath === rest.href ? activeClassName : "";
 
   return (
-    <Link {...rest}>
+    <Link legacyBehavior {...rest}>
       {cloneElement(children, {
         className,
       })}

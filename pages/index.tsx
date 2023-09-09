@@ -16,9 +16,21 @@ import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils/utils";
 import { SubjectColor } from "../components/Settings/Settings";
 
+export interface IFormatedEvent {
+  title: string;
+  place: string;
+  link: string;
+  start: Date;
+  end: Date;
+  groupId: number;
+  filterId: number;
+}
+
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
+  // EVENT RELATED
+
   const configureDates = (event) => {
     event.start = new Date(event.start);
     event.end = new Date(event.end);
@@ -26,10 +38,38 @@ export default function Home({ events, filters }) {
     return event;
   };
 
-  const [Events, setEvents] = useState<IEventDTO[]>(events.map(configureDates));
+  const [Events, setEvents] = useState<IFormatedEvent[]>(
+    events.map(configureDates)
+  );
   const [Filters, setFilters] = useState(filters);
   const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
   const [inspectEvent, setInspectEvent] = useState<boolean>(false);
+
+  const showNewEvents = (f) => {
+    const filters = Object.values(f);
+    let newEvents = [...events];
+
+    if (filters.length > 0) {
+      newEvents = newEvents.filter(
+        (ev) => filters.includes(ev.filterId) || ev.filterId === -1
+      ); // -1 is an id dedicated to always active events
+    }
+
+    setEvents(newEvents);
+  };
+
+  const handleFilters = (myFilters: number[]) => {
+    const newFilters = { ...myFilters };
+    setFilters(newFilters);
+    showNewEvents(newFilters);
+  };
+
+  const handleSelection = (event) => {
+    setSelectedEvent(event);
+    setInspectEvent(!inspectEvent);
+  };
+
+  // THEMES
 
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
@@ -38,14 +78,14 @@ export default function Home({ events, filters }) {
   const [customType, setCustomType] = useState<string>("Year");
 
   // note: returns the default color if it was not found in the subjectColors array
-  function getSubjectColor(event: IEventDTO) {
+  function getSubjectColor(event: IFormatedEvent) {
     const color = subjectColors.find(
       (sc) => sc.filterId === event.filterId
     )?.color;
     return color ? color : defaultColors[event.groupId];
   }
 
-  function getBgColor(event: IEventDTO) {
+  function getBgColor(event: IFormatedEvent) {
     let color: string = "#000000";
 
     if (theme === "Modern") color = reduceOpacity(defaultColors[event.groupId]);
@@ -65,7 +105,7 @@ export default function Home({ events, filters }) {
     return color;
   }
 
-  function getTextColor(event: IEventDTO) {
+  function getTextColor(event: IFormatedEvent) {
     let color: string = "#000000";
 
     if (theme === "Modern") color = defaultColors[event.groupId];
@@ -113,29 +153,7 @@ export default function Home({ events, filters }) {
     saveTheme();
   }, []);
 
-  const showNewEvents = (f) => {
-    const filters = Object.values(f);
-    let newEvents = [...events];
-
-    if (filters.length > 0) {
-      newEvents = newEvents.filter(
-        (ev) => filters.includes(ev.filterId) || ev.filterId === -1
-      ); // -1 is an id dedicated to always active events
-    }
-
-    setEvents(newEvents);
-  };
-
-  const handleFilters = (myFilters: number[]) => {
-    const newFilters = { ...myFilters };
-    setFilters(newFilters);
-    showNewEvents(newFilters);
-  };
-
-  const handleSelection = (event) => {
-    setSelectedEvent(event);
-    setInspectEvent(!inspectEvent);
-  };
+  // RELATED TO react-big-calendar
 
   const formats = {
     eventTimeRangeFormat: () => {
@@ -218,7 +236,7 @@ export default function Home({ events, filters }) {
             views={["day", "week", "month"]}
             min={minDate}
             max={maxDate}
-            eventPropGetter={(event: IEventDTO) => {
+            eventPropGetter={(event: IFormatedEvent) => {
               const newStyle = {
                 backgroundColor: getBgColor(event),
                 color: getTextColor(event),
@@ -246,7 +264,6 @@ export default function Home({ events, filters }) {
 }
 
 export async function getStaticProps() {
-  //Refer to the above comment
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
   const events = JSON.parse(fs.readFileSync("data/events.json", "utf-8"));
   return {
