@@ -13,7 +13,7 @@ interface ILayoutProps {
   isHome: boolean;
   filters: any;
   handleFilters: any;
-  saveTheme?: () => void;
+  saveTheme: () => void;
 }
 
 const Layout = ({

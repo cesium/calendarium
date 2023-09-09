@@ -30,32 +30,70 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 
 > Here's a quick view of the features you can expect
 
-### Multiple calendar views:
+### Multiple calendar views
 
 - Day
 - Week
 - Month
 
-### Event & Schedule filtering:
+### Event & Schedule filtering
 
-- See only the activities that matter to you
+See only the activities that matter to you
 
-### Filter Memorization:
+### Filter Memorization
 
-- Find your selected Schedule and Events always there for you, even if you leave or refresh the page
+Find your selected Schedule and Events always there for you, even if you leave or refresh the page
 
-### Clear Schedule:
+### Clear Schedule
 
-- New schedule? Clear all your choices with one click and start again
+New schedule? Clear all your choices with one click and start again
 
-### Export to PDF:
+### Export to PDF
 
-- Export your calendar or schedule into PDF format
+Export your calendar or schedule into PDF format
 
 ### Notifications
 
-- Get updated on the latest changes to the platform and know when new information is added
+Get updated on the latest changes to the platform and know when new information is added
 
 ### Color Themes
 
-- Customize your calendar view with a choice of themes or create your own!
+Customize your calendar view with a choice of themes or create your own!
+
+### Export to Calendar
+
+Export your events and schedule into your favorite calendar app, from Google Calendar to Apple Calendar!
+
+## 🔌 Calendar Export API
+
+> Understand how our Export API works, and what you can do with it
+
+### API Endpoints
+
+There are two endpoints you can work with: `/api/export/events` and `/api/export/schedule`.
+
+**1. `/events`**
+
+This endpoint is responsible for generating a .ics (iCal) file containing events from the "Events" page. It should receive a list of subjects in their short form, similarly to how subjects are displayed in the filters of Calendarium, joined by `&`.
+
+Check out this example, where we ask the API to generate a file containing the events from the 2nd year / 2nd semester subjects of LEI:
+
+```
+https://calendario.cesium.di.uminho.pt/api/export/events?BD&IO&MNOnL&POO&RC&SO
+```
+
+> **Note**  
+> Only the events relevant to the current academic year will be exported. A request with wrongly formatted parameters or subjects that don't exist, will be answered with a "400 Invalid Request" error message.
+
+**2. `/schedule`**
+
+This endpoint is responsible for generating a .ics (iCal) file containing shifts from the "Schedule" page, which will have a weekly recurrence rule. It should receive a list of subject-shift pairs, joined by `&`. Similarly to what happens in `/events`, the subject should be represented in its short form. As for the shift, it should be in accordance with the shifts displayed in the filters of Calendarium.
+
+Check out this example, where we ask the API to generate a file containing a possible schedule for the 3rd year / 1st semester of LEI:
+
+```
+https://calendario.cesium.di.uminho.pt/api/export/schedule?CP=T1&CP=TP1&CC=T1&CC=PL1&DSS=T1&DSS=PL1&IA=T1&IA=PL1&LI4=T1&LI4=OT1&SD=T1&SD=PL1
+```
+
+> **Note**  
+> A request with wrongly formatted parameters, or subjects and shifts that don't exist, will be answered with a "400 Invalid Request" error message.

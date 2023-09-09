@@ -12,14 +12,16 @@ import ActiveLink from "../ActiveLink";
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 import Settings from "../Settings";
+import ExportButton from "../ExportButton";
+import ClearScheduleButton from "../ClearScheduleButton";
 
-import { Popconfirm } from "antd";
+import { IFilterDTO } from "../../dtos";
 
 interface ISidebarProps {
   isHome?: boolean;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
-  filters?: any;
+  filters?: IFilterDTO[];
   handleFilters?: any;
   saveTheme: () => void;
 }
@@ -93,9 +95,10 @@ const Sidebar = ({
 
         <div className="space-y-2">
           <div className="flex space-x-2">
+            {/* Settings Button */}
             <button
               onClick={() => setIsSettings(!isSettings)}
-              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
               title="Settings"
             >
               {isSettings ? (
@@ -104,41 +107,19 @@ const Sidebar = ({
                 <i className="bi bi-gear"></i>
               )}
             </button>
-            <button
-              onClick={() => exportPDF()}
-              className="h-10 w-full rounded-2xl bg-cesium-900 p-2 font-medium text-white shadow-default transition-shadow duration-300 hover:shadow-lg hover:shadow-cesium-900/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500"
-            >
-              Export <i className="bi bi-file-earmark-pdf-fill"></i>
-            </button>
+            {/* Export button */}
+            <ExportButton
+              exportPDF={exportPDF}
+              isHome={isHome}
+              filters={filters}
+            />
           </div>
+          {/* Clear Schedule button */}
           {!isHome && (
-            <Popconfirm
-              title={isSettings ? "ERROR" : "Are you sure?"}
-              description={
-                isSettings
-                  ? "You can't clear your schedule while in settings."
-                  : "This will remove all your classes."
-              }
-              onConfirm={() => clearSchedule()}
-              onCancel={() => {}}
-              okText="Ok"
-              cancelText={"Cancel"}
-              icon={
-                isSettings ? (
-                  <i className="bi bi-exclamation-circle-fill text-error"></i>
-                ) : (
-                  <i className="bi bi-question-circle-fill text-warning"></i>
-                )
-              }
-              okButtonProps={{
-                className: `${isSettings ? "hidden" : "bg-blue-500"}`,
-              }}
-              cancelButtonProps={{ className: `${isSettings && "hidden"}` }}
-            >
-              <button className="mb-3 h-10 w-full rounded-2xl bg-highlight p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-highlight/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Clear Schedule <i className="bi bi-stars"></i>
-              </button>
-            </Popconfirm>
+            <ClearScheduleButton
+              isSettings={isSettings}
+              clearSchedule={clearSchedule}
+            />
           )}
         </div>
 
