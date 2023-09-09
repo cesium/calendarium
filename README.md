@@ -79,8 +79,7 @@ This endpoint is responsible for generating a .ics (iCal) file containing events
 Check out this example, where we ask the API to generate a file containing the events from the 2nd year / 2nd semester subjects of LEI:
 
 ```
-https://calendario.cesium.di.uminho.pt/api/export/events?
-BD&IO&MNOnL&POO&RC&SO
+https://calendario.cesium.di.uminho.pt/api/export/events?BD&IO&MNOnL&POO&RC&SO
 ```
 
 > **Note**  
