@@ -92,8 +92,7 @@ This endpoint is responsible for generating a .ics (iCal) file containing shifts
 Check out this example, where we ask the API to generate a file containing a possible schedule for the 3rd year / 1st semester of LEI:
 
 ```
-https://calendario.cesium.di.uminho.pt/api/export/schedule?
-CP=T1&CP=TP1&CC=T1&CC=PL1&DSS=T1&DSS=PL1&IA=T1&IA=PL1&LI4=T1&LI4=OT1&SD=T1&SD=PL1
+https://calendario.cesium.di.uminho.pt/api/export/schedule?CP=T1&CP=TP1&CC=T1&CC=PL1&DSS=T1&DSS=PL1&IA=T1&IA=PL1&LI4=T1&LI4=OT1&SD=T1&SD=PL1
 ```
 
 > **Note**  
