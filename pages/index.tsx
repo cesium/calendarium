@@ -26,12 +26,6 @@ export interface IFormatedEvent {
   filterId: number;
 }
 
-moment.locale("en", {
-  week: {
-    dow: 1,
-  },
-});
-
 const localizer = momentLocalizer(moment);
 
 export default function Home({ events, filters }) {
