@@ -160,7 +160,7 @@ export default function Home({ events, filters }) {
       return "";
     },
     timeGutterFormat: (date, culture, localizer) =>
-      localizer.format(date, "h A", culture).replace(/^0+/, ""),
+      localizer.format(date, "HH\\h", culture).replace(/^0+/, ""),
   };
 
   const minDate = new Date();
