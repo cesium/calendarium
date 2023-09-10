@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState, Fragment } from "react";
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/reset.css";
 import styles from "./eventfilters.module.scss";
@@ -6,9 +6,9 @@ import styles from "./eventfilters.module.scss";
 const { Panel } = Collapse;
 
 function EventFilters({ filters, handleFilters }) {
-  const [Checked, setChecked] = React.useState<number[]>([]);
+  const [Checked, setChecked] = useState<number[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
     handleFilters(stored);
@@ -137,7 +137,7 @@ function EventFilters({ filters, handleFilters }) {
                       index={event_index(0, index1, index2)}
                     />
                     <Panel header={s} key={10 + index1 * 10 + index2}>
-                      <React.Fragment key={100 + index1 * 100 + index2 * 50}>
+                      <Fragment key={100 + index1 * 100 + index2 * 50}>
                         <div
                           style={{
                             padding: "0 0 5px 0",
@@ -164,7 +164,7 @@ function EventFilters({ filters, handleFilters }) {
                             Select All
                           </Checkbox>
                         </div>
-                      </React.Fragment>
+                      </Fragment>
                       <div style={{ fontWeight: 400 }}>
                         {event[event_index(0, index1, index2)]?.map(
                           (
@@ -176,7 +176,7 @@ function EventFilters({ filters, handleFilters }) {
                             },
                             index3: number
                           ) => (
-                            <React.Fragment
+                            <Fragment
                               key={
                                 100 + index1 * 100 + index2 * 50 + index3 + 1
                               }
@@ -194,7 +194,7 @@ function EventFilters({ filters, handleFilters }) {
                                   {value.name}
                                 </Checkbox>
                               </div>
-                            </React.Fragment>
+                            </Fragment>
                           )
                         )}
                       </div>
@@ -222,7 +222,7 @@ function EventFilters({ filters, handleFilters }) {
                   index={event_index(1, 0, index2)}
                 />
                 <Panel header={s} key={10 + index2}>
-                  <React.Fragment key={100 + index2 * 50}>
+                  <Fragment key={100 + index2 * 50}>
                     <div
                       style={{
                         padding: "0 0 5px 0",
@@ -247,7 +247,7 @@ function EventFilters({ filters, handleFilters }) {
                         Select All
                       </Checkbox>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                   <div style={{ fontWeight: 400 }}>
                     {event[event_index(1, 0, index2)]?.map(
                       (
@@ -259,7 +259,7 @@ function EventFilters({ filters, handleFilters }) {
                         },
                         index3: number
                       ) => (
-                        <React.Fragment key={100 + index2 * 50 + index3 + 1}>
+                        <Fragment key={100 + index2 * 50 + index3 + 1}>
                           <div>
                             <Checkbox
                               onChange={() => handleToggle(value.id)}
@@ -271,7 +271,7 @@ function EventFilters({ filters, handleFilters }) {
                               {value.name}
                             </Checkbox>
                           </div>
-                        </React.Fragment>
+                        </Fragment>
                       )
                     )}
                   </div>
@@ -297,7 +297,7 @@ function EventFilters({ filters, handleFilters }) {
                   },
                   index: number
                 ) => (
-                  <React.Fragment key={100 + 100 + index}>
+                  <Fragment key={100 + 100 + index}>
                     <div>
                       <Checkbox
                         onChange={() => handleToggle(value.id)}
@@ -309,7 +309,7 @@ function EventFilters({ filters, handleFilters }) {
                         {value.name}
                       </Checkbox>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 )
               )}
             </div>
@@ -334,7 +334,7 @@ function EventFilters({ filters, handleFilters }) {
                   },
                   index: number
                 ) => (
-                  <React.Fragment key={100 + index}>
+                  <Fragment key={100 + index}>
                     <div>
                       <Checkbox
                         onChange={() => handleToggle(value.id)}
@@ -346,7 +346,7 @@ function EventFilters({ filters, handleFilters }) {
                         {value.name}
                       </Checkbox>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 )
               )}
             </div>

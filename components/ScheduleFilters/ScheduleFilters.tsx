@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Checkbox, Collapse, Popconfirm } from "antd";
+import { Checkbox, Collapse } from "antd";
 
 import { IFilterDTO } from "../../dtos";
 
@@ -26,13 +26,13 @@ const ScheduleFilters = ({
 }: ISelectScheduleProps) => {
   // Initial state for the CheckBox and the update function
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
-  React.useEffect(() => {
+  useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
     setSelectedFilters(stored);
     handleFilters(stored);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     clearSchedule && clearSelection();
   }, [clearSchedule]);
 
