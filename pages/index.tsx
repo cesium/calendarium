@@ -26,7 +26,7 @@ export interface IFormatedEvent {
   filterId: number;
 }
 
-moment.locale("en", {
+moment.updateLocale("en", {
   week: {
     dow: 1,
   },
