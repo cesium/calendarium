@@ -735,18 +735,6 @@
     "id": 14240,
     "title": "Estatística Aplicada",
     "theoretical": false,
-    "shift": "TP4",
-    "building": "CP1",
-    "room": "1.17",
-    "day": 0,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 213
-  },
-  {
-    "id": 14240,
-    "title": "Estatística Aplicada",
-    "theoretical": false,
     "shift": "TP1",
     "building": "CP2",
     "room": "1.09",
@@ -876,16 +864,16 @@
     "filterId": 215
   },
   {
-    "id": 14297,
-    "title": "Laboratórios de Informática III",
-    "theoretical": false,
-    "shift": "PL6",
-    "building": "7",
-    "room": "1.10",
+    "id": 14240,
+    "title": "Estatística Aplicada",
+    "theoretical": true,
+    "shift": "T2",
+    "building": "CP2",
+    "room": "0.01",
     "day": 1,
     "start": "14:00",
     "end": "16:00",
-    "filterId": 216
+    "filterId": 213
   },
   {
     "id": 14303,
@@ -900,18 +888,6 @@
     "filterId": 212
   },
   {
-    "id": 14240,
-    "title": "Estatística Aplicada",
-    "theoretical": true,
-    "shift": "T2",
-    "building": "CP2",
-    "room": "0.01",
-    "day": 1,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 213
-  },
-  {
     "id": 14304,
     "title": "Fundamentos de Comunicação de Dados",
     "theoretical": false,
@@ -922,6 +898,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 215
+  },
+  {
+    "id": 14240,
+    "title": "Estatística Aplicada",
+    "theoretical": false,
+    "shift": "TP4",
+    "building": "CP1",
+    "room": "0.18",
+    "day": 2,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 213
   },
   {
     "id": 14297,
@@ -1073,7 +1061,7 @@
     "theoretical": false,
     "shift": "PL4",
     "building": "CP1",
-    "room": "2.08",
+    "room": "2.18",
     "day": 0,
     "start": "16:00",
     "end": "18:00",
@@ -1128,18 +1116,6 @@
     "filterId": 216
   },
   {
-    "id": 14302,
-    "title": "Física Moderna",
-    "theoretical": false,
-    "shift": "TP4",
-    "building": "CP3",
-    "room": "2.04",
-    "day": 1,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 214
-  },
-  {
     "id": 14304,
     "title": "Fundamentos de Comunicação de Dados",
     "theoretical": false,
@@ -1150,6 +1126,18 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 215
+  },
+  {
+    "id": 14302,
+    "title": "Física Moderna",
+    "theoretical": false,
+    "shift": "TP4",
+    "building": "CP3",
+    "room": "2.04",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 214
   },
   {
     "id": 14297,
@@ -1164,16 +1152,28 @@
     "filterId": 216
   },
   {
-    "id": 14303,
-    "title": "Arquitetura de Computadores",
+    "id": 14297,
+    "title": "Laboratórios de Informática III",
     "theoretical": false,
-    "shift": "PL7",
-    "building": "7",
-    "room": "1.10",
+    "shift": "PL6",
+    "building": "CP1",
+    "room": "1.27",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
-    "filterId": 212
+    "filterId": 216
+  },
+  {
+    "id": 14305,
+    "title": "Algoritmos e Complexidade",
+    "theoretical": false,
+    "shift": "TP3",
+    "building": "CP3",
+    "room": "2.05",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 211
   },
   {
     "id": 14305,
@@ -1188,16 +1188,16 @@
     "filterId": 211
   },
   {
-    "id": 14305,
-    "title": "Algoritmos e Complexidade",
+    "id": 14303,
+    "title": "Arquitetura de Computadores",
     "theoretical": false,
-    "shift": "TP3",
-    "building": "CP3",
-    "room": "2.05",
+    "shift": "PL7",
+    "building": "7",
+    "room": "1.10",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
-    "filterId": 211
+    "filterId": 212
   },
   {
     "id": 14303,
@@ -1634,8 +1634,8 @@
   {
     "id": 14298,
     "title": "Laboratórios de Informática IV",
-    "theoretical": false,
-    "shift": "OT4",
+    "theoretical": true,
+    "shift": "T1",
     "building": "CP3",
     "room": "0.08",
     "day": 0,
@@ -1702,6 +1702,30 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 316
+  },
+  {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT3",
+    "building": "7",
+    "room": "0.11",
+    "day": 0,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 315
+  },
+  {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT2",
+    "building": "7",
+    "room": "0.05",
+    "day": 0,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 315
   },
   {
     "id": 14312,
@@ -1834,6 +1858,18 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 416
+  },
+  {
+    "id": 14597,
+    "title": "Engenharia de Serviços em Rede",
+    "theoretical": false,
+    "shift": "PL7",
+    "building": "CP3",
+    "room": "0.07",
+    "day": 2,
+    "start": "09:00",
+    "end": "11:00",
+    "filterId": 414
   },
   {
     "id": 14599,
@@ -2105,7 +2141,7 @@
     "theoretical": false,
     "shift": "TP5",
     "building": "CP1",
-    "room": "1.40",
+    "room": "1.17",
     "day": 0,
     "start": "12:00",
     "end": "13:00",
@@ -2199,6 +2235,18 @@
     "id": 14597,
     "title": "Engenharia de Serviços em Rede",
     "theoretical": false,
+    "shift": "PL5",
+    "building": "CP1",
+    "room": "2.23",
+    "day": 3,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 414
+  },
+  {
+    "id": 14597,
+    "title": "Engenharia de Serviços em Rede",
+    "theoretical": false,
     "shift": "PL6",
     "building": "7",
     "room": "1.10",
@@ -2211,33 +2259,9 @@
     "id": 14597,
     "title": "Engenharia de Serviços em Rede",
     "theoretical": false,
-    "shift": "PL7",
-    "building": "CP3",
-    "room": "1.04",
-    "day": 3,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 414
-  },
-  {
-    "id": 14597,
-    "title": "Engenharia de Serviços em Rede",
-    "theoretical": false,
     "shift": "PL8",
     "building": "CP1",
     "room": "0.17",
-    "day": 3,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 414
-  },
-  {
-    "id": 14597,
-    "title": "Engenharia de Serviços em Rede",
-    "theoretical": false,
-    "shift": "PL5",
-    "building": "CP1",
-    "room": "2.23",
     "day": 3,
     "start": "14:00",
     "end": "16:00",
