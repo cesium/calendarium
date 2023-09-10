@@ -149,7 +149,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         return "";
       },
       timeGutterFormat: (date, culture, localizer) =>
-        localizer.format(date, "h A", culture).replace(/^0+/, ""),
+        localizer.format(date, "HH\\h", culture).replace(/^0+/, ""),
     }),
     []
   );
