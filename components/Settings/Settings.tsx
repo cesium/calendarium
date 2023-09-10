@@ -147,9 +147,8 @@ const Settings = ({
     const colors = localStorage.getItem("colors");
     const opacity = localStorage.getItem("opacity") === "true";
     const customType = localStorage.getItem("customType");
-    const checkedFilters: number[] = JSON.parse(
-      localStorage.getItem("checked")
-    );
+    const checkedFilters: number[] =
+      JSON.parse(localStorage.getItem("checked")) ?? [];
     const subjectColors: SubjectColor[] = JSON.parse(
       localStorage.getItem("subjectColors")
     );

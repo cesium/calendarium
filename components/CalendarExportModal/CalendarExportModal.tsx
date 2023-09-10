@@ -29,14 +29,13 @@ const CalendarExportModal = ({
 
     var queries: string = "";
     if (isHome) {
-      const checkedEvents: number[] = JSON.parse(
-        localStorage.getItem("checked")
-      );
+      const checkedEvents: number[] =
+        JSON.parse(localStorage.getItem("checked")) ?? [];
 
       if (checkedEvents && checkedEvents.length > 0) {
-        const checkedEventsNames: string[] = checkedEvents.map((filterId) => {
-          return filters.find((f) => f.id === filterId).name;
-        });
+        const checkedEventsNames: string[] = checkedEvents.map((filterId) =>
+          maybeGetName(filterId)
+        );
 
         queries = checkedEventsNames.join("&");
       } else {
@@ -54,13 +53,18 @@ const CalendarExportModal = ({
       if (checkedShifts && checkedShifts.length > 0) {
         const checkedShiftsNames: { name: string; shift: string }[] =
           checkedShifts.map((shift) => {
-            return {
-              name: filters.find((f) => f.id === shift.id).name,
-              shift: shift.shift,
-            };
+            const name = maybeGetName(shift.id);
+
+            if (name != "") {
+              return {
+                name: name,
+                shift: shift.shift,
+              };
+            }
           });
 
         queries = `${checkedShiftsNames
+          .filter((shift) => shift != undefined)
           .map((shift) => toString(shift))
           .join("&")}`;
       } else {
@@ -68,7 +72,21 @@ const CalendarExportModal = ({
       }
     }
 
-    return baseURL + queries;
+    if (queries == "?") {
+      return "";
+    } else {
+      return baseURL + queries;
+    }
+  }
+
+  function maybeGetName(id: number): string {
+    const filter = filters.find((f) => f.id === id);
+
+    if (filter) {
+      return filter.name;
+    } else {
+      return "";
+    }
   }
 
   useEffect(() => {
