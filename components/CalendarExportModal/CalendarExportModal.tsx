@@ -57,7 +57,7 @@ const CalendarExportModal = ({
 
             if (name != "") {
               return {
-                name: maybeGetName(shift.id),
+                name: name,
                 shift: shift.shift,
               };
             }
