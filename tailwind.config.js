@@ -27,6 +27,10 @@ module.exports = {
       boxShadow: {
         default: "0 0 10px rgba(0, 0, 0, 0.1)",
       },
+      maxWidth: {
+        "9/10": "90%",
+        "8/10": "80%",
+      },
     },
   },
   darkMode: "media",
