@@ -22,71 +22,99 @@ const CalendarExportModal = ({
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [URL, setURL] = useState<string>("");
 
+  // checks if a filter exists for each filterId in checkedEvents
+  function clearUnvalidEventItems(checkedEvents: number[]) {
+    const validEvents = checkedEvents.filter((id) =>
+      filters.find((f) => f.id === id)
+    );
+    localStorage.setItem("checked", JSON.stringify(validEvents));
+
+    return validEvents;
+  }
+
+  // checks if a filter exists for each filterId in checkedShifts
+  // and if the shift exists for that filter.
+  function clearUnvalidShiftItems(
+    checkedShifts: { id: number; shift: string }[]
+  ) {
+    const validShifts = checkedShifts.filter((shift) => {
+      const filter = filters.find((f) => f.id === shift.id);
+      return filter && filter.shifts.includes(shift.shift); // filter must include the shift
+    });
+    localStorage.setItem("shifts", JSON.stringify(validShifts));
+
+    return validShifts;
+  }
+
   function generateURL(): string {
     const domain = process.env.NEXT_PUBLIC_DOMAIN;
     const baseURL: string =
       domain + "/api/export/" + (isHome ? "events" : "schedule") + "?";
 
-    var queries: string = "";
+    var query: string = "";
     if (isHome) {
-      const checkedEvents: number[] =
-        JSON.parse(localStorage.getItem("checked")) ?? [];
-
-      if (checkedEvents && checkedEvents.length > 0) {
-        const checkedEventsNames: string[] = checkedEvents.map((filterId) =>
-          maybeGetName(filterId)
-        );
-
-        queries = checkedEventsNames.join("&");
-      } else {
-        return "";
-      }
-    } else {
-      const checkedShifts: { id: number; shift: string }[] = JSON.parse(
-        localStorage.getItem("shifts")
+      // fecth checked events from localStorage
+      const checkedEvents: number[] = JSON.parse(
+        localStorage.getItem("checked")
       );
 
+      // if there are no checked events, return empty string (empty URL => warning message on modal)
+      if (!checkedEvents || checkedEvents.length === 0) return "";
+
+      // clear unvalid events from checkedEvents
+      const validCheckedEvents = clearUnvalidEventItems(checkedEvents);
+
+      // if the resulting valid events array is empty, return empty string (empty URL => warning message on modal)
+      if (validCheckedEvents.length === 0) return "";
+
+      // convert event ids to event names
+      const checkedEventsNames: string[] = validCheckedEvents.map(
+        (filterId) => {
+          return filters.find((f) => f.id === filterId).name;
+        }
+      );
+
+      // build query string
+      query = checkedEventsNames.join("&");
+    } else {
+      // helps format each shift parameter
       const toString = (shift: { name: string; shift: string }) => {
         return `${shift.name}=${shift.shift}`;
       };
 
-      if (checkedShifts && checkedShifts.length > 0) {
-        const checkedShiftsNames: { name: string; shift: string }[] =
-          checkedShifts.map((shift) => {
-            const name = maybeGetName(shift.id);
+      // fetch checked shifts from localStorage
+      const checkedShifts: { id: number; shift: string }[] = JSON.parse(
+        localStorage.getItem("shifts")
+      );
 
-            if (name != "") {
-              return {
-                name: name,
-                shift: shift.shift,
-              };
-            }
-          });
+      // if there are no checked shifts, return empty string (empty URL => warning message on modal)
+      if (!checkedShifts || checkedShifts.length === 0) return "";
 
-        queries = `${checkedShiftsNames
-          .filter((shift) => shift != undefined)
-          .map((shift) => toString(shift))
-          .join("&")}`;
-      } else {
-        return "";
-      }
+      // clear unvalid shifts from checkedShifts
+      const validCheckedShifts = clearUnvalidShiftItems(checkedShifts);
+
+      // if the resulting valid shifts array is empty, return empty string (empty URL => warning message on modal)
+      if (validCheckedShifts.length === 0) return "";
+
+      // convert shift ids to shift names
+      const checkedShiftsNames: { name: string; shift: string }[] =
+        validCheckedShifts.map((shift) => {
+          const name = filters.find((f) => f.id === shift.id).name;
+
+          return {
+            name: name,
+            shift: shift.shift,
+          };
+        });
+
+      // build query string
+      query = `${checkedShiftsNames.map((shift) => toString(shift)).join("&")}`;
     }
 
-    if (queries == "?") {
-      return "";
-    } else {
-      return baseURL + queries;
-    }
-  }
-
-  function maybeGetName(id: number): string {
-    const filter = filters.find((f) => f.id === id);
-
-    if (filter) {
-      return filter.name;
-    } else {
-      return "";
-    }
+    // at this point, 'query' is hopefully always a valid query string (function has returned if it wasn't)
+    // still, in an edge case of an empty 'query' string, return empty string (empty URL => warning message on modal)
+    if (query !== "") return baseURL + query;
+    else return "";
   }
 
   useEffect(() => {
