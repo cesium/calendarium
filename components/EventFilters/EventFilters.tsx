@@ -1,7 +1,11 @@
 import { useEffect, useState, Fragment } from "react";
+
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/reset.css";
+
 import styles from "./eventfilters.module.scss";
+
+import { OpcoesUMinho, Opcoes3Ano } from "../../utils/utils";
 
 const { Panel } = Collapse;
 
@@ -14,13 +18,15 @@ function EventFilters({ filters, handleFilters }) {
     handleFilters(stored);
   }, []);
 
-  let event: {
+  type EventProps = {
     map: any;
     id: number;
     name: string;
     groupId: number;
     semester: number;
-  }[][] = [];
+  };
+
+  let event: EventProps[][] = [];
 
   const mei = ["4ᵗʰ year", "5ᵗʰ year"];
 
@@ -47,6 +53,14 @@ function EventFilters({ filters, handleFilters }) {
 
   event[9] = filters.filter((f) => f.groupId === 0); // others
 
+  const opcoes_uminho: EventProps[] = filters.filter(
+    (f) => f.groupId === 1 && f.semester === 1 && OpcoesUMinho.includes(f.id)
+  );
+
+  const opcoes_3ano: EventProps[] = filters.filter(
+    (f) => f.groupId === 3 && f.semester === 2 && Opcoes3Ano.includes(f.id)
+  );
+
   const handleToggle = (value: number) => {
     const currentId = Checked.indexOf(value);
     const newCheck = [...Checked];
@@ -63,25 +77,54 @@ function EventFilters({ filters, handleFilters }) {
   };
 
   const isAllChecked = (index: number) => {
-    return !event[index].some((elem) => {
+    const events =
+      index === 0
+        ? event[index].filter((e) => !OpcoesUMinho.includes(e.id))
+        : index === 5
+        ? event[index].filter((e) => !Opcoes3Ano.includes(e.id))
+        : event[index];
+
+    return !events.some((elem) => {
       return !Checked.includes(elem.id);
     });
   };
 
   const isNoneChecked = (index: number) => {
-    return !event[index].some((elem) => {
+    const events =
+      index === 0
+        ? event[index].filter((e) => !OpcoesUMinho.includes(e.id))
+        : index === 5
+        ? event[index].filter((e) => !Opcoes3Ano.includes(e.id))
+        : event[index];
+
+    return !events.some((elem) => {
       return Checked.includes(elem.id);
     });
   };
 
-  const handleToggleAll = (values, index: number) => {
+  const isSomeChecked = (index: number) => {
+    return index === 0 || index === 5
+      ? event[index].some((elem) => {
+          return Checked.includes(elem.id);
+        })
+      : (!isAllChecked(index) && !isNoneChecked(index)) || isAllChecked(index);
+  };
+
+  const handleToggleAll = (index: number) => {
     let newChecked = [...Checked];
 
+    const events =
+      index === 0
+        ? event[index].filter((e) => !OpcoesUMinho.includes(e.id))
+        : index === 5
+        ? event[index].filter((e) => !Opcoes3Ano.includes(e.id))
+        : event[index];
+
     if (!isAllChecked(index)) {
-      values.map((event) => newChecked.push(event.id));
+      events.map((event) => newChecked.push(event.id));
     } else {
       newChecked = newChecked.filter(
-        (eventId) => !values.find((value) => value.id === eventId)
+        (eventId) => !events.find((value) => value.id === eventId)
       );
     }
 
@@ -91,24 +134,25 @@ function EventFilters({ filters, handleFilters }) {
   };
 
   const CheckedIndicator = ({ index }: { index: number }) => {
-    const isSomeChecked =
-      (!isAllChecked(index) && !isNoneChecked(index)) || isAllChecked(index);
-
     return (
       <div className={styles.selected_schedules}>
-        {isSomeChecked && <div className="ml-1 rounded-full bg-blue-200 p-1" />}
+        {isSomeChecked(index) && (
+          <div className="ml-1 rounded-full bg-blue-200 p-1" />
+        )}
       </div>
     );
   };
 
   const MultipleCheckedIndicator = ({ index }: { index: number[] }) => {
-    const isSomeChecked = index.some((i) => {
-      return (!isAllChecked(i) && !isNoneChecked(i)) || isAllChecked(i);
+    const isMultipleChecked = index.some((i) => {
+      return isSomeChecked(i);
     });
 
     return (
       <div className={styles.selected_schedules}>
-        {isSomeChecked && <div className="ml-1 rounded-full bg-blue-200 p-1" />}
+        {isMultipleChecked && (
+          <div className="ml-1 rounded-full bg-blue-200 p-1" />
+        )}
       </div>
     );
   };
@@ -148,10 +192,7 @@ function EventFilters({ filters, handleFilters }) {
                           <Checkbox
                             type="Checkbox"
                             onClick={() =>
-                              handleToggleAll(
-                                event[event_index(0, index1, index2)],
-                                event_index(0, index1, index2)
-                              )
+                              handleToggleAll(event_index(0, index1, index2))
                             }
                             checked={isAllChecked(
                               event_index(0, index1, index2)
@@ -166,36 +207,214 @@ function EventFilters({ filters, handleFilters }) {
                         </div>
                       </Fragment>
                       <div style={{ fontWeight: 400 }}>
-                        {event[event_index(0, index1, index2)]?.map(
-                          (
-                            value: {
-                              id: number;
-                              name: string;
-                              groupId: number;
-                              semester: number;
-                            },
-                            index3: number
-                          ) => (
-                            <Fragment
-                              key={
-                                100 + index1 * 100 + index2 * 50 + index3 + 1
-                              }
+                        {index1 === 0 && index2 === 0 ? (
+                          <>
+                            {event[event_index(0, index1, index2)]
+                              ?.filter((e) => !OpcoesUMinho.includes(e.id))
+                              .map(
+                                (
+                                  value: {
+                                    id: number;
+                                    name: string;
+                                    groupId: number;
+                                    semester: number;
+                                  },
+                                  index3: number
+                                ) => (
+                                  <Fragment
+                                    key={
+                                      100 +
+                                      index1 * 100 +
+                                      index2 * 50 +
+                                      index3 +
+                                      1
+                                    }
+                                  >
+                                    <div>
+                                      <Checkbox
+                                        onChange={() => handleToggle(value.id)}
+                                        type="checkbox"
+                                        checked={
+                                          Checked.indexOf(value.id) === -1
+                                            ? false
+                                            : true
+                                        }
+                                      >
+                                        {value.name}
+                                      </Checkbox>
+                                    </div>
+                                  </Fragment>
+                                )
+                              )}
+                            <Collapse
+                              className={styles.sub_checkbox}
+                              bordered={false}
+                              style={{ fontWeight: 500 }}
                             >
-                              <div>
-                                <Checkbox
-                                  onChange={() => handleToggle(value.id)}
-                                  type="checkbox"
-                                  checked={
-                                    Checked.indexOf(value.id) === -1
-                                      ? false
-                                      : true
+                              <Panel header={"Opção UMinho"} key="opcao_uminho">
+                                {opcoes_uminho.map(
+                                  (
+                                    value: {
+                                      id: number;
+                                      name: string;
+                                      groupId: number;
+                                      semester: number;
+                                    },
+                                    index3: number
+                                  ) => (
+                                    <Fragment
+                                      key={
+                                        100 +
+                                        index1 * 100 +
+                                        index2 * 50 +
+                                        index3 +
+                                        1
+                                      }
+                                    >
+                                      <div style={{ fontWeight: 400 }}>
+                                        <Checkbox
+                                          onChange={() =>
+                                            handleToggle(value.id)
+                                          }
+                                          type="checkbox"
+                                          checked={
+                                            Checked.indexOf(value.id) === -1
+                                              ? false
+                                              : true
+                                          }
+                                        >
+                                          {value.name}
+                                        </Checkbox>
+                                      </div>
+                                    </Fragment>
+                                  )
+                                )}
+                              </Panel>
+                            </Collapse>
+                          </>
+                        ) : index1 === 2 && index2 === 1 ? (
+                          <>
+                            {event[event_index(0, index1, index2)]
+                              ?.filter((e) => !Opcoes3Ano.includes(e.id))
+                              .map(
+                                (
+                                  value: {
+                                    id: number;
+                                    name: string;
+                                    groupId: number;
+                                    semester: number;
+                                  },
+                                  index3: number
+                                ) => (
+                                  <Fragment
+                                    key={
+                                      100 +
+                                      index1 * 100 +
+                                      index2 * 50 +
+                                      index3 +
+                                      1
+                                    }
+                                  >
+                                    <div>
+                                      <Checkbox
+                                        onChange={() => handleToggle(value.id)}
+                                        type="checkbox"
+                                        checked={
+                                          Checked.indexOf(value.id) === -1
+                                            ? false
+                                            : true
+                                        }
+                                      >
+                                        {value.name}
+                                      </Checkbox>
+                                    </div>
+                                  </Fragment>
+                                )
+                              )}
+                            <Collapse
+                              className={styles.sub_checkbox}
+                              bordered={false}
+                              style={{ fontWeight: 500 }}
+                            >
+                              <Panel header={"Opção"} key="opcao">
+                                {opcoes_3ano.map(
+                                  (
+                                    value: {
+                                      id: number;
+                                      name: string;
+                                      groupId: number;
+                                      semester: number;
+                                    },
+                                    index3: number
+                                  ) => (
+                                    <Fragment
+                                      key={
+                                        100 +
+                                        index1 * 100 +
+                                        index2 * 50 +
+                                        index3 +
+                                        1
+                                      }
+                                    >
+                                      <div style={{ fontWeight: 400 }}>
+                                        <Checkbox
+                                          onChange={() =>
+                                            handleToggle(value.id)
+                                          }
+                                          type="checkbox"
+                                          checked={
+                                            Checked.indexOf(value.id) === -1
+                                              ? false
+                                              : true
+                                          }
+                                        >
+                                          {value.name}
+                                        </Checkbox>
+                                      </div>
+                                    </Fragment>
+                                  )
+                                )}
+                              </Panel>
+                            </Collapse>
+                          </>
+                        ) : (
+                          <>
+                            {event[event_index(0, index1, index2)]?.map(
+                              (
+                                value: {
+                                  id: number;
+                                  name: string;
+                                  groupId: number;
+                                  semester: number;
+                                },
+                                index3: number
+                              ) => (
+                                <Fragment
+                                  key={
+                                    100 +
+                                    index1 * 100 +
+                                    index2 * 50 +
+                                    index3 +
+                                    1
                                   }
                                 >
-                                  {value.name}
-                                </Checkbox>
-                              </div>
-                            </Fragment>
-                          )
+                                  <div>
+                                    <Checkbox
+                                      onChange={() => handleToggle(value.id)}
+                                      type="checkbox"
+                                      checked={
+                                        Checked.indexOf(value.id) === -1
+                                          ? false
+                                          : true
+                                      }
+                                    >
+                                      {value.name}
+                                    </Checkbox>
+                                  </div>
+                                </Fragment>
+                              )
+                            )}
+                          </>
                         )}
                       </div>
                     </Panel>
@@ -233,10 +452,7 @@ function EventFilters({ filters, handleFilters }) {
                       <Checkbox
                         type="Checkbox"
                         onClick={() =>
-                          handleToggleAll(
-                            event[event_index(1, 0, index2)],
-                            event_index(1, 0, index2)
-                          )
+                          handleToggleAll(event_index(1, 0, index2))
                         }
                         checked={isAllChecked(event_index(1, 0, index2))}
                         indeterminate={

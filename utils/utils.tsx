@@ -22,3 +22,10 @@ export const defaultColors = [
   "#FF0000", // join
   "#1B69EE", // jordi
 ];
+
+export const OpcoesUMinho: number[] = [
+  116, 117, 118, 119, 1110, 1111, 1112, 1113, 1114, 1115, 1116, 1117, 1118,
+  1119, 1120,
+];
+
+export const Opcoes3Ano: number[] = [326, 327, 328, 329];

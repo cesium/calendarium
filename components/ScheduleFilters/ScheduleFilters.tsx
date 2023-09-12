@@ -6,6 +6,8 @@ import { IFilterDTO } from "../../dtos";
 
 import styles from "./schedulefilters.module.scss";
 
+import { OpcoesUMinho, Opcoes3Ano } from "../../utils/utils";
+
 const { Panel } = Collapse;
 
 interface ISelectedFilter {
@@ -69,6 +71,10 @@ const ScheduleFilters = ({
   const year_five = filters.filter((f) => f.groupId === 5);
 
   const others = filters.filter((f) => f.groupId === 0);
+
+  const opcoes_uminho = filters.filter((f) => OpcoesUMinho.includes(f.id));
+
+  const opcoes_3ano = filters.filter((f) => Opcoes3Ano.includes(f.id));
 
   const functions = [
     year_one_one,
@@ -216,34 +222,116 @@ const ScheduleFilters = ({
                         bordered={false}
                         accordion
                       >
-                        {functions[index1 * 2 + index2].map(
-                          (filter) =>
-                            filter.shifts?.length && (
-                              <>
-                                <CheckedIndicator filter={filter} />
-                                <Panel header={filter.name} key={filter.id}>
-                                  {filter.shifts.map(
-                                    (shiftOption, index: number) => (
-                                      <div key={filter.id + index}>
-                                        <Checkbox
-                                          key={filter.id + index + 1}
-                                          onChange={() =>
-                                            handleToggle(filter.id, shiftOption)
-                                          }
-                                          type="checkbox"
-                                          checked={isChecked({
-                                            id: filter.id,
-                                            shift: shiftOption,
-                                          })}
-                                        >
-                                          {shiftOption}
-                                        </Checkbox>
-                                      </div>
-                                    )
-                                  )}
-                                </Panel>
-                              </>
-                            )
+                        {index1 === 0 && index2 === 0 ? (
+                          <>
+                            {functions[index1 * 2 + index2]
+                              .filter((f) => !OpcoesUMinho.includes(f.id))
+                              .map(
+                                (filter) =>
+                                  filter.shifts?.length && (
+                                    <>
+                                      <CheckedIndicator filter={filter} />
+                                      <Panel
+                                        header={filter.name}
+                                        key={filter.id}
+                                      >
+                                        {filter.shifts.map(
+                                          (shiftOption, index: number) => (
+                                            <div key={filter.id + index}>
+                                              <Checkbox
+                                                key={filter.id + index + 1}
+                                                onChange={() =>
+                                                  handleToggle(
+                                                    filter.id,
+                                                    shiftOption
+                                                  )
+                                                }
+                                                type="checkbox"
+                                                checked={isChecked({
+                                                  id: filter.id,
+                                                  shift: shiftOption,
+                                                })}
+                                              >
+                                                {shiftOption}
+                                              </Checkbox>
+                                            </div>
+                                          )
+                                        )}
+                                      </Panel>
+                                    </>
+                                  )
+                              )}
+                            <Panel
+                              header="Opção UMinho"
+                              key="opcao_uminho"
+                              style={{ fontWeight: 500 }}
+                            >
+                              {opcoes_uminho.map(
+                                (filter) =>
+                                  filter.shifts?.length && (
+                                    <div style={{ fontWeight: 400 }}>
+                                      {filter.shifts.map(
+                                        (shiftOption, index: number) => (
+                                          <Checkbox
+                                            key={filter.id + index + 1}
+                                            onChange={() =>
+                                              handleToggle(
+                                                filter.id,
+                                                shiftOption
+                                              )
+                                            }
+                                            type="checkbox"
+                                            checked={isChecked({
+                                              id: filter.id,
+                                              shift: shiftOption,
+                                            })}
+                                          >
+                                            {filter.name}
+                                          </Checkbox>
+                                        )
+                                      )}
+                                    </div>
+                                  )
+                              )}
+                            </Panel>
+                          </>
+                        ) : index1 === 2 && index2 === 1 ? (
+                          <></>
+                        ) : (
+                          <>
+                            {functions[index1 * 2 + index2].map(
+                              (filter) =>
+                                filter.shifts?.length && (
+                                  <>
+                                    <CheckedIndicator filter={filter} />
+                                    <Panel header={filter.name} key={filter.id}>
+                                      {filter.shifts.map(
+                                        (shiftOption, index: number) => (
+                                          <div key={filter.id + index}>
+                                            <Checkbox
+                                              key={filter.id + index + 1}
+                                              onChange={() =>
+                                                handleToggle(
+                                                  filter.id,
+                                                  shiftOption
+                                                )
+                                              }
+                                              type="checkbox"
+                                              checked={isChecked({
+                                                id: filter.id,
+                                                shift: shiftOption,
+                                              })}
+                                            >
+                                              {shiftOption}
+                                            </Checkbox>
+                                          </div>
+                                        )
+                                      )}
+                                    </Panel>
+                                  </>
+                                )
+                            )}
+                          </>
                         )}
                       </Collapse>
                     </Panel>
