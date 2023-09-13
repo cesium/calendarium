@@ -1,0 +1,43 @@
+.checkbox {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+  background: white;
+  margin: 0 1rem 1rem 0;
+}
+
+.layer {
+  z-index: 1;
+  user-select: none;
+}
+
+.items {
+  max-height: none;
+  height: auto;
+  overflow-y: hidden;
+  width: auto;
+}
+
+.sub_checkbox {
+  background: white;
+  font-family: Inter;
+}
+
+.filters {
+  margin: 0 0 1rem 0;
+}
+
+.selected_schedules {
+  display: inline-flex;
+  right: 5rem;
+  position: absolute;
+  margin-top: 1.2rem;
+  height: fit-content;
+  width: 2rem;
+  overflow: hidden;
+  font-size: x-small;
+  direction: rtl;
+}

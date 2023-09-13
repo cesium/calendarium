@@ -5,6 +5,8 @@ import styles from "./eventfilters.module.scss";
 
 const { Panel } = Collapse;
 
+import FilterBlock from "../FilterBlock";
+
 function EventFilters({ filters, handleFilters }) {
   const [Checked, setChecked] = useState<number[]>([]);
 
@@ -114,246 +116,257 @@ function EventFilters({ filters, handleFilters }) {
   };
 
   return (
-    <div className={styles.layer}>
-      {/* LEI */}
+    <FilterBlock
+      layer1={["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"]}
+      layer2={["1ˢᵗ semester", "2ⁿᵈ semester"]}
+      checkBoxes={[
+        [
+          { id: 1, label: "Option1" },
+          { id: 2, label: "Option2" },
+        ],
+        [{ id: 111, label: "Option" }],
+      ]}
+    />
+    // <div className={styles.layer}>
+    //   {/* LEI */}
 
-      <Collapse className={styles.checkbox} bordered={false} accordion>
-        {lei.map((b, index1) => (
-          <>
-            <MultipleCheckedIndicator
-              key={index1 - 3}
-              index={[event_index(0, index1, 0), event_index(0, index1, 1)]}
-            />
-            <Panel header={b} key={index1}>
-              <Collapse
-                className={styles.sub_checkbox}
-                bordered={false}
-                accordion
-              >
-                {semesters.map((s, index2) => (
-                  <>
-                    <CheckedIndicator
-                      key={10 + index1 * 10 + index2 - 1000}
-                      index={event_index(0, index1, index2)}
-                    />
-                    <Panel header={s} key={10 + index1 * 10 + index2}>
-                      <Fragment key={100 + index1 * 100 + index2 * 50}>
-                        <div
-                          style={{
-                            padding: "0 0 5px 0",
-                            margin: "0 0 5px 0",
-                            borderBottom: "solid rgba(200,200,200,.5) 1px",
-                          }}
-                        >
-                          <Checkbox
-                            type="Checkbox"
-                            onClick={() =>
-                              handleToggleAll(
-                                event[event_index(0, index1, index2)],
-                                event_index(0, index1, index2)
-                              )
-                            }
-                            checked={isAllChecked(
-                              event_index(0, index1, index2)
-                            )}
-                            indeterminate={
-                              !isAllChecked(event_index(0, index1, index2)) &&
-                              !isNoneChecked(event_index(0, index1, index2))
-                            }
-                          >
-                            Select All
-                          </Checkbox>
-                        </div>
-                      </Fragment>
-                      <div style={{ fontWeight: 400 }}>
-                        {event[event_index(0, index1, index2)]?.map(
-                          (
-                            value: {
-                              id: number;
-                              name: string;
-                              groupId: number;
-                              semester: number;
-                            },
-                            index3: number
-                          ) => (
-                            <Fragment
-                              key={
-                                100 + index1 * 100 + index2 * 50 + index3 + 1
-                              }
-                            >
-                              <div>
-                                <Checkbox
-                                  onChange={() => handleToggle(value.id)}
-                                  type="checkbox"
-                                  checked={
-                                    Checked.indexOf(value.id) === -1
-                                      ? false
-                                      : true
-                                  }
-                                >
-                                  {value.name}
-                                </Checkbox>
-                              </div>
-                            </Fragment>
-                          )
-                        )}
-                      </div>
-                    </Panel>
-                  </>
-                ))}
-              </Collapse>
-            </Panel>
-          </>
-        ))}
-      </Collapse>
+    //   <Collapse className={styles.checkbox} bordered={false} accordion>
+    //     {lei.map((b, index1) => (
+    //       <>
+    //         <MultipleCheckedIndicator
+    //           key={index1 - 3}
+    //           index={[event_index(0, index1, 0), event_index(0, index1, 1)]}
+    //         />
+    //         <Panel header={b} key={index1}>
+    //           <Collapse
+    //             className={styles.sub_checkbox}
+    //             bordered={false}
+    //             accordion
+    //           >
+    //             {semesters.map((s, index2) => (
+    //               <>
+    //                 <CheckedIndicator
+    //                   key={10 + index1 * 10 + index2 - 1000}
+    //                   index={event_index(0, index1, index2)}
+    //                 />
+    //                 <Panel header={s} key={10 + index1 * 10 + index2}>
+    //                   <Fragment key={100 + index1 * 100 + index2 * 50}>
+    //                     <div
+    //                       style={{
+    //                         padding: "0 0 5px 0",
+    //                         margin: "0 0 5px 0",
+    //                         borderBottom: "solid rgba(200,200,200,.5) 1px",
+    //                       }}
+    //                     >
+    //                       <Checkbox
+    //                         type="Checkbox"
+    //                         onClick={() =>
+    //                           handleToggleAll(
+    //                             event[event_index(0, index1, index2)],
+    //                             event_index(0, index1, index2)
+    //                           )
+    //                         }
+    //                         checked={isAllChecked(
+    //                           event_index(0, index1, index2)
+    //                         )}
+    //                         indeterminate={
+    //                           !isAllChecked(event_index(0, index1, index2)) &&
+    //                           !isNoneChecked(event_index(0, index1, index2))
+    //                         }
+    //                       >
+    //                         Select All
+    //                       </Checkbox>
+    //                     </div>
+    //                   </Fragment>
+    //                   <div style={{ fontWeight: 400 }}>
+    //                     {event[event_index(0, index1, index2)]?.map(
+    //                       (
+    //                         value: {
+    //                           id: number;
+    //                           name: string;
+    //                           groupId: number;
+    //                           semester: number;
+    //                         },
+    //                         index3: number
+    //                       ) => (
+    //                         <Fragment
+    //                           key={
+    //                             100 + index1 * 100 + index2 * 50 + index3 + 1
+    //                           }
+    //                         >
+    //                           <div>
+    //                             <Checkbox
+    //                               onChange={() => handleToggle(value.id)}
+    //                               type="checkbox"
+    //                               checked={
+    //                                 Checked.indexOf(value.id) === -1
+    //                                   ? false
+    //                                   : true
+    //                               }
+    //                             >
+    //                               {value.name}
+    //                             </Checkbox>
+    //                           </div>
+    //                         </Fragment>
+    //                       )
+    //                     )}
+    //                   </div>
+    //                 </Panel>
+    //               </>
+    //             ))}
+    //           </Collapse>
+    //         </Panel>
+    //       </>
+    //     ))}
+    //   </Collapse>
 
-      {/* MEI */}
+    //   {/* MEI */}
 
-      {/* 4º ano */}
+    //   {/* 4º ano */}
 
-      <Collapse className={styles.checkbox} bordered={false} accordion>
-        <MultipleCheckedIndicator index={[6, 7]} />
-        <Panel header={mei[0]} key="4">
-          <Collapse className={styles.sub_checkbox} bordered={false} accordion>
-            {semesters.map((s, index2) => (
-              <>
-                <CheckedIndicator
-                  key={10 + index2 - 1000}
-                  index={event_index(1, 0, index2)}
-                />
-                <Panel header={s} key={10 + index2}>
-                  <Fragment key={100 + index2 * 50}>
-                    <div
-                      style={{
-                        padding: "0 0 5px 0",
-                        margin: "0 0 5px 0",
-                        borderBottom: "solid rgba(200,200,200,.5) 1px",
-                      }}
-                    >
-                      <Checkbox
-                        type="Checkbox"
-                        onClick={() =>
-                          handleToggleAll(
-                            event[event_index(1, 0, index2)],
-                            event_index(1, 0, index2)
-                          )
-                        }
-                        checked={isAllChecked(event_index(1, 0, index2))}
-                        indeterminate={
-                          !isAllChecked(event_index(1, 0, index2)) &&
-                          !isNoneChecked(event_index(1, 0, index2))
-                        }
-                      >
-                        Select All
-                      </Checkbox>
-                    </div>
-                  </Fragment>
-                  <div style={{ fontWeight: 400 }}>
-                    {event[event_index(1, 0, index2)]?.map(
-                      (
-                        value: {
-                          id: number;
-                          name: string;
-                          groupId: number;
-                          semester: number;
-                        },
-                        index3: number
-                      ) => (
-                        <Fragment key={100 + index2 * 50 + index3 + 1}>
-                          <div>
-                            <Checkbox
-                              onChange={() => handleToggle(value.id)}
-                              type="checkbox"
-                              checked={
-                                Checked.indexOf(value.id) === -1 ? false : true
-                              }
-                            >
-                              {value.name}
-                            </Checkbox>
-                          </div>
-                        </Fragment>
-                      )
-                    )}
-                  </div>
-                </Panel>
-              </>
-            ))}
-          </Collapse>
-        </Panel>
+    //   <Collapse className={styles.checkbox} bordered={false} accordion>
+    //     <MultipleCheckedIndicator index={[6, 7]} />
+    //     <Panel header={mei[0]} key="4">
+    //       <Collapse className={styles.sub_checkbox} bordered={false} accordion>
+    //         {semesters.map((s, index2) => (
+    //           <>
+    //             <CheckedIndicator
+    //               key={10 + index2 - 1000}
+    //               index={event_index(1, 0, index2)}
+    //             />
+    //             <Panel header={s} key={10 + index2}>
+    //               <Fragment key={100 + index2 * 50}>
+    //                 <div
+    //                   style={{
+    //                     padding: "0 0 5px 0",
+    //                     margin: "0 0 5px 0",
+    //                     borderBottom: "solid rgba(200,200,200,.5) 1px",
+    //                   }}
+    //                 >
+    //                   <Checkbox
+    //                     type="Checkbox"
+    //                     onClick={() =>
+    //                       handleToggleAll(
+    //                         event[event_index(1, 0, index2)],
+    //                         event_index(1, 0, index2)
+    //                       )
+    //                     }
+    //                     checked={isAllChecked(event_index(1, 0, index2))}
+    //                     indeterminate={
+    //                       !isAllChecked(event_index(1, 0, index2)) &&
+    //                       !isNoneChecked(event_index(1, 0, index2))
+    //                     }
+    //                   >
+    //                     Select All
+    //                   </Checkbox>
+    //                 </div>
+    //               </Fragment>
+    //               <div style={{ fontWeight: 400 }}>
+    //                 {event[event_index(1, 0, index2)]?.map(
+    //                   (
+    //                     value: {
+    //                       id: number;
+    //                       name: string;
+    //                       groupId: number;
+    //                       semester: number;
+    //                     },
+    //                     index3: number
+    //                   ) => (
+    //                     <Fragment key={100 + index2 * 50 + index3 + 1}>
+    //                       <div>
+    //                         <Checkbox
+    //                           onChange={() => handleToggle(value.id)}
+    //                           type="checkbox"
+    //                           checked={
+    //                             Checked.indexOf(value.id) === -1 ? false : true
+    //                           }
+    //                         >
+    //                           {value.name}
+    //                         </Checkbox>
+    //                       </div>
+    //                     </Fragment>
+    //                   )
+    //                 )}
+    //               </div>
+    //             </Panel>
+    //           </>
+    //         ))}
+    //       </Collapse>
+    //     </Panel>
 
-        {/* 5º ano */}
+    //     {/* 5º ano */}
 
-        <>
-          <CheckedIndicator index={8} />
-          <Panel header={mei[1]} key="5">
-            <div style={{ fontWeight: 400 }}>
-              {event[8]?.map(
-                (
-                  value: {
-                    id: number;
-                    name: string;
-                    groupId: number;
-                    semester: number;
-                  },
-                  index: number
-                ) => (
-                  <Fragment key={100 + 100 + index}>
-                    <div>
-                      <Checkbox
-                        onChange={() => handleToggle(value.id)}
-                        type="checkbox"
-                        checked={
-                          Checked.indexOf(value.id) === -1 ? false : true
-                        }
-                      >
-                        {value.name}
-                      </Checkbox>
-                    </div>
-                  </Fragment>
-                )
-              )}
-            </div>
-          </Panel>
-        </>
-      </Collapse>
+    //     <>
+    //       <CheckedIndicator index={8} />
+    //       <Panel header={mei[1]} key="5">
+    //         <div style={{ fontWeight: 400 }}>
+    //           {event[8]?.map(
+    //             (
+    //               value: {
+    //                 id: number;
+    //                 name: string;
+    //                 groupId: number;
+    //                 semester: number;
+    //               },
+    //               index: number
+    //             ) => (
+    //               <Fragment key={100 + 100 + index}>
+    //                 <div>
+    //                   <Checkbox
+    //                     onChange={() => handleToggle(value.id)}
+    //                     type="checkbox"
+    //                     checked={
+    //                       Checked.indexOf(value.id) === -1 ? false : true
+    //                     }
+    //                   >
+    //                     {value.name}
+    //                   </Checkbox>
+    //                 </div>
+    //               </Fragment>
+    //             )
+    //           )}
+    //         </div>
+    //       </Panel>
+    //     </>
+    //   </Collapse>
 
-      {/* Others */}
+    //   {/* Others */}
 
-      {event[9].length > 0 && (
-        <Collapse className={styles.checkbox} bordered={false}>
-          <CheckedIndicator index={9} />
-          <Panel header="Others" key="Others">
-            <div style={{ fontWeight: 400 }}>
-              {event[9]?.map(
-                (
-                  value: {
-                    id: number;
-                    name: string;
-                    groupId: number;
-                    semester: number;
-                  },
-                  index: number
-                ) => (
-                  <Fragment key={100 + index}>
-                    <div>
-                      <Checkbox
-                        onChange={() => handleToggle(value.id)}
-                        type="checkbox"
-                        checked={
-                          Checked.indexOf(value.id) === -1 ? false : true
-                        }
-                      >
-                        {value.name}
-                      </Checkbox>
-                    </div>
-                  </Fragment>
-                )
-              )}
-            </div>
-          </Panel>
-        </Collapse>
-      )}
-    </div>
+    //   {event[9].length > 0 && (
+    //     <Collapse className={styles.checkbox} bordered={false}>
+    //       <CheckedIndicator index={9} />
+    //       <Panel header="Others" key="Others">
+    //         <div style={{ fontWeight: 400 }}>
+    //           {event[9]?.map(
+    //             (
+    //               value: {
+    //                 id: number;
+    //                 name: string;
+    //                 groupId: number;
+    //                 semester: number;
+    //               },
+    //               index: number
+    //             ) => (
+    //               <Fragment key={100 + index}>
+    //                 <div>
+    //                   <Checkbox
+    //                     onChange={() => handleToggle(value.id)}
+    //                     type="checkbox"
+    //                     checked={
+    //                       Checked.indexOf(value.id) === -1 ? false : true
+    //                     }
+    //                   >
+    //                     {value.name}
+    //                   </Checkbox>
+    //                 </div>
+    //               </Fragment>
+    //             )
+    //           )}
+    //         </div>
+    //       </Panel>
+    //     </Collapse>
+    //   )}
+    // </div>
   );
 }
 
