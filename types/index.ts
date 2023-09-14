@@ -8,3 +8,8 @@ export type CheckBoxProps = {
   label: string;
   shifts?: string[];
 };
+
+export type SelectedShift = {
+  id: number;
+  shift: string;
+};

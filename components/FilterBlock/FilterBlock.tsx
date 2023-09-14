@@ -3,21 +3,17 @@ import "antd/dist/reset.css";
 
 import { Fragment, useState, useEffect } from "react";
 
-import { CheckBoxProps } from "../../types";
+import { CheckBoxProps, SelectedShift } from "../../types";
 
 type FilterBlockProps = {
-  layer1: string[];
-  layer2?: string[];
-  checkBoxes: CheckBoxProps[][];
-  exception?: number;
-  checked: number[];
-  setChecked: (values: number[]) => void;
-  handleFilters: any;
-};
-
-type SelectedShift = {
-  id: number;
-  shifts: string[];
+  layer1: string[]; // contains the titles for the collapse's of the 1st layer
+  layer2?: string[]; // contains the titles for the collapse's of the 2nd layer
+  checkBoxes: CheckBoxProps[][]; // contains the checkboxes information in a universal format
+  exception?: number; // indicates the index of an element from layer1 where the layer2 should be ignored, for example "5th year"
+  checked: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  setChecked: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  handleFilters: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  isShifts: boolean; // used to know if FilterBlock is being called from ScheduleFilters.tsx or EventFilters.tsx
 };
 
 const FilterBlock = ({
@@ -28,7 +24,9 @@ const FilterBlock = ({
   checked,
   setChecked,
   handleFilters,
+  isShifts,
 }: FilterBlockProps) => {
+  // "Select All" checkbox
   const SelectAll = ({
     index1,
     index2,
@@ -46,7 +44,9 @@ const FilterBlock = ({
               <Checkbox
                 onChange={() => handleToggleAll(index)}
                 checked={isAllChecked(index)}
-                indeterminate={isSomeChecked(index) && !isAllChecked(index)}
+                indeterminate={
+                  isSomeLayer1Checked(index) && !isAllChecked(index)
+                }
               >
                 Select All
               </Checkbox>
@@ -57,6 +57,9 @@ const FilterBlock = ({
     );
   };
 
+  // GENERAL
+
+  // Creates a list of checkboxes for a specific group
   const CheckBoxList = ({
     index1,
     index2,
@@ -91,22 +94,7 @@ const FilterBlock = ({
     );
   };
 
-  const ShiftCheckBoxList = ({ shifts }: { shifts: string[] }) => {
-    return (
-      <>
-        {shifts &&
-          shifts.length > 0 &&
-          shifts.map((item) => (
-            <Fragment key={item + "Fragment"}>
-              <div>
-                <Checkbox key={item + "CheckBox"}>{item}</Checkbox>
-              </div>
-            </Fragment>
-          ))}
-      </>
-    );
-  };
-
+  // Handles the toggle of a checkbox
   function handleToggle(id: number) {
     const currentIdIndex = checked.indexOf(id);
     const newCheck = [...checked];
@@ -119,6 +107,7 @@ const FilterBlock = ({
     localStorage.setItem("checked", JSON.stringify(newCheck));
   }
 
+  // Handles the toggle of the "Select All" checkbox
   function handleToggleAll(index: number) {
     let newChecked = [...checked];
 
@@ -135,10 +124,12 @@ const FilterBlock = ({
     localStorage.setItem("checked", JSON.stringify(newChecked));
   }
 
+  // Checks if a certain checkbox is selected (checked)
   const isChecked = (id: number): boolean => {
     return checked.includes(id);
   };
 
+  // Checks if all the checkboxes under a specific group are selected (checked)
   const isAllChecked = (index: number): boolean => {
     return (
       checkBoxes[index] &&
@@ -146,12 +137,26 @@ const FilterBlock = ({
     );
   };
 
-  const isSomeChecked = (index: number): boolean => {
+  // Checks if some checkbox that falls under the 2nd layer is selected (checked)
+  const isSomeLayer2Checked = (index: number): boolean => {
     return (
       checkBoxes[index] && checkBoxes[index].some((c) => checked.includes(c.id))
     );
   };
 
+  // Checks if some checkbox that falls under the 1st layer is selected (checked)
+  const isSomeLayer1Checked = (index: number): boolean => {
+    const indexs: number[] = Array.from(
+      { length: layer2 ? layer2.length : 1 },
+      (v, i) => i
+    );
+
+    return indexs.some((i) =>
+      isSomeLayer2Checked(index * (layer2 ? layer2.length : 1) + i)
+    );
+  };
+
+  // Tiny blue ball, used to indicate that something inside a Collpase is selected
   const CheckedIndicator = () => {
     return (
       <div className="absolute right-20 mt-5 inline-flex h-fit w-fit overflow-hidden">
@@ -160,19 +165,16 @@ const FilterBlock = ({
     );
   };
 
+  // Indicates if some checkbox that falls under the 1st layer is selected
   const Layer1CheckedIndicator = ({ index }: { index: number }) => {
-    const indexs: number[] = Array.from(
-      { length: layer2 ? layer2.length : 1 },
-      (v, i) => i
-    );
-
-    const isOn: boolean = indexs.some((i) =>
-      isSomeChecked(index * (layer2 ? layer2.length : 1) + i)
-    );
+    const isOn: boolean = isShifts
+      ? isSomeLayer1ShiftChecked(index)
+      : isSomeLayer1Checked(index);
 
     return isOn && <CheckedIndicator />;
   };
 
+  // Indicates if some checkbox that falls under the 2nd layer is selected
   const Layer2CheckedIndicator = ({
     index1,
     index2,
@@ -180,9 +182,97 @@ const FilterBlock = ({
     index1: number;
     index2: number;
   }) => {
-    const isOn: boolean = isSomeChecked(index1 * layer2.length + index2);
+    const index = index1 * layer2.length + index2;
+    const isOn: boolean = isShifts
+      ? isSomeLayer2ShiftChecked(index)
+      : isSomeLayer2Checked(index);
 
     return isOn && <CheckedIndicator />;
+  };
+
+  // USED FOR SCHEDULE
+
+  // Creates a list of checkboxes for a specific subject (only used for Schedule)
+  const ShiftCheckBoxList = ({
+    id,
+    shifts,
+  }: {
+    id: number;
+    shifts: string[];
+  }) => {
+    return (
+      <>
+        {shifts &&
+          shifts.length > 0 &&
+          shifts.map((item) => (
+            <Fragment key={item + "Fragment"}>
+              <div>
+                <Checkbox
+                  key={item + "CheckBox"}
+                  onChange={() => handleShiftToggle(id, item)}
+                  checked={isShiftChecked(id, item)}
+                >
+                  {item}
+                </Checkbox>
+              </div>
+            </Fragment>
+          ))}
+      </>
+    );
+  };
+
+  // Handles the toggle of a checkbox containing a shift (only used for Schedule)
+  function handleShiftToggle(id: number, shift: string) {
+    const currentIdIndex = checked.findIndex(
+      (selectedShift: SelectedShift) =>
+        selectedShift.id === id && selectedShift.shift === shift
+    );
+    const newChecked = [...checked];
+
+    const shiftObj: SelectedShift = { id: id, shift: shift };
+    if (currentIdIndex === -1) newChecked.push(shiftObj);
+    else newChecked.splice(currentIdIndex, 1);
+
+    setChecked(newChecked);
+    handleFilters(newChecked);
+    localStorage.setItem("shifts", JSON.stringify(newChecked));
+  }
+
+  // Checks if a specific shift is selected (checked) (only used for Schedule)
+  const isShiftChecked = (id: number, shift: string): boolean => {
+    return checked.some((shiftObj) => {
+      return id === shiftObj.id && shift === shiftObj.shift;
+    });
+  };
+
+  // Checks if some shift under a certain subject is selected (checked) (only used for Schedule)
+  const isSomeSubjectShiftChecked = (id: number): boolean => {
+    return checked.some((s) => s.id === id);
+  };
+
+  // Checks if a shift that falls under a Collapse from the 2nd layer is selected (checked) (only used for Schedule)
+  const isSomeLayer2ShiftChecked = (index: number): boolean => {
+    return (
+      checkBoxes[index] &&
+      checkBoxes[index].some((c) => isSomeSubjectShiftChecked(c.id))
+    );
+  };
+
+  // Checks if a shift that falls under a Collapse from the 1st layer is selected (checked) (only used for Schedule)
+  const isSomeLayer1ShiftChecked = (index: number): boolean => {
+    const indexs: number[] = Array.from(
+      { length: layer2 ? layer2.length : 1 },
+      (v, i) => i
+    );
+
+    return indexs.some((i) =>
+      isSomeLayer2ShiftChecked(index * (layer2 ? layer2.length : 1) + i)
+    );
+  };
+
+  // Indicates if some shift from a specific subject is selected (only used for Schedule)
+  const Layer3CheckedIndicator = ({ id }: { id: number }) => {
+    return isSomeSubjectShiftChecked(id) && <CheckedIndicator />;
   };
 
   return (
@@ -223,12 +313,18 @@ const FilterBlock = ({
                                 {checkBoxes[
                                   index1 * (layer2 ? layer2.length : 1) + index2
                                 ].map((item3) => (
-                                  <Collapse.Panel
-                                    header={item3.label}
-                                    key={item3.id}
-                                  >
-                                    <ShiftCheckBoxList shifts={item3.shifts} />
-                                  </Collapse.Panel>
+                                  <>
+                                    <Layer3CheckedIndicator id={item3.id} />
+                                    <Collapse.Panel
+                                      header={item3.label}
+                                      key={item3.id}
+                                    >
+                                      <ShiftCheckBoxList
+                                        id={item3.id}
+                                        shifts={item3.shifts}
+                                      />
+                                    </Collapse.Panel>
+                                  </>
                                 ))}
                               </>
                             ) : (
