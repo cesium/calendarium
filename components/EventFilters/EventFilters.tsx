@@ -6,9 +6,10 @@ import styles from "./eventfilters.module.scss";
 const { Panel } = Collapse;
 
 import FilterBlock from "../FilterBlock";
+import { CheckBoxProps } from "../../types";
 
 function EventFilters({ filters, handleFilters }) {
-  const [Checked, setChecked] = useState<number[]>([]);
+  const [checked, setChecked] = useState<number[]>([]);
 
   useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
@@ -50,8 +51,8 @@ function EventFilters({ filters, handleFilters }) {
   event[9] = filters.filter((f) => f.groupId === 0); // others
 
   const handleToggle = (value: number) => {
-    const currentId = Checked.indexOf(value);
-    const newCheck = [...Checked];
+    const currentId = checked.indexOf(value);
+    const newCheck = [...checked];
 
     if (currentId === -1) {
       newCheck.push(value);
@@ -66,18 +67,18 @@ function EventFilters({ filters, handleFilters }) {
 
   const isAllChecked = (index: number) => {
     return !event[index].some((elem) => {
-      return !Checked.includes(elem.id);
+      return !checked.includes(elem.id);
     });
   };
 
   const isNoneChecked = (index: number) => {
     return !event[index].some((elem) => {
-      return Checked.includes(elem.id);
+      return checked.includes(elem.id);
     });
   };
 
   const handleToggleAll = (values, index: number) => {
-    let newChecked = [...Checked];
+    let newChecked = [...checked];
 
     if (!isAllChecked(index)) {
       values.map((event) => newChecked.push(event.id));
@@ -115,18 +116,42 @@ function EventFilters({ filters, handleFilters }) {
     );
   };
 
+  function getCheckBoxes(): CheckBoxProps[][] {
+    const checkBoxes: CheckBoxProps[][] = [];
+
+    let i: number;
+    for (i = 0; i < event.length; i++) {
+      const items: CheckBoxProps[] = event[i].map((e) => {
+        const item: CheckBoxProps = { id: e.id, label: e.name };
+        return item;
+      });
+
+      checkBoxes.push(items);
+    }
+
+    return checkBoxes;
+  }
+
   return (
-    <FilterBlock
-      layer1={["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"]}
-      layer2={["1ˢᵗ semester", "2ⁿᵈ semester"]}
-      checkBoxes={[
-        [
-          { id: 1, label: "Option1" },
-          { id: 2, label: "Option2" },
-        ],
-        [{ id: 111, label: "Option" }],
-      ]}
-    />
+    <>
+      <FilterBlock
+        layer1={lei}
+        layer2={semesters}
+        checkBoxes={getCheckBoxes().slice(0, 6)}
+        checked={checked}
+        setChecked={setChecked}
+        handleFilters={handleFilters}
+      />
+      <FilterBlock
+        layer1={mei}
+        layer2={semesters}
+        checkBoxes={getCheckBoxes().slice(6, 9)}
+        checked={checked}
+        setChecked={setChecked}
+        exception={1}
+        handleFilters={handleFilters}
+      />
+    </>
     // <div className={styles.layer}>
     //   {/* LEI */}
 

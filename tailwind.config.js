@@ -4,6 +4,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      display: ["Inter", "ui-sans-serif"],
+    },
     extend: {
       spacing: {
         mobile: "calc(100vh - 5.2rem)",
