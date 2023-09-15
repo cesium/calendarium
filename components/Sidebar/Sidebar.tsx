@@ -80,14 +80,14 @@ const Sidebar = ({
           <div className={styles.links}>
             <div style={{ width: "fit-content", margin: "auto" }}>
               <ActiveLink href="/" activeClassName={styles.activeLink}>
-                <a>
+                <text>
                   <i className="bi bi-calendar-fill"></i> EVENTS
-                </a>
+                </text>
               </ActiveLink>
               <ActiveLink href="/schedule" activeClassName={styles.activeLink}>
-                <a>
+                <text>
                   <i className="bi bi-clock-fill"></i> SCHEDULE
-                </a>
+                </text>
               </ActiveLink>
             </div>
           </div>
