@@ -111,7 +111,7 @@ const ScheduleFilters = ({
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(0, 6)}
         checked={selectedFilters}
-        setChecked={setSelectedFilters}
+        setChecked={setSelectedFilters as (v: SelectedShift[]) => void}
         handleFilters={handleFilters}
         isShifts
       />
@@ -121,7 +121,7 @@ const ScheduleFilters = ({
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(6, 9)}
         checked={selectedFilters}
-        setChecked={setSelectedFilters}
+        setChecked={setSelectedFilters as (v: SelectedShift[]) => void}
         handleFilters={handleFilters}
         isShifts
       />

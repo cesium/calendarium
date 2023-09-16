@@ -65,7 +65,7 @@ function EventFilters({ filters, handleFilters }) {
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(0, 6)}
         checked={checked}
-        setChecked={setChecked}
+        setChecked={setChecked as (v: number[]) => void}
         handleFilters={handleFilters}
         isShifts={false}
       />
@@ -75,7 +75,7 @@ function EventFilters({ filters, handleFilters }) {
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(6, 9)}
         checked={checked}
-        setChecked={setChecked}
+        setChecked={setChecked as (v: number[]) => void}
         exception={1}
         handleFilters={handleFilters}
         isShifts={false}
