@@ -261,8 +261,12 @@ export default function Home({ events, filters }) {
           >
             <text className="font-bold">Something missing?</text> Help us add it{" "}
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
-              className="text-blue-500"
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
+                )
+              }
+              className="cursor-pointer text-blue-500 hover:underline"
             >
               here.
             </a>
