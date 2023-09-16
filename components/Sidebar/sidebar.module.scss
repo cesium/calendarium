@@ -38,12 +38,13 @@
     color: var(--black);
   }
 
-  a {
+  text {
     position: relative;
     color: var(--placeholder);
     transition: color 300ms;
+    cursor: pointer;
 
-    & + a {
+    & + text {
       margin-left: 2rem;
     }
 

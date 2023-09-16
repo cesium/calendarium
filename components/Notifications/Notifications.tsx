@@ -50,7 +50,7 @@ const Banner = ({
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 sm:rounded-2xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="select-none text-sm leading-6 text-white">
-          <a>
+          <div>
             <strong className="font-semibold">
               <i className="bi bi-info-circle-fill"></i> {type}
             </strong>
@@ -62,7 +62,7 @@ const Banner = ({
               <circle cx={1} cy={1} r={1} />
             </svg>
             {description}
-          </a>
+          </div>
         </div>
         <div className="flex justify-between gap-x-5 sm:gap-x-3">
           {isMultiple && (

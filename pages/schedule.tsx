@@ -213,7 +213,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       <div>
         <Head>
           <title>Schedule | Calendarium</title>
-          <meta name="Calendarium" content="Calendar of events and exams" />
+          <meta name="description" content="Your weekly schedule." />
           <link rel="icon" href="/favicon-calendarium.ico" />~
         </Head>
 
