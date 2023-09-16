@@ -44,7 +44,7 @@ const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
                     onClick={() => setIsModalOpen(true)}
                   >
                     <div className="flex place-content-between space-x-6">
-                      <a>Calendar</a>
+                      <div>Calendar</div>
                       <i className="bi bi-chevron-right"></i>
                     </div>
                   </button>
@@ -59,7 +59,7 @@ const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
                     onClick={() => exportPDF()}
                   >
                     <div className="flex place-content-between space-x-6">
-                      <a>PDF</a>
+                      <div>PDF</div>
                       <i className="bi bi-file-earmark-pdf"></i>
                     </div>
                   </button>
