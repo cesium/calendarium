@@ -173,7 +173,7 @@
     "theoretical": true,
     "shift": "T2",
     "building": "CP2",
-    "room": "0.03",
+    "room": "0.07",
     "day": 1,
     "start": "11:00",
     "end": "13:00",
@@ -569,7 +569,7 @@
     "theoretical": false,
     "shift": "TP1",
     "building": "CP1",
-    "room": "2.08",
+    "room": "1.20",
     "day": 1,
     "start": "18:00",
     "end": "20:00",
@@ -1716,18 +1716,6 @@
     "filterId": 315
   },
   {
-    "id": 14298,
-    "title": "Laboratórios de Informática IV",
-    "theoretical": false,
-    "shift": "OT2",
-    "building": "7",
-    "room": "0.05",
-    "day": 0,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 315
-  },
-  {
     "id": 14312,
     "title": "Sistemas Distribuídos",
     "theoretical": false,
@@ -1767,12 +1755,12 @@
     "id": 14298,
     "title": "Laboratórios de Informática IV",
     "theoretical": false,
-    "shift": "OT4",
-    "building": "CP1",
-    "room": "2.25",
-    "day": 2,
-    "start": "16:00",
-    "end": "18:00",
+    "shift": "OT2",
+    "building": "7",
+    "room": "1.10",
+    "day": 0,
+    "start": "18:00",
+    "end": "20:00",
     "filterId": 315
   },
   {
@@ -1798,6 +1786,18 @@
     "start": "18:00",
     "end": "20:00",
     "filterId": 311
+  },
+  {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT4",
+    "building": "CP1",
+    "room": "2.25",
+    "day": 2,
+    "start": "18:00",
+    "end": "20:00",
+    "filterId": 315
   },
   {
     "id": 14600,
