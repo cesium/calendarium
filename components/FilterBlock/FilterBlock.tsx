@@ -1,17 +1,17 @@
 import { Checkbox, Collapse } from "antd";
 import "antd/dist/reset.css";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 
 import { CheckBoxProps, SelectedShift } from "../../types";
 
 type FilterBlockProps = {
-  layer1: string[]; // contains the titles for the collapse's of the 1st layer
-  layer2?: string[]; // contains the titles for the collapse's of the 2nd layer
+  layer1: string[]; // contains the titles for the collapses of the 1st layer
+  layer2?: string[]; // contains the titles for the collapses of the 2nd layer
   checkBoxes: CheckBoxProps[][]; // contains the checkboxes information in a universal format
   exception?: number; // indicates the index of an element from layer1 where the layer2 should be ignored, for example "5th year"
-  checked: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
-  setChecked: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  checked: number[] | SelectedShift[]; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  setChecked: (obj: number[] | SelectedShift[]) => void; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
   handleFilters: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
   isShifts: boolean; // used to know if FilterBlock is being called from ScheduleFilters.tsx or EventFilters.tsx
 };
@@ -39,7 +39,7 @@ const FilterBlock = ({
     return (
       <>
         {checkBoxes[index] && checkBoxes[index].length > 1 && (
-          <Fragment key={index + "Fragment"}>
+          <Fragment key={index + "SelectAllCheckbox"}>
             <div className="mb-1.5 border-b pb-1.5 font-display font-medium">
               <Checkbox
                 onChange={() => handleToggleAll(index)}
@@ -75,15 +75,15 @@ const FilterBlock = ({
           <div className="font-display font-normal">
             {checkBoxes[index] &&
               checkBoxes[index].length > 0 &&
-              checkBoxes[index].map((item3) => (
-                <Fragment key={item3.id + "Fragment"}>
+              checkBoxes[index].map((item) => (
+                <Fragment key={item.id + "Checkbox"}>
                   <div>
                     <Checkbox
-                      key={item3.id + "CheckBox"}
-                      onChange={() => handleToggle(item3.id)}
-                      checked={isChecked(item3.id)}
+                      key={item.id + "CheckBox"}
+                      onChange={() => handleToggle(item.id)}
+                      checked={isChecked(item.id)}
                     >
-                      {item3.label}
+                      {item.label}
                     </Checkbox>
                   </div>
                 </Fragment>
@@ -96,8 +96,8 @@ const FilterBlock = ({
 
   // Handles the toggle of a checkbox
   function handleToggle(id: number) {
-    const currentIdIndex = checked.indexOf(id);
-    const newCheck = [...checked];
+    const currentIdIndex = (checked as number[]).indexOf(id);
+    const newCheck: number[] = [...checked] as number[];
 
     if (currentIdIndex === -1) newCheck.push(id);
     else newCheck.splice(currentIdIndex, 1);
@@ -109,7 +109,7 @@ const FilterBlock = ({
 
   // Handles the toggle of the "Select All" checkbox
   function handleToggleAll(index: number) {
-    let newChecked = [...checked];
+    let newChecked: number[] = [...checked] as number[];
 
     if (!isAllChecked(index))
       checkBoxes[index].map((event) => newChecked.push(event.id));
@@ -126,21 +126,22 @@ const FilterBlock = ({
 
   // Checks if a certain checkbox is selected (checked)
   const isChecked = (id: number): boolean => {
-    return checked.includes(id);
+    return (checked as number[]).includes(id);
   };
 
   // Checks if all the checkboxes under a specific group are selected (checked)
   const isAllChecked = (index: number): boolean => {
     return (
       checkBoxes[index] &&
-      checkBoxes[index].every((c) => checked.includes(c.id))
+      checkBoxes[index].every((c) => (checked as number[]).includes(c.id))
     );
   };
 
   // Checks if some checkbox that falls under the 2nd layer is selected (checked)
   const isSomeLayer2Checked = (index: number): boolean => {
     return (
-      checkBoxes[index] && checkBoxes[index].some((c) => checked.includes(c.id))
+      checkBoxes[index] &&
+      checkBoxes[index].some((c) => (checked as number[]).includes(c.id))
     );
   };
 
@@ -205,7 +206,7 @@ const FilterBlock = ({
         {shifts &&
           shifts.length > 0 &&
           shifts.map((item) => (
-            <Fragment key={item + "Fragment"}>
+            <Fragment key={id.toString() + item + "Checkbox"}>
               <div>
                 <Checkbox
                   key={item + "CheckBox"}
@@ -223,11 +224,11 @@ const FilterBlock = ({
 
   // Handles the toggle of a checkbox containing a shift (only used for Schedule)
   function handleShiftToggle(id: number, shift: string) {
-    const currentIdIndex = checked.findIndex(
+    const currentIdIndex = (checked as SelectedShift[]).findIndex(
       (selectedShift: SelectedShift) =>
         selectedShift.id === id && selectedShift.shift === shift
     );
-    const newChecked = [...checked];
+    const newChecked: SelectedShift[] = [...checked] as SelectedShift[];
 
     const shiftObj: SelectedShift = { id: id, shift: shift };
     if (currentIdIndex === -1) newChecked.push(shiftObj);
@@ -240,14 +241,14 @@ const FilterBlock = ({
 
   // Checks if a specific shift is selected (checked) (only used for Schedule)
   const isShiftChecked = (id: number, shift: string): boolean => {
-    return checked.some((shiftObj) => {
+    return (checked as SelectedShift[]).some((shiftObj) => {
       return id === shiftObj.id && shift === shiftObj.shift;
     });
   };
 
   // Checks if some shift under a certain subject is selected (checked) (only used for Schedule)
   const isSomeSubjectShiftChecked = (id: number): boolean => {
-    return checked.some((s) => s.id === id);
+    return (checked as SelectedShift[]).some((s) => s.id === id);
   };
 
   // Checks if a shift that falls under a Collapse from the 2nd layer is selected (checked) (only used for Schedule)
@@ -285,12 +286,16 @@ const FilterBlock = ({
         {layer1 &&
           layer1.map((item1, index1) => (
             <>
-              <Layer1CheckedIndicator index={index1} />
-              <Collapse.Panel header={item1} key={item1}>
+              <Layer1CheckedIndicator
+                index={index1}
+                key={item1 + "Layer1CheckedIndicator"}
+              />
+              <Collapse.Panel header={item1} key={item1 + "Panel"}>
                 <Collapse
                   className="bg-white font-display font-medium"
                   bordered={false}
                   accordion
+                  key={item1 + "Collapse"}
                 >
                   {layer2 && index1 !== exception ? (
                     layer2.map((item2, index2) => (
@@ -298,12 +303,17 @@ const FilterBlock = ({
                         <Layer2CheckedIndicator
                           index1={index1}
                           index2={index2}
+                          key={item1 + item2 + "Layer2CheckedIndicator"}
                         />
-                        <Collapse.Panel header={item2} key={item2}>
+                        <Collapse.Panel
+                          header={item2}
+                          key={item1 + item2 + "Panel"}
+                        >
                           <Collapse
                             className="bg-white font-normal"
                             bordered={false}
                             accordion
+                            key={item1 + item2 + "Collapse"}
                           >
                             {checkBoxes[index1 * layer2.length + index2] &&
                             checkBoxes[index1 * layer2.length + index2].some(
@@ -314,14 +324,18 @@ const FilterBlock = ({
                                   index1 * (layer2 ? layer2.length : 1) + index2
                                 ].map((item3) => (
                                   <>
-                                    <Layer3CheckedIndicator id={item3.id} />
+                                    <Layer3CheckedIndicator
+                                      id={item3.id}
+                                      key={item3.id + "Layer3CheckedIndicator"}
+                                    />
                                     <Collapse.Panel
                                       header={item3.label}
-                                      key={item3.id}
+                                      key={item3.id + "Panel"}
                                     >
                                       <ShiftCheckBoxList
                                         id={item3.id}
                                         shifts={item3.shifts}
+                                        key={item3.id + "ShiftCheckBoxList"}
                                       />
                                     </Collapse.Panel>
                                   </>
@@ -329,8 +343,16 @@ const FilterBlock = ({
                               </>
                             ) : (
                               <>
-                                <SelectAll index1={index1} index2={index2} />
-                                <CheckBoxList index1={index1} index2={index2} />
+                                <SelectAll
+                                  index1={index1}
+                                  index2={index2}
+                                  key={item2 + "SelectAll"}
+                                />
+                                <CheckBoxList
+                                  index1={index1}
+                                  index2={index2}
+                                  key={item2 + "CheckBoxList"}
+                                />
                               </>
                             )}
                           </Collapse>
@@ -339,13 +361,29 @@ const FilterBlock = ({
                     ))
                   ) : index1 === exception ? (
                     <>
-                      <SelectAll index1={index1} index2={0} />
-                      <CheckBoxList index1={index1} index2={0} />
+                      <SelectAll
+                        index1={index1}
+                        index2={0}
+                        key={item1 + "SelectAll"}
+                      />
+                      <CheckBoxList
+                        index1={index1}
+                        index2={0}
+                        key={item1 + "CheckBoxList"}
+                      />
                     </>
                   ) : (
                     <>
-                      <SelectAll index1={0} index2={index1} />
-                      <CheckBoxList index1={0} index2={index1} />
+                      <SelectAll
+                        index1={0}
+                        index2={index1}
+                        key={item1 + "SelectAll"}
+                      />
+                      <CheckBoxList
+                        index1={0}
+                        index2={index1}
+                        key={item1 + "CheckBoxList"}
+                      />
                     </>
                   )}
                 </Collapse>
