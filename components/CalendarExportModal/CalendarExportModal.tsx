@@ -138,7 +138,7 @@ const CalendarExportModal = ({
       >
         <Fade in={isOpen}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform overflow-scroll rounded-3xl border bg-white p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
             style={{ maxHeight: "calc(100% - 4rem)" }}
           >
             <Typography
