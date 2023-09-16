@@ -1562,5 +1562,145 @@
     "end": "2024-06-10 00:00",
     "groupId": 0,
     "filterId": -1
+  },
+  {
+    "title": "[CP] Teste 1",
+    "start": "2023-10-26 00:00",
+    "end": "2023-10-26 00:00",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
+    "title": "[CP] Teste 2",
+    "start": "2023-12-11 00:00",
+    "end": "2023-12-11 00:00",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
+    "title": "[CP] Recurso",
+    "start": "2024-01-15 00:00",
+    "end": "2024-01-15 00:00",
+    "groupId": 3,
+    "filterId": 311
+  },
+  {
+    "title": "[CC] Teste",
+    "start": "2024-01-05 00:00",
+    "end": "2024-01-05 00:00",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[CC] Recurso",
+    "start": "2024-01-26 00:00",
+    "end": "2024-01-26 00:00",
+    "groupId": 3,
+    "filterId": 312
+  },
+  {
+    "title": "[DSS] Teste",
+    "start": "2023-12-13 00:00",
+    "end": "2023-12-13 00:00",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Recurso",
+    "start": "2024-01-17 00:00",
+    "end": "2024-01-17 00:00",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Apresentação TP - Intermédia",
+    "start": "2023-10-16 00:00",
+    "end": "2023-10-20 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Entrega TP",
+    "start": "2024-01-06 00:00",
+    "end": "2024-01-06 00:00",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[DSS] Apresentação TP - Final",
+    "start": "2024-01-08 00:00",
+    "end": "2024-01-12 23:59",
+    "groupId": 3,
+    "filterId": 313
+  },
+  {
+    "title": "[IA] Teste",
+    "start": "2023-12-15 00:00",
+    "end": "2023-12-15 00:00",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Recurso",
+    "start": "2024-01-19 00:00",
+    "end": "2024-01-19 00:00",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Entrega TP",
+    "start": "2024-01-02 00:00",
+    "end": "2024-01-02 00:00",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[IA] Apresentação TP",
+    "start": "2024-01-08 00:00",
+    "end": "2024-01-13 23:59",
+    "groupId": 3,
+    "filterId": 314
+  },
+  {
+    "title": "[LI4] Checkpoint",
+    "start": "2023-11-06 00:00",
+    "end": "2023-11-08 23:59",
+    "groupId": 3,
+    "filterId": 315
+  },
+  {
+    "title": "[LI4] Apresentação TP - Final",
+    "start": "2024-01-29 00:00",
+    "end": "2024-01-31 23:59",
+    "groupId": 3,
+    "filterId": 315
+  },
+  {
+    "title": "[SD] Teste",
+    "start": "2024-01-03 00:00",
+    "end": "2024-01-03 00:00",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[SD] Recurso",
+    "start": "2024-01-24 00:00",
+    "end": "2024-01-24 00:00",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[SD] Entrega TP",
+    "start": "2023-12-30 00:00",
+    "end": "2023-12-30 00:00",
+    "groupId": 3,
+    "filterId": 316
+  },
+  {
+    "title": "[SD] Apresentação TP",
+    "start": "2024-01-08 00:00",
+    "end": "2024-01-12 23:59",
+    "groupId": 3,
+    "filterId": 316
   }
 ]
