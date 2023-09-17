@@ -16,7 +16,7 @@ import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
 
-import { google } from "googleapis";
+import { google, sheets_v4 } from "googleapis";
 
 export interface IFormatedEvent {
   title: string;
@@ -283,17 +283,8 @@ export default function Home({ events, filters }) {
   );
 }
 
-export async function getServerSideProps() {
-  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
-  const jwt = new google.auth.JWT(
-    process.env.GS_CLIENT_EMAIL,
-    null,
-    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
-    target
-  );
-  const sheets = google.sheets({ version: "v4", auth: jwt });
-
-  const range = "Sheet1!A2:I999";
+async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
+  const range = "Eventos!A2:I999";
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
@@ -311,7 +302,42 @@ export async function getServerSideProps() {
       groupId: parseInt(row[7]),
       filterId: parseInt(row[8]),
     }));
+
+    return events;
   }
+}
+
+// async function getNotifications(sheets: sheets_v4.Sheets): Promise<INotificationDTO[]> {
+//   const range = "Notificações!A2:D999";
+//   const response = await sheets.spreadsheets.values.get({
+//     spreadsheetId: process.env.SHEET_ID,
+//     range,
+//   });
+
+//   let notifications: INotificationDTO[] = [];
+//   const rows: string[][] = response.data.values;
+//   if (rows.length) {
+//     notifications = rows.map((row: string[]) => ({
+//       type: row[0],
+//       description: row[1],
+//       date: row[2] + " " + row[3],
+//     }));
+//   }
+
+//   return notifications;
+// }
+
+export async function getServerSideProps() {
+  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+  const jwt = new google.auth.JWT(
+    process.env.GS_CLIENT_EMAIL,
+    null,
+    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+    target
+  );
+  const sheets = google.sheets({ version: "v4", auth: jwt });
+
+  const events = await getEvents(sheets);
 
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
