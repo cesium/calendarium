@@ -91,7 +91,7 @@ const Layout = ({
           className={styles.buttonBug}
         >
           <div>
-            <text>Report Bug</text> <i className="bi bi-bug-fill"></i>
+            <text>Feedback</text> <i className="bi bi-chat-fill"></i>
           </div>
         </button>
       </div>

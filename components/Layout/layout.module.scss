@@ -3,7 +3,7 @@
   height: 3rem;
   margin: auto;
   font-family: Inter;
-  background: gray;
+  background: rgb(133, 165, 255);
   border-radius: 16px;
   box-sizing: border-box;
   color: #ffffff;
@@ -31,12 +31,12 @@
     left: 0;
     margin-left: 1.1rem;
     opacity: 0;
-    transition: opacity 150ms;
+    transition: opacity 100ms;
   }
 
   &:hover {
-    box-shadow: gray 0 2px 12px 0px;
-    width: 9rem;
+    box-shadow: rgb(133, 165, 255) 0 2px 12px 0px;
+    width: 8.5rem;
 
     text {
       opacity: 1;

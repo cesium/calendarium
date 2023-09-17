@@ -11,7 +11,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
@@ -251,6 +251,24 @@ export default function Home({ events, filters }) {
               toolbar: CustomToolbar,
             }}
           />
+          <div
+            style={{
+              fontFamily: "Inter",
+              fontSize: "14px",
+              marginTop: "0.5rem",
+              paddingBottom: "1rem",
+            }}
+          >
+            <text className="font-bold">Something missing?</text> Help us add it{" "}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer text-blue-500 hover:underline"
+            >
+              here
+            </a>
+          </div>
         </div>
 
         <EventModal
