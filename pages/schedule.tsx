@@ -255,12 +255,9 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           >
             <b>Source:</b>{" "}
             <a
-              className="cursor-pointer hover:text-blue-500 hover:underline"
-              onClick={() =>
-                window.open(
-                  "https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
-                )
-              }
+              href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
+              target="_blank"
+              className="hover:text-blue-500 hover:underline"
             >
               Horários UMinho
             </a>
