@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "./secrets.sh && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "npm-run-all lint:*",
     "lint:js": "next lint",
