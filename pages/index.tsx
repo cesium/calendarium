@@ -16,6 +16,8 @@ import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
 
+import { google } from "googleapis";
+
 export interface IFormatedEvent {
   title: string;
   place: string;
@@ -281,9 +283,36 @@ export default function Home({ events, filters }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
+  const auth = await google.auth.getClient({
+    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+  });
+  const sheets = google.sheets({ version: "v4", auth });
+
+  const range = "Sheet1!A2:I999";
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SHEET_ID,
+    range,
+  });
+
+  let events: IEventDTO[] = [];
+  const rows: string[][] = response.data.values;
+  if (rows.length) {
+    events = rows.map((row: string[]) => ({
+      title: row[0],
+      place: row[1] ?? undefined,
+      link: row[2] ?? undefined,
+      start: row[3] + " " + row[4],
+      end: row[5] + " " + row[6],
+      groupId: parseInt(row[7]),
+      filterId: parseInt(row[8]),
+    }));
+  }
+
+  console.log(events);
+
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
-  const events = JSON.parse(fs.readFileSync("data/events.json", "utf-8"));
+
   return {
     props: {
       events: events,

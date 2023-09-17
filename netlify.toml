@@ -1,6 +1,6 @@
 [build]
   publish = ".next"
-  command = "npm run build"
+  command = "./secrets.sh && npm run build"
 
 [build.environment]
   NODE_VERSION = "18.12.0"
