@@ -253,8 +253,13 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               paddingBottom: "1rem",
             }}
           >
-            <b>Fonte:</b>{" "}
-            <a href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx">
+            <b>Source:</b>{" "}
+            <a
+              href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer hover:text-blue-500 hover:underline"
+            >
               Horários UMinho
             </a>
           </div>
