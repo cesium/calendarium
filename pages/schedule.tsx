@@ -13,9 +13,9 @@ import fsPromises from "fs/promises";
 import ShiftModal from "../components/ShiftModal";
 import Layout from "../components/Layout";
 import { IFilterDTO, IShiftDTO } from "../dtos";
-import { reduceOpacity } from "../utils/utils";
-import { SubjectColor } from "../components/Settings/Settings";
-import { defaultColors } from "../utils/utils";
+import { reduceOpacity } from "../utils";
+import { SubjectColor } from "../types";
+import { defaultColors } from "../utils";
 
 import styles from "../styles/schedule.module.css";
 
