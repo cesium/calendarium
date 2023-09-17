@@ -284,10 +284,14 @@ export default function Home({ events, filters }) {
 }
 
 export async function getServerSideProps() {
-  const auth = await google.auth.getClient({
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-  });
-  const sheets = google.sheets({ version: "v4", auth });
+  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+  const jwt = new google.auth.JWT(
+    process.env.GS_CLIENT_EMAIL,
+    null,
+    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+    target
+  );
+  const sheets = google.sheets({ version: "v4", auth: jwt });
 
   const range = "Sheet1!A2:I999";
   const response = await sheets.spreadsheets.values.get({
@@ -308,8 +312,6 @@ export async function getServerSideProps() {
       filterId: parseInt(row[8]),
     }));
   }
-
-  console.log(events);
 
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
