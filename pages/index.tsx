@@ -13,8 +13,8 @@ import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
 import styles from "../styles/Home.module.css";
 import { IEventDTO } from "../dtos";
-import { reduceOpacity, defaultColors } from "../utils/utils";
-import { SubjectColor } from "../components/Settings/Settings";
+import { reduceOpacity, defaultColors } from "../utils";
+import { SubjectColor } from "../types";
 
 export interface IFormatedEvent {
   title: string;
