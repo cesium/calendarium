@@ -307,25 +307,6 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-// async function getNotifications(sheets: sheets_v4.Sheets): Promise<INotificationDTO[]> {
-//   const range = "Notificações!A2:D999";
-//   const response = await sheets.spreadsheets.values.get({
-//     spreadsheetId: process.env.SHEET_ID,
-//     range,
-//   });
-
-//   let notifications: INotificationDTO[] = [];
-//   const rows: string[][] = response.data.values;
-//   if (rows.length) {
-//     notifications = rows.map((row: string[]) => ({
-//       type: row[0],
-//       description: row[1],
-//       date: row[2] + " " + row[3],
-//     }));
-//   }
-
-//   return notifications;
-// }
 
 export async function getServerSideProps() {
   const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
