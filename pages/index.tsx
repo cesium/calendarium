@@ -314,7 +314,12 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=30"
+  );
+
   const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
   const jwt = new google.auth.JWT(
     process.env.GS_CLIENT_EMAIL,
