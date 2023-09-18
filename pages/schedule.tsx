@@ -13,9 +13,9 @@ import fsPromises from "fs/promises";
 import ShiftModal from "../components/ShiftModal";
 import Layout from "../components/Layout";
 import { IFilterDTO, IShiftDTO } from "../dtos";
-import { reduceOpacity } from "../utils/utils";
-import { SubjectColor } from "../components/Settings/Settings";
-import { defaultColors } from "../utils/utils";
+import { reduceOpacity } from "../utils";
+import { SubjectColor } from "../types";
+import { defaultColors } from "../utils";
 
 import styles from "../styles/schedule.module.css";
 
@@ -213,7 +213,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       <div>
         <Head>
           <title>Schedule | Calendarium</title>
-          <meta name="Calendarium" content="Calendar of events and exams" />
+          <meta name="description" content="Your weekly schedule." />
           <link rel="icon" href="/favicon-calendarium.ico" />~
         </Head>
 
@@ -253,8 +253,13 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               paddingBottom: "1rem",
             }}
           >
-            <b>Fonte:</b>{" "}
-            <a href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx">
+            <b>Source:</b>{" "}
+            <a
+              href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer hover:text-blue-500 hover:underline"
+            >
               Horários UMinho
             </a>
           </div>
