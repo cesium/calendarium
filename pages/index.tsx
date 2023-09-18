@@ -17,6 +17,7 @@ import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
 
 import { google, sheets_v4 } from "googleapis";
+import { GetServerSideProps } from "next";
 
 export interface IFormatedEvent {
   title: string;
@@ -314,8 +315,8 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-export async function getServerSideProps({ req, res }) {
-  res.setHeader(
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  ctx.res.setHeader(
     "Cache-Control",
     "public, s-maxage=3600, stale-while-revalidate=30"
   );
@@ -339,4 +340,4 @@ export async function getServerSideProps({ req, res }) {
       filters: filters,
     },
   };
-}
+};
