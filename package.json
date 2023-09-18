@@ -25,6 +25,7 @@
     "antd": "^5.1.0",
     "emailjs": "^4.0.0",
     "emailjs-com": "^3.2.0",
+    "googleapis": "^126.0.1",
     "html2canvas": "^1.4.1",
     "ical-generator": "^5.0.1",
     "jspdf": "^2.5.1",
