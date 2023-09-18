@@ -122,15 +122,22 @@ export default function Home({ events, filters }) {
   }
 
   function saveTheme() {
-    const theme = localStorage.getItem("theme");
+    let theme = localStorage.getItem("theme");
     const colors = localStorage.getItem("colors");
     const opacity = localStorage.getItem("opacity");
     const customType = localStorage.getItem("customType") ?? "Year";
     const subjectColors: SubjectColor[] =
       JSON.parse(localStorage.getItem("subjectColors")) ?? [];
 
-    theme && setTheme(theme);
+    !theme && localStorage.setItem("theme", "Modern");
+    !customType && localStorage.setItem("customType", "Subject");
 
+    if (theme !== "Modern" && theme !== "Classic" && theme !== "Custom") {
+      localStorage.setItem("theme", "Modern");
+      theme = "Modern";
+    }
+
+    setTheme(theme);
     if (theme === "Custom") {
       setCustomType(customType);
 
