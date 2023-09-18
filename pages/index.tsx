@@ -307,7 +307,6 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-
 export async function getServerSideProps() {
   const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
   const jwt = new google.auth.JWT(
