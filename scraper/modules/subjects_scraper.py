@@ -169,6 +169,8 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
         By.CSS_SELECTOR, ".col-md-12 tbody tr"))
 
     subjects = []
+    subjects_ids_control = [] # to avoid repeated subjects ids
+    
     year_counter = 1
     semester_counter = 1
     filter_id_counter = 1
@@ -216,7 +218,7 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
                 sleep(0.6)
 
                 subject_id_span = driver.find_element(By.CSS_SELECTOR, ".modal-content .row .col-md-10 span")
-                subject_id = subject_id_span.text or 0
+                subject_id = int(subject_id_span.text) or 0
 
                 close_button = driver.find_element(By.CSS_SELECTOR, ".close")
                 click_on_element(driver, close_button)
@@ -234,18 +236,23 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
                     f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's subject ID. Using 0 as default.")
             # =====================
 
-            if subject_id in short_names.keys():
-                short_name = short_names[subject_id]["short_name"]
+            if str(subject_id) in short_names.keys():
+                short_name = short_names[str(subject_id)]["short_name"]
             else:
                 short_name = "".join(
                     [unidecode(word[0]) for word in subject_name.split(" ") if word[0].isupper()])
                 print(
                     f"\t\t\033[93m\033[1mWARNING:\033[0m Was not possible to find out \033[4m{subject_name}\033[0m's short name. Using initials to generate one ({short_name}).")
 
+            if subject_id in subjects_ids_control:
+                continue
+            elif subject_id != 0:
+                subjects_ids_control.append(subject_id)
+
             subjects.append({
                 # filterId
                 "id": int(f"{year_counter}{semester_counter}{filter_id_counter}"),
-                "subjectId": int(subject_id),
+                "subjectId": subject_id,
                 "name": subject_name,
                 "short_name": short_name,
                 "year": year_counter,
