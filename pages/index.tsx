@@ -17,10 +17,6 @@ import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
 
 import { google, sheets_v4 } from "googleapis";
-import { GetServerSidePropsContext } from "next";
-
-import cache from "memory-cache";
-import dayjs from "dayjs";
 
 export interface IFormatedEvent {
   title: string;
@@ -318,7 +314,24 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+const NodeCache = require("node-cache");
+const cache = new NodeCache({ stdTTL: 3600 }); // 1 hour in seconds
+
+export async function getServerSideProps() {
+  // Check if events are cached
+  const cachedEvents = cache.get("events");
+  const cachedFilters = cache.get("filters");
+  if (cachedEvents && cachedFilters) {
+    console.log("Events found in cache.");
+    return {
+      props: {
+        events: cachedEvents,
+        filters: cachedFilters,
+      },
+    };
+  }
+
+  // If events are not in cache, fetch and cache them
   const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
   const jwt = new google.auth.JWT(
     process.env.GS_CLIENT_EMAIL,
@@ -328,24 +341,14 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   );
   const sheets = google.sheets({ version: "v4", auth: jwt });
 
-  const cacheKey = "events"; // set a cache key
-  const cachedEvents: IEventDTO[] = cache.get(cacheKey); // check if data is cached
+  const events = await getEvents(sheets);
 
-  let events: IEventDTO[];
-  if (cachedEvents) {
-    events = cachedEvents; // use cached data if available
-  } else {
-    events = await getEvents(sheets); // fetch data if not cached
-    cache.put(cacheKey, events, 3600000); // cache data for 1 hour (3600000 ms)
-  }
-
-  // convert Date object to string
-  events.forEach((event) => {
-    event.start = dayjs(event.start).format("YYYY-MM-DD HH:mm:ss");
-    event.end = dayjs(event.start).format("YYYY-MM-DD HH:mm:ss");
-  });
-
+  // Read filters from file (no need to cache)
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
+
+  // Cache events with a TTL of 1 hour
+  cache.set("events", events);
+  cache.set("filters", filters);
 
   return {
     props: {
@@ -353,4 +356,5 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       filters: filters,
     },
   };
+}
 }
