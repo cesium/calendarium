@@ -342,8 +342,6 @@ export async function getServerSideProps() {
   const sheets = google.sheets({ version: "v4", auth: jwt });
 
   const events = await getEvents(sheets);
-
-  // Read filters from file (no need to cache)
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
   // Cache events with a TTL of 1 hour
@@ -356,5 +354,4 @@ export async function getServerSideProps() {
       filters: filters,
     },
   };
-}
 }
