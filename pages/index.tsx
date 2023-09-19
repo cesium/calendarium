@@ -17,7 +17,10 @@ import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
 
 import { google, sheets_v4 } from "googleapis";
-import { GetServerSideProps } from "next";
+import { GetServerSidePropsContext } from "next";
+
+import cache from "memory-cache";
+import dayjs from "dayjs";
 
 export interface IFormatedEvent {
   title: string;
@@ -315,12 +318,7 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  ctx.res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=3600, stale-while-revalidate=30"
-  );
-
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
   const jwt = new google.auth.JWT(
     process.env.GS_CLIENT_EMAIL,
@@ -330,7 +328,22 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   );
   const sheets = google.sheets({ version: "v4", auth: jwt });
 
-  const events = await getEvents(sheets);
+  const cacheKey = "events"; // set a cache key
+  const cachedEvents: IEventDTO[] = cache.get(cacheKey); // check if data is cached
+
+  let events: IEventDTO[];
+  if (cachedEvents) {
+    events = cachedEvents; // use cached data if available
+  } else {
+    events = await getEvents(sheets); // fetch data if not cached
+    cache.put(cacheKey, events, 3600000); // cache data for 1 hour (3600000 ms)
+  }
+
+  // convert Date object to string
+  events.forEach((event) => {
+    event.start = dayjs(event.start).format("YYYY-MM-DD HH:mm:ss");
+    event.end = dayjs(event.start).format("YYYY-MM-DD HH:mm:ss");
+  });
 
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
@@ -340,4 +353,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       filters: filters,
     },
   };
-};
+}
