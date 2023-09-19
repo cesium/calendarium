@@ -18,6 +18,8 @@ import { SubjectColor } from "../types";
 
 import { google, sheets_v4 } from "googleapis";
 
+import { GetStaticProps } from "next";
+
 export interface IFormatedEvent {
   title: string;
   place: string;
@@ -317,7 +319,12 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
 const NodeCache = require("node-cache");
 const cache = new NodeCache({ stdTTL: 3600 }); // 1 hour in seconds
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=30"
+  );
+
   // Check if events are cached
   const cachedEvents = cache.get("events");
   const cachedFilters = cache.get("filters");
