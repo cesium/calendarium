@@ -16,4 +16,7 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-    cache-control: public, s-maxage=3600, stale-while-revalidate=30
+    cache-control = '''
+    public,
+    s-maxage=3600,
+    stale-while-revalidate=30'''
