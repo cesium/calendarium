@@ -11,6 +11,7 @@ from modules.subjects_short_names_scraper import get_subjects_short_names_scrape
 import json
 from time import sleep
 from unidecode import unidecode
+from collections import Counter
 
 
 def subjects_scraper(driver: WebDriver):
@@ -58,15 +59,11 @@ def subjects_scraper(driver: WebDriver):
 
     print(f"\n\033[32m\033[1mNOTE:\033[0m You gonna probably see some \033[93m\033[1mWARNING\033[0m messages. Is important correct them, before go to production, in `scraper/subjects.json`, `data/shifts.json` and `data/filters.json`.")
 
-    print(
-        "\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
-    subjects = scraper(
-        driver, "Licenciatura em Engenharia Informática", subjects_short_names)
+    print("\n\033[1mScraping subjects from Licenciatura em Engenharia Informática\033[0m:")
+    subjects = scraper(driver, "Licenciatura em Engenharia Informática", subjects_short_names)
 
-    print(
-        "\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
-    subjects += scraper(driver, "Mestrado em Engenharia Informática",
-                        subjects_short_names, master=True)
+    print("\n\033[1mScraping subjects from Mestrado em Engenharia Informática\033[0m:")
+    subjects += scraper(driver, "Mestrado em Engenharia Informática", subjects_short_names, master=True)
 
     # ===============================
     # Make here your manual editions
@@ -89,11 +86,18 @@ def subjects_scraper(driver: WebDriver):
 
     # =====================
 
+    # Store the subjects
     with open("scraper/subjects.json", "w") as outfile:
         json.dump(subjects, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Scraped {len(subjects)} subjects from the UMinho page!")
     print(f"Check them at scraper/subjects.json\n")
+
+    # Find repeated subjects short names to warn the user
+    short_names_list = list(map(lambda subject: subject["short_name"], subjects))
+    for short_name, repeated_times in Counter(short_names_list).items():
+        if repeated_times > 1:
+            print(f"\033[91m\033[1mWARNING:\033[0m {short_name} short name is used {repeated_times} times.")
 
     print("\n==============================")
 
