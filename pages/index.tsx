@@ -310,7 +310,9 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
       filterId: parseInt(row[8]),
     }));
 
-    return events;
+    return events.filter(
+      (e) => e.title && e.start && e.end && e.groupId && e.filterId
+    ); // filter out invalid/incomplete events
   }
 }
 
