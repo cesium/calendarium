@@ -57,17 +57,17 @@
   },
   {
     "id": 119,
+    "name": "DS",
+    "groupId": 1,
+    "semester": 1,
+    "shifts": ["TP1"]
+  },
+  {
+    "id": 1110,
     "name": "DL",
     "groupId": 1,
     "semester": 1,
     "shifts": ["T1"]
-  },
-  {
-    "id": 1110,
-    "name": "ECGC",
-    "groupId": 1,
-    "semester": 1,
-    "shifts": []
   },
   {
     "id": 1111,
@@ -92,24 +92,24 @@
   },
   {
     "id": 1114,
-    "name": "LFFM",
+    "name": "IMA",
     "groupId": 1,
     "semester": 1,
     "shifts": ["TP1"]
   },
   {
     "id": 1115,
-    "name": "MC",
+    "name": "LFFM",
     "groupId": 1,
     "semester": 1,
     "shifts": ["TP1"]
   },
   {
     "id": 1116,
-    "name": "PGI",
+    "name": "MC",
     "groupId": 1,
     "semester": 1,
-    "shifts": []
+    "shifts": ["TP1"]
   },
   {
     "id": 1117,
@@ -186,7 +186,7 @@
     "name": "AlgC",
     "groupId": 2,
     "semester": 1,
-    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6", "TP7"]
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP4", "TP5", "TP6", "TP7"]
   },
   {
     "id": 212,
@@ -658,7 +658,7 @@
   },
   {
     "id": 511,
-    "name": "PI",
+    "name": "ProjInf",
     "groupId": 5,
     "semester": 1,
     "shifts": []
