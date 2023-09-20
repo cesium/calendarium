@@ -34,23 +34,8 @@ export default function Home({ events, filters }) {
   // EVENT RELATED
 
   const configureDates = (event) => {
-    const options: Intl.DateTimeFormatOptions = {
-      timeZone: "Europe/Lisbon",
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-
-    event.start = new Date(event.start.replace(/-/g, "/")).toLocaleString(
-      "en-US",
-      options
-    );
-    event.end = new Date(event.end.replace(/-/g, "/")).toLocaleString(
-      "en-US",
-      options
-    );
+    event.start = new Date(event.start);
+    event.end = new Date(event.end);
 
     return event;
   };
