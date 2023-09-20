@@ -30,8 +30,6 @@ export interface IFormatedEvent {
 
 const localizer = momentLocalizer(moment);
 
-moment.tz.setDefault("Europe/Lisbon");
-
 export default function Home({ events, filters }) {
   // EVENT RELATED
 
@@ -302,15 +300,52 @@ async function getEvents(sheets: sheets_v4.Sheets): Promise<IEventDTO[]> {
   let events: IEventDTO[] = [];
   const rows: string[][] = response.data.values;
   if (rows.length) {
-    events = rows.map((row: string[]) => ({
-      title: row[0],
-      place: row[1] ?? undefined,
-      link: row[2] ?? undefined,
-      start: row[3] + " " + row[4],
-      end: row[5] + " " + row[6],
-      groupId: parseInt(row[7]),
-      filterId: parseInt(row[8]),
-    }));
+    const dstStart = new Date(new Date().getFullYear(), 2, 26);
+    const dstEnd = new Date(new Date().getFullYear(), 9, 29);
+
+    events = rows.map((row: string[]) => {
+      let start: Date = new Date(row[3] + " " + row[4]);
+      let end: Date = new Date(row[5] + " " + row[6]);
+
+      start.getTime() > dstStart.getTime() &&
+        start.getTime() < dstEnd.getTime() &&
+        start.setHours(start.getHours() - 1);
+
+      end.getTime() > dstStart.getTime() &&
+        end.getTime() < dstEnd.getTime() &&
+        end.setHours(end.getHours() - 1);
+
+      const startString =
+        start.getFullYear() +
+        "-" +
+        (start.getMonth() + 1) +
+        "-" +
+        start.getDate() +
+        " " +
+        start.getHours() +
+        ":" +
+        start.getMinutes();
+      const endString =
+        end.getFullYear() +
+        "-" +
+        (end.getMonth() + 1) +
+        "-" +
+        end.getDate() +
+        " " +
+        end.getHours() +
+        ":" +
+        end.getMinutes();
+
+      return {
+        title: row[0],
+        place: row[1] ?? undefined,
+        link: row[2] ?? undefined,
+        start: startString,
+        end: endString,
+        groupId: parseInt(row[7]),
+        filterId: parseInt(row[8]),
+      };
+    });
 
     return events.filter(
       (e) => e.title && e.start && e.end && e.groupId && e.filterId
