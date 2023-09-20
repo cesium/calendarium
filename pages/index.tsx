@@ -30,6 +30,8 @@ export interface IFormatedEvent {
 
 const localizer = momentLocalizer(moment);
 
+moment.tz.setDefault("Europe/Lisbon");
+
 export default function Home({ events, filters }) {
   // EVENT RELATED
 
