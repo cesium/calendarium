@@ -477,7 +477,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1114
+    "filterId": 1115
   },
   {
     "id": 10892,
@@ -485,11 +485,11 @@
     "theoretical": false,
     "shift": "TP1",
     "building": "CP1",
-    "room": "1.24",
+    "room": "1.30",
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1115
+    "filterId": 1116
   },
   {
     "id": 15417,
@@ -504,7 +504,7 @@
     "filterId": 1113
   },
   {
-    "id": 0,
+    "id": 4236,
     "title": "Islão e Mundo Árabe",
     "theoretical": false,
     "shift": "TP1",
@@ -513,7 +513,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 0
+    "filterId": 1114
   },
   {
     "id": 16178,
@@ -636,7 +636,7 @@
     "filterId": 1112
   },
   {
-    "id": 0,
+    "id": 10915,
     "title": "Desporto e Saúde",
     "theoretical": false,
     "shift": "TP1",
@@ -645,7 +645,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 0
+    "filterId": 119
   },
   {
     "id": 16176,
@@ -657,7 +657,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 119
+    "filterId": 1110
   },
   {
     "id": 14304,
@@ -1120,36 +1120,12 @@
     "title": "Fundamentos de Comunicação de Dados",
     "theoretical": false,
     "shift": "TP3",
-    "building": "CP1",
-    "room": "1.10",
+    "building": "CP2",
+    "room": "2.12",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
     "filterId": 215
-  },
-  {
-    "id": 14302,
-    "title": "Física Moderna",
-    "theoretical": false,
-    "shift": "TP4",
-    "building": "CP3",
-    "room": "2.04",
-    "day": 1,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 214
-  },
-  {
-    "id": 14297,
-    "title": "Laboratórios de Informática III",
-    "theoretical": false,
-    "shift": "PL7",
-    "building": "CP1",
-    "room": "2.06",
-    "day": 1,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 216
   },
   {
     "id": 14297,
@@ -1164,24 +1140,36 @@
     "filterId": 216
   },
   {
-    "id": 14305,
-    "title": "Algoritmos e Complexidade",
+    "id": 14297,
+    "title": "Laboratórios de Informática III",
     "theoretical": false,
-    "shift": "TP3",
-    "building": "CP3",
-    "room": "2.05",
+    "shift": "PL7",
+    "building": "CP1",
+    "room": "2.06",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
-    "filterId": 211
+    "filterId": 216
+  },
+  {
+    "id": 14302,
+    "title": "Física Moderna",
+    "theoretical": false,
+    "shift": "TP4",
+    "building": "CP3",
+    "room": "2.04",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 214
   },
   {
     "id": 14305,
     "title": "Algoritmos e Complexidade",
     "theoretical": false,
     "shift": "TP2",
-    "building": "CP2",
-    "room": "2.12",
+    "building": "CP1",
+    "room": "1.10",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
@@ -1191,9 +1179,9 @@
     "id": 14303,
     "title": "Arquitetura de Computadores",
     "theoretical": false,
-    "shift": "PL7",
+    "shift": "PL1",
     "building": "7",
-    "room": "1.10",
+    "room": "0.08",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
@@ -1203,9 +1191,9 @@
     "id": 14303,
     "title": "Arquitetura de Computadores",
     "theoretical": false,
-    "shift": "PL1",
+    "shift": "PL7",
     "building": "7",
-    "room": "0.08",
+    "room": "1.10",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
