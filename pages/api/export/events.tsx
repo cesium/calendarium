@@ -11,7 +11,16 @@ import fsPromises from "fs/promises";
 
 import { google } from "googleapis";
 
-const academicYear: Date = new Date(new Date().getFullYear(), 8, 1); // 8 = September (0-11)
+/* Academic year starts in September, thus:
+ * Current month < September => September of previous year (current year - 1)
+ * Current month >= September => September of current year */
+const academicYear: Date = new Date(
+  new Date().getMonth() < 8
+    ? new Date().getFullYear() - 1
+    : new Date().getFullYear(),
+  8,
+  1
+); // 8 = September (0-11)
 
 // Fetch event data from Google Sheets
 async function getEvents(): Promise<IEventDTO[]> {
