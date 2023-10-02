@@ -33,5 +33,20 @@
     "type": "Eventos",
     "description": "LEI: 3º ano - Testes, Exames e Entregas adicionados.",
     "date": "2023-09-15 19:00"
+  },
+  {
+    "type": "Eventos",
+    "description": "LEI/MEI: Testes, Exames e Entregas atualizados.",
+    "date": "2023-10-02 16:13"
+  },
+  {
+    "type": "Eventos",
+    "description": "MEI: 5º ano - Atividades de Projeto de Informática e Dissertação adicionadas.",
+    "date": "2023-10-02 16:16"
+  },
+  {
+    "type": "Tips",
+    "description": "Algo em falta? Utiliza o botão de feedback!",
+    "date": "2023-10-02 16:25"
   }
 ]
