@@ -15,6 +15,7 @@ import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
+import { useDarkMode } from "../context/DarkMode";
 
 export interface IFormatedEvent {
   title: string;
@@ -177,6 +178,9 @@ export default function Home({ events, filters }) {
       setActiveView(view);
     };
 
+  
+
+
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
@@ -211,73 +215,77 @@ export default function Home({ events, filters }) {
     );
   };
 
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
   return (
-    <Layout
-      isHome
-      filters={filters}
-      handleFilters={(myFilters) => handleFilters(myFilters)}
-      saveTheme={saveTheme}
-    >
-      <div>
-        <Head>
-          <title>Events | Calendarium</title>
-          <meta name="description" content="Your exams, due dates and more." />
-          <link rel="icon" href="/favicon-calendarium.ico" />
-        </Head>
+    <div className={`${isDarkMode?'dark':''}`}>
+      <Layout
+        isHome
+        filters={filters}
+        handleFilters={(myFilters) => handleFilters(myFilters)}
+        saveTheme={saveTheme}
+      >
+        <div>
+          <Head>
+            <title>Events | Calendarium</title>
+            <meta name="description" content="Your exams, due dates and more." />
+            <link rel="icon" href="/favicon-calendarium.ico" />
+          </Head>
 
-        <div id="APP" className={styles.calendar}>
-          <Calendar
-            className={styles.react_big_calendar}
-            localizer={localizer}
-            selected={selectedEvent}
-            onSelectEvent={(event) => handleSelection(event)}
-            defaultDate={new Date()}
-            defaultView="month"
-            views={["day", "week", "month"]}
-            min={minDate}
-            max={maxDate}
-            eventPropGetter={(event: IFormatedEvent) => {
-              const newStyle = {
-                backgroundColor: getBgColor(event),
-                color: getTextColor(event),
-              };
+          <div id="APP" className={`${styles.calendar}`}>
+            <Calendar
+              className={styles.react_big_calendar}
+              localizer={localizer}
+              selected={selectedEvent}
+              onSelectEvent={(event) => handleSelection(event)}
+              defaultDate={new Date()}
+              defaultView="month"
+              views={["day", "week", "month"]}
+              min={minDate}
+              max={maxDate}
+              eventPropGetter={(event: IFormatedEvent) => {
+                const newStyle = {
+                  backgroundColor: getBgColor(event),
+                  color: getTextColor(event),
+                };
 
-              return { style: newStyle };
-            }}
-            formats={formats}
-            dayLayoutAlgorithm={"no-overlap"}
-            events={Events}
-            components={{
-              toolbar: CustomToolbar,
-            }}
-          />
-          <div
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              marginTop: "0.5rem",
-              paddingBottom: "1rem",
-            }}
-          >
-            <text className="font-bold">Something missing?</text> Help us add it{" "}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer text-blue-500 hover:underline"
+                return { style: newStyle };
+              }}
+              formats={formats}
+              dayLayoutAlgorithm={"no-overlap"}
+              events={Events}
+              components={{
+                toolbar: CustomToolbar,
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                marginTop: "0.5rem",
+                paddingBottom: "1rem",
+              }}
             >
-              here
-            </a>
+              <text className="font-bold">Something missing?</text> Help us add it{" "}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer text-blue-500 hover:underline"
+              >
+                here
+              </a>
+            </div>
           </div>
-        </div>
 
-        <EventModal
-          selectedEvent={selectedEvent}
-          setInspectEvent={setInspectEvent}
-          inspectEvent={inspectEvent}
-        />
+          <EventModal
+            selectedEvent={selectedEvent}
+            setInspectEvent={setInspectEvent}
+            inspectEvent={inspectEvent}
+          />
+        </div>
+      </Layout>
       </div>
-    </Layout>
   );
 }
 
