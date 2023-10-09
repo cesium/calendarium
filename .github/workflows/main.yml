@@ -37,11 +37,13 @@ jobs:
         with:
           title: "chore: update shifts data"
           body: |
-            *This is an automated PR*: run Calendarium Scraper in order to update shifts data.
-            > Note
-            > Before merging, please be aware of edge cases where manual intervention is needed.
+            *This is an automated PR*
+            Run Calendarium Scraper in order to update shifts data.
+            > [!IMPORTANT]
+            > Crucial information necessary for users to succeed.
           commit-message: "chore: update shifts data"
           branch: action/shifts
           delete-branch: true
           labels: add activities, automated
+          assignees: diogogmatos
           token: ${{ secrets.GITHUB_TOKEN }}

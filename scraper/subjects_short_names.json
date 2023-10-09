@@ -1,0 +1,378 @@
+{
+  "14229": {
+    "name": "Álgebra Linear para a Engenharia",
+    "short_name": "AL"
+  },
+  "14237": {
+    "name": "Cálculo para a Engenharia",
+    "short_name": "Cálculo"
+  },
+  "14295": {
+    "name": "Laboratórios de Informática I",
+    "short_name": "LI1"
+  },
+  "14294": {
+    "name": "Programação Funcional",
+    "short_name": "PF"
+  },
+  "14273": {
+    "name": "Tópicos de Matemática Discreta",
+    "short_name": "TMD"
+  },
+  "14238": {
+    "name": "Análise Matemática para Engenharia",
+    "short_name": "Análise"
+  },
+  "14300": {
+    "name": "Elementos de Probabilidades e Teoria de Números",
+    "short_name": "EPTN"
+  },
+  "14296": {
+    "name": "Laboratórios de Informática II",
+    "short_name": "LI2"
+  },
+  "14299": {
+    "name": "Lógica",
+    "short_name": "Lógica"
+  },
+  "14301": {
+    "name": "Programação Imperativa",
+    "short_name": "PI"
+  },
+  "14268": {
+    "name": "Sistemas de Computação",
+    "short_name": "SC"
+  },
+  "14305": {
+    "name": "Algoritmos e Complexidade",
+    "short_name": "AlgC"
+  },
+  "14303": {
+    "name": "Arquitetura de Computadores",
+    "short_name": "ArqC"
+  },
+  "14240": {
+    "name": "Estatística Aplicada",
+    "short_name": "EA"
+  },
+  "14302": {
+    "name": "Física Moderna",
+    "short_name": "FM"
+  },
+  "14304": {
+    "name": "Fundamentos de Comunicação de Dados",
+    "short_name": "FCD"
+  },
+  "14297": {
+    "name": "Laboratórios de Informática III",
+    "short_name": "LI3"
+  },
+  "14307": {
+    "name": "Bases de Dados",
+    "short_name": "BD"
+  },
+  "14288": {
+    "name": "Investigação Operacional",
+    "short_name": "IO"
+  },
+  "14282": {
+    "name": "Métodos Numéricos e Otimização Não Linear",
+    "short_name": "MNOnL"
+  },
+  "14306": {
+    "name": "Programação Orientada aos Objetos",
+    "short_name": "POO"
+  },
+  "14308": {
+    "name": "Redes de Computadores",
+    "short_name": "RC"
+  },
+  "14279": {
+    "name": "Sistemas Operativos",
+    "short_name": "SO"
+  },
+  "14309": {
+    "name": "Cálculo de Programas",
+    "short_name": "CP"
+  },
+  "14313": {
+    "name": "Comunicações por Computador",
+    "short_name": "CC"
+  },
+  "14310": {
+    "name": "Desenvolvimento de Sistemas de Software",
+    "short_name": "DSS"
+  },
+  "14311": {
+    "name": "Inteligência Artificial",
+    "short_name": "IA"
+  },
+  "14298": {
+    "name": "Laboratórios de Informática IV",
+    "short_name": "LI4"
+  },
+  "14312": {
+    "name": "Sistemas Distribuídos",
+    "short_name": "SD"
+  },
+  "14318": {
+    "name": "Aprendizagem e Decisão Inteligentes",
+    "short_name": "ADI"
+  },
+  "14315": {
+    "name": "Computação Gráfica",
+    "short_name": "CG"
+  },
+  "14314": {
+    "name": "Interface Pessoa-Máquina",
+    "short_name": "IPM"
+  },
+  "14317": {
+    "name": "Processamento de Linguagens",
+    "short_name": "PL"
+  },
+  "14316": {
+    "name": "Segurança de Sistemas Informáticos",
+    "short_name": "SSI"
+  },
+  "14320": {
+    "name": "Análise de Projetos",
+    "short_name": "AProj"
+  },
+  "14319": {
+    "name": "Engenharia Web",
+    "short_name": "EngWeb"
+  },
+  "14321": {
+    "name": "Mecânica Quântica",
+    "short_name": "MQ"
+  },
+  "14322": {
+    "name": "Análise e Teste de Software",
+    "short_name": "ATS"
+  },
+  "14600": {
+    "name": "Aplicações e Serviços de Computação em Nuvem",
+    "short_name": "ASCN"
+  },
+  "14599": {
+    "name": "Computação Paralela",
+    "short_name": "CPar"
+  },
+  "14596": {
+    "name": "Dados e Aprendizagem Automática",
+    "short_name": "DAA"
+  },
+  "14597": {
+    "name": "Engenharia de Serviços em Rede",
+    "short_name": "ESR"
+  },
+  "14598": {
+    "name": "Métodos Formais em Engenharia de Software",
+    "short_name": "MFES"
+  },
+  "14601": {
+    "name": "Requisitos e Arquiteturas de Software",
+    "short_name": "RAS"
+  },
+  "14610": {
+    "name": "Agentes e Sistemas Multiagente",
+    "short_name": "ASM"
+  },
+  "14605": {
+    "name": "Análise Inteligente em Sistemas de 'Big Data'",
+    "short_name": "AISBD"
+  },
+  "11589": {
+    "name": "Arquiteturas Aplicacionais",
+    "short_name": "AA"
+  },
+  "13421": {
+    "name": "Engenharia de Segurança",
+    "short_name": "ES"
+  },
+  "14607": {
+    "name": "Engenharia Gramatical",
+    "short_name": "EG"
+  },
+  "14609": {
+    "name": "Experimentação em Engenharia de Software",
+    "short_name": "EES"
+  },
+  "14606": {
+    "name": "Gestão e Segurança de Redes",
+    "short_name": "GSR"
+  },
+  "14608": {
+    "name": "Redes Definidas por Software",
+    "short_name": "RDS"
+  },
+  "13422": {
+    "name": "Sistemas Distribuídos em Grande Escala",
+    "short_name": "SDGE"
+  },
+  "11602": {
+    "name": "Verificação Formal",
+    "short_name": "VF"
+  },
+  "14604": {
+    "name": "Visão por Computador e Processamento de Imagem",
+    "short_name": "VCPI"
+  },
+  "11588": {
+    "name": "Administração de Bases de Dados",
+    "short_name": "ABD"
+  },
+  "14615": {
+    "name": "Aprendizagem Profunda",
+    "short_name": "AProf"
+  },
+  "13624": {
+    "name": "Bases de Dados NoSQL",
+    "short_name": "BD NoSQL"
+  },
+  "13414": {
+    "name": "Estruturas Criptográficas",
+    "short_name": "EC"
+  },
+  "14611": {
+    "name": "Interligação de Redes IP",
+    "short_name": "IRIP"
+  },
+  "14614": {
+    "name": "Manutenção e Evolução de Software",
+    "short_name": "MES"
+  },
+  "14612": {
+    "name": "Programação Ciber-Física",
+    "short_name": "PCF"
+  },
+  "14613": {
+    "name": "Redes Fixas e Móveis",
+    "short_name": "RFM"
+  },
+  "11604": {
+    "name": "Scripting no Processamento de Linguagem Natural",
+    "short_name": "SPLN"
+  },
+  "9427": {
+    "name": "Tolerância a Faltas",
+    "short_name": "TF"
+  },
+  "14623": {
+    "name": "Visualização e Iluminação",
+    "short_name": "VI"
+  },
+  "9397": {
+    "name": "Cálculo de Sistemas de Informação",
+    "short_name": "CSI"
+  },
+  "13935": {
+    "name": "Mineração de Dados",
+    "short_name": "MD"
+  },
+  "14620": {
+    "name": "Novos Paradigmas de Rede",
+    "short_name": "NPR"
+  },
+  "11608": {
+    "name": "Paradigmas de Sistemas Distribuídos",
+    "short_name": "PSD"
+  },
+  "13416": {
+    "name": "Qualidade de Serviço na Internet",
+    "short_name": "QSI"
+  },
+  "14619": {
+    "name": "Representação e Processamento de Conhecimento na Web",
+    "short_name": "RPCW"
+  },
+  "14622": {
+    "name": "Sensorização e Ambiente",
+    "short_name": "SA"
+  },
+  "14618": {
+    "name": "Sistemas Interativos Confiáveis",
+    "short_name": "SIC"
+  },
+  "14617": {
+    "name": "Tecnologias de Segurança",
+    "short_name": "TS"
+  },
+  "14621": {
+    "name": "Tópicos de Desenvolvimento de Software",
+    "short_name": "TDS"
+  },
+  "14616": {
+    "name": "Visualização em Tempo Real",
+    "short_name": "VTR"
+  },
+  "15419": {
+    "name": "Bilinguismo",
+    "short_name": "Bilinguismo"
+  },
+  "13556": {
+    "name": "Cidadania Digital",
+    "short_name": "CD"
+  },
+  "16175": {
+    "name": "Democracia Plena, Responsabilidade e Estado de Direito",
+    "short_name": "DPRED"
+  },
+  "16176": {
+    "name": "Direito Laboral",
+    "short_name": "DL"
+  },
+  "14126": {
+    "name": "Educação e Cidadania Global Criativa",
+    "short_name": "ECGC"
+  },
+  "11773": {
+    "name": "Educação, Cidadania e Direitos Humanos",
+    "short_name": "ECDH"
+  },
+  "11738": {
+    "name": "Inglês Académico",
+    "short_name": "IngA"
+  },
+  "15417": {
+    "name": "Introdução à Língua e Cultura Russa",
+    "short_name": "ILCR"
+  },
+  "15410": {
+    "name": "Literacia Fotográfica da Física à Mensagem",
+    "short_name": "LFFM"
+  },
+  "10892": {
+    "name": "Matemática das Coisas",
+    "short_name": "MC"
+  },
+  "10986": {
+    "name": "Princípios de Gestão de Inventários",
+    "short_name": "PGI"
+  },
+  "12365": {
+    "name": "Substâncias que Mudaram o Mundo",
+    "short_name": "SMM"
+  },
+  "13403": {
+    "name": "Sustentabilidade Ambiental, Social e Económica",
+    "short_name": "SASE"
+  },
+  "16178": {
+    "name": "Temas de Direito da Igualdade e Não Discriminação",
+    "short_name": "TDIND"
+  },
+  "10886": {
+    "name": "Tópicos de Astronomia e Cosmologia",
+    "short_name": "TAC"
+  },
+  "14602": {
+    "name": "Projeto de Informática",
+    "short_name": "ProjInf"
+  },
+  "14603": {
+    "name": "Dissertação",
+    "short_name": "D"
+  }
+}
