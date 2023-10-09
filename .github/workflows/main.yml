@@ -1,8 +1,11 @@
 name: Calendarium Scraper
 
 on:
-  schedule:
-    - cron: "0 0 */7 * *"
+  push:
+    branches:
+      - "dm/workflow"
+  # schedule:
+  #   - cron: "0 0 */7 * *"
 
 jobs:
   build:
