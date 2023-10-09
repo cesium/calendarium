@@ -13,16 +13,16 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@latest
+        uses: actions/checkout@v4
 
       - name: Setup Firefox
-        uses: browser-actions/setup-firefox@latest
+        uses: browser-actions/setup-firefox@v1
 
       - name: Firefox Version
         run: firefox --version
 
       - name: Set up Python
-        uses: actions/setup-python@latest
+        uses: actions/setup-python@v4
         with:
           python-version: 3.11.5
 
