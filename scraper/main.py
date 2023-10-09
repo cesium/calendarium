@@ -15,7 +15,9 @@ chdir(__file__.replace("scraper/main.py", ""))
 
 print("Welcome to UMinho Schedule Scraper!")
 
-driver = webdriver.Firefox()
+options = webdriver.FirefoxOptions()
+options.headless = True
+driver = webdriver.Firefox(options=options)
 
 subjects, subject_codes = subjects_scraper(driver)
 
