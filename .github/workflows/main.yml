@@ -1,28 +1,52 @@
-name: Run Scraper
+name: Calendarium Scraper
 
 on:
-  # run automatically every 48 hours
   schedule:
-    - cron: "0 */48 * * *"
-    
-  push:
-    branches: dm/actions
-    
-env:
-  DEVOPS_DIR: calendarium
+    - cron: '0 0 */7 * *'
 
 jobs:
-  scraper:
-    name: Hello world
+  build:
     runs-on: ubuntu-latest
-    steps:
-    - name: Check-out devops repository
-      uses: actions/checkout@v2
-      with:
-        repository: cesium/calendarium
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: ${{ env.DEVOPS_DIR }}
 
-    - name: UMinho Scraper
-      run: python ${{ env.DEVOPS_DIR }}/scraper/main.py
-      shell: sh
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Install Firefox
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install firefox
+
+      - name: Setup firefox
+        id: setup-firefox
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: latest
+      - run: |
+          echo Installed firefox versions: ${{ steps.setup-firefox.outputs.firefox-version }}
+          firefox --version
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.5
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run the scraper
+        run: python scraper/main.py
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: "chore: update shifts data"
+          body: |
+            *This is an automated PR*: run Calendarium Scraper in order to update shifts data.
+            > Note
+            > Before merging, please be aware of edge cases where manual intervention is needed.
+          commit-message: "chore: update shifts data"
+          branch: action/shifts
+          delete-branch: true
+          labels: add activities, automated
+          token: ${{ secrets.GITHUB_TOKEN }}
