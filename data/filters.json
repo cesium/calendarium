@@ -207,7 +207,7 @@
     "name": "FM",
     "groupId": 2,
     "semester": 1,
-    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4"]
+    "shifts": ["T1", "TP1", "TP2", "TP3", "TP4"]
   },
   {
     "id": 215,
