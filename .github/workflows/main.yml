@@ -53,5 +53,5 @@ jobs:
           branch: action/shifts
           delete-branch: true
           labels: add activities, automated
-          assignees: diogogmatos
+          reviewers: diogogmatos
           token: ${{ secrets.GITHUB_TOKEN }}
