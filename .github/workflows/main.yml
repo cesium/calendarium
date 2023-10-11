@@ -1,0 +1,57 @@
+name: Calendarium Scraper
+
+on:
+  schedule:
+    # run every 7 days
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@v1
+
+      - name: Firefox Version
+        run: firefox --version
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.5
+
+      - name: Install Dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run the Scraper
+        run: python scraper/main.py
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Format Code with Prettier
+        run: |
+          npm ci
+          npm run format
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: "chore: update shifts data"
+          body: |
+            *This is an automated PR*
+            Run Calendarium Scraper in order to update shifts data.
+            > [!IMPORTANT]
+            > Before merging, please be aware of edge cases where manual intervention is needed.
+          commit-message: "chore: update shifts data"
+          branch: action/shifts
+          delete-branch: true
+          labels: add activities, automated
+          reviewers: diogogmatos
+          token: ${{ secrets.GITHUB_TOKEN }}

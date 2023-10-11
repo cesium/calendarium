@@ -1,7 +1,3 @@
 __pycache__
 geckodriver.log
-subjects.json
-subjects_short_names.json
-shifts.json
-filters.json
 venv
