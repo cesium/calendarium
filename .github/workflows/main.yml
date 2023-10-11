@@ -37,7 +37,7 @@ jobs:
 
       - name: Format Code with Prettier
         run: |
-          npm install
+          npm ci
           npm run format
 
       - name: Create Pull Request
