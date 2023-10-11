@@ -178,7 +178,7 @@ export default function Home({ events, filters }) {
       setActiveView(view);
     };
 
-  
+
 
 
     return (
@@ -218,7 +218,7 @@ export default function Home({ events, filters }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className={`${isDarkMode?'dark':''}`}>
+    <div className={`${isDarkMode ? 'dark' : ''} h-full`}>
       <Layout
         isHome
         filters={filters}
@@ -232,7 +232,7 @@ export default function Home({ events, filters }) {
             <link rel="icon" href="/favicon-calendarium.ico" />
           </Head>
 
-          <div id="APP" className={`${styles.calendar}`}>
+          <div id="APP" className={`${isDarkMode ?  styles.calendar_dark : styles.calendar }`}>
             <Calendar
               className={styles.react_big_calendar}
               localizer={localizer}
@@ -285,7 +285,7 @@ export default function Home({ events, filters }) {
           />
         </div>
       </Layout>
-      </div>
+    </div>
   );
 }
 

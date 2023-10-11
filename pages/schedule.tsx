@@ -18,6 +18,7 @@ import { SubjectColor } from "../types";
 import { defaultColors } from "../utils";
 
 import styles from "../styles/schedule.module.css";
+import { useDarkMode } from "../context/DarkMode";
 
 const localizer = momentLocalizer(moment);
 
@@ -201,78 +202,85 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
+
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+
   return (
-    <Layout
-      isHome={false}
-      filters={filters}
-      handleFilters={(myFilters) => {
-        setSelectedFilters(myFilters);
-      }}
-      saveTheme={saveTheme}
-    >
-      <div>
-        <Head>
-          <title>Schedule | Calendarium</title>
-          <meta name="description" content="Your weekly schedule." />
-          <link rel="icon" href="/favicon-calendarium.ico" />~
-        </Head>
+    <div className={`${isDarkMode ? 'dark' : ''} h-full`}>
 
-        <div id="SCHEDULE" className={styles.schedule}>
-          <Calendar
-            toolbar={false}
-            localizer={localizer}
-            selected={selectedShift}
-            onSelectEvent={(shift) => handleSelection(shift)}
-            defaultDate={new Date()}
-            defaultView={"work_week"}
-            views={["work_week"]}
-            min={minDate}
-            max={maxDate}
-            eventPropGetter={(event) => {
-              const newStyle = {
-                border: "0.2rem solid white",
-                backgroundColor: getBgColor(event),
-                color: getTextColor(event),
-                fontWeight: "500",
-                padding: "0.5rem",
-                borderRadius: "12px",
-              };
+      <Layout
+        isHome={false}
+        filters={filters}
+        handleFilters={(myFilters) => {
+          setSelectedFilters(myFilters);
+        }}
+        saveTheme={saveTheme}
+      >
+        <div>
+          <Head>
+            <title>Schedule | Calendarium</title>
+            <meta name="description" content="Your weekly schedule." />
+            <link rel="icon" href="/favicon-calendarium.ico" />~
+          </Head>
 
-              return { style: newStyle };
-            }}
-            formats={formats}
-            dayLayoutAlgorithm={"overlap"}
-            events={events}
-            className={styles.schedule_style}
-          />
-          <div
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              marginTop: "0.5rem",
-              paddingBottom: "1rem",
-            }}
-          >
-            <b>Source:</b>{" "}
-            <a
-              href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer hover:text-blue-500 hover:underline"
+          <div id="SCHEDULE" className={styles.schedule}>
+            <Calendar
+              toolbar={false}
+              localizer={localizer}
+              selected={selectedShift}
+              onSelectEvent={(shift) => handleSelection(shift)}
+              defaultDate={new Date()}
+              defaultView={"work_week"}
+              views={["work_week"]}
+              min={minDate}
+              max={maxDate}
+              eventPropGetter={(event) => {
+                const newStyle = {
+                  border: "0.2rem solid white",
+                  backgroundColor: getBgColor(event),
+                  color: getTextColor(event),
+                  fontWeight: "500",
+                  padding: "0.5rem",
+                  borderRadius: "12px",
+                };
+
+                return { style: newStyle };
+              }}
+              formats={formats}
+              dayLayoutAlgorithm={"overlap"}
+              events={events}
+              className={styles.schedule_style}
+            />
+            <div
+              style={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                marginTop: "0.5rem",
+                paddingBottom: "1rem",
+              }}
             >
-              Horários UMinho
-            </a>
+              <b>Source:</b>{" "}
+              <a
+                href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer hover:text-blue-500 hover:underline"
+              >
+                Horários UMinho
+              </a>
+            </div>
           </div>
-        </div>
 
-        <ShiftModal
-          selectedShift={selectedShift}
-          setInspectShift={setInspectShift}
-          inspectShift={inspectShift}
-          shifts={shifts}
-        />
-      </div>
-    </Layout>
+          <ShiftModal
+            selectedShift={selectedShift}
+            setInspectShift={setInspectShift}
+            inspectShift={inspectShift}
+            shifts={shifts}
+          />
+        </div>
+      </Layout>
+    </div>
   );
 }
 

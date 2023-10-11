@@ -44,7 +44,7 @@ function ShiftModal({
         slotProps={{ backdrop: { timeout: 300 } }}
       >
         <Fade in={inspectShift}>
-          <Box className="absolute left-1/2 top-1/2 h-fit w-72 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border bg-white p-6 text-center shadow-xl">
+          <Box className="absolute left-1/2 top-1/2 h-fit w-72 -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border bg-white dark:bg-slate-600 p-6 text-center shadow-xl">
             <Typography
               id="modal-modal-title"
               className="border-b pb-3"

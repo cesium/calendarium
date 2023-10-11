@@ -54,13 +54,13 @@ const Sidebar = ({
     pdf.save("calendario.pdf");
   };
 
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-slate-600 z-10 transition ease transform duration-300`;
 
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <div
-      className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
+      className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"} dark:bg-slate-700 `}
       style={{ direction: "rtl" }}
     >
       <button onClick={toggleDarkMode}> {String(isDarkMode)}</button>

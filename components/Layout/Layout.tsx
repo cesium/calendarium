@@ -24,38 +24,35 @@ const Layout = ({
   saveTheme,
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300`;
+  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-white`;
 
   return (
-    <div className="lg:flex">
+    <div className="lg:flex h-full dark:bg-slate-800">
       <button
-        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white dark:bg-slate-600 shadow-md lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
-          className={`${hamburgerLine} ${
-            isOpen
+          className={`${hamburgerLine} ${isOpen
               ? "translate-y-2 rotate-45 opacity-50 group-hover:opacity-100"
               : "opacity-50 group-hover:opacity-100"
-          }`}
+            }`}
         />
         <div
-          className={`${hamburgerLine} ${
-            isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
-          }`}
+          className={`${hamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+            }`}
         />
         <div
-          className={`${hamburgerLine} ${
-            isOpen
+          className={`${hamburgerLine} ${isOpen
               ? "-translate-y-2 -rotate-45 opacity-50 group-hover:opacity-100"
               : "opacity-50 group-hover:opacity-100"
-          }`}
+            }`}
         />
       </button>
 
       <Notifications isOpen={isOpen} />
 
-      <div className="px-8 pt-8 lg:hidden">
+      <div className="px-8 pt-8 lg:hidden dark:bg-slate-800">
         <div
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
         >
@@ -82,9 +79,8 @@ const Layout = ({
       </div>
 
       <div
-        className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${
-          !isOpen && "translate-y-full"
-        }`}
+        className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${!isOpen && "translate-y-full"
+          }`}
       >
         <button
           onClick={() => window.open("https://forms.gle/C2uxuUKqoeqMWfcZ6")}
@@ -95,8 +91,7 @@ const Layout = ({
           </div>
         </button>
       </div>
-
-      <main className="flex-1 px-8 py-8 lg:ml-96">{children}</main>
+      <main className="flex-1 px-8 py-8 lg:ml-96 dark:bg-slate-800">{children}</main>
     </div>
   );
 };

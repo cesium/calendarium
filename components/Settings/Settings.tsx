@@ -18,9 +18,9 @@ const Settings = ({
   isHome,
 }: SettingsProps) => {
   return (
-    <div className="h-full w-full select-none space-y-4 overflow-hidden rounded-2xl p-4 shadow-default">
+    <div className="h-full w-full select-none space-y-4 overflow-hidden rounded-2xl p-4 shadow-default dark:shadow-white/20">
       {/* Title */}
-      <div className="text-center text-lg font-medium text-gray-900">
+      <div className="text-center text-lg font-medium text-gray-900 dark:text-white">
         Settings
       </div>
       <div className="border-b" />

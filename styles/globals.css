@@ -5,8 +5,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+#__next {
+  @apply h-full;
+}
 html,
 body {
+}
+
+html,
+body {
+  @apply h-full;
   padding: 0;
   margin: 0;
 }

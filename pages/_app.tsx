@@ -4,9 +4,10 @@ import { DarkModeProvider, useDarkMode } from "../context/DarkMode";
 
 function Calendarium({ Component, pageProps }: AppProps) {
   return (
-      <DarkModeProvider>
-        <Component {...pageProps} />;
-      </DarkModeProvider>
+
+    <DarkModeProvider>
+        <Component {...pageProps} />
+    </DarkModeProvider>
   )
 }
 

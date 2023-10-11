@@ -187,7 +187,7 @@ const CalendarExportModal = ({
                     </div>
                   </div>
 
-                  <Collapse className="w-72 rounded-xl border-gray-300 bg-white text-left shadow-sm lg:w-96">
+                  <Collapse className="w-72 rounded-xl border-gray-300 bg-white  text-left shadow-sm lg:w-96">
                     <Collapse.Panel header="How does it work?" key="1">
                       <div className="text-justify">
                         The URL above allows you to{" "}

@@ -22,7 +22,6 @@ export function DarkModeProvider({ children }: DarkModeProviderProps) {
   // Toggle dark mode
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
-    localStorage.setItem("theme",isDarkMode? "dark":"light")
   };
 
   return (

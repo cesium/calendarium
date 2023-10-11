@@ -276,7 +276,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                       aria-hidden="true"
                       className={`${
                         opacity ? "translate-x-5" : "translate-x-0"
-                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
+                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white dark:bg-slate-600 shadow ring-0 transition duration-200 ease-in-out"}`}
                     />
                   </Switch>
                   <Switch.Label
@@ -288,7 +288,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  className="rounded-md border bg-white dark:bg-slate-600 px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
                   onClick={backToDefault}
                 >
                   Back to Default
@@ -350,7 +350,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                       aria-hidden="true"
                       className={`${
                         opacity ? "translate-x-5" : "translate-x-0"
-                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
+                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white dark:bg-slate-600 shadow ring-0 transition duration-200 ease-in-out"}`}
                     />
                   </Switch>
                   <Switch.Label
@@ -362,7 +362,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  className="rounded-md border bg-white dark:bg-slate-600 px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
                   onClick={backToSubjectDefault}
                 >
                   Back to Default

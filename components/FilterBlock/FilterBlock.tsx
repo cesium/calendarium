@@ -279,7 +279,7 @@ const FilterBlock = ({
   return (
     <div className="select-none">
       <Collapse
-        className="w-full rounded-2xl bg-white font-display font-medium shadow-default"
+        className="w-full rounded-2xl bg-white dark:bg-slate-600 font-display font-medium shadow-default"
         bordered={false}
         accordion
       >
@@ -292,7 +292,7 @@ const FilterBlock = ({
               />
               <Collapse.Panel header={item1} key={item1 + "Panel"}>
                 <Collapse
-                  className="bg-white font-display font-medium"
+                  className="bg-white dark:bg-slate-600 font-display font-medium"
                   bordered={false}
                   accordion
                   key={item1 + "Collapse"}
@@ -310,7 +310,7 @@ const FilterBlock = ({
                           key={item1 + item2 + "Panel"}
                         >
                           <Collapse
-                            className="bg-white font-normal"
+                            className="bg-white dark:bg-slate-600 font-normal"
                             bordered={false}
                             accordion
                             key={item1 + item2 + "Collapse"}
