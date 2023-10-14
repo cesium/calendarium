@@ -21,4 +21,5 @@ export const defaultColors = [
   "#642580", // coderdojo
   "#FF0000", // join
   "#1B69EE", // jordi
+  "#FF499E", // codeweek
 ];
