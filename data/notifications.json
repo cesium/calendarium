@@ -48,5 +48,15 @@
     "type": "Tips",
     "description": "Algo em falta? Utiliza o botão de feedback!",
     "date": "2023-10-02 16:25"
+  },
+  {
+    "type": "Eventos",
+    "description": "LEI: Já podes consultar os locais onde os testes futuros irão decorrer.",
+    "date": "2023-10-21 23:57"
+  },
+  {
+    "type": "Tips",
+    "description": "Clica num evento para saber mais informações, como o seu local e hora.",
+    "date": "2023-10-21 23:58"
   }
 ]
