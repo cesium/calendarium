@@ -182,10 +182,15 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           .hour(+startHour)
           .minute(+startMinute)
           .toDate(),
+        /* (*) were subtracting 1 minute here to solve an issue that occurs when
+         * the end time of an event is equal to the start time of another.
+         * this issue causes the event bellow to think it is overlaping with the top one,
+         * when the `dayLayoutAlgorithm` is set to `no-overlap`.
+         */
         end: moment()
           .day(shift.day + 1)
           .hour(+endHour)
-          .minute(+endMinute)
+          .minute(+endMinute - 1) // (*)
           .toDate(),
       };
     });
@@ -236,7 +241,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
             max={maxDate}
             eventPropGetter={(event) => {
               const newStyle = {
-                border: "0.2rem solid white",
+                border: "2px solid white",
                 backgroundColor: getBgColor(event),
                 color: getTextColor(event),
                 fontWeight: "500",
@@ -247,7 +252,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
               return { style: newStyle };
             }}
             formats={formats}
-            dayLayoutAlgorithm={"overlap"}
+            dayLayoutAlgorithm={"no-overlap"}
             events={events}
             className={styles.schedule_style}
           />
