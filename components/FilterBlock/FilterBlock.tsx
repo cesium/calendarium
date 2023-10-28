@@ -277,7 +277,7 @@ const FilterBlock = ({
   };
 
   return (
-    <div className="select-none">
+    <div className="select-none rounded-2xl ring-1 ring-zinc-100/50">
       <Collapse
         className="w-full rounded-2xl bg-white font-display font-medium shadow-default"
         bordered={false}
