@@ -100,7 +100,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
   // Get start and end dates
-  const startData: [string, string | string[]] =
+  const startDate: [string, string | string[]] =
     queryEntries.find((entry) => entry[0] === "start") ?? null;
   const endData: [string, string | string[]] =
     queryEntries.find((entry) => entry[0] === "end") ?? null;
