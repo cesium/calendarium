@@ -61,6 +61,7 @@ const Sidebar = ({
       style={{ direction: "rtl" }}
     >
       <div className="grid-cols-1 space-y-6" style={{ direction: "ltr" }}>
+        {/* Calendarium Logo (only shows on large screens) */}
         <div className="hidden lg:block">
           <div
             style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
@@ -76,7 +77,8 @@ const Sidebar = ({
           </div>
         </div>
 
-        <div>
+        {/* Page Links */}
+        <div className="rounded-2xl ring-1 ring-zinc-100/50">
           <div className={styles.links}>
             <div style={{ width: "fit-content", margin: "auto" }}>
               <ActiveLink href="/" activeClassName={styles.activeLink}>

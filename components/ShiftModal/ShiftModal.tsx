@@ -20,10 +20,14 @@ function ShiftModal({
     minute: "numeric",
   });
 
-  const end_hour = new Date(selectedShift.end).toLocaleTimeString("pt", {
-    hour: "numeric",
-    minute: "numeric",
-  });
+  const end_hour = () => {
+    const eh = new Date(selectedShift.end);
+    eh.setMinutes(eh.getMinutes() + 1); // add 1 minute to compensate, refer to the comment on schedule.tsx
+    return eh.toLocaleTimeString("pt", {
+      hour: "numeric",
+      minute: "numeric",
+    });
+  };
 
   const handleModalClose = () => {
     setInspectShift(false);
@@ -44,7 +48,10 @@ function ShiftModal({
         slotProps={{ backdrop: { timeout: 300 } }}
       >
         <Fade in={inspectShift}>
-          <Box className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border bg-white p-6 text-center shadow-xl">
+          <Box
+            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
+            style={{ maxWidth: "calc(100% - 4rem)" }}
+          >
             <Typography
               id="modal-modal-title"
               className="border-b pb-3"
@@ -65,7 +72,7 @@ function ShiftModal({
               )}
               {/* TIME */}
               <p>
-                <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour}
+                <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour()}
               </p>
               {/* PLACE */}
               <p>

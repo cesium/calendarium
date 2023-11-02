@@ -28,8 +28,9 @@ const Layout = ({
 
   return (
     <div className="lg:flex">
+      {/* Open/Close Sidebar Button */}
       <button
-        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md ring-1 ring-zinc-100/50 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
@@ -53,8 +54,10 @@ const Layout = ({
         />
       </button>
 
+      {/* Notification Badges */}
       <Notifications isOpen={isOpen} />
 
+      {/* Calendarium Logo */}
       <div className="px-8 pt-8 lg:hidden">
         <div
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
@@ -70,6 +73,7 @@ const Layout = ({
         </div>
       </div>
 
+      {/* Sidebar */}
       <div>
         <Sidebar
           isHome={isHome}
@@ -81,6 +85,7 @@ const Layout = ({
         />
       </div>
 
+      {/* Feedback Button */}
       <div
         className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${
           !isOpen && "translate-y-full"
@@ -96,6 +101,7 @@ const Layout = ({
         </button>
       </div>
 
+      {/* Children */}
       <main className="flex-1 px-8 py-8 lg:ml-96">{children}</main>
     </div>
   );

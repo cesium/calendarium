@@ -247,6 +247,7 @@ export default function Home({ events, filters }) {
             max={maxDate}
             eventPropGetter={(event: IFormatedEvent) => {
               const newStyle = {
+                border: 0,
                 backgroundColor: getBgColor(event),
                 color: getTextColor(event),
               };
