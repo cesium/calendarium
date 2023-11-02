@@ -104,11 +104,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     queryEntries.find((entry) => entry[0] === "start") ?? null;
   const endDate: [string, string | string[]] =
     queryEntries.find((entry) => entry[0] === "end") ?? null;
-  const start: false | Date = startData
-    ? moment(startData[1] as string, "YYYY-MM-DD", true).toDate()
+  const start: false | Date = startDate
+    ? moment(startDate[1] as string, "YYYY-MM-DD", true).toDate()
     : false;
-  const end: false | Date = endData
-    ? moment(endData[1] as string, "YYYY-MM-DD", true).toDate()
+  const end: false | Date = endDate
+    ? moment(endDate[1] as string, "YYYY-MM-DD", true).toDate()
     : false;
 
   // Get query entries related to filters (exclude start and end dates)
