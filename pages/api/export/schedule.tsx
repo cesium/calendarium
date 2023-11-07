@@ -12,7 +12,11 @@ import path from "path";
 import fsPromises from "fs/promises";
 
 // Convert shifts to ICS format
-function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
+function convertShiftsToICS(
+  shifts: IFormatedShift[],
+  filters: IFilterDTO[],
+  end: false | Date
+) {
   const icsShifts: ICalEventData[] = shifts.map((shift) => {
     const filter = filters.find((filter) => filter.id === shift.filterId);
 
@@ -27,6 +31,7 @@ function convertShiftsToICS(shifts: IFormatedShift[], filters: IFilterDTO[]) {
       repeating: {
         freq: "WEEKLY" as ICalEventRepeatingFreq,
         interval: 1,
+        until: end ? end : undefined, // If end date is not defined, don't set a limit
       },
     };
 
@@ -78,6 +83,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     queryEntries.length > 0 &&
     queryEntries.every((entry) => {
       const [key, value] = entry;
+
+      if (key === "start" || key === "end")
+        return (
+          !Array.isArray(value) && moment(value, "YYYY-MM-DD", true).isValid()
+        );
+
       const filter = filters.find((f) => f.name === key);
 
       return (
@@ -86,6 +97,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           ? value.every((v) => filter.shifts.includes(v))
           : filter.shifts.includes(value))
       );
+    });
+
+  // Get start and end dates
+  const startDate: [string, string | string[]] =
+    queryEntries.find((entry) => entry[0] === "start") ?? null;
+  const endDate: [string, string | string[]] =
+    queryEntries.find((entry) => entry[0] === "end") ?? null;
+  const start: false | Date = startDate
+    ? moment(startDate[1] as string, "YYYY-MM-DD", true).toDate()
+    : false;
+  const end: false | Date = endDate
+    ? moment(endDate[1] as string, "YYYY-MM-DD", true).toDate()
+    : false;
+
+  // Get query entries related to filters (exclude start and end dates)
+  const queryEntriesFilters: [string, string | string[]][] =
+    queryEntries.filter((entry) => {
+      return entry[0] !== "start" && entry[0] !== "end";
     });
 
   if (valid) {
@@ -101,12 +130,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const [startHour, startMinute] = shift.start.split(":");
       const [endHour, endMinute] = shift.end.split(":");
 
-      shift.start = moment()
+      shift.start = (start ? moment(start) : moment()) // If start date is not defined, use today's date
         .day(shift.day + 1)
         .hour(+startHour)
         .minute(+startMinute)
         .toDate();
-      shift.end = moment()
+      shift.end = (start ? moment(start) : moment()) // ""
         .day(shift.day + 1)
         .hour(+endHour)
         .minute(+endMinute)
@@ -119,7 +148,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const shifts: IFormatedShift[] = shiftsData.map(configureDates);
 
     // Convert query entries into {id: number, shift: string} objects
-    const checked: { id: number; shift: string }[] = queryEntries
+    const checked: { id: number; shift: string }[] = queryEntriesFilters
       .map((entry) => {
         const [key, value] = entry;
         const filter = filters.find((f) => f.name === key);
@@ -140,7 +169,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Convert shifts to ICS format
     const icsShifts: ICalEventData[] = convertShiftsToICS(
       filteredShifts,
-      filters
+      filters,
+      end
     );
 
     // Create ICS file and return it

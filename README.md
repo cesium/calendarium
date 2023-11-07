@@ -97,3 +97,15 @@ https://calendario.cesium.di.uminho.pt/api/export/schedule?CP=T1&CP=TP1&CC=T1&CC
 
 > **Note**  
 > A request with wrongly formatted parameters, or subjects and shifts that don't exist, will be answered with a "400 Invalid Request" error message.
+
+### Setting a Time Period for Shifts
+
+Additionally, it's possible to set an interval in `/schedule` for when a schedule should start and end. This means that you can set a start date and an end date which will delimit when the shifts from your schedule will start and stop showing up on your calendar. For this, you can simply use the parameters `start` and `end`. By default, your schedule will show up on your calendar from the current week onwards, repeating forever.
+
+Check out this example, where we set the above schedule to start on 11/09/2023 and end on 08/08/2024:
+
+```
+https://calendario.cesium.di.uminho.pt/api/export/schedule?CP=T1&CP=TP1&CC=T1&CC=PL1&DSS=T1&DSS=PL1&IA=T1&IA=PL1&LI4=T1&LI4=OT1&SD=T1&SD=PL1&start=2023-09-11&end=2024-08-08
+```
+
+*Note that you can define **just the start, just the end, both or neither**. The parameter you omit will assume the default behaviour.*
