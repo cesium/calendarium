@@ -218,7 +218,7 @@ const ShareModal = ({
                 variant="h6"
                 component="h2"
               >
-                Share Your {isHome ? "Events" : "Shifts"}{" "}
+                Share Your {isHome ? "Events" : "Schedule"}{" "}
                 <i className="bi bi-link-45deg"></i>
               </Typography>
               <Typography id="modal-modal-description">
