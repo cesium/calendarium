@@ -134,16 +134,16 @@ const CalendarExportModal = ({
         onClose={() => setIsOpen(false)}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
-        slotProps={{ backdrop: { timeout: 300 } }}
+        slotProps={{ backdrop: { timeout: 400 } }}
       >
-        <Fade in={isOpen}>
+        <Fade in={isOpen} timeout={400}>
           <Box
             className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
             style={{ maxHeight: "calc(100% - 4rem)" }}
           >
             <Typography
               id="modal-modal-title"
-              className="select-none place-content-center items-center text-gray-900"
+              className="select-none text-gray-900"
               variant="h6"
               component="h2"
             >

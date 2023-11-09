@@ -16,6 +16,9 @@ import ExportButton from "../ExportButton";
 import ClearScheduleButton from "../ClearScheduleButton";
 
 import { IFilterDTO } from "../../dtos";
+import ShareButton from "../ShareButton";
+
+import { SelectedShift } from "../../types";
 
 interface ISidebarProps {
   isHome?: boolean;
@@ -36,6 +39,7 @@ const Sidebar = ({
 }: ISidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
+  const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
 
   function clearSchedule() {
     setClear(true);
@@ -98,17 +102,26 @@ const Sidebar = ({
         <div className="space-y-2">
           <div className="flex space-x-2">
             {/* Settings Button */}
-            <button
-              onClick={() => setIsSettings(!isSettings)}
-              className="h-10 w-12 rounded-2xl bg-gray-400 p-2 text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
-              title="Settings"
-            >
-              {isSettings ? (
-                <i className="bi bi-gear-fill"></i>
-              ) : (
-                <i className="bi bi-gear"></i>
-              )}
-            </button>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setIsSettings(!isSettings)}
+                className="h-10 w-10 rounded-2xl p-2 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+                title="Settings"
+              >
+                {isSettings ? (
+                  <i className="bi bi-gear-fill text-gray-900"></i>
+                ) : (
+                  <i className="bi bi-gear-fill"></i>
+                )}
+              </button>
+              {/* Share Button */}
+              <ShareButton
+                isHome={isHome}
+                filters={filters}
+                handleFilters={handleFilters}
+                setChecked={setChecked}
+              />
+            </div>
             {/* Export button */}
             <ExportButton
               exportPDF={exportPDF}
@@ -137,12 +150,16 @@ const Sidebar = ({
           <EventFilters
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
+            checked={checked}
+            setChecked={setChecked}
           />
         ) : (
           <ScheduleFilters
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
             clearSchedule={clear}
+            checked={checked}
+            setChecked={setChecked}
           />
         )}
       </div>
