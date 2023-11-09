@@ -49,7 +49,7 @@ function ShiftModal({
       >
         <Fade in={inspectShift} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
             style={{ maxWidth: "calc(100% - 4rem)" }}
           >
             <Typography

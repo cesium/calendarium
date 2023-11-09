@@ -41,7 +41,7 @@ const Sidebar = ({
   const [clear, setClear] = useState(false);
   const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
 
-  function clearSchedule() {
+  function clearSelection() {
     setClear(true);
     setTimeout(() => setClear(false), 300);
   }
@@ -82,7 +82,7 @@ const Sidebar = ({
         </div>
 
         {/* Page Links */}
-        <div className="rounded-2xl ring-1 ring-zinc-100/50">
+        <div className="rounded-xl ring-1 ring-zinc-100/50">
           <div className={styles.links}>
             <div style={{ width: "fit-content", margin: "auto" }}>
               <ActiveLink href="/" activeClassName={styles.activeLink}>
@@ -105,7 +105,7 @@ const Sidebar = ({
             <div className="flex space-x-2">
               <button
                 onClick={() => setIsSettings(!isSettings)}
-                className="h-10 w-10 rounded-2xl p-2 leading-3 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+                className="h-10 w-10 rounded-xl p-2 leading-3 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
                 title="Settings"
               >
                 {isSettings ? (
@@ -121,6 +121,12 @@ const Sidebar = ({
                 handleFilters={handleFilters}
                 setChecked={setChecked}
               />
+              {/* Clear Schedule button */}
+              <ClearScheduleButton
+                isHome={isHome}
+                isSettings={isSettings}
+                clearSelection={clearSelection}
+              />
             </div>
             {/* Export button */}
             <ExportButton
@@ -129,13 +135,6 @@ const Sidebar = ({
               filters={filters}
             />
           </div>
-          {/* Clear Schedule button */}
-          {!isHome && (
-            <ClearScheduleButton
-              isSettings={isSettings}
-              clearSchedule={clearSchedule}
-            />
-          )}
         </div>
 
         {isSettings ? (
@@ -150,6 +149,7 @@ const Sidebar = ({
           <EventFilters
             filters={filters}
             handleFilters={(myFilters) => handleFilters(myFilters)}
+            clearEvents={clear}
             checked={checked}
             setChecked={setChecked}
           />

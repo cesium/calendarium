@@ -10,6 +10,7 @@ import { IFilterDTO } from "../../dtos";
 type EventFiltersProps = {
   filters: any;
   handleFilters: (selectedFilter: number[]) => void;
+  clearEvents: boolean;
   checked: number[] | SelectedShift[];
   setChecked: (obj: number[] | SelectedShift[]) => void;
 };
@@ -17,6 +18,7 @@ type EventFiltersProps = {
 const EventFilters = ({
   filters,
   handleFilters,
+  clearEvents,
   checked,
   setChecked,
 }: EventFiltersProps) => {
@@ -69,6 +71,16 @@ const EventFilters = ({
 
     return checkBoxes;
   }
+
+  function clearSelection() {
+    setChecked([]);
+    handleFilters([]);
+    localStorage.setItem("checked", JSON.stringify([]));
+  }
+
+  useEffect(() => {
+    clearEvents && clearSelection();
+  }, [clearEvents]);
 
   return (
     <>

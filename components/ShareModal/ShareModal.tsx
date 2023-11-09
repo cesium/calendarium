@@ -208,7 +208,7 @@ const ShareModal = ({
       >
         <Fade in={isOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-80 -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-80 -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-2xl border bg-white p-6 text-center shadow-xl"
             style={{
               maxHeight: "calc(100% - 4rem)",
               maxWidth: "calc(100% - 4rem)",

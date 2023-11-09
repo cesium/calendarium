@@ -48,7 +48,7 @@ const Banner = ({
         (isDismissed || isOpen) && "translate-y-full"
       } ease fixed inset-x-0 bottom-0 z-20 m-auto transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
     >
-      <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 sm:rounded-2xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
+      <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="select-none text-sm leading-6 text-white">
           <div>
             <strong className="font-semibold">
