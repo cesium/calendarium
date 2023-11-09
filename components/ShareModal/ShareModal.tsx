@@ -254,7 +254,7 @@ const ShareModal = ({
                               cy="12"
                               r="10"
                               stroke="currentColor"
-                              stroke-width="4"
+                              strokeWidth="4"
                             ></circle>
                             <path
                               className="opacity-75"
@@ -299,7 +299,7 @@ const ShareModal = ({
                       Paste a share code and click{" "}
                       <i className="bi bi-download" />
                     </a>{" "}
-                    to import your friend's {isHome ? "events" : "schedule"} or
+                    to import your friend {"'"} s {isHome ? "events" : "schedule"} or
                     the {isHome ? "events" : "schedule"} you set up on another
                     device.
                   </div>

@@ -13,7 +13,7 @@ type ShareButtonProps = {
   setChecked: (obj: number[] | SelectedShift[]) => void;
 };
 
-const shareButton = ({
+const ShareButton = ({
   isHome,
   filters,
   handleFilters,
@@ -43,4 +43,4 @@ const shareButton = ({
   );
 };
 
-export default shareButton;
+export default ShareButton;
