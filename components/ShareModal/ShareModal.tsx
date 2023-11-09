@@ -208,10 +208,13 @@ const ShareModal = ({
       >
         <Fade in={isOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
-            style={{ maxHeight: "calc(100% - 4rem)" }}
+            className="absolute left-1/2 top-1/2 h-fit w-80 -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
+            style={{
+              maxHeight: "calc(100% - 4rem)",
+              maxWidth: "calc(100% - 4rem)",
+            }}
           >
-            <div className="space-y-4">
+            <div className="w-full space-y-4">
               <Typography
                 id="modal-modal-title"
                 className="select-none text-gray-900"
@@ -225,19 +228,19 @@ const ShareModal = ({
                 <div>
                   <div className="flex">
                     <form
-                      className="flex rounded-md shadow-sm"
+                      className="flex rounded-lg shadow-sm"
                       onSubmit={importEvents}
                     >
                       <div className="relative flex flex-grow items-stretch focus-within:z-10">
                         <input
                           name="link"
-                          className="block w-full rounded-none rounded-l-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-none rounded-l-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6"
                           placeholder="Insert a share link here..."
                         />
                       </div>
                       <button
                         type="submit"
-                        className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         title="Import"
                       >
                         {isImporting ? (
@@ -273,7 +276,7 @@ const ShareModal = ({
                     </form>
                     <button
                       type="button"
-                      className="relative ml-2 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       title="Copy your share link"
                       onClick={copyToClipboard}
                     >
@@ -286,7 +289,7 @@ const ShareModal = ({
                   </div>
                 </div>
               </Typography>
-              <Collapse className="w-[279px] rounded-xl border-gray-300 bg-white text-left shadow-sm">
+              <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm">
                 <Collapse.Panel header="How does it work?" key="1">
                   <div className="text-justify">
                     <a className="font-medium">
@@ -299,8 +302,9 @@ const ShareModal = ({
                       Paste a share code and click{" "}
                       <i className="bi bi-download" />
                     </a>{" "}
-                    to import your friend {"'"} s {isHome ? "events" : "schedule"} or
-                    the {isHome ? "events" : "schedule"} you set up on another
+                    to import your friend {"'"} s{" "}
+                    {isHome ? "events" : "schedule"} or the{" "}
+                    {isHome ? "events" : "schedule"} you set up on another
                     device.
                   </div>
                 </Collapse.Panel>

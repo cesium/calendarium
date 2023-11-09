@@ -138,56 +138,63 @@ const CalendarExportModal = ({
       >
         <Fade in={isOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl"
-            style={{ maxHeight: "calc(100% - 4rem)" }}
+            className="absolute left-1/2 top-1/2 h-fit w-96 -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-3xl border bg-white p-6 text-center shadow-xl md:w-[30rem]"
+            style={{
+              maxHeight: "calc(100% - 4rem)",
+              maxWidth: "calc(100% - 4rem)",
+            }}
           >
-            <Typography
-              id="modal-modal-title"
-              className="select-none text-gray-900"
-              variant="h6"
-              component="h2"
-            >
-              Export by URL <i className="bi bi-link-45deg"></i>
-            </Typography>
-            {URL === "" ? (
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="text-gray-900">
-                  <div className="text-center">
-                    <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
-                    {isHome
-                      ? "Select at least one subject."
-                      : "Select at least one shift."}
-                  </div>
-                </div>
+            <div className="w-full space-y-4">
+              <Typography
+                id="modal-modal-title"
+                className="select-none text-gray-900"
+                variant="h6"
+                component="h2"
+              >
+                Export by URL <i className="bi bi-link-45deg"></i>
               </Typography>
-            ) : (
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="space-y-4">
-                  <div>
-                    <div className="w- mt-2 flex rounded-xl shadow-sm">
-                      <div className="relative flex flex-grow focus-within:z-10">
-                        <div className="whitespace-nowrap rounded-none rounded-l-xl border-0 px-3 py-1.5 text-left text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6">
-                          <div className="w-56 overflow-y-hidden overflow-x-scroll pb-2 lg:w-80">
-                            {URL}
-                          </div>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        title={isCopied ? "Copied" : "Copy"}
-                        className="text-md relative -ml-px inline-flex w-full items-center gap-x-1.5 rounded-r-xl px-3 py-2 font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 transition-colors hover:bg-gray-100"
-                        onClick={copyToClipboard}
-                      >
-                        {isCopied ? (
-                          <i className="bi bi-clipboard-check-fill text-cesium-900"></i>
-                        ) : (
-                          <i className="bi bi-clipboard"></i>
-                        )}
-                      </button>
+              {URL === "" ? (
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <div className="text-gray-900">
+                    <div className="text-center">
+                      <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
+                      {isHome
+                        ? "Select at least one subject."
+                        : "Select at least one shift."}
                     </div>
                   </div>
-
-                  <Collapse className="w-72 rounded-xl border-gray-300 bg-white text-left shadow-sm lg:w-96">
+                </Typography>
+              ) : (
+                <div className="space-y-4">
+                  <Typography id="modal-modal-description">
+                    <div>
+                      <div className="flex w-full rounded-lg shadow-sm">
+                        <div
+                          className="relative flex flex-grow items-stretch focus-within:z-10"
+                          style={{ width: "calc(100% - 38px)" }}
+                        >
+                          <div className="block w-full rounded-none rounded-l-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6">
+                            <div className="mx-2 overflow-y-hidden overflow-x-scroll whitespace-nowrap text-start">
+                              {URL}
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          title={isCopied ? "Copied" : "Copy"}
+                          className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                          onClick={copyToClipboard}
+                        >
+                          {isCopied ? (
+                            <i className="bi bi-check-circle-fill text-cesium-900" />
+                          ) : (
+                            <i className="bi bi-copy" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </Typography>
+                  <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm">
                     <Collapse.Panel header="How does it work?" key="1">
                       <div className="text-justify">
                         The URL above allows you to{" "}
@@ -228,10 +235,9 @@ const CalendarExportModal = ({
                       </div>
                     </Collapse.Panel>
                   </Collapse>
-
                   <Collapse
                     accordion
-                    className="w-72 rounded-xl border-gray-300 bg-white text-left shadow-sm lg:w-96"
+                    className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm"
                   >
                     <Collapse.Panel header="Google Calendar" key="1">
                       <div className="text-gray-900">
@@ -337,7 +343,6 @@ const CalendarExportModal = ({
                       </div>
                     </Collapse.Panel>
                   </Collapse>
-
                   <div className="cursor-pointer select-none text-sm text-gray-500">
                     {isHome ? (
                       <div title="To export your schedule please go to /schedule.">
@@ -360,8 +365,8 @@ const CalendarExportModal = ({
                     </a>
                   </div>
                 </div>
-              </Typography>
-            )}
+              )}
+            </div>
           </Box>
         </Fade>
       </Modal>

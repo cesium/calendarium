@@ -105,7 +105,7 @@ const Sidebar = ({
             <div className="flex space-x-2">
               <button
                 onClick={() => setIsSettings(!isSettings)}
-                className="h-10 w-10 rounded-2xl p-2 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+                className="h-10 w-10 rounded-2xl p-2 leading-3 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
                 title="Settings"
               >
                 {isSettings ? (
