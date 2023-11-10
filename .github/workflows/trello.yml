@@ -11,14 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Create a Trello Card
-        uses: TrisNol/trello-create-card-action@v0.0.5
-        with:
-          api_key: ${{ secrets.TRELLO_API_KEY }}
-          token: ${{ secrets.TRELLO_API_TOKEN }}
-          list_id: 654d17b1769ab53537f652f7
-          card_name: ${{ github.event.pull_request.title }}
-
       - name: Link to Trello
         uses: rematocorp/trello-integration-action@v7.1.0
         with:
