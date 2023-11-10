@@ -108,4 +108,4 @@ Check out this example, where we set the above schedule to start on 11/09/2023 a
 https://calendario.cesium.di.uminho.pt/api/export/schedule?CP=T1&CP=TP1&CC=T1&CC=PL1&DSS=T1&DSS=PL1&IA=T1&IA=PL1&LI4=T1&LI4=OT1&SD=T1&SD=PL1&start=2023-09-11&end=2024-08-08
 ```
 
-*Note that you can define **just the start, just the end, both or neither**. The parameter you omit will assume the default behaviour.*
+_Note that you can define **just the start, just the end, both or neither**. The parameter you omit will assume the default behaviour._
