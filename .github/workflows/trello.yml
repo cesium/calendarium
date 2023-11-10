@@ -34,7 +34,7 @@ jobs:
           trello-api-key: ${{ secrets.TRELLO_API_KEY }}
 
           # REQUIRED: Trello auth token, visit https://trello.com/app-key then click generate a token.
-          trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
+          trello-auth-token: ${{ secrets.TRELLO_API_TOKEN }}
 
           # Your organization name to avoid assigning cards to outside members,
           # edit your workspace details and look for the short name.
