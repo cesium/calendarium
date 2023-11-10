@@ -1,21 +1,32 @@
-name: Issue Into Trello Card
+name: Trello Integration
 
 on:
-  issues:
-    types: [opened, reopened]
+    pull_request:
+        types: [opened, edited, closed, reopened, ready_for_review, converted_to_draft]
+    issue_comment:
+        types: [created, edited]
 
 jobs:
-  create_trello_card_job:
-    runs-on: ubuntu-latest
-    name: Create Trello Card
-    steps:
-    - name: Call trello-github-actions
-      id: call-trello-github-actions
-      uses: jessicazu/trello-github-actions@v1.0
-      with:
-        trello-action: create_card_when_issue_opened
-      env:
-        TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
-        TRELLO_API_TOKEN: ${{ secrets.TRELLO_API_TOKEN }}
-        TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID }}
-        TRELLO_LIST_ID: ${{ secrets.TRELLO_TO_DO_LIST_ID }}
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Link to Trello
+            uses: kagof/trello-link-github-action@v1.1.0
+            with:
+              # Required.
+              # Allowed to be one of the following:
+              # 1. the board name
+              # 2. the board shortLink (can be found in the URL)
+              # 3. the boardId (can be found via the Trello REST API)
+              board-identifier: "${{ secrets.TRELLO_BOARD_ID }}"
+              # Required
+              # Secret token used to contact Trello
+              trello-token: "${{ secrets.TRELLO_GH_ACTION_KEY }}"
+              # Optional (default 'TRELLO-')
+              # When preceding a string in a commit message or PR body or title,
+              # indicates that the string is a Trello shortId.
+              # May be either:
+              # 1. an alpha string, eg TRELLO
+              # 2. an alpha string followed by a dash, eg TRELLO-
+              # 3. one of the characters ! @ # $ % ^ & * + = (note: must be exactly 1 char long)
+              marker: 'TRELLO-'
