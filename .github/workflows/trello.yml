@@ -2,9 +2,9 @@ name: Trello Integration
 
 on:
     pull_request:
-        types: [opened, edited, closed, reopened, ready_for_review, converted_to_draft, assigned]
+      types: [opened, synchronize, edited, closed, reopened, ready_for_review, converted_to_draft, assigned]
     issue_comment:
-        types: [created, edited]
+      types: [created, edited]
 
 jobs:
     build:
