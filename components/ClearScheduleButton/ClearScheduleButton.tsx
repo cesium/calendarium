@@ -11,7 +11,7 @@ const ClearScheduleButton = ({
 }) => {
   return (
     <Popconfirm
-      title={"Clear Choices?"}
+      title={"Clear choices?"}
       description={
         "This will remove all your selected " + (isHome ? "events." : "shifts.")
       }
