@@ -30,8 +30,7 @@ jobs:
           # Use it for people who have different usernames in Github and Trello.
           # If the current username is not in the list, we still try to find a Trello user with that username.
           github-users-to-trello-users: |-
-            diogogmatos:diogogmatos
-            ruilopesm:ruilopesm
+            wtv:wtv
 
           # REQUIRED: Trello API key, visit https://trello.com/app-key for key.
           trello-api-key: ${{ secrets.TRELLO_API_KEY }}
