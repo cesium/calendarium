@@ -65,7 +65,7 @@ jobs:
           trello-add-labels-to-cards: true
 
           # When a card has one of these labels then branch category label is not assigned.
-          trello-conflicting-labels: "feature;bug;chore;calendarium;hydrogen;atomic;shuriken;bokken;seium;safira"
+          trello-conflicting-labels: ""
 
           # When set to true, search for card also within the branch name (e.g. "1234-card-title").
           # If card id is found, comments card URL.
