@@ -1,12 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "antd/dist/reset.css";
 
 import FilterBlock from "../FilterBlock";
-import { CheckBoxProps } from "../../types";
 
-function EventFilters({ filters, handleFilters }) {
-  const [checked, setChecked] = useState<number[]>([]);
+import { CheckBoxProps, SelectedShift } from "../../types";
 
+import { IFilterDTO } from "../../dtos";
+
+type EventFiltersProps = {
+  filters: any;
+  handleFilters: (selectedFilter: number[]) => void;
+  clearEvents: boolean;
+  checked: number[] | SelectedShift[];
+  setChecked: (obj: number[] | SelectedShift[]) => void;
+};
+
+const EventFilters = ({
+  filters,
+  handleFilters,
+  clearEvents,
+  checked,
+  setChecked,
+}: EventFiltersProps) => {
   useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
@@ -57,6 +72,16 @@ function EventFilters({ filters, handleFilters }) {
     return checkBoxes;
   }
 
+  function clearSelection() {
+    setChecked([]);
+    handleFilters([]);
+    localStorage.setItem("checked", JSON.stringify([]));
+  }
+
+  useEffect(() => {
+    clearEvents && clearSelection();
+  }, [clearEvents]);
+
   return (
     <>
       {/* LEI */}
@@ -82,6 +107,6 @@ function EventFilters({ filters, handleFilters }) {
       />
     </>
   );
-}
+};
 
 export default EventFilters;

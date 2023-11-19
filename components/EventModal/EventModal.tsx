@@ -38,11 +38,11 @@ function EventModal({
         onClose={handleModalClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
-        slotProps={{ backdrop: { timeout: 300 } }}
+        slotProps={{ backdrop: { timeout: 400 } }}
       >
-        <Fade in={inspectEvent}>
+        <Fade in={inspectEvent} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
             style={{ maxWidth: "calc(100% - 4rem)" }}
           >
             <Typography

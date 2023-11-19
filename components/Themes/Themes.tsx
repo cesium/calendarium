@@ -229,7 +229,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                     {colors.slice(1, 6).map((color, index) => (
                       <button
                         key={index}
-                        className="flex h-9 w-full place-content-center items-center rounded-xl font-medium"
+                        className="flex h-9 w-full place-content-center items-center rounded-lg font-medium hover:font-bold hover:opacity-70"
                         style={{
                           backgroundColor: getBgColor(index),
                           color: getTextColor(index),
@@ -302,7 +302,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                   {checkedThings.map((filterId, index) => (
                     <button
                       key={index}
-                      className="h-7 w-full place-content-center items-center rounded-xl text-sm font-medium"
+                      className="h-7 w-full place-content-center items-center rounded-lg text-sm font-medium hover:font-bold hover:opacity-70"
                       style={{
                         backgroundColor: getBgSubjectColor(index),
                         color: getTextSubjectColor(index),
