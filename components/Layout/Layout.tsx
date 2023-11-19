@@ -30,7 +30,7 @@ const Layout = ({
     <div className="lg:flex">
       {/* Open/Close Sidebar Button */}
       <button
-        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-2xl bg-white shadow-md ring-1 ring-zinc-100/50 lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-zinc-100/50 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div

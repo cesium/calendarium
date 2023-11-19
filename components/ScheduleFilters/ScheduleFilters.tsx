@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { IFilterDTO } from "../../dtos";
 
@@ -9,23 +9,25 @@ interface ISelectScheduleProps {
   filters: IFilterDTO[];
   handleFilters: (selectedFilter: SelectedShift[]) => void;
   clearSchedule: boolean;
+  checked: number[] | SelectedShift[];
+  setChecked: (obj: number[] | SelectedShift[]) => void;
 }
 
 const ScheduleFilters = ({
   filters,
   handleFilters,
   clearSchedule,
+  checked,
+  setChecked,
 }: ISelectScheduleProps) => {
-  const [selectedFilters, setSelectedFilters] = useState<SelectedShift[]>([]);
-
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
-    setSelectedFilters(stored);
+    setChecked(stored);
     handleFilters(stored);
   }, []);
 
   function clearSelection() {
-    setSelectedFilters([]);
+    setChecked([]);
     localStorage.setItem("shifts", JSON.stringify([]));
     handleFilters([]);
   }
@@ -110,8 +112,8 @@ const ScheduleFilters = ({
         layer1={lei}
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(0, 6)}
-        checked={selectedFilters}
-        setChecked={setSelectedFilters as (v: SelectedShift[]) => void}
+        checked={checked}
+        setChecked={setChecked as (v: SelectedShift[]) => void}
         handleFilters={handleFilters}
         isShifts
       />
@@ -120,8 +122,8 @@ const ScheduleFilters = ({
         layer1={mei}
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(6, 9)}
-        checked={selectedFilters}
-        setChecked={setSelectedFilters as (v: SelectedShift[]) => void}
+        checked={checked}
+        setChecked={setChecked as (v: SelectedShift[]) => void}
         handleFilters={handleFilters}
         isShifts
       />

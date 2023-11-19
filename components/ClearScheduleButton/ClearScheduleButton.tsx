@@ -1,38 +1,38 @@
 import { Popconfirm } from "antd";
 
 const ClearScheduleButton = ({
+  isHome,
   isSettings,
-  clearSchedule,
+  clearSelection,
 }: {
+  isHome: boolean;
   isSettings: boolean;
-  clearSchedule: () => void;
+  clearSelection: () => void;
 }) => {
   return (
     <Popconfirm
-      title={isSettings ? "ERROR" : "Are you sure?"}
+      title={"Clear choices?"}
       description={
-        isSettings
-          ? "You can't clear your schedule while in settings."
-          : "This will remove all your classes."
+        "This will remove all your selected " + (isHome ? "events." : "shifts.")
       }
-      onConfirm={() => clearSchedule()}
+      onConfirm={() => clearSelection()}
       onCancel={() => {}}
-      okText="Ok"
-      cancelText={"Cancel"}
-      icon={
-        isSettings ? (
-          <i className="bi bi-exclamation-circle-fill text-error"></i>
-        ) : (
-          <i className="bi bi-question-circle-fill text-warning"></i>
-        )
-      }
+      okText="Clear"
+      showCancel={false}
+      icon={<i className="bi bi-exclamation-circle-fill text-error"></i>}
       okButtonProps={{
         className: `${isSettings ? "hidden" : "bg-blue-500"}`,
       }}
       cancelButtonProps={{ className: `${isSettings && "hidden"}` }}
+      disabled={isSettings}
     >
-      <button className="mb-3 h-10 w-full rounded-2xl bg-highlight p-2 font-medium text-white shadow-md transition-shadow duration-300 hover:shadow-lg hover:shadow-highlight/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-        Clear Schedule <i className="bi bi-stars"></i>
+      <button
+        className={`h-10 w-10 rounded-xl p-2 font-medium leading-3 text-error/50 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-error hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+          isSettings && "cursor-not-allowed hover:text-error/50"
+        }`}
+        type="button"
+      >
+        <i className="bi bi-trash-fill"></i>
       </button>
     </Popconfirm>
   );
