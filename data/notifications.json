@@ -58,5 +58,15 @@
     "type": "Tips",
     "description": "Clica num evento para saber mais informações, como o seu local e hora.",
     "date": "2023-10-21 23:58"
+  },
+  {
+    "type": "Updates",
+    "description": "Partilha o teu horário com amigos ou outros dispositivos! Clica no ícone partilhar e sabe mais.",
+    "date": "2023-11-19 13:25"
+  },
+  {
+    "type": "Tips",
+    "description": "Clica no ícone de lixo para limpar as tuas seleções de eventos ou turnos.",
+    "date": "2023-11-19 13:26"
   }
 ]
