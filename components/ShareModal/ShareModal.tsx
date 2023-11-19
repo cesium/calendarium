@@ -302,7 +302,7 @@ const ShareModal = ({
                       Paste a share code and click{" "}
                       <i className="bi bi-download" />
                     </a>{" "}
-                    to import your friend {"'"} s{" "}
+                    to import your friend{"'"}s{" "}
                     {isHome ? "events" : "schedule"} or the{" "}
                     {isHome ? "events" : "schedule"} you set up on another
                     device.
