@@ -6,14 +6,12 @@ import Image from "next/image";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-import styles from "./sidebar.module.scss";
-
-import ActiveLink from "../ActiveLink";
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 import Settings from "../Settings";
 import ExportButton from "../ExportButton";
 import ClearScheduleButton from "../ClearScheduleButton";
+import NavigationPane from "../NavigationPane";
 
 import { IFilterDTO } from "../../dtos";
 import ShareButton from "../ShareButton";
@@ -82,22 +80,7 @@ const Sidebar = ({
         </div>
 
         {/* Page Links */}
-        <div className="rounded-xl ring-1 ring-zinc-100/50">
-          <div className={styles.links}>
-            <div style={{ width: "fit-content", margin: "auto" }}>
-              <ActiveLink href="/" activeClassName={styles.activeLink}>
-                <text>
-                  <i className="bi bi-calendar-fill"></i> EVENTS
-                </text>
-              </ActiveLink>
-              <ActiveLink href="/schedule" activeClassName={styles.activeLink}>
-                <text>
-                  <i className="bi bi-clock-fill"></i> SCHEDULE
-                </text>
-              </ActiveLink>
-            </div>
-          </div>
-        </div>
+        <NavigationPane />
 
         <div className="space-y-2">
           <div className="flex space-x-2">
