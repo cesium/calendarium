@@ -31,6 +31,15 @@ function EventModal({
     setInspectEvent(false);
   };
 
+  const dateInfo = (
+    <>
+      <i className="bi bi-calendar-fill"></i>{" "}
+      {start_date.localeCompare(end_date)
+        ? `${start_date} - ${end_date}`
+        : `${start_date}`}
+    </>
+  );
+
   return (
     <div>
       <Modal
@@ -56,27 +65,43 @@ function EventModal({
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {/* DATE & TIME */}
               <div>
-                <i className="bi bi-calendar-fill"></i>{" "}
-                {start_date.localeCompare(end_date)
-                  ? `${start_date} - ${end_date}`
-                  : `${start_date}`}
-                {start_hour.localeCompare("00:00") &&
-                !start_date.localeCompare(end_date) ? (
-                  <div>
-                    <p></p>
-                    <i className="bi bi-clock-fill"></i> {start_hour} -{" "}
-                    {end_hour}
-                  </div>
+                {start_hour.localeCompare("00:00") ? (
+                  start_date.localeCompare(end_date) ? (
+                    <div>
+                      <p></p>
+                      <i className="bi bi-clock-fill"></i>{" "}
+                      <text className="font-medium">
+                        {start_date.slice(0, 5)}
+                      </text>
+                      , {start_hour} -{" "}
+                      <text className="font-medium">
+                        {end_date.slice(0, 5)}
+                      </text>
+                      , {end_hour}
+                    </div>
+                  ) : (
+                    <div>
+                      {dateInfo}
+                      <p></p>
+                      <i className="bi bi-clock-fill"></i> {start_hour} -{" "}
+                      {end_hour}
+                    </div>
+                  )
                 ) : (
-                  ""
+                  <>{dateInfo}</>
                 )}
               </div>
               {/* PLACE */}
               {selectedEvent.place ? (
-                <div>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${selectedEvent.place.replace(
+                    " ",
+                    "+"
+                  )}`}
+                >
                   <p></p>
                   <i className="bi bi-geo-alt-fill"></i> {selectedEvent.place}
-                </div>
+                </a>
               ) : (
                 ""
               )}
