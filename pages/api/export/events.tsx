@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { IFormatedEvent } from "../..";
 import { IEventDTO, IFilterDTO } from "../../../dtos";
+import { getEvents } from "../../../utils";
 
 import ical from "ical-generator";
 import { ICalEventData } from "ical-generator";
@@ -21,42 +22,6 @@ const academicYear: Date = new Date(
   8,
   1
 ); // 8 = September (0-11)
-
-// Fetch event data from Google Sheets
-async function getEvents(): Promise<IEventDTO[]> {
-  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
-  const jwt = new google.auth.JWT(
-    process.env.GS_CLIENT_EMAIL,
-    null,
-    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
-    target
-  );
-  const sheets = google.sheets({ version: "v4", auth: jwt });
-
-  const range = "Eventos!A2:I999";
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
-
-  let events: IEventDTO[] = [];
-  const rows: string[][] = response.data.values;
-  if (rows.length) {
-    events = rows.map((row: string[]) => ({
-      title: row[0],
-      place: row[1] ?? undefined,
-      link: row[2] ?? undefined,
-      start: row[3] + " " + row[4],
-      end: row[5] + " " + row[6],
-      groupId: parseInt(row[7]),
-      filterId: parseInt(row[8]),
-    }));
-
-    return events;
-  }
-
-  return events;
-}
 
 // Convert events to ICS format
 function convertEventsToICS(events: IFormatedEvent[]) {
@@ -103,8 +68,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     queryKeys.map((key) => filtersNames.includes(key)).every((v) => v === true);
 
   if (valid) {
+    // Connect to Google API
+    const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+    const jwt = new google.auth.JWT(
+      process.env.GS_CLIENT_EMAIL,
+      null,
+      (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+      target
+    );
+    const sheets = google.sheets({ version: "v4", auth: jwt });
+
     // Fetch event data
-    const eventsData: IEventDTO[] = await getEvents();
+    const eventsData: IEventDTO[] = await getEvents(sheets);
 
     // Converts the start and end date strings of an event into Date objects
     const configureDates = (event) => {
