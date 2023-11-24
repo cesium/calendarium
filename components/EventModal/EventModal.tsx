@@ -98,6 +98,8 @@ function EventModal({
                     " ",
                     "+"
                   )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <p></p>
                   <i className="bi bi-geo-alt-fill"></i> {selectedEvent.place}
