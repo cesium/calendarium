@@ -35,10 +35,20 @@ function EventModal({
     <>
       <i className="bi bi-calendar-fill"></i>{" "}
       {start_date.localeCompare(end_date)
-        ? `${start_date} - ${end_date}`
-        : `${start_date}`}
+        ? `${start_date.slice(0, 5)} - ${end_date.slice(0, 5)}`
+        : `${start_date.slice(0, 5)}`}
     </>
   );
+
+  const formattedLink = (link: string) => (
+    <>
+    {selectedEvent.link.replace("https://", "").length > 30
+      ? selectedEvent.link
+          .replace("https://", "")
+          .split("/")[0] + "/..."
+      : selectedEvent.link.replace("https://", "")}
+    </>
+  )
 
   return (
     <div>
@@ -124,9 +134,11 @@ function EventModal({
                   <i className="bi bi-link-45deg"></i>
                   <a
                     href={selectedEvent.link}
-                    style={{ color: "rgb(24, 144, 255, 1)" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
                   >
-                    {selectedEvent.link.replace("https://", "")}
+                    {formattedLink(selectedEvent.link)}
                   </a>
                 </div>
               )}
