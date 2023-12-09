@@ -68,5 +68,15 @@
     "type": "Tips",
     "description": "Clica no ícone de lixo para limpar as tuas seleções de eventos ou turnos.",
     "date": "2023-11-19 13:26"
+  },
+  {
+    "type": "Eventos",
+    "description": "LEI/MEI: Já podes consultar o local e hora dos teus testes futuros.",
+    "date": "2023-12-09 19:57"
+  },
+  {
+    "type": "Tips",
+    "description": "Clica num evento para saber mais informações, como o seu local e hora.",
+    "date": "2023-10-21 23:58"
   }
 ]
