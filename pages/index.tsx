@@ -269,14 +269,14 @@ export default function Home({ events, filters }) {
               paddingBottom: "1rem",
             }}
           >
-            <text className="font-bold">Something missing?</text> Help us add it{" "}
+            <text className="font-bold">Something missing?</text> Help us{" "}
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer text-blue-500 hover:underline"
             >
-              here
+              add it
             </a>
           </div>
         </div>
