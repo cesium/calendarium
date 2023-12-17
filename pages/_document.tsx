@@ -7,6 +7,7 @@ export default function Document() {
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="apple-touch-icon" href="/icon-512x512.png"></link>
         {/* Splash Screen configuration for IOS devices */}
+        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
         <link
           href="/pwa/splashscreens/iphone5_splash.png"
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
