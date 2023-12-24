@@ -8,8 +8,8 @@
 }
 
 .calendar {
+  font-family: Inter;
   height: calc(100% - 1.5rem);
   width: 100%;
-  font-family: Inter;
   z-index: 0;
 }
