@@ -4,8 +4,8 @@
 }
 
 .schedule {
-  font-family: Inter;
-  height: calc(100% - 1.5rem);
-  width: 100%;
   z-index: 0;
+  width: 100%;
+  height: calc(100% - 1.5rem);
+  font-family: Inter;
 }
