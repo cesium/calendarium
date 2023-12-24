@@ -197,21 +197,25 @@ const CalendarExportModal = ({
                   <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm">
                     <Collapse.Panel header="How does it work?" key="1">
                       <div className="text-justify">
-                        The URL above allows you to{" "}
-                        <a className="font-medium">subscribe</a> to your active{" "}
-                        <a className="font-medium">
-                          {isHome ? "events" : "schedule"}
-                        </a>{" "}
-                        in Calendarium, using your favorite calendar app.
-                        <p />
-                        This means that you will be able to see your{" "}
-                        {isHome ? "events" : "schedule"} in your calendar app,
-                        and add event notifications, change colors and make
-                        other customizations.
-                        <p />
-                        Your {isHome ? "events" : "schedule"} will be
-                        automatically synced with Calendarium.
-                        <p />
+                        <p>
+                          The URL above allows you to{" "}
+                          <a className="font-medium">subscribe</a> to your
+                          active{" "}
+                          <a className="font-medium">
+                            {isHome ? "events" : "schedule"}
+                          </a>{" "}
+                          in Calendarium, using your favorite calendar app.
+                        </p>
+                        <p>
+                          This means that you will be able to see your{" "}
+                          {isHome ? "events" : "schedule"} in your calendar app,
+                          and add event notifications, change colors and make
+                          other customizations.
+                        </p>
+                        <p>
+                          Your {isHome ? "events" : "schedule"} will be
+                          automatically synced with Calendarium.
+                        </p>
                         <div className="rounded-lg bg-blue-500/20 p-3">
                           <i className="bi bi-info-circle-fill text-blue-500"></i>{" "}
                           To export your{" "}
@@ -241,32 +245,31 @@ const CalendarExportModal = ({
                   >
                     <Collapse.Panel header="Google Calendar" key="1">
                       <div className="text-gray-900">
-                        <text className="font-bold">1.</text> On your computer,
-                        open{" "}
-                        <a
-                          href="https://calendar.google.com"
-                          className="text-blue-500"
-                        >
-                          Google Calendar{" "}
-                          <i className="bi bi-box-arrow-up-right"></i>
-                        </a>
-                        .
-                        <p />
-                        <text className="font-bold">2.</text> On the left, next
-                        to {'"Other calendars"'}, click Add{" "}
-                        <i className="bi bi-plus"></i>{" "}
-                        <i className="bi bi-chevron-right"></i>{" "}
-                        <text className="font-medium">From URL</text>.
-                        <p />
-                        <text className="font-bold">3.</text> Enter the above
-                        calendar
-                        {"'"}s address.
-                        <p />
-                        <text className="font-bold">4.</text> Click{" "}
-                        <a className="font-medium">Add calendar</a>. The
-                        calendar appears on the left, under{" "}
-                        {'"Other calendars"'}.
-                        <p />
+                        <ol className="ml-6 list-decimal">
+                          <li>
+                            On your computer, open{" "}
+                            <a
+                              href="https://calendar.google.com"
+                              className="text-blue-500"
+                            >
+                              Google Calendar{" "}
+                              <i className="bi bi-box-arrow-up-right"></i>
+                            </a>
+                            .
+                          </li>
+                          <li>
+                            On the left, next to {'"Other calendars"'}, click
+                            Add <i className="bi bi-plus"></i>{" "}
+                            <i className="bi bi-chevron-right"></i>{" "}
+                            <text className="font-medium">From URL</text>.
+                          </li>
+                          <li>Enter the above calendar{"'"}s address.</li>
+                          <li>
+                            Click <a className="font-medium">Add calendar</a>.
+                            The calendar appears on the left, under{" "}
+                            {'"Other calendars"'}.
+                          </li>
+                        </ol>
                         <a
                           href="https://support.google.com/calendar/answer/37100?hl=en&co=GENIE.Platform=Desktop"
                           className="text-blue-500"
@@ -277,26 +280,26 @@ const CalendarExportModal = ({
                     </Collapse.Panel>
                     <Collapse.Panel header="Apple Calendar" key="2">
                       <div className="text-gray-900">
-                        <text className="font-bold">1.</text> On your iPhone,
-                        open <a className="font-medium">Calendar</a>.
-                        <p />
-                        <text className="font-bold">2.</text> On the bottom,
-                        click {'"Calendars"'}.
-                        <p />
-                        <text className="font-bold">3.</text> On the bottom
-                        left, click {'"Add Calendar"'}{" "}
-                        <i className="bi bi-chevron-right"></i>{" "}
-                        <a className="font-medium">Add Subscription Calendar</a>
-                        .
-                        <p />
-                        <text className="font-bold">3.</text> Enter the above
-                        calendar
-                        {"'"}s address.
-                        <p />
-                        <text className="font-bold">4.</text> Click{" "}
-                        <a className="font-medium">Subscribe</a>. The calendar
-                        appears under {'"Calendars"'}.
-                        <p />
+                        <ol className="ml-6 list-decimal">
+                          <li>
+                            On your iPhone, open{" "}
+                            <a className="font-medium">Calendar</a>.
+                          </li>
+                          <li>On the bottom, click {'"Calendars"'}.</li>
+                          <li>
+                            On the bottom left, click {'"Add Calendar"'}{" "}
+                            <i className="bi bi-chevron-right"></i>{" "}
+                            <a className="font-medium">
+                              Add Subscription Calendar
+                            </a>
+                            .
+                          </li>
+                          <li>Enter the above calendar{"'"}s address.</li>
+                          <li>
+                            Click <a className="font-medium">Subscribe</a>. The
+                            calendar appears under {'"Calendars"'}.
+                          </li>
+                        </ol>
                         <i className="bi bi-lightbulb"></i> You can also{" "}
                         <a
                           href="https://support.apple.com/guide/calendar/subscribe-to-calendars-icl1022/mac"
@@ -309,31 +312,33 @@ const CalendarExportModal = ({
                     </Collapse.Panel>
                     <Collapse.Panel header="Outlook Calendar" key="3">
                       <div className="text-gray-900">
-                        <text className="font-bold">1.</text> Sign in to{" "}
-                        <a
-                          href="https://go.microsoft.com/fwlink/p/?linkid=843379"
-                          className="text-blue-500"
-                        >
-                          Outlook.com{" "}
-                          <i className="bi bi-box-arrow-up-right"></i>
-                        </a>
-                        <p />
-                        <text className="font-bold">2.</text> At the bottom of
-                        the page, select the calendar icon.
-                        <p />
-                        <text className="font-bold">3.</text> In the navigation
-                        pane, select <a className="font-medium">Add Calendar</a>
-                        .
-                        <p />
-                        <text className="font-bold">4.</text> Select{" "}
-                        <a className="font-medium">Subscribe from web</a>.
-                        <p />
-                        <text className="font-bold">5.</text> Enter the above
-                        calendar{"'"}s address.
-                        <p />
-                        <text className="font-bold">6.</text> Select{" "}
-                        <a className="font-medium">Import</a>.
-                        <p />
+                        <ol className="ml-6 list-decimal">
+                          <li>
+                            Sign in to{" "}
+                            <a
+                              href="https://go.microsoft.com/fwlink/p/?linkid=843379"
+                              className="text-blue-500"
+                            >
+                              Outlook.com{" "}
+                              <i className="bi bi-box-arrow-up-right"></i>
+                            </a>
+                          </li>
+                          <li>
+                            At the bottom of the page, select the calendar icon.
+                          </li>
+                          <li>
+                            In the navigation pane, select{" "}
+                            <a className="font-medium">Add Calendar</a>.
+                          </li>
+                          <li>
+                            Select{" "}
+                            <a className="font-medium">Subscribe from web</a>.
+                          </li>
+                          <li>Enter the above calendar{"'"}s address.</li>
+                          <li>
+                            Select <a className="font-medium">Import</a>.
+                          </li>
+                        </ol>
                         <a
                           href="https://support.microsoft.com/en-gb/office/import-or-subscribe-to-a-calendar-in-outlook-com-cff1429c-5af6-41ec-a5b4-74f2c278e98c"
                           className="text-blue-500"
