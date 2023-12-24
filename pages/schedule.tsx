@@ -221,59 +221,51 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       }}
       saveTheme={saveTheme}
     >
-      <div>
+      <div className="h-full">
         <Head>
           <title>Schedule | Calendarium</title>
           <meta name="description" content="Your weekly schedule." />
           <link rel="icon" href="/favicon-calendarium.ico" />~
         </Head>
 
-        <div id="SCHEDULE" className={styles.schedule}>
-          <Calendar
-            toolbar={false}
-            localizer={localizer}
-            selected={selectedShift}
-            onSelectEvent={(shift) => handleSelection(shift)}
-            defaultDate={new Date()}
-            defaultView={"work_week"}
-            views={["work_week"]}
-            min={minDate}
-            max={maxDate}
-            eventPropGetter={(event) => {
-              const newStyle = {
-                border: "2px solid white",
-                backgroundColor: getBgColor(event),
-                color: getTextColor(event),
-                fontWeight: "500",
-                padding: "0.5rem",
-                borderRadius: "12px",
-              };
+        <Calendar
+          toolbar={false}
+          localizer={localizer}
+          selected={selectedShift}
+          onSelectEvent={(shift) => handleSelection(shift)}
+          defaultDate={new Date()}
+          defaultView={"work_week"}
+          views={["work_week"]}
+          min={minDate}
+          max={maxDate}
+          eventPropGetter={(event) => {
+            const newStyle = {
+              border: "2px solid white",
+              backgroundColor: getBgColor(event),
+              color: getTextColor(event),
+              fontWeight: "500",
+              padding: "0.5rem",
+              borderRadius: "12px",
+            };
 
-              return { style: newStyle };
-            }}
-            formats={formats}
-            dayLayoutAlgorithm={"no-overlap"}
-            events={events}
-            className={styles.schedule_style}
-          />
-          <div
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              marginTop: "0.5rem",
-              paddingBottom: "1rem",
-            }}
+            return { style: newStyle };
+          }}
+          formats={formats}
+          dayLayoutAlgorithm={"no-overlap"}
+          events={events}
+          className={styles.schedule}
+        />
+
+        <div className="mt-2 font-display text-sm">
+          <b>Source:</b>{" "}
+          <a
+            href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer hover:text-blue-500 hover:underline"
           >
-            <b>Source:</b>{" "}
-            <a
-              href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer hover:text-blue-500 hover:underline"
-            >
-              Horários UMinho
-            </a>
-          </div>
+            Horários UMinho <i className="bi bi-box-arrow-up-right" />
+          </a>
         </div>
 
         <ShiftModal
