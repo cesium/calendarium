@@ -31,13 +31,13 @@ const Install = () => {
       >
         <Fade in={isModalOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-full min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-xl sm:w-80"
             style={{
               maxHeight: "calc(100% - 4rem)",
               maxWidth: "calc(100% - 4rem)",
             }}
           >
-            <div className="w-80 space-y-4">
+            <div className="w-full space-y-4">
               <Typography
                 id="modal-modal-title"
                 className="select-none text-gray-900"
@@ -50,7 +50,7 @@ const Install = () => {
                 <i className="bi bi-info-circle-fill text-blue-500"></i> You can
                 install Calendarium as a{" "}
                 <a
-                  className="font-medium hover:underline"
+                  className="font-semibold hover:underline"
                   href="https://pt.wikipedia.org/wiki/Progressive_web_app"
                   target="_blank"
                   rel="noopener noreferrer"
