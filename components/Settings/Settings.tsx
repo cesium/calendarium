@@ -1,6 +1,7 @@
 import { IFilterDTO } from "../../dtos";
 
 import Themes from "../Themes";
+import Install from "../Install";
 
 type SettingsProps = {
   saveTheme: () => void;
@@ -32,6 +33,7 @@ const Settings = ({
         setIsOpen={setIsOpen}
         isHome={isHome}
       />
+      <Install />
     </div>
   );
 };

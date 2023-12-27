@@ -9,17 +9,7 @@
 
 .calendar {
   z-index: 0;
-  height: calc(100vh - 4.5rem);
-}
-
-/* could be 100vh, which would help mobile view a bit by increasing the amount of space.
-   however, it requires scrolling which goes against the objective of keeping it all in one view */
-@media (max-width: 1024px) {
-  .calendar {
-    height: calc(100vh - 9.2rem);
-  }
-}
-
-.react_big_calendar {
+  width: 100%;
+  height: calc(100% - 1.5rem);
   font-family: Inter;
 }

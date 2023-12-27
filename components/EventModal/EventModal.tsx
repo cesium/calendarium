@@ -42,13 +42,11 @@ function EventModal({
 
   const formattedLink = (link: string) => (
     <>
-    {selectedEvent.link.replace("https://", "").length > 30
-      ? selectedEvent.link
-          .replace("https://", "")
-          .split("/")[0] + "/..."
-      : selectedEvent.link.replace("https://", "")}
+      {selectedEvent.link.replace("https://", "").length > 30
+        ? selectedEvent.link.replace("https://", "").split("/")[0] + "/..."
+        : selectedEvent.link.replace("https://", "")}
     </>
-  )
+  );
 
   return (
     <div>

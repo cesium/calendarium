@@ -378,7 +378,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
           {(customType === "Year" || checkedThings.length > 0) && (
             <button
               type="button"
-              className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm hover:bg-cesium-200"
+              className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200"
               onClick={() => {
                 saveTheme();
                 isOpen && setIsOpen(false);

@@ -102,7 +102,9 @@ const Layout = ({
       </div>
 
       {/* Children */}
-      <main className="flex-1 px-8 py-8 lg:ml-96">{children}</main>
+      <main className="h-[calc(100vh-4.9rem)] w-full flex-1 px-8 py-8 text-gray-900 lg:ml-96 lg:h-screen">
+        {children}
+      </main>
     </div>
   );
 };

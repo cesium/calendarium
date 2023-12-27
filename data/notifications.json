@@ -83,5 +83,10 @@
     "type": "Tips",
     "description": "Utiliza a visão semanal para mais detalhe na distribuição horária dos teus eventos.",
     "date": "2023-12-09 20:05"
+  },
+  {
+    "type": "Updates",
+    "description": "Melhora a tua experiência! Agora podes instalar o Calendarium como uma App, acede ao menu de configurações e sabe mais.",
+    "date": "2023-12-23 23:00"
   }
 ]
