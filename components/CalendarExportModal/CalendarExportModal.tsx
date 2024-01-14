@@ -152,16 +152,12 @@ const CalendarExportModal = ({
                 Export by URL <i className="bi bi-link-45deg"></i>
               </span>
               {URL === "" ? (
-                <span id="modal-modal-description" className="mt-2">
-                  <div>
-                    <div className="text-center">
-                      <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
-                      {isHome
-                        ? "Select at least one subject."
-                        : "Select at least one shift."}
-                    </div>
-                  </div>
-                </span>
+                <div id="modal-modal-description" className="text-center">
+                  <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
+                  {isHome
+                    ? "Select at least one subject."
+                    : "Select at least one shift."}
+                </div>
               ) : (
                 <div className="space-y-4">
                   <span id="modal-modal-description">
