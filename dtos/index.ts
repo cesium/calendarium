@@ -28,3 +28,9 @@ export interface IShiftDTO {
   end: string;
   filterId: number;
 }
+
+export interface INotDTO {
+  type: string;
+  description: string;
+  date: string;
+}
