@@ -214,17 +214,15 @@ const ShareModal = ({
               maxWidth: "calc(100% - 4rem)",
             }}
           >
-            <div className="w-full space-y-4">
-              <Typography
+            <div className="w-full space-y-4 font-display">
+              <span
                 id="modal-modal-title"
-                className="select-none text-gray-900"
-                variant="h6"
-                component="h2"
+                className="select-none text-xl font-medium"
               >
                 Share Your {isHome ? "Events" : "Schedule"}{" "}
                 <i className="bi bi-link-45deg"></i>
-              </Typography>
-              <Typography id="modal-modal-description">
+              </span>
+              <div id="modal-modal-description">
                 <div>
                   <div className="flex">
                     <form
@@ -234,13 +232,13 @@ const ShareModal = ({
                       <div className="relative flex flex-grow items-stretch focus-within:z-10">
                         <input
                           name="link"
-                          className="block w-full rounded-none rounded-l-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-none rounded-l-lg border-0 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6"
                           placeholder="Insert a share link here..."
                         />
                       </div>
                       <button
                         type="submit"
-                        className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         title="Import"
                       >
                         {isImporting ? (
@@ -276,7 +274,7 @@ const ShareModal = ({
                     </form>
                     <button
                       type="button"
-                      className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       title="Copy your share link"
                       onClick={copyToClipboard}
                     >
@@ -288,8 +286,8 @@ const ShareModal = ({
                     </button>
                   </div>
                 </div>
-              </Typography>
-              <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm">
+              </div>
+              <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left font-display shadow-sm">
                 <Collapse.Panel header="How does it work?" key="1">
                   <div className="text-justify">
                     <a className="font-medium">

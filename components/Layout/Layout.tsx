@@ -27,7 +27,7 @@ const Layout = ({
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300`;
 
   return (
-    <div className="lg:flex">
+    <div className="text-gray-900 lg:flex">
       {/* Open/Close Sidebar Button */}
       <button
         className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-zinc-100/50 lg:hidden"
@@ -63,9 +63,8 @@ const Layout = ({
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
         >
           <Link href="https://cesium.link/">
-            <Image
-              width={260.89}
-              height={46}
+            <img
+              className="h-[46px] w-auto"
               src={"/calendarium-light.svg"}
               alt="CeSIUM Link"
             />
@@ -96,13 +95,13 @@ const Layout = ({
           className={styles.buttonBug}
         >
           <div>
-            <text>Feedback</text> <i className="bi bi-chat-fill"></i>
+            <p>Feedback</p> <i className="bi bi-chat-fill"></i>
           </div>
         </button>
       </div>
 
       {/* Children */}
-      <main className="h-[calc(100vh-4.9rem)] w-full flex-1 px-8 py-8 text-gray-900 lg:ml-96 lg:h-screen">
+      <main className="h-[calc(100vh-4.9rem)] w-full flex-1 px-8 py-8  lg:ml-96 lg:h-screen">
         {children}
       </main>
     </div>

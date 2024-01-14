@@ -144,18 +144,16 @@ const CalendarExportModal = ({
               maxWidth: "calc(100% - 4rem)",
             }}
           >
-            <div className="w-full space-y-4">
-              <Typography
+            <div className="w-full space-y-4 font-display">
+              <span
                 id="modal-modal-title"
-                className="select-none text-gray-900"
-                variant="h6"
-                component="h2"
+                className="select-none text-xl font-medium"
               >
                 Export by URL <i className="bi bi-link-45deg"></i>
-              </Typography>
+              </span>
               {URL === "" ? (
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  <div className="text-gray-900">
+                <span id="modal-modal-description" className="mt-2">
+                  <div>
                     <div className="text-center">
                       <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
                       {isHome
@@ -163,17 +161,17 @@ const CalendarExportModal = ({
                         : "Select at least one shift."}
                     </div>
                   </div>
-                </Typography>
+                </span>
               ) : (
                 <div className="space-y-4">
-                  <Typography id="modal-modal-description">
+                  <span id="modal-modal-description">
                     <div>
                       <div className="flex w-full rounded-lg shadow-sm">
                         <div
                           className="relative flex flex-grow items-stretch focus-within:z-10"
                           style={{ width: "calc(100% - 38px)" }}
                         >
-                          <div className="block w-full rounded-none rounded-l-lg border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6">
+                          <div className="block w-full rounded-none rounded-l-lg border-0 py-1.5  ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6">
                             <div className="mx-2 overflow-y-hidden overflow-x-scroll whitespace-nowrap text-start">
                               {URL}
                             </div>
@@ -182,7 +180,7 @@ const CalendarExportModal = ({
                         <button
                           type="button"
                           title={isCopied ? "Copied" : "Copy"}
-                          className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                          className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                           onClick={copyToClipboard}
                         >
                           {isCopied ? (
@@ -193,8 +191,8 @@ const CalendarExportModal = ({
                         </button>
                       </div>
                     </div>
-                  </Typography>
-                  <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm">
+                  </span>
+                  <Collapse className="w-full rounded-lg border-gray-300 bg-white text-left font-display shadow-sm">
                     <Collapse.Panel header="How does it work?" key="1">
                       <div className="text-justify">
                         <p>
@@ -216,7 +214,7 @@ const CalendarExportModal = ({
                           Your {isHome ? "events" : "schedule"} will be
                           automatically synced with Calendarium.
                         </p>
-                        <div className="rounded-lg bg-blue-500/20 p-3">
+                        <p className="rounded-lg bg-blue-500/20 p-3">
                           <i className="bi bi-info-circle-fill text-blue-500"></i>{" "}
                           To export your{" "}
                           <a className="font-medium">
@@ -224,8 +222,7 @@ const CalendarExportModal = ({
                           </a>{" "}
                           please navigate to{" "}
                           {isHome ? "/schedule" : "the main page"}.
-                        </div>
-                        <p />
+                        </p>
                         <div className="rounded-lg bg-warning/20 p-3">
                           <i className="bi bi-exclamation-triangle-fill text-warning"></i>{" "}
                           If you make any changes to your{" "}
@@ -241,10 +238,10 @@ const CalendarExportModal = ({
                   </Collapse>
                   <Collapse
                     accordion
-                    className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm"
+                    className="w-full rounded-lg border-gray-300 bg-white text-left font-display shadow-sm"
                   >
                     <Collapse.Panel header="Google Calendar" key="1">
-                      <div className="text-gray-900">
+                      <div className="">
                         <ol className="ml-6 list-decimal">
                           <li>
                             On your computer, open{" "}
@@ -261,7 +258,7 @@ const CalendarExportModal = ({
                             On the left, next to {'"Other calendars"'}, click
                             Add <i className="bi bi-plus"></i>{" "}
                             <i className="bi bi-chevron-right"></i>{" "}
-                            <text className="font-medium">From URL</text>.
+                            <span className="font-medium">From URL</span>.
                           </li>
                           <li>Enter the above calendar{"'"}s address.</li>
                           <li>
@@ -279,7 +276,7 @@ const CalendarExportModal = ({
                       </div>
                     </Collapse.Panel>
                     <Collapse.Panel header="Apple Calendar" key="2">
-                      <div className="text-gray-900">
+                      <div className="">
                         <ol className="ml-6 list-decimal">
                           <li>
                             On your iPhone, open{" "}
@@ -311,7 +308,7 @@ const CalendarExportModal = ({
                       </div>
                     </Collapse.Panel>
                     <Collapse.Panel header="Outlook Calendar" key="3">
-                      <div className="text-gray-900">
+                      <div className="">
                         <ol className="ml-6 list-decimal">
                           <li>
                             Sign in to{" "}

@@ -257,14 +257,16 @@ export default function Home({ filters }) {
         <span className="rbc-btn-group">
           <button
             type="button"
-            className={activeView === "week" && "rbc-active"}
+            // don't use condition && "result" -> className can't be a boolean
+            className={activeView === "week" ? "rbc-active" : undefined}
             onClick={() => handleViewChange("week")}
           >
             <i className="bi bi-calendar3-week"></i>
           </button>
           <button
             type="button"
-            className={activeView === "month" && "rbc-active"}
+            // don't use condition && "result" -> className can't be a boolean
+            className={activeView === "month" ? "rbc-active" : undefined}
             onClick={() => handleViewChange("month")}
           >
             <i className="bi bi-calendar3"></i>
@@ -324,7 +326,7 @@ export default function Home({ filters }) {
             <i className="bi bi-arrow-repeat" />
           </button>
           {" · "}
-          <text className="font-medium">Something missing?</text> Help us{" "}
+          <span className="font-medium">Something missing?</span> Help us{" "}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
             target="_blank"
@@ -347,7 +349,7 @@ export default function Home({ filters }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
   return {
@@ -355,4 +357,4 @@ export async function getStaticProps() {
       filters: filters,
     },
   };
-}
+};

@@ -52,36 +52,36 @@ function ShiftModal({
             className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-xl"
             style={{ maxWidth: "calc(100% - 4rem)" }}
           >
-            <Typography
-              id="modal-modal-title"
-              className="border-b pb-3"
-              variant="h6"
-              component="h2"
-            >
-              {name}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {/* YEAR */}
-              {ano != "0" && ano != "6" ? (
+            <div className="space-y-4 font-display">
+              <div className="m-auto w-fit border-b pb-4">
+                <span id="modal-modal-title" className="text-xl font-medium">
+                  {name}
+                </span>
+              </div>
+              <div id="modal-modal-description">
+                {/* YEAR */}
+                {ano != "0" && ano != "6" ? (
+                  <p>
+                    <i className="bi bi-mortarboard-fill"></i> {ano}º ano -{" "}
+                    {semestre}º sem
+                  </p>
+                ) : (
+                  ""
+                )}
+                {/* TIME */}
                 <p>
-                  <i className="bi bi-mortarboard-fill"></i> {ano}º ano -{" "}
-                  {semestre}º sem
+                  <i className="bi bi-clock-fill"></i> {start_hour} -{" "}
+                  {end_hour()}
                 </p>
-              ) : (
-                ""
-              )}
-              {/* TIME */}
-              <p>
-                <i className="bi bi-clock-fill"></i> {start_hour} - {end_hour()}
-              </p>
-              {/* PLACE */}
-              <p>
-                <i className="bi bi-geo-alt-fill"></i>{" "}
-                {selectedShift.building.includes("CP") ? "" : "Ed."}{" "}
-                {selectedShift.building} - {selectedShift.room}
-              </p>
-              <i className="bi bi-briefcase-fill"></i> {selectedShift.shift}
-            </Typography>
+                {/* PLACE */}
+                <p>
+                  <i className="bi bi-geo-alt-fill"></i>{" "}
+                  {selectedShift.building.includes("CP") ? "" : "Ed."}{" "}
+                  {selectedShift.building} - {selectedShift.room}
+                </p>
+                <i className="bi bi-briefcase-fill"></i> {selectedShift.shift}
+              </div>
+            </div>
           </Box>
         </Fade>
       </Modal>

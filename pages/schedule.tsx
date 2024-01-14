@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-import { GetStaticProps } from "next";
 import Head from "next/head";
+
+import * as fs from "fs";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -182,7 +183,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           .hour(+startHour)
           .minute(+startMinute)
           .toDate(),
-        /* (*) were subtracting 1 minute here to solve an issue that occurs when
+        /* (*) we're subtracting 1 minute here to solve an issue that occurs when
          * the end time of an event is equal to the start time of another.
          * this issue causes the event bellow to think it is overlaping with the top one,
          * when the `dayLayoutAlgorithm` is set to `no-overlap`.
@@ -279,18 +280,12 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   // fetch filters
-  const filterFilePath = path.join(process.cwd(), "data/filters.json");
-
-  const filtersBuffer = await fsPromises.readFile(filterFilePath);
-  const filters = JSON.parse(filtersBuffer as unknown as string);
+  const filters = JSON.parse(fs.readFileSync("data/filters.json", "utf-8"));
 
   // fetch shitfs
-  const shiftFilePath = path.join(process.cwd(), "data/shifts.json");
-
-  const shiftsBuffer = await fsPromises.readFile(shiftFilePath);
-  const shifts = JSON.parse(shiftsBuffer as unknown as string);
+  const shifts = JSON.parse(fs.readFileSync("data/shifts.json", "utf-8"));
 
   return {
     props: {
