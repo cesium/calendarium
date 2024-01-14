@@ -23,6 +23,7 @@ const luKey = "lastUpdateEvents";
 
 // Fetch event data using the API
 async function getData(): Promise<IEventDTO[]> {
+  // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
   const domain = "https://deploy-preview-174--cesium-calendarium.netlify.app";
   const response = await fetch(`${domain}/api/transfer/events`);
   const data = await response.text();
