@@ -69,11 +69,13 @@ const Sidebar = ({
             style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
           >
             <Link href="https://cesium.link/">
-              <img
-                className="h-[46px] w-auto"
-                src={"/calendarium-light.svg"}
-                alt="CeSIUM Link"
-              />
+              <picture>
+                <img
+                  className="h-[46px] w-auto"
+                  src={"/calendarium-light.svg"}
+                  alt="CeSIUM Link"
+                />
+              </picture>
             </Link>
           </div>
         </div>
