@@ -103,7 +103,8 @@ const Banner = ({
 
 // Fetch event data using the API
 async function getData(): Promise<INotDTO[]> {
-  const domain = process.env.NEXT_PUBLIC_DOMAIN;
+  // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
+  const domain = "https://deploy-preview-174--cesium-calendarium.netlify.app";
   const response = await fetch(`${domain}/api/transfer/notifications`);
   const data = await response.text();
   const notifications: INotDTO[] = JSON.parse(data);
