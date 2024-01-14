@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { google, sheets_v4 } from "googleapis";
 
 import { INotDTO } from "../../../dtos";
-import { Console } from "console";
 
 async function getNotifications(sheets: sheets_v4.Sheets): Promise<INotDTO[]> {
   const range = "Notificações!A2:D999";

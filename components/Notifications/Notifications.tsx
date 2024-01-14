@@ -1,5 +1,7 @@
 import React from "react";
 
+import moment from "moment-timezone";
+
 import { INotDTO } from "../../dtos";
 
 type BannerProps = {
@@ -104,7 +106,7 @@ const Banner = ({
 // Fetch event data using the API
 async function getData(): Promise<INotDTO[]> {
   // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
-  const domain = "https://deploy-preview-174--cesium-calendarium.netlify.app";
+  const domain = window.location.origin;
   const response = await fetch(`${domain}/api/transfer/notifications`);
   const data = await response.text();
   const notifications: INotDTO[] = JSON.parse(data);
@@ -133,7 +135,10 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     if (!localData || diffMin >= 60) {
       data = await getData();
       localStorage.setItem(ndKey, JSON.stringify(data));
-      localStorage.setItem(luKey, new Date().toISOString());
+      localStorage.setItem(
+        luKey,
+        moment(new Date()).format("YYYY-MM-DD HH:mm")
+      );
     } else {
       data = JSON.parse(localData);
     }

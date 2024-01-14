@@ -24,7 +24,7 @@ const luKey = "lastUpdateEvents";
 // Fetch event data using the API
 async function getData(): Promise<IEventDTO[]> {
   // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
-  const domain = "https://deploy-preview-174--cesium-calendarium.netlify.app";
+  const domain = window.location.origin;
   const response = await fetch(`${domain}/api/transfer/events`);
   const data = await response.text();
   const events: IEventDTO[] = JSON.parse(data);
@@ -46,8 +46,7 @@ export default function Home({ filters }) {
     const localData = localStorage.getItem(edKey);
 
     // fetch last update date
-    let lastUpdate: Date =
-      new Date(localStorage.getItem(luKey)) || new Date(); // current date if lastUpdate is null
+    let lastUpdate: Date = new Date(localStorage.getItem(luKey)) || new Date(); // current date if lastUpdate is null
     const now: Date = new Date();
     const diff: number = now.getTime() - lastUpdate.getTime(); // difference in milliseconds
     const diffMin: number = diff / (1000 * 60); // difference in minutes
@@ -59,7 +58,10 @@ export default function Home({ filters }) {
     if (!localData || diffMin >= 60 || update) {
       data = await getData();
       localStorage.setItem(edKey, JSON.stringify(data));
-      localStorage.setItem(luKey, new Date().toISOString());
+      localStorage.setItem(
+        luKey,
+        moment(new Date()).format("YYYY-MM-DD HH:mm")
+      );
     } else {
       data = JSON.parse(localData);
     }
