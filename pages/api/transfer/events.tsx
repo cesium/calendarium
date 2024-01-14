@@ -8,24 +8,34 @@ import { getEvents } from "../../../utils";
 const API = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "application/json");
 
-  // Connect to Google API
-  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
-  const jwt = new google.auth.JWT(
-    process.env.GS_CLIENT_EMAIL,
-    null,
-    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
-    target
-  );
-  const sheets = google.sheets({ version: "v4", auth: jwt });
+  try {
+    const { GS_CLIENT_EMAIL, GS_PRIVATE_KEY } = process.env;
+    if (!GS_CLIENT_EMAIL || !GS_PRIVATE_KEY) {
+      throw new Error("GS_CLIENT_EMAIL and/or GS_PRIVATE_KEY is missing.");
+    }
 
-  // Fetch event data
-  const eventsData: IEventDTO[] = await getEvents(sheets);
+    // Connect to Google API
+    const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+    const jwt = new google.auth.JWT(
+      GS_CLIENT_EMAIL,
+      null,
+      (GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+      target
+    );
+    const sheets = google.sheets({ version: "v4", auth: jwt });
 
-  // Convert data into JSON
-  const data = JSON.stringify(eventsData);
+    // Fetch event data
+    const eventsData: IEventDTO[] = await getEvents(sheets);
 
-  // Send JSON data
-  res.status(200).send(data);
+    // Convert data into JSON
+    const data = JSON.stringify(eventsData);
+
+    // Send JSON data
+    res.status(200).send(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).end();
+  }
 };
 
 export default API;

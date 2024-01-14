@@ -11,47 +11,54 @@ async function getNotifications(sheets: sheets_v4.Sheets): Promise<INotDTO[]> {
     range,
   });
 
-  let notifications: INotDTO[] = [];
   const rows: string[][] = response.data.values;
-  if (rows.length) {
-    notifications = rows.map((row) => {
-      return {
-        type: row[0] ?? undefined,
-        description: row[1] ?? undefined,
-        date: row[2] + " " + row[3] ?? undefined,
-      };
-    });
-  }
+  const notifications: INotDTO[] = rows
+    .filter((row) => row.length === 4)
+    .map((row) => ({
+      type: row[0] || undefined,
+      description: row[1] || undefined,
+      date: row[2] + " " + row[3] || undefined,
+    }))
+    .filter(
+      (n) =>
+        n.type !== undefined &&
+        n.description !== undefined &&
+        n.date !== undefined
+    );
 
-  return notifications.filter(
-    (n) =>
-      n.type !== undefined &&
-      n.description !== undefined &&
-      n.date !== undefined
-  );
+  return notifications;
 }
 
 const API = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "application/json");
 
-  // Connect to Google API
-  const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
-  const jwt = new google.auth.JWT(
-    process.env.GS_CLIENT_EMAIL,
-    null,
-    (process.env.GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
-    target
-  );
-  const sheets = google.sheets({ version: "v4", auth: jwt });
+  try {
+    const { GS_CLIENT_EMAIL, GS_PRIVATE_KEY } = process.env;
+    if (!GS_CLIENT_EMAIL || !GS_PRIVATE_KEY) {
+      throw new Error("GS_CLIENT_EMAIL and/or GS_PRIVATE_KEY is missing.");
+    }
+    // Connect to Google API
+    const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+    const jwt = new google.auth.JWT(
+      GS_CLIENT_EMAIL,
+      null,
+      (GS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+      target
+    );
+    const sheets = google.sheets({ version: "v4", auth: jwt });
 
-  // Fetch event data
-  const notificationData: INotDTO[] = await getNotifications(sheets);
+    // Fetch event data
+    const notificationData: INotDTO[] = await getNotifications(sheets);
 
-  // Convert data into JSON
-  const data = JSON.stringify(notificationData);
+    // Convert data into JSON
+    const data = JSON.stringify(notificationData);
 
-  // Send JSON data
-  res.status(200).send(data);
+    // Send JSON data
+    res.status(200).send(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).end();
+  }
 };
 
 export default API;

@@ -23,7 +23,6 @@ const luKey = "lastUpdateEvents";
 
 // Fetch event data using the API
 async function getData(): Promise<IEventDTO[]> {
-  // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
   const domain = window.location.origin;
   const response = await fetch(`${domain}/api/transfer/events`);
   const data = await response.text();
@@ -39,6 +38,14 @@ export default function Home({ filters }) {
   const [Filters, setFilters] = useState(filters);
   const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
   const [inspectEvent, setInspectEvent] = useState<boolean>(false);
+
+  const configureDates = (events: IEventDTO[]) => {
+    events.forEach((event) => {
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
+    });
+    return events;
+  };
 
   // Fetch event data
   const handleData = async (update: boolean = false) => {
@@ -67,7 +74,7 @@ export default function Home({ filters }) {
     }
 
     // update events
-    setFetchedEvents(data);
+    setFetchedEvents(configureDates(data));
     /* update events to be displayed
      *
      * because handleData() is async, the first call to handleFilters() made by EventFilters when the page is loaded
@@ -288,7 +295,7 @@ export default function Home({ filters }) {
           onSelectEvent={(event) => handleSelection(event)}
           defaultDate={new Date()}
           defaultView="month"
-          views={["day", "week", "month"]}
+          views={["week", "month"]}
           min={minDate}
           max={maxDate}
           eventPropGetter={(event: IEventDTO) => {

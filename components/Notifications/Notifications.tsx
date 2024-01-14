@@ -105,7 +105,6 @@ const Banner = ({
 
 // Fetch event data using the API
 async function getData(): Promise<INotDTO[]> {
-  // ! CHANGE TO: const domain = process.env.NEXT_PUBLIC_DOMAIN; BEFORE DEPLOYING
   const domain = window.location.origin;
   const response = await fetch(`${domain}/api/transfer/notifications`);
   const data = await response.text();
@@ -117,10 +116,7 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   const [notifications, setNotifications] = React.useState([]);
   const currentDate = new Date();
 
-  async function getNotifications(): Promise<INotDTO[]> {
-    // fetch data from localStorage if it exists
-    const localData = localStorage.getItem(ndKey);
-
+  const shouldFetchData = (localData: string) => {
     // fetch last update date
     const lastUpdate: Date =
       new Date(localStorage.getItem(luKey)) || new Date(); // current date if lastUpdate is null
@@ -128,11 +124,18 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     const diff: number = now.getTime() - lastUpdate.getTime(); // difference in milliseconds
     const diffMin: number = diff / (1000 * 60); // difference in minutes
 
+    return !localData || diffMin >= 60;
+  };
+
+  async function getNotifications(): Promise<INotDTO[]> {
+    // fetch data from localStorage if it exists
+    const localData = localStorage.getItem(ndKey);
+
     let data: INotDTO[];
 
     // only fetch data if it's been more than 60 minutes since last update
     // or if there is no data in localStorage
-    if (!localData || diffMin >= 60) {
+    if (shouldFetchData(localData)) {
       data = await getData();
       localStorage.setItem(ndKey, JSON.stringify(data));
       localStorage.setItem(

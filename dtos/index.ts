@@ -10,8 +10,8 @@ export interface IEventDTO {
   title: string;
   place: string;
   link: string;
-  start: string;
-  end: string;
+  start: string | Date;
+  end: string | Date;
   groupId: number;
   filterId: number;
 }
