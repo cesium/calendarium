@@ -23,8 +23,7 @@ const luKey = "lastUpdateEvents";
 
 // Fetch event data using the API
 async function getData(): Promise<IEventDTO[]> {
-  const domain = window.location.origin;
-  const response = await fetch(`${domain}/api/transfer/events`);
+  const response = await fetch(`/api/transfer/events`);
   const data = await response.text();
   const events: IEventDTO[] = JSON.parse(data);
   return events;

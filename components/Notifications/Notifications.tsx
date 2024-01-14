@@ -105,8 +105,7 @@ const Banner = ({
 
 // Fetch event data using the API
 async function getData(): Promise<INotDTO[]> {
-  const domain = window.location.origin;
-  const response = await fetch(`${domain}/api/transfer/notifications`);
+  const response = await fetch(`/api/transfer/notifications`);
   const data = await response.text();
   const notifications: INotDTO[] = JSON.parse(data);
   return notifications;
