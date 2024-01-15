@@ -1,6 +1,8 @@
 import React from "react";
 
-import data from "../../data/notifications.json";
+import moment from "moment-timezone";
+
+import { INotDTO } from "../../dtos";
 
 type BannerProps = {
   type: string;
@@ -13,6 +15,10 @@ type BannerProps = {
   total: number;
   update: any;
 };
+
+const dnKey = "dismissedNotifications";
+const luKey = "lastUpdateNotifications";
+const ndKey = "notificationData";
 
 const Banner = ({
   type,
@@ -29,9 +35,9 @@ const Banner = ({
 
   function handleDismiss() {
     // saves notification to local storage
-    let datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+    let datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
     datesArray.push(date);
-    localStorage.setItem("notifications", JSON.stringify(datesArray));
+    localStorage.setItem(dnKey, JSON.stringify(datesArray));
 
     update();
   }
@@ -97,15 +103,57 @@ const Banner = ({
   );
 };
 
+// Fetch event data using the API
+async function getData(): Promise<INotDTO[]> {
+  const response = await fetch(`/api/transfer/notifications`);
+  const data = await response.text();
+  const notifications: INotDTO[] = JSON.parse(data);
+  return notifications;
+}
+
 const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   const [notifications, setNotifications] = React.useState([]);
   const currentDate = new Date();
 
-  function updateNotifications() {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+  const shouldFetchData = (localData: string) => {
+    // fetch last update date
+    const lastUpdate: Date =
+      new Date(localStorage.getItem(luKey)) || new Date(); // current date if lastUpdate is null
+    const now: Date = new Date();
+    const diff: number = now.getTime() - lastUpdate.getTime(); // difference in milliseconds
+    const diffMin: number = diff / (1000 * 60); // difference in minutes
+
+    return !localData || diffMin >= 60;
+  };
+
+  async function getNotifications(): Promise<INotDTO[]> {
+    // fetch data from localStorage if it exists
+    const localData = localStorage.getItem(ndKey);
+
+    let data: INotDTO[];
+
+    // only fetch data if it's been more than 60 minutes since last update
+    // or if there is no data in localStorage
+    if (shouldFetchData(localData)) {
+      data = await getData();
+      localStorage.setItem(ndKey, JSON.stringify(data));
+      localStorage.setItem(
+        luKey,
+        moment(new Date()).format("YYYY-MM-DD HH:mm")
+      );
+    } else {
+      data = JSON.parse(localData);
+    }
+
+    return data;
+  }
+
+  async function updateNotifications() {
+    const notifications = await getNotifications();
+    const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
     setNotifications(
-      data
+      notifications
         // filters notifications that were published in the last 7 days
         // filters notifications that were already dismissed
         .filter((not) => {
@@ -117,10 +165,10 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   }
 
   function handleDismissAll() {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+    const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
     localStorage.setItem(
-      "notifications",
+      dnKey,
       JSON.stringify(
         notifications
           .filter((not) => {

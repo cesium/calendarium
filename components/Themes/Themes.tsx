@@ -21,7 +21,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
   const [openColor, setOpenColor] = useState<number>(0);
-  const [customType, setCustomType] = useState<string>("Year");
+  const [customType, setCustomType] = useState<string>("Subject");
   const [checkedFilters, setCheckedFilters] = useState<number[]>([]);
   const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
   const [checkedClasses, setCheckedClasses] = useState<number[]>([]);
@@ -179,17 +179,13 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
   return (
     <>
       <div>
-        <label
-          htmlFor="theme"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
+        <label htmlFor="theme" className="block text-sm font-medium leading-6 ">
           Theme
         </label>
         <select
           id="theme"
           name="theme"
-          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
-          defaultValue="Modern"
+          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10  ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
           value={theme}
           onChange={(e) => updateTheme(e.target.value)}
         >
@@ -202,17 +198,13 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
       {theme === "Custom" && (
         <div className="space-y-4">
           <div className="flex flex-row place-content-between items-center">
-            <label
-              htmlFor="theme"
-              className="w-full text-sm font-medium text-gray-900"
-            >
+            <label htmlFor="theme" className="w-full text-sm font-medium ">
               Customize by:
             </label>
             <select
               id="theme"
               name="theme"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
-              defaultValue="Year"
+              className="block w-full rounded-md border-0 py-1.5  ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-cesium-900"
               value={customType}
               onChange={(e) => updateCustomType(e.target.value)}
             >
@@ -251,12 +243,12 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 <div className="flex flex-row items-center space-x-2">
                   <div
                     title="A Hex color code, for example: #ed7950"
-                    className="cursor-default text-sm font-medium text-gray-900"
+                    className="cursor-default text-sm font-medium "
                   >
                     Hex:
                   </div>
                   <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center text-gray-900 focus:border-cesium-900 focus:ring-0"
+                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center  focus:border-cesium-900 focus:ring-0"
                     color={colors[openColor + 1]}
                     onChange={(newColor) => updateColors(newColor)}
                   />
@@ -279,16 +271,13 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                       } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
                     />
                   </Switch>
-                  <Switch.Label
-                    as="span"
-                    className="ml-3 text-sm font-medium text-gray-900"
-                  >
+                  <Switch.Label as="span" className="ml-3 text-sm font-medium ">
                     Opacity
                   </Switch.Label>
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold  shadow-sm hover:bg-gray-50"
                   onClick={backToDefault}
                 >
                   Back to Default
@@ -325,12 +314,12 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 <div className="flex flex-row items-center space-x-2">
                   <div
                     title="A Hex color code, for example: #ed7950"
-                    className="cursor-default text-sm font-medium text-gray-900"
+                    className="cursor-default text-sm font-medium "
                   >
                     Hex:
                   </div>
                   <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center text-gray-900 focus:border-cesium-900 focus:ring-0"
+                    className="text-md h-8 w-full rounded-lg border-gray-300 text-center  focus:border-cesium-900 focus:ring-0"
                     color={getSubjectColor(openColor)}
                     onChange={(newColor) => updateSubjectColors(newColor)}
                   />
@@ -353,16 +342,13 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                       } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
                     />
                   </Switch>
-                  <Switch.Label
-                    as="span"
-                    className="ml-3 text-sm font-medium text-gray-900"
-                  >
+                  <Switch.Label as="span" className="ml-3 text-sm font-medium ">
                     Opacity
                   </Switch.Label>
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold  shadow-sm hover:bg-gray-50"
                   onClick={backToSubjectDefault}
                 >
                   Back to Default
@@ -370,7 +356,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
               </div>
             </div>
           ) : (
-            <div className="text-gray-900">
+            <div className="">
               <i className="bi bi-exclamation-circle-fill text-warning" />{" "}
               Select at least one subject.
             </div>

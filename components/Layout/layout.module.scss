@@ -26,7 +26,7 @@
     text-align: right;
   }
 
-  text {
+  p {
     position: absolute;
     left: 0;
     margin-left: 1.1rem;
@@ -38,7 +38,7 @@
     box-shadow: rgb(133, 165, 255) 0 2px 12px 0px;
     width: 8.5rem;
 
-    text {
+    p {
       opacity: 1;
       transition-delay: 200ms;
     }

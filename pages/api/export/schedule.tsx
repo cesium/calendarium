@@ -41,7 +41,7 @@ function convertShiftsToICS(
   return icsShifts;
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const API = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "text/calendar");
   res.setHeader(
     "Content-Disposition",
@@ -184,3 +184,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).send(calendar.toString());
   } else res.status(400).send("Invalid request\n");
 };
+
+export default API;
