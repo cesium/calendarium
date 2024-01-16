@@ -4,8 +4,6 @@ import moment from "moment-timezone";
 
 import Markdown from "markdown-to-jsx";
 
-import { render } from "react-dom";
-
 import { INotDTO } from "../../dtos";
 
 type BannerProps = {
