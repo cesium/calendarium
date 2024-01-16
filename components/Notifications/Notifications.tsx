@@ -2,6 +2,8 @@ import React from "react";
 
 import moment from "moment-timezone";
 
+import Markdown from "markdown-to-jsx";
+
 import { INotDTO } from "../../dtos";
 
 type BannerProps = {
@@ -55,7 +57,7 @@ const Banner = ({
       } ease fixed inset-x-0 bottom-0 z-20 m-auto transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 pb-6 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
-        <div className="select-none text-sm leading-6 text-white">
+        <div className="select-none font-display text-sm leading-6 text-white">
           <div>
             <strong className="font-semibold">
               <i className="bi bi-info-circle-fill"></i> {type}
@@ -67,7 +69,21 @@ const Banner = ({
             >
               <circle cx={1} cy={1} r={1} />
             </svg>
-            {description}
+            <Markdown
+              options={{
+                overrides: {
+                  a: {
+                    props: {
+                      className: "hover:underline",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    },
+                  },
+                },
+              }}
+            >
+              {description}
+            </Markdown>
           </div>
         </div>
         <div className="flex justify-between gap-x-5 sm:gap-x-3">
