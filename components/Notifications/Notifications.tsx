@@ -1,6 +1,10 @@
 import React from "react";
 
-import data from "../../data/notifications.json";
+import moment from "moment-timezone";
+
+import Markdown from "markdown-to-jsx";
+
+import { INotDTO } from "../../dtos";
 
 type BannerProps = {
   type: string;
@@ -13,6 +17,10 @@ type BannerProps = {
   total: number;
   update: any;
 };
+
+const dnKey = "dismissedNotifications";
+const luKey = "lastUpdateNotifications";
+const ndKey = "notificationData";
 
 const Banner = ({
   type,
@@ -29,9 +37,9 @@ const Banner = ({
 
   function handleDismiss() {
     // saves notification to local storage
-    let datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+    let datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
     datesArray.push(date);
-    localStorage.setItem("notifications", JSON.stringify(datesArray));
+    localStorage.setItem(dnKey, JSON.stringify(datesArray));
 
     update();
   }
@@ -49,7 +57,7 @@ const Banner = ({
       } ease fixed inset-x-0 bottom-0 z-20 m-auto transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 pb-6 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
-        <div className="select-none text-sm leading-6 text-white">
+        <div className="select-none font-display text-sm leading-6 text-white">
           <div>
             <strong className="font-semibold">
               <i className="bi bi-info-circle-fill"></i> {type}
@@ -61,7 +69,21 @@ const Banner = ({
             >
               <circle cx={1} cy={1} r={1} />
             </svg>
-            {description}
+            <Markdown
+              options={{
+                overrides: {
+                  a: {
+                    props: {
+                      className: "hover:underline",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    },
+                  },
+                },
+              }}
+            >
+              {description}
+            </Markdown>
           </div>
         </div>
         <div className="flex justify-between gap-x-5 sm:gap-x-3">
@@ -97,15 +119,57 @@ const Banner = ({
   );
 };
 
+// Fetch event data using the API
+async function getData(): Promise<INotDTO[]> {
+  const response = await fetch(`/api/transfer/notifications`);
+  const data = await response.text();
+  const notifications: INotDTO[] = JSON.parse(data);
+  return notifications;
+}
+
 const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   const [notifications, setNotifications] = React.useState([]);
   const currentDate = new Date();
 
-  function updateNotifications() {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+  const shouldFetchData = (localData: string) => {
+    // fetch last update date
+    const lastUpdate: Date =
+      new Date(localStorage.getItem(luKey)) || new Date(); // current date if lastUpdate is null
+    const now: Date = new Date();
+    const diff: number = now.getTime() - lastUpdate.getTime(); // difference in milliseconds
+    const diffMin: number = diff / (1000 * 60); // difference in minutes
+
+    return !localData || diffMin >= 60;
+  };
+
+  async function getNotifications(): Promise<INotDTO[]> {
+    // fetch data from localStorage if it exists
+    const localData = localStorage.getItem(ndKey);
+
+    let data: INotDTO[];
+
+    // only fetch data if it's been more than 60 minutes since last update
+    // or if there is no data in localStorage
+    if (shouldFetchData(localData)) {
+      data = await getData();
+      localStorage.setItem(ndKey, JSON.stringify(data));
+      localStorage.setItem(
+        luKey,
+        moment(new Date()).format("YYYY-MM-DD HH:mm")
+      );
+    } else {
+      data = JSON.parse(localData);
+    }
+
+    return data;
+  }
+
+  async function updateNotifications() {
+    const notifications = await getNotifications();
+    const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
     setNotifications(
-      data
+      notifications
         // filters notifications that were published in the last 7 days
         // filters notifications that were already dismissed
         .filter((not) => {
@@ -117,10 +181,10 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
   }
 
   function handleDismissAll() {
-    const datesArray = JSON.parse(localStorage.getItem("notifications")) || [];
+    const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
     localStorage.setItem(
-      "notifications",
+      dnKey,
       JSON.stringify(
         notifications
           .filter((not) => {

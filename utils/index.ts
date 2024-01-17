@@ -1,3 +1,5 @@
+import moment from "moment-timezone";
+
 import { IEventDTO } from "../dtos";
 import { sheets_v4 } from "googleapis";
 
@@ -61,19 +63,8 @@ export async function getEvents(
     };
 
     // convert a date to a string in the format "YYYY-MM-DD HH:MM"
-    // no, there isn't a js function that converts Date to String in this format
     const dateToString = (date: Date) => {
-      return (
-        date.getFullYear() +
-        "-" +
-        (date.getMonth() + 1) +
-        "-" +
-        date.getDate() +
-        " " +
-        date.getHours() +
-        ":" +
-        date.getMinutes()
-      );
+      return moment(date).format("YYYY-MM-DD HH:mm");
     };
 
     // DST period for Portugal, current: 26/03/2023 - 29/10/2023

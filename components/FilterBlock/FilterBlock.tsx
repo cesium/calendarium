@@ -285,7 +285,7 @@ const FilterBlock = ({
       >
         {layer1 &&
           layer1.map((item1, index1) => (
-            <>
+            <Fragment key={item1 + "Fragment1"}>
               <Layer1CheckedIndicator
                 index={index1}
                 key={item1 + "Layer1CheckedIndicator"}
@@ -299,7 +299,7 @@ const FilterBlock = ({
                 >
                   {layer2 && index1 !== exception ? (
                     layer2.map((item2, index2) => (
-                      <>
+                      <Fragment key={item2 + "Fragment2"}>
                         <Layer2CheckedIndicator
                           index1={index1}
                           index2={index2}
@@ -310,7 +310,7 @@ const FilterBlock = ({
                           key={item1 + item2 + "Panel"}
                         >
                           <Collapse
-                            className="bg-white font-normal"
+                            className="bg-white font-display font-normal"
                             bordered={false}
                             accordion
                             key={item1 + item2 + "Collapse"}
@@ -323,7 +323,7 @@ const FilterBlock = ({
                                 {checkBoxes[
                                   index1 * (layer2 ? layer2.length : 1) + index2
                                 ].map((item3) => (
-                                  <>
+                                  <Fragment key={item3 + "Fragment3"}>
                                     <Layer3CheckedIndicator
                                       id={item3.id}
                                       key={item3.id + "Layer3CheckedIndicator"}
@@ -338,7 +338,7 @@ const FilterBlock = ({
                                         key={item3.id + "ShiftCheckBoxList"}
                                       />
                                     </Collapse.Panel>
-                                  </>
+                                  </Fragment>
                                 ))}
                               </>
                             ) : (
@@ -357,7 +357,7 @@ const FilterBlock = ({
                             )}
                           </Collapse>
                         </Collapse.Panel>
-                      </>
+                      </Fragment>
                     ))
                   ) : index1 === exception ? (
                     <>
@@ -388,7 +388,7 @@ const FilterBlock = ({
                   )}
                 </Collapse>
               </Collapse.Panel>
-            </>
+            </Fragment>
           ))}
       </Collapse>
     </div>

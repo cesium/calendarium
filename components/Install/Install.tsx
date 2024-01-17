@@ -9,10 +9,7 @@ const Install = () => {
 
   return (
     <div>
-      <label
-        htmlFor="app"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
+      <label htmlFor="app" className="block text-sm font-medium leading-6 ">
         App
       </label>
       <button
@@ -37,16 +34,14 @@ const Install = () => {
               maxWidth: "calc(100% - 4rem)",
             }}
           >
-            <div className="w-full space-y-4">
-              <Typography
+            <div className="w-full space-y-4 font-display">
+              <span
                 id="modal-modal-title"
-                className="select-none text-gray-900"
-                variant="h6"
-                component="h2"
+                className="select-none text-xl font-medium"
               >
                 Install Calendarium <i className="bi bi-download"></i>
-              </Typography>
-              <div className="rounded-lg bg-blue-100 p-2 text-sm text-gray-900">
+              </span>
+              <div className="rounded-lg bg-blue-100 p-2 text-sm ">
                 <i className="bi bi-info-circle-fill text-blue-500"></i> You can
                 install Calendarium as a{" "}
                 <a
@@ -60,7 +55,7 @@ const Install = () => {
                 <i className="bi bi-box-arrow-up-right"></i> on your device.
               </div>
               <Collapse
-                className="w-full rounded-lg border-gray-300 bg-white text-left shadow-sm"
+                className="w-full rounded-lg border-gray-300 bg-white text-left font-display shadow-sm"
                 accordion
               >
                 <Collapse.Panel header="Android" key="1">
