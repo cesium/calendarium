@@ -30,7 +30,7 @@ export const defaultColors = [
 ];
 
 export async function getEvents(
-  sheets: sheets_v4.Sheets
+  sheets: sheets_v4.Sheets, fixDST: boolean = false
 ): Promise<IEventDTO[]> {
   const range = "Eventos!A2:I999";
   const response = await sheets.spreadsheets.values.get({
@@ -55,10 +55,11 @@ export async function getEvents(
      * */
 
     // check if the date is between the DST period for Portugal, and if so, subtract 1 hour
-    const fixDST = (date: Date) => {
-      date.getTime() > dstStart.getTime() &&
-        date.getTime() < dstEnd.getTime() &&
-        date.setHours(date.getHours() - 1);
+    const fixDSTDates = (date: Date) => {
+      if (fixDST)
+        date.getTime() > dstStart.getTime() &&
+          date.getTime() < dstEnd.getTime() &&
+          date.setHours(date.getHours() - 1);
       return date;
     };
 
@@ -83,8 +84,8 @@ export async function getEvents(
         let end: Date = new Date(row[5] + " " + row[6]);
 
         // fix DST if necessary
-        start = fixDST(start);
-        end = fixDST(end);
+        start = fixDSTDates(start);
+        end = fixDSTDates(end);
 
         // convert the dates back to strings.
         // this is needed because the contents of `events` need to be serializable, and Date objects are not
