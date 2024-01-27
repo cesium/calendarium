@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" className="dark">
       <Head>
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="apple-touch-icon" href="/pwa/ios/512.png"></link>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -17,6 +16,8 @@ import { IFilterDTO } from "../../dtos";
 import ShareButton from "../ShareButton";
 
 import { SelectedShift } from "../../types";
+
+import {useTheme} from 'next-themes';
 
 interface ISidebarProps {
   isHome?: boolean;
@@ -55,7 +56,9 @@ const Sidebar = ({
     pdf.save("calendario.pdf");
   };
 
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-y lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
+
+  const {theme, setTheme} = useTheme();
 
   return (
     <div
@@ -72,7 +75,7 @@ const Sidebar = ({
               <picture>
                 <img
                   className="h-[46px] w-auto"
-                  src={"/calendarium-light.svg"}
+                  src={theme === "light" ? "/calendarium-light.svg" : "/calendarium-dark.svg"}
                   alt="CeSIUM Link"
                 />
               </picture>
@@ -89,11 +92,11 @@ const Sidebar = ({
             <div className="flex space-x-2">
               <button
                 onClick={() => setIsSettings(!isSettings)}
-                className="h-10 w-10 rounded-xl p-2 leading-3 text-gray-300 shadow-md ring-1 ring-zinc-200/50 transition-all duration-300 hover:text-gray-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+                className="dark:bg-neutral-800/70 h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 dark:text-neutral-500 shadow-md ring-1 ring-neutral-200/50 dark:ring-neutral-400/20 transition-all duration-300 hover:text-neutral-900 dark:hover:text-neutral-200 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500"
                 title="Settings"
               >
                 {isSettings ? (
-                  <i className="bi bi-gear-fill text-gray-900"></i>
+                  <i className="bi bi-gear-fill text-neutral-900 dark:text-neutral-200"></i>
                 ) : (
                   <i className="bi bi-gear-fill"></i>
                 )}
