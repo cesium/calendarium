@@ -75,7 +75,7 @@ const Sidebar = ({
               <picture>
                 <img
                   className="h-[46px] w-auto"
-                  src={theme === "light" ? "/calendarium-light.svg" : "/calendarium-dark.svg"}
+                  src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
                   alt="CeSIUM Link"
                 />
               </picture>
