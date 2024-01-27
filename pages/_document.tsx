@@ -60,7 +60,7 @@ export default function Document() {
         />
         <meta name="theme-color" content="#ffffff" />
         {/* Status Bar configuration for IOS devices */}
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
       <body>
         <Main />
