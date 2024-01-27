@@ -1,12 +1,13 @@
 import { useState, ReactNode } from "react";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import Sidebar from "../Sidebar";
 import Notifications from "../Notifications";
 
 import styles from "./layout.module.scss";
+
+import { useTheme } from "next-themes";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -25,6 +26,7 @@ const Layout = ({
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
+  const { theme } = useTheme();
 
   return (
     <div className="text-neutral-900 lg:flex dark:bg-neutral-900 dark:text-neutral-200">
@@ -66,7 +68,7 @@ const Layout = ({
             <picture>
               <img
                 className="h-[46px] w-auto"
-                src={"/calendarium-light.svg"}
+                src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
                 alt="Calendarium Logo"
               />
             </picture>

@@ -215,7 +215,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
-  const {theme, setTheme} = useTheme();
+  const { theme } = useTheme();
 
   return (
     <Layout
