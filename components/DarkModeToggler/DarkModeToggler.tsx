@@ -11,7 +11,7 @@ const DarkModeToggler = () => {
     return (
         <div>
             <label className="block text-sm font-medium leading-6">
-                Dark Mode
+                Appearance
             </label>
             <select
                 id="theme"
