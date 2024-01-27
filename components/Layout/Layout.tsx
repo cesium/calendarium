@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 
 import Link from "next/link";
 
@@ -25,8 +25,20 @@ const Layout = ({
   saveTheme,
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
-  const { theme } = useTheme();
+  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`; 
+  const { theme, setTheme } = useTheme();
+  const [logo, setLogo] = useState(null);
+
+  // necesary so logo renders only on the client
+  useEffect(() => setLogo(
+    <picture>
+      <img
+        className="h-[46px] w-auto"
+        src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
+        alt="Calendarium Logo"
+      />
+    </picture>
+  ), [theme]);
 
   return (
     <div className="text-neutral-900 lg:flex dark:bg-neutral-900 dark:text-neutral-200">
@@ -65,13 +77,7 @@ const Layout = ({
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
         >
           <Link href="/">
-            <picture>
-              <img
-                className="h-[46px] w-auto"
-                src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
-                alt="Calendarium Logo"
-              />
-            </picture>
+            {logo}
           </Link>
         </div>
       </div>
