@@ -13,23 +13,17 @@ const DarkModeToggler = () => {
             <label className="block text-sm font-medium leading-6">
                 Dark Mode
             </label>
-            <Switch
-                checked={theme === 'dark'}
-                onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className={classNames(
-                    theme === 'dark' ? 'bg-cesium-900' : 'bg-neutral-200 dark:bg-neutral-700',
-                    'mt-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2'
-                )}
-            >
-            <span className="sr-only">Use setting</span>
-            <span
-                aria-hidden="true"
-                className={classNames(
-                    theme === 'dark' ? 'translate-x-5' : 'translate-x-0',
-                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                )}
-            />
-            </Switch>
+            <select
+                id="theme"
+                name="theme"
+                className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10  ring-1 ring-inset ring-neutral-300 dark:ring-neutral-400/20 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800"
+                value={theme === "light" ? "Light" : theme === "dark" ? "Dark" : "Follow System"}
+                onChange={(e) => setTheme(e.target.value === "Light" ? "light" : e.target.value === "Dark" ? "dark" : "system")}
+                >
+                    <option>Follow System</option>
+                    <option>Dark</option>
+                    <option>Light</option>                
+            </select>
         </div>
     )
 }

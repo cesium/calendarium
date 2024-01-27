@@ -4,7 +4,7 @@ import {ThemeProvider} from 'next-themes';
 
 function Calendarium({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class" storageKey="darkTheme" defaultTheme="light">
+    <ThemeProvider attribute="class" storageKey="darkTheme" defaultTheme="system">
       <Component {...pageProps} />
     </ThemeProvider>
   );

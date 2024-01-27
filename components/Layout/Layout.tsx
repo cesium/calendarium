@@ -26,7 +26,7 @@ const Layout = ({
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`; 
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [logo, setLogo] = useState(null);
 
   // necesary so logo renders only on the client
@@ -34,11 +34,11 @@ const Layout = ({
     <picture>
       <img
         className="h-[46px] w-auto"
-        src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
+        src={resolvedTheme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
         alt="Calendarium Logo"
       />
     </picture>
-  ), [theme]);
+  ), [resolvedTheme]);
 
   return (
     <div className="text-neutral-900 lg:flex dark:bg-neutral-900 dark:text-neutral-200">

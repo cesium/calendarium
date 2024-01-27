@@ -58,7 +58,7 @@ const Sidebar = ({
 
   const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-y lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [logo, setLogo] = useState(null);
 
   // necesary so logo renders only on the client
@@ -66,11 +66,11 @@ const Sidebar = ({
     <picture>
       <img
         className="h-[46px] w-auto"
-        src={theme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
+        src={resolvedTheme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
         alt="Calendarium Logo"
       />
     </picture>
-  ), [theme]);
+  ), [resolvedTheme]);
 
   return (
     <div
