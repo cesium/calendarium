@@ -30,7 +30,8 @@ export const defaultColors = [
 ];
 
 export async function getEvents(
-  sheets: sheets_v4.Sheets, fixDST: boolean = false
+  sheets: sheets_v4.Sheets,
+  fixDST: boolean = false
 ): Promise<IEventDTO[]> {
   const range = "Eventos!A2:I999";
   const response = await sheets.spreadsheets.values.get({
