@@ -80,6 +80,11 @@ def course_scraper(driver: WebDriver, course_name: str, subject_codes: list[dict
         1: date_range["minDateStr"],
         2: date_range["maxDateStr"]
     }
+
+    # The dates are hardcoded because some subjects aren't present on the first/last semester week
+    semesters_dates[1] = f"{semesters_dates[1][0:5]}11-15{semesters_dates[1][10:]}"
+    semesters_dates[2] = f"{semesters_dates[2][0:5]}03-15{semesters_dates[2][10:]}"
+
     amount_of_years_pickers = len(driver.find_elements(
         By.NAME, "ctl00$ctl40$g_e84a3962_8ce0_47bf_a5c3_d5f9dd3927ef$ctl00$dataAnoCurricular"))
 
