@@ -1,12 +1,12 @@
 import { Switch } from '@headlessui/react'
-import {useTheme} from 'next-themes';
+import { useTheme } from 'next-themes';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
 const DarkModeToggler = () => {
-    const {theme, setTheme} = useTheme();
+    const { theme, setTheme } = useTheme();
 
     return (
         <div>
