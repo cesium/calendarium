@@ -144,7 +144,7 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
 
     endpoint = "licenciaturas-e-mestrados-integrados" if not master else "Mestrados"
     driver.get(
-        f"https://www.uminho.pt/PT/ensino/oferta-educativa/paginas/{endpoint}.aspx")
+        f"https://www.uminho.pt/PT/ensino/oferta-educativa/Cursos-Conferentes-a-Grau/Paginas/{endpoint}.aspx")
 
     # search courses input
     driver.find_element(By.CSS_SELECTOR, "input.form-control") \
