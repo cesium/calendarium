@@ -20,6 +20,8 @@ import { defaultColors } from "../utils";
 
 import styles from "../styles/schedule.module.css";
 
+import { useTheme } from "next-themes";
+
 const localizer = momentLocalizer(moment);
 
 export interface IFormatedShift {
@@ -58,7 +60,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
   // THEMES
 
-  const [theme, setTheme] = useState<string>("Modern");
+  const [colorTheme, setColorTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
   const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
@@ -79,9 +81,9 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   function getBgColor(event: IFormatedShift) {
     let color: string = "#000000";
 
-    if (theme === "Modern") color = reduceOpacity(getDefaultColor(event));
-    else if (theme === "Classic") color = getDefaultColor(event);
-    else if (theme === "Custom") {
+    if (colorTheme === "Modern") color = reduceOpacity(getDefaultColor(event));
+    else if (colorTheme === "Classic") color = getDefaultColor(event);
+    else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
           ? (color = reduceOpacity(colors[String(event.filterId)[0]]))
@@ -99,9 +101,9 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   function getTextColor(event: IFormatedShift) {
     let color: string = "#000000";
 
-    if (theme === "Modern") color = getDefaultColor(event);
-    else if (theme === "Classic") color = "white";
-    else if (theme === "Custom") {
+    if (colorTheme === "Modern") color = getDefaultColor(event);
+    else if (colorTheme === "Classic") color = "white";
+    else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
           ? (color = colors[String(event.filterId)[0]])
@@ -130,7 +132,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       theme = "Modern";
     }
 
-    setTheme(theme);
+    setColorTheme(theme);
     if (theme === "Custom") {
       setCustomType(customType);
 
@@ -213,6 +215,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
+  const { theme } = useTheme();
+
   return (
     <Layout
       isHome={false}
@@ -241,7 +245,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           max={maxDate}
           eventPropGetter={(event) => {
             const newStyle = {
-              border: "2px solid white",
+              border: "2px solid " + (theme === "dark" ? "#171717" : "white"),
               backgroundColor: getBgColor(event),
               color: getTextColor(event),
               fontWeight: "500",

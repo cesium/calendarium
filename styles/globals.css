@@ -111,6 +111,7 @@ a {
 .rbc-calendar .rbc-month-view {
   overflow: hidden;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20;
   border-radius: 8px;
 }
 
@@ -124,6 +125,7 @@ a {
   font-weight: 500;
   color: #111827;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200;
   border-radius: 8px;
   box-shadow: none;
 }
@@ -131,46 +133,71 @@ a {
 .rbc-calendar .rbc-toolbar button:hover {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
 }
 
 .rbc-calendar .rbc-toolbar button:focus {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
 }
 
 .rbc-calendar .rbc-toolbar button:active {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-800;
+}
+
+.rbc-calendar .rbc-timeslot-group {
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-time-slot {
+  @apply border-none;
+}
+
+.rbc-calendar .rbc-time-header-content {
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active:hover {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-700/80;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active:focus {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-700/80;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active:active {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-header {
   padding: 0.15rem;
   font-weight: 500;
   color: #374151;
+  @apply dark:text-neutral-400 dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-off-range-bg {
   background-color: rgb(243 244 246);
+  @apply dark:bg-neutral-800/50;
+}
+
+.rbc-calendar .rbc-header + .rbc-header {
+  @apply dark:border-l dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-off-range {
@@ -185,18 +212,22 @@ a {
 
 .rbc-calendar .rbc-month-row {
   color: rgb(55 65 81);
+  @apply dark:text-neutral-400;
 }
 
 .rbc-calendar .rbc-month-row + .rbc-month-row {
   border-top: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-day-bg + .rbc-day-bg {
   border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-rtl .rbc-day-bg + .rbc-day-bg {
   border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-row-segment .rbc-event {
@@ -209,7 +240,7 @@ a {
 }
 
 .rbc-calendar .rbc-today {
-  background-color: #ed7a501b;
+  @apply bg-cesium-900/10;
 }
 
 .rbc-calendar .rbc-date-cell.rbc-now.rbc-current > button {
@@ -233,10 +264,16 @@ a {
 
 .rbc-calendar .rbc-time-content > * + * > * {
   border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-rtl .rbc-time-content > * + * > * {
   border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-content {
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-current-time-indicator {
@@ -247,41 +284,50 @@ a {
 
 .rbc-calendar .rbc-time-view-resources .rbc-time-header-gutter {
   border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-time-header.rbc-overflowing {
   border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-rtl .rbc-time-header.rbc-overflowing {
   border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-time-header > .rbc-row:first-child {
   border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-time-header > .rbc-row.rbc-row-resource {
   border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-rtl .rbc-time-header-content {
   border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-time-header-content > .rbc-row.rbc-row-resource {
   border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
 }
 
 .rbc-calendar .rbc-time-view {
   overflow: hidden;
   border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20;
   border-radius: 8px;
 }
 
 .rbc-calendar .rbc-label {
   font-size: small;
   color: rgb(55 65 81);
+  @apply dark:text-neutral-400;
   text-align: left;
 }
 
@@ -332,4 +378,56 @@ a {
   #byYear .react-colorful {
     width: 14rem;
   }
+}
+
+.ant-collapse-header-text {
+  @apply dark:text-neutral-200 text-neutral-900;
+}
+
+.ant-collapse-expand-icon {
+  @apply dark:text-neutral-200 text-neutral-900;
+}
+
+.ant-collapse-borderless > .ant-collapse-item {
+  @apply border-neutral-400/20;
+}
+
+.ant-checkbox-wrapper {
+  @apply dark:text-neutral-200 text-neutral-900 font-display;
+}
+
+.ant-checkbox .ant-checkbox-inner {
+  @apply dark:bg-white/20 dark:border-neutral-400/20;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  @apply dark:bg-blue-500 dark:border-neutral-400/20;
+}
+
+.ant-collapse > .ant-collapse-item {
+  @apply dark:border-neutral-400/20;
+}
+
+.ant-collapse {
+  @apply dark:bg-neutral-800 dark:border-neutral-400/30;
+}
+
+.ant-collapse-content {
+  @apply dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-400/30;
+}
+
+.ant-popover-inner {
+  @apply dark:bg-neutral-800;
+}
+
+.ant-popconfirm-message {
+  @apply dark:text-neutral-200;
+}
+
+.ant-popconfirm-description {
+  @apply dark:text-neutral-200;
+}
+
+:is(.dark .ant-popover) {
+  --antd-arrow-background-color: #262626;
 }

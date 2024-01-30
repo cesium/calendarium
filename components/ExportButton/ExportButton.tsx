@@ -32,13 +32,13 @@ const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-xl bg-white font-medium text-cesium-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-xl bg-white dark:bg-neutral-800 font-medium text-cesium-900 dark:text-cesium-600 shadow-lg ring-1 ring-black  dark:ring-white/20 ring-opacity-5 focus:outline-none">
             <div className="grid grid-cols-1 py-1">
               <Menu.Item>
                 {({ active }) => (
                   <button
                     className={`${
-                      active && "bg-cesium-100"
+                      active && "bg-cesium-100 dark:bg-neutral-100/10"
                     } 'block text-sm' px-4 py-2`}
                     title="Add your events to your favorite calendar app."
                     onClick={() => setIsModalOpen(true)}
@@ -54,7 +54,7 @@ const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
                 {({ active }) => (
                   <button
                     className={`${
-                      active && "bg-cesium-100"
+                      active && "bg-cesium-100 dark:bg-neutral-100/10"
                     } 'block text-sm' px-4 py-2`}
                     onClick={() => exportPDF()}
                   >
