@@ -215,7 +215,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   return (
     <Layout
@@ -245,7 +245,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           max={maxDate}
           eventPropGetter={(event) => {
             const newStyle = {
-              border: "2px solid " + (theme === "dark" ? "#171717" : "white"),
+              border: "2px solid " + (resolvedTheme === "dark" ? "#171717" : "white"),
               backgroundColor: getBgColor(event),
               color: getTextColor(event),
               fontWeight: "500",
