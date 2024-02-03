@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" className="dark">
       <Head>
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="apple-touch-icon" href="/pwa/ios/512.png"></link>
@@ -60,7 +60,7 @@ export default function Document() {
         />
         <meta name="theme-color" content="#ffffff" />
         {/* Status Bar configuration for IOS devices */}
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
       <body>
         <Main />

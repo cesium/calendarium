@@ -1047,12 +1047,24 @@
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": true,
-    "shift": "T1",
+    "shift": "T2",
     "building": "CP1",
     "room": "0.08",
     "day": 4,
     "start": "11:00",
     "end": "12:00",
+    "filterId": 125
+  },
+  {
+    "id": 14301,
+    "title": "Programação Imperativa",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP1",
+    "room": "0.08",
+    "day": 4,
+    "start": "12:00",
+    "end": "13:00",
     "filterId": 125
   },
   {
