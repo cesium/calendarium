@@ -178,7 +178,6 @@
       "TP1",
       "TP2",
       "TP3",
-      "TP4",
       "TP5",
       "TP6",
       "TP7",
@@ -406,7 +405,7 @@
     "name": "CG",
     "groupId": 3,
     "semester": 2,
-    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
+    "shifts": ["T1", "PL1", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 323,
