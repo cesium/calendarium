@@ -1,0 +1,754 @@
+[
+  {
+    "id": 111,
+    "subjectId": 14229,
+    "name": "Álgebra Linear para Engenharia",
+    "short_name": "AL",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 112,
+    "subjectId": 14237,
+    "name": "Cálculo para Engenharia",
+    "short_name": "Cálculo",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 113,
+    "subjectId": 14295,
+    "name": "Laboratórios de Informática I",
+    "short_name": "LI1",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 114,
+    "subjectId": 14294,
+    "name": "Programação Funcional",
+    "short_name": "PF",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 115,
+    "subjectId": 14273,
+    "name": "Tópicos de Matemática Discreta",
+    "short_name": "TMD",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 116,
+    "subjectId": 15419,
+    "name": "Bilinguismo",
+    "short_name": "Bilinguismo",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 117,
+    "subjectId": 13556,
+    "name": "Cidadania Digital",
+    "short_name": "CD",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 118,
+    "subjectId": 16175,
+    "name": "Democracia Plena, Responsabilidade e Estado de Direito",
+    "short_name": "DPRED",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 119,
+    "subjectId": 10915,
+    "name": "Desporto e Saúde",
+    "short_name": "DS",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1110,
+    "subjectId": 16176,
+    "name": "Direito Laboral",
+    "short_name": "DL",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1111,
+    "subjectId": 11773,
+    "name": "Educação, Cidadania e Direitos Humanos",
+    "short_name": "ECDH",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1112,
+    "subjectId": 11738,
+    "name": "Inglês Académico",
+    "short_name": "IA",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1113,
+    "subjectId": 15417,
+    "name": "Introdução à Língua e Cultura Russa",
+    "short_name": "ILCR",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1114,
+    "subjectId": 4236,
+    "name": "Islão e Mundo Árabe",
+    "short_name": "IMA",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1115,
+    "subjectId": 15410,
+    "name": "Literacia Fotográfica da Física à Mensagem",
+    "short_name": "LFFM",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1116,
+    "subjectId": 10892,
+    "name": "Matemática das Coisas",
+    "short_name": "MC",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1117,
+    "subjectId": 12365,
+    "name": "Substâncias que Mudaram o Mundo",
+    "short_name": "SMM",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1118,
+    "subjectId": 13403,
+    "name": "Sustentabilidade Ambiental, Social e Económica",
+    "short_name": "SASE",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1119,
+    "subjectId": 16178,
+    "name": "Temas de Direito da Igualdade e Não Discriminação",
+    "short_name": "TDIND",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 1120,
+    "subjectId": 10886,
+    "name": "Tópicos de Astronomia e Cosmologia",
+    "short_name": "TAC",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 121,
+    "subjectId": 14238,
+    "name": "Análise Matemática para Engenharia",
+    "short_name": "Análise",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 122,
+    "subjectId": 14300,
+    "name": "Elementos de Probabilidades e Teoria de Números",
+    "short_name": "EPTN",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 123,
+    "subjectId": 14296,
+    "name": "Laboratórios de Informática II",
+    "short_name": "LI2",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 124,
+    "subjectId": 14299,
+    "name": "Lógica",
+    "short_name": "Lógica",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 125,
+    "subjectId": 14301,
+    "name": "Programação Imperativa",
+    "short_name": "PI",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 126,
+    "subjectId": 14268,
+    "name": "Sistemas de Computação",
+    "short_name": "SC",
+    "year": 1,
+    "semester": 2
+  },
+  {
+    "id": 211,
+    "subjectId": 14305,
+    "name": "Algoritmos e Complexidade",
+    "short_name": "AlgC",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 212,
+    "subjectId": 14303,
+    "name": "Arquitetura de Computadores",
+    "short_name": "ArqC",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 213,
+    "subjectId": 14240,
+    "name": "Estatística Aplicada",
+    "short_name": "EA",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 214,
+    "subjectId": 14302,
+    "name": "Física Moderna",
+    "short_name": "FM",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 215,
+    "subjectId": 14304,
+    "name": "Fundamentos de Comunicação de Dados",
+    "short_name": "FCD",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 216,
+    "subjectId": 14297,
+    "name": "Laboratórios de Informática III",
+    "short_name": "LI3",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 221,
+    "subjectId": 14307,
+    "name": "Bases de Dados",
+    "short_name": "BD",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 222,
+    "subjectId": 14288,
+    "name": "Investigação Operacional",
+    "short_name": "IO",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 223,
+    "subjectId": 14282,
+    "name": "Métodos Numéricos e Otimização Não Linear",
+    "short_name": "MNOnL",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 224,
+    "subjectId": 14306,
+    "name": "Programação Orientada aos Objetos",
+    "short_name": "POO",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 225,
+    "subjectId": 14308,
+    "name": "Redes de Computadores",
+    "short_name": "RC",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 226,
+    "subjectId": 14279,
+    "name": "Sistemas Operativos",
+    "short_name": "SO",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 311,
+    "subjectId": 14309,
+    "name": "Cálculo de Programas",
+    "short_name": "CP",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 312,
+    "subjectId": 14313,
+    "name": "Comunicações por Computador",
+    "short_name": "CC",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 313,
+    "subjectId": 14310,
+    "name": "Desenvolvimento de Sistemas de Software",
+    "short_name": "DSS",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 314,
+    "subjectId": 14311,
+    "name": "Inteligência Artificial",
+    "short_name": "IA",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 315,
+    "subjectId": 14298,
+    "name": "Laboratórios de Informática IV",
+    "short_name": "LI4",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 316,
+    "subjectId": 14312,
+    "name": "Sistemas Distribuídos",
+    "short_name": "SD",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 321,
+    "subjectId": 14318,
+    "name": "Aprendizagem e Decisão Inteligentes",
+    "short_name": "ADI",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 322,
+    "subjectId": 14315,
+    "name": "Computação Gráfica",
+    "short_name": "CG",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 323,
+    "subjectId": 14314,
+    "name": "Interface Pessoa-Máquina",
+    "short_name": "IPM",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 324,
+    "subjectId": 14317,
+    "name": "Processamento de Linguagens",
+    "short_name": "PL",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 325,
+    "subjectId": 14316,
+    "name": "Segurança de Sistemas Informáticos",
+    "short_name": "SSI",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 326,
+    "subjectId": 14320,
+    "name": "Análise de Projetos",
+    "short_name": "AProj",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 327,
+    "subjectId": 14319,
+    "name": "Engenharia Web",
+    "short_name": "EngWeb",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 328,
+    "subjectId": 14321,
+    "name": "Mecânica Quântica",
+    "short_name": "MQ",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 411,
+    "subjectId": 14600,
+    "name": "Aplicações e Serviços de Computação em Nuvem",
+    "short_name": "ASCN",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 412,
+    "subjectId": 14599,
+    "name": "Computação Paralela",
+    "short_name": "CPar",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 413,
+    "subjectId": 14596,
+    "name": "Dados e Aprendizagem Automática",
+    "short_name": "DAA",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 414,
+    "subjectId": 14597,
+    "name": "Engenharia de Serviços em Rede",
+    "short_name": "ESR",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 415,
+    "subjectId": 14598,
+    "name": "Métodos Formais em Engenharia de Software",
+    "short_name": "MFES",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 416,
+    "subjectId": 14601,
+    "name": "Requisitos e Arquiteturas de Software",
+    "short_name": "RAS",
+    "year": 4,
+    "semester": 1
+  },
+  {
+    "id": 421,
+    "subjectId": 14610,
+    "name": "Agentes e Sistemas Multiagente",
+    "short_name": "ASM",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 422,
+    "subjectId": 14605,
+    "name": "Análise Inteligente em Sistemas de \"Big Data\"",
+    "short_name": "AISBD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 423,
+    "subjectId": 11589,
+    "name": "Arquiteturas Aplicacionais",
+    "short_name": "AA",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 424,
+    "subjectId": 13421,
+    "name": "Engenharia de Segurança",
+    "short_name": "ES",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 425,
+    "subjectId": 14607,
+    "name": "Engenharia Gramatical",
+    "short_name": "EG",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 426,
+    "subjectId": 14609,
+    "name": "Experimentação em Engenharia de Software",
+    "short_name": "EES",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 427,
+    "subjectId": 14606,
+    "name": "Gestão e Segurança de Redes",
+    "short_name": "GSR",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 428,
+    "subjectId": 14608,
+    "name": "Redes Definidas por Software",
+    "short_name": "RDS",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 429,
+    "subjectId": 13422,
+    "name": "Sistemas Distribuídos em Grande Escala",
+    "short_name": "SDGE",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4210,
+    "subjectId": 11602,
+    "name": "Verificação Formal",
+    "short_name": "VF",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4211,
+    "subjectId": 14604,
+    "name": "Visão por Computador e Processamento de Imagem",
+    "short_name": "VCPI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4212,
+    "subjectId": 11588,
+    "name": "Administração de Bases de Dados",
+    "short_name": "ABD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4213,
+    "subjectId": 14615,
+    "name": "Aprendizagem Profunda",
+    "short_name": "AProf",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4214,
+    "subjectId": 13624,
+    "name": "Bases de Dados NoSQL",
+    "short_name": "BD NoSQL",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4215,
+    "subjectId": 13414,
+    "name": "Estruturas Criptográficas",
+    "short_name": "EC",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4216,
+    "subjectId": 14611,
+    "name": "Interligação de Redes IP",
+    "short_name": "IRIP",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4217,
+    "subjectId": 14614,
+    "name": "Manutenção e Evolução de Software",
+    "short_name": "MES",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4218,
+    "subjectId": 14612,
+    "name": "Programação Ciber-física",
+    "short_name": "PCF",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4219,
+    "subjectId": 14613,
+    "name": "Redes Fixas e Móveis",
+    "short_name": "RFM",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4220,
+    "subjectId": 11604,
+    "name": "Scripting no Processamento de Linguagem Natural",
+    "short_name": "SPLN",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4221,
+    "subjectId": 9427,
+    "name": "Tolerância a Faltas",
+    "short_name": "TF",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4222,
+    "subjectId": 14623,
+    "name": "Visualização e Iluminação",
+    "short_name": "VI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4223,
+    "subjectId": 9397,
+    "name": "Cálculo de Sistemas de Informação",
+    "short_name": "CSI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4224,
+    "subjectId": 13935,
+    "name": "Mineração de Dados",
+    "short_name": "MD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4225,
+    "subjectId": 14620,
+    "name": "Novos Paradigmas de Rede",
+    "short_name": "NPR",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4226,
+    "subjectId": 11608,
+    "name": "Paradigmas de Sistemas Distribuídos",
+    "short_name": "PSD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4227,
+    "subjectId": 13416,
+    "name": "Qualidade de Serviço na Internet",
+    "short_name": "QSI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4228,
+    "subjectId": 14619,
+    "name": "Representação e Processamento de Conhecimento na Web",
+    "short_name": "RPCW",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4229,
+    "subjectId": 14622,
+    "name": "Sensorização e Ambiente",
+    "short_name": "SA",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4230,
+    "subjectId": 14618,
+    "name": "Sistemas Interativos Confiáveis",
+    "short_name": "SIC",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4231,
+    "subjectId": 14617,
+    "name": "Tecnologias de Segurança",
+    "short_name": "TS",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4232,
+    "subjectId": 14621,
+    "name": "Tópicos de Desenvolvimento de Software",
+    "short_name": "TDS",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4233,
+    "subjectId": 14616,
+    "name": "Visualização em Tempo Real",
+    "short_name": "VTR",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 501,
+    "subjectId": 14603,
+    "name": "Dissertação",
+    "short_name": "D",
+    "year": 5,
+    "semester": 0
+  },
+  {
+    "id": 511,
+    "subjectId": 14602,
+    "name": "Projeto de Informática",
+    "short_name": "PI",
+    "year": 5,
+    "semester": 1
+  },
+  {
+    "id": 329,
+    "subjectId": 14322,
+    "name": "Análise e Teste de Software",
+    "short_name": "ATS",
+    "year": 3,
+    "semester": 2
+  }
+]

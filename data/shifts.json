@@ -1047,24 +1047,12 @@
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": true,
-    "shift": "T2",
+    "shift": "T1",
     "building": "CP1",
     "room": "0.08",
     "day": 4,
     "start": "11:00",
     "end": "12:00",
-    "filterId": 125
-  },
-  {
-    "id": 14301,
-    "title": "Programação Imperativa",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "0.08",
-    "day": 4,
-    "start": "12:00",
-    "end": "13:00",
     "filterId": 125
   },
   {
@@ -3312,6 +3300,18 @@
     "filterId": 324
   },
   {
+    "id": 14321,
+    "title": "Mecânica Quântica",
+    "theoretical": false,
+    "shift": "TP1",
+    "building": "CP2",
+    "room": "0.01",
+    "day": 0,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 328
+  },
+  {
     "id": 14316,
     "title": "Segurança de Sistemas Informáticos",
     "theoretical": false,
@@ -3324,18 +3324,6 @@
     "filterId": 325
   },
   {
-    "id": 14314,
-    "title": "Interface Pessoa-Máquina",
-    "theoretical": false,
-    "shift": "PL1",
-    "building": "CP1",
-    "room": "2.20",
-    "day": 0,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 323
-  },
-  {
     "id": 14318,
     "title": "Aprendizagem e Decisão Inteligentes",
     "theoretical": false,
@@ -3346,6 +3334,18 @@
     "start": "11:00",
     "end": "13:00",
     "filterId": 321
+  },
+  {
+    "id": 14314,
+    "title": "Interface Pessoa-Máquina",
+    "theoretical": false,
+    "shift": "PL1",
+    "building": "CP1",
+    "room": "2.20",
+    "day": 0,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 323
   },
   {
     "id": 14315,
@@ -3504,6 +3504,18 @@
     "filterId": 321
   },
   {
+    "id": 14321,
+    "title": "Mecânica Quântica",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP2",
+    "room": "1.03",
+    "day": 1,
+    "start": "14:00",
+    "end": "15:00",
+    "filterId": 328
+  },
+  {
     "id": 14315,
     "title": "Computação Gráfica",
     "theoretical": true,
@@ -3550,6 +3562,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 324
+  },
+  {
+    "id": 14321,
+    "title": "Mecânica Quântica",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP3",
+    "room": "0.06",
+    "day": 4,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 328
   },
   {
     "id": 14317,
@@ -3748,8 +3772,8 @@
     "title": "Engenharia de Serviços em Rede",
     "theoretical": false,
     "shift": "PL7",
-    "building": "CP2",
-    "room": "0.28 (B2)",
+    "building": "CP3",
+    "room": "0.07",
     "day": 2,
     "start": "09:00",
     "end": "11:00",
