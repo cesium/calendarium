@@ -708,30 +708,6 @@
     "filterId": 124
   },
   {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL3",
-    "building": "CP1",
-    "room": "2.25",
-    "day": 2,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 126
-  },
-  {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL6",
-    "building": "CP1",
-    "room": "2.24",
-    "day": 2,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 126
-  },
-  {
     "id": 14296,
     "title": "Laboratórios de Informática II",
     "theoretical": false,
@@ -742,6 +718,18 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 123
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL3",
+    "building": "CP1",
+    "room": "2.25",
+    "day": 2,
+    "start": "09:00",
+    "end": "11:00",
+    "filterId": 126
   },
   {
     "id": 14300,
@@ -1092,16 +1080,16 @@
     "filterId": 125
   },
   {
-    "id": 14299,
-    "title": "Lógica",
+    "id": 14301,
+    "title": "Programação Imperativa",
     "theoretical": true,
-    "shift": "T1",
+    "shift": "T2",
     "building": "CP1",
-    "room": "0.22",
+    "room": "0.08",
     "day": 4,
     "start": "13:00",
-    "end": "15:00",
-    "filterId": 124
+    "end": "14:00",
+    "filterId": 125
   },
   {
     "id": 14268,
@@ -1138,6 +1126,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 123
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL6",
+    "building": "7",
+    "room": "0.09",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 126
   },
   {
     "id": 14301,
@@ -1210,6 +1210,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 121
+  },
+  {
+    "id": 14299,
+    "title": "Lógica",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP1",
+    "room": "0.22",
+    "day": 4,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 124
   },
   {
     "id": 14238,
@@ -2477,7 +2489,7 @@
     "theoretical": false,
     "shift": "PL5",
     "building": "7",
-    "room": "0.05",
+    "room": "0.09",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
@@ -3423,7 +3435,7 @@
     "id": 14315,
     "title": "Computação Gráfica",
     "theoretical": false,
-    "shift": "PL2",
+    "shift": "PL1",
     "building": "CP1",
     "room": "2.22",
     "day": 4,
@@ -4248,18 +4260,6 @@
     "filterId": 415
   },
   {
-    "id": 11602,
-    "title": "Verificação Formal",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "7",
-    "room": "1.10",
-    "day": 4,
-    "start": "08:00",
-    "end": "09:00",
-    "filterId": 4210
-  },
-  {
     "id": 14607,
     "title": "Engenharia Gramatical",
     "theoretical": true,
@@ -4373,7 +4373,7 @@
     "theoretical": true,
     "shift": "T1",
     "building": "7",
-    "room": "1.10",
+    "room": "0.09",
     "day": 4,
     "start": "09:00",
     "end": "11:00",
@@ -4510,6 +4510,18 @@
     "start": "11:00",
     "end": "12:00",
     "filterId": 4211
+  },
+  {
+    "id": 11602,
+    "title": "Verificação Formal",
+    "theoretical": false,
+    "shift": "TP1",
+    "building": "7",
+    "room": "0.09",
+    "day": 4,
+    "start": "11:00",
+    "end": "12:00",
+    "filterId": 4210
   },
   {
     "id": 9427,
