@@ -138,7 +138,7 @@ const CalendarExportModal = ({
       >
         <Fade in={isOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-full -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-2xl border dark:border-neutral-400/20 bg-white dark:bg-neutral-800 p-6 text-center shadow-xl sm:w-96"
+            className="absolute left-1/2 top-1/2 h-fit w-full -translate-x-1/2 -translate-y-1/2 transform overflow-y-auto rounded-2xl border bg-white p-6 text-center shadow-xl dark:border-neutral-400/20 dark:bg-neutral-800 sm:w-96"
             style={{
               maxHeight: "calc(100% - 4rem)",
               maxWidth: "calc(100% - 4rem)",
@@ -167,7 +167,7 @@ const CalendarExportModal = ({
                           className="relative flex flex-grow items-stretch focus-within:z-10"
                           style={{ width: "calc(100% - 38px)" }}
                         >
-                          <div className="block w-full rounded-none rounded-l-lg border-0 py-1.5  ring-1 ring-inset ring-neutral-300 dark:ring-neutral-400/30 focus:ring-2 focus:ring-inset focus:ring-cesium-900 sm:text-sm sm:leading-6">
+                          <div className="block w-full rounded-none rounded-l-lg border-0 py-1.5  ring-1 ring-inset ring-neutral-300 focus:ring-2 focus:ring-inset focus:ring-cesium-900 dark:ring-neutral-400/30 sm:text-sm sm:leading-6">
                             <div className="mx-2 overflow-y-hidden overflow-x-scroll whitespace-nowrap text-start">
                               {URL}
                             </div>
@@ -176,7 +176,7 @@ const CalendarExportModal = ({
                         <button
                           type="button"
                           title={isCopied ? "Copied" : "Copy"}
-                          className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-neutral-300 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10 hover:bg-neutral-50"
+                          className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold  ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                           onClick={copyToClipboard}
                         >
                           {isCopied ? (
@@ -188,7 +188,7 @@ const CalendarExportModal = ({
                       </div>
                     </div>
                   </span>
-                  <Collapse className="w-full rounded-lg border-neutral-300 bg-white dark:border-neutral-400/30 text-left font-display shadow-sm">
+                  <Collapse className="w-full rounded-lg border-neutral-300 bg-white text-left font-display shadow-sm dark:border-neutral-400/30">
                     <Collapse.Panel header="How does it work?" key="1">
                       <div className="text-justify">
                         <p>

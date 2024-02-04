@@ -185,7 +185,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
         <select
           id="theme"
           name="theme"
-          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10  ring-1 ring-inset ring-neutral-300 dark:ring-neutral-400/20 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800"
+          className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10  ring-1 ring-inset ring-neutral-300 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800 dark:ring-neutral-400/20"
           value={theme}
           onChange={(e) => updateTheme(e.target.value)}
         >
@@ -204,7 +204,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
             <select
               id="theme"
               name="theme"
-              className="block w-full rounded-md border-0 py-1.5  ring-1 ring-inset ring-neutral-300 dark:ring-neutral-400/20 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800"
+              className="block w-full rounded-md border-0 py-1.5  ring-1 ring-inset ring-neutral-300 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800 dark:ring-neutral-400/20"
               value={customType}
               onChange={(e) => updateCustomType(e.target.value)}
             >
@@ -248,7 +248,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                     Hex
                   </div>
                   <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-neutral-300 dark:border-neutral-400/20 dark:bg-neutral-800 text-center focus:border-cesium-900 focus:ring-0"
+                    className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
                     color={colors[openColor + 1]}
                     onChange={(newColor) => updateColors(newColor)}
                   />
@@ -277,7 +277,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white dark:bg-neutral-800 dark:border-neutral-400/20 dark:hover:bg-neutral-700 px-2.5 py-1 text-xs font-semibold  shadow-sm hover:bg-neutral-50"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold shadow-sm hover:bg-neutral-50 dark:border-neutral-400/20  dark:bg-neutral-800 dark:hover:bg-neutral-700"
                   onClick={backToDefault}
                 >
                   Back to Default
@@ -319,7 +319,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                     Hex
                   </div>
                   <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-neutral-300 dark:border-neutral-400/20 dark:bg-neutral-800 text-center focus:border-cesium-900 focus:ring-0"
+                    className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
                     color={getSubjectColor(openColor)}
                     onChange={(newColor) => updateSubjectColors(newColor)}
                   />
@@ -348,7 +348,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
                 </Switch.Group>
                 <button
                   type="button"
-                  className="rounded-md border bg-white dark:bg-neutral-800 dark:border-neutral-400/20 dark:hover:bg-neutral-700 px-2.5 py-1 text-xs font-semibold  shadow-sm hover:bg-neutral-50"
+                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold shadow-sm hover:bg-neutral-50 dark:border-neutral-400/20  dark:bg-neutral-800 dark:hover:bg-neutral-700"
                   onClick={backToSubjectDefault}
                 >
                   Back to Default
@@ -364,7 +364,7 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
           {(customType === "Year" || checkedThings.length > 0) && (
             <button
               type="button"
-              className="w-full rounded-md bg-cesium-100 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200"
+              className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
               onClick={() => {
                 saveTheme();
                 isOpen && setIsOpen(false);

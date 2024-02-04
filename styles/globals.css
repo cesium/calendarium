@@ -133,25 +133,25 @@ a {
 .rbc-calendar .rbc-toolbar button:hover {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-toolbar button:focus {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-toolbar button:active {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-white/10;
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-800;
+  @apply dark:border-neutral-400/20 dark:bg-neutral-800 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-timeslot-group {
@@ -169,13 +169,13 @@ a {
 .rbc-calendar .rbc-toolbar button.rbc-active:hover {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-700/80;
+  @apply dark:border-neutral-400/20 dark:bg-neutral-700/80 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active:focus {
   color: #2c2e32;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20 dark:text-neutral-200 dark:bg-neutral-700/80;
+  @apply dark:border-neutral-400/20 dark:bg-neutral-700/80 dark:text-neutral-200;
 }
 
 .rbc-calendar .rbc-toolbar button.rbc-active:active {
@@ -188,7 +188,7 @@ a {
   padding: 0.15rem;
   font-weight: 500;
   color: #374151;
-  @apply dark:text-neutral-400 dark:border-neutral-400/20;
+  @apply dark:border-neutral-400/20 dark:text-neutral-400;
 }
 
 .rbc-calendar .rbc-off-range-bg {
@@ -381,11 +381,11 @@ a {
 }
 
 .ant-collapse-header-text {
-  @apply dark:text-neutral-200 text-neutral-900;
+  @apply text-neutral-900 dark:text-neutral-200;
 }
 
 .ant-collapse-expand-icon {
-  @apply dark:text-neutral-200 text-neutral-900;
+  @apply text-neutral-900 dark:text-neutral-200;
 }
 
 .ant-collapse-borderless > .ant-collapse-item {
@@ -393,15 +393,15 @@ a {
 }
 
 .ant-checkbox-wrapper {
-  @apply dark:text-neutral-200 text-neutral-900 font-display;
+  @apply font-display text-neutral-900 dark:text-neutral-200;
 }
 
 .ant-checkbox .ant-checkbox-inner {
-  @apply dark:bg-white/20 dark:border-neutral-400/20;
+  @apply dark:border-neutral-400/20 dark:bg-white/20;
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
-  @apply dark:bg-blue-500 dark:border-neutral-400/20;
+  @apply dark:border-neutral-400/20 dark:bg-blue-500;
 }
 
 .ant-collapse > .ant-collapse-item {
@@ -409,11 +409,11 @@ a {
 }
 
 .ant-collapse {
-  @apply dark:bg-neutral-800 dark:border-neutral-400/30;
+  @apply dark:border-neutral-400/30 dark:bg-neutral-800;
 }
 
 .ant-collapse-content {
-  @apply dark:bg-neutral-800 dark:text-neutral-200 dark:border-neutral-400/30;
+  @apply dark:border-neutral-400/30 dark:bg-neutral-800 dark:text-neutral-200;
 }
 
 .ant-popover-inner {

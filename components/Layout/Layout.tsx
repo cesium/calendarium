@@ -25,26 +25,34 @@ const Layout = ({
   saveTheme,
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`; 
+  const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
   const { resolvedTheme } = useTheme();
   const [logo, setLogo] = useState(null);
 
   // necesary so logo renders only on the client
-  useEffect(() => setLogo(
-    <picture>
-      <img
-        className="h-[46px] w-auto"
-        src={resolvedTheme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
-        alt="Calendarium Logo"
-      />
-    </picture>
-  ), [resolvedTheme]);
+  useEffect(
+    () =>
+      setLogo(
+        <picture>
+          <img
+            className="h-[46px] w-auto"
+            src={
+              resolvedTheme === "dark"
+                ? "/calendarium-dark.svg"
+                : "/calendarium-light.svg"
+            }
+            alt="Calendarium Logo"
+          />
+        </picture>
+      ),
+    [resolvedTheme]
+  );
 
   return (
-    <div className="text-neutral-900 lg:flex dark:bg-neutral-900 dark:text-neutral-200">
+    <div className="text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200 lg:flex">
       {/* Open/Close Sidebar Button */}
       <button
-        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white dark:bg-neutral-800/70 shadow-md ring-1 ring-neutral-100/50 dark:ring-neutral-400/20 lg:hidden"
+        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
@@ -76,9 +84,7 @@ const Layout = ({
         <div
           style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
         >
-          <Link href="/">
-            {logo}
-          </Link>
+          <Link href="/">{logo}</Link>
         </div>
       </div>
 
