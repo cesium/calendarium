@@ -91,7 +91,7 @@
     "id": 1112,
     "subjectId": 11738,
     "name": "Inglês Académico",
-    "short_name": "IA",
+    "short_name": "IngA",
     "year": 1,
     "semester": 1
   },
@@ -739,7 +739,7 @@
     "id": 511,
     "subjectId": 14602,
     "name": "Projeto de Informática",
-    "short_name": "PI",
+    "short_name": "ProjInf",
     "year": 5,
     "semester": 1
   },
