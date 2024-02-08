@@ -49,11 +49,11 @@ function ShiftModal({
       >
         <Fade in={inspectShift} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-400/20 p-6 text-center shadow-xl"
+            className="absolute left-1/2 top-1/2 h-fit w-fit min-w-[18rem] -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-xl dark:border-neutral-400/20 dark:bg-neutral-800"
             style={{ maxWidth: "calc(100% - 4rem)" }}
           >
             <div className="space-y-4 font-display">
-              <div className="m-auto w-fit border-b dark:border-neutral-400/30 pb-4">
+              <div className="m-auto w-fit border-b pb-4 dark:border-neutral-400/30">
                 <span id="modal-modal-title" className="text-xl font-medium">
                   {name}
                 </span>

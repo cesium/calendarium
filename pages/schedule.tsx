@@ -245,7 +245,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           max={maxDate}
           eventPropGetter={(event) => {
             const newStyle = {
-              border: "2px solid " + (resolvedTheme === "dark" ? "#171717" : "white"),
+              border:
+                "2px solid " + (resolvedTheme === "dark" ? "#171717" : "white"),
               backgroundColor: getBgColor(event),
               color: getTextColor(event),
               fontWeight: "500",

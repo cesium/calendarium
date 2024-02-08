@@ -32,7 +32,7 @@ const ExportButton = ({ exportPDF, isHome, filters }: ExportButtonProps) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-xl bg-white dark:bg-neutral-800 font-medium text-cesium-900 dark:text-cesium-600 shadow-lg ring-1 ring-black  dark:ring-white/20 ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-fit origin-top-right overflow-hidden rounded-xl bg-white font-medium text-cesium-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none  dark:bg-neutral-800 dark:text-cesium-600 dark:ring-white/20">
             <div className="grid grid-cols-1 py-1">
               <Menu.Item>
                 {({ active }) => (

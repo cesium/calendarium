@@ -14,7 +14,7 @@ const Install = () => {
       </label>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="mt-2 rounded-lg bg-cesium-100 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30 p-2 font-medium text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200"
+        className="mt-2 rounded-lg bg-cesium-100 p-2 font-medium text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
       >
         Install <i className="bi bi-download" />
       </button>
@@ -28,7 +28,7 @@ const Install = () => {
       >
         <Fade in={isModalOpen} timeout={400}>
           <Box
-            className="absolute left-1/2 top-1/2 h-fit w-full min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-400/20 p-6 text-center shadow-xl sm:w-80"
+            className="absolute left-1/2 top-1/2 h-fit w-full min-w-[18rem] max-w-full -translate-x-1/2 -translate-y-1/2 transform rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-xl dark:border-neutral-400/20 dark:bg-neutral-800 sm:w-80"
             style={{
               maxHeight: "calc(100% - 4rem)",
               maxWidth: "calc(100% - 4rem)",
