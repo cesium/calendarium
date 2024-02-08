@@ -17,7 +17,7 @@ import ShareButton from "../ShareButton";
 
 import { SelectedShift } from "../../types";
 
-import {useTheme} from 'next-themes';
+import { useTheme } from "next-themes";
 
 interface ISidebarProps {
   isHome?: boolean;
@@ -62,15 +62,23 @@ const Sidebar = ({
   const [logo, setLogo] = useState(null);
 
   // necesary so logo renders only on the client
-  useEffect(() => setLogo(
-    <picture>
-      <img
-        className="h-[46px] w-auto"
-        src={resolvedTheme === "dark" ? "/calendarium-dark.svg" : "/calendarium-light.svg"}
-        alt="Calendarium Logo"
-      />
-    </picture>
-  ), [resolvedTheme]);
+  useEffect(
+    () =>
+      setLogo(
+        <picture>
+          <img
+            className="h-[46px] w-auto"
+            src={
+              resolvedTheme === "dark"
+                ? "/calendarium-dark.svg"
+                : "/calendarium-light.svg"
+            }
+            alt="Calendarium Logo"
+          />
+        </picture>
+      ),
+    [resolvedTheme]
+  );
 
   return (
     <div
@@ -83,9 +91,7 @@ const Sidebar = ({
           <div
             style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
           >
-            <Link href="https://cesium.link/">
-              {logo}
-            </Link>
+            <Link href="https://cesium.link/">{logo}</Link>
           </div>
         </div>
 
@@ -98,7 +104,7 @@ const Sidebar = ({
             <div className="flex space-x-2">
               <button
                 onClick={() => setIsSettings(!isSettings)}
-                className="dark:bg-neutral-800/70 h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 dark:text-neutral-500 shadow-md ring-1 ring-neutral-200/50 dark:ring-neutral-400/20 transition-all duration-300 hover:text-neutral-900 dark:hover:text-neutral-200 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500"
+                className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
                 title="Settings"
               >
                 {isSettings ? (
