@@ -32,7 +32,7 @@ manual_subject_names = {
     },
     "11738": {
         "name": "Inglês Académico",
-        "short_name": "IA",
+        "short_name": "IngA",
     },
     "15417": {
         "name": "Introdução à Língua e Cultura Russa",
@@ -69,7 +69,7 @@ manual_subject_names = {
 
     "14602": {
         "name": "Projeto de Informática",
-        "short_name": "PI"
+        "short_name": "ProjInf"
     },
     "14603": {
         "name": "Dissertação",
