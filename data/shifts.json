@@ -2508,6 +2508,30 @@
     "filterId": 226
   },
   {
+    "id": 14308,
+    "title": "Redes de Computadores",
+    "theoretical": false,
+    "shift": "PL3",
+    "building": "7",
+    "room": "1.10",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 225
+  },
+  {
+    "id": 14288,
+    "title": "Investigação Operacional",
+    "theoretical": false,
+    "shift": "TP5",
+    "building": "CP2",
+    "room": "2.06",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 222
+  },
+  {
     "id": 14306,
     "title": "Programação Orientada aos Objetos",
     "theoretical": false,
@@ -2532,18 +2556,6 @@
     "filterId": 224
   },
   {
-    "id": 14308,
-    "title": "Redes de Computadores",
-    "theoretical": false,
-    "shift": "PL3",
-    "building": "7",
-    "room": "1.10",
-    "day": 1,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 225
-  },
-  {
     "id": 14306,
     "title": "Programação Orientada aos Objetos",
     "theoretical": false,
@@ -2566,18 +2578,6 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 223
-  },
-  {
-    "id": 14288,
-    "title": "Investigação Operacional",
-    "theoretical": false,
-    "shift": "TP5",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 3,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 222
   },
   {
     "id": 14306,
