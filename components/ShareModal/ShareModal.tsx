@@ -158,14 +158,14 @@ const ShareModal = ({
     const formData = new FormData(form);
 
     const rawCode = formData.get("code");
-    if (typeof "foo" !== "string") return false;
+    if (typeof rawCode !== "string") return;
 
     const code = rawCode as string;
 
     const parsedData = isHome ? parseEvents(code) : parseShiftsValid(code);
     if (!parsedData) {
       playErrorImportAnimation();
-      return false;
+      return;
     }
 
     handleFilters(parsedData);
