@@ -1,12 +1,12 @@
-import { Modal, Box, Typography, Fade, Backdrop } from "@mui/material";
+import {Backdrop, Box, Fade, Modal} from "@mui/material";
 
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 
-import { IFilterDTO } from "../../dtos";
+import {IFilterDTO} from "../../dtos";
 
-import { SelectedShift } from "../../types";
+import {SelectedShift} from "../../types";
 
-import { Collapse } from "antd";
+import {Collapse} from "antd";
 
 type ShareModalProps = {
   isOpen: boolean;
@@ -18,183 +18,174 @@ type ShareModalProps = {
 };
 
 const ShareModal = ({
-  isOpen,
-  setIsOpen,
-  isHome,
-  filters,
-  handleFilters,
-  setChecked,
-}: ShareModalProps) => {
-  const [link, setLink] = useState<string>("");
+                      isOpen,
+                      setIsOpen,
+                      isHome,
+                      filters,
+                      handleFilters,
+                      setChecked,
+                    }: ShareModalProps) => {
+  const [code, setCode] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [isImporting, setIsImporting] = useState<boolean>(false);
   const [isImported, setIsImported] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  // checks if a filter exists for each filterId in checkedEvents
-  function clearUnvalidEventItems(checkedEvents: number[]) {
-    const validEvents = checkedEvents.filter((id) =>
-      filters.find((f) => f.id === id)
-    );
-    localStorage.setItem("checked", JSON.stringify(validEvents));
-
-    return validEvents;
+  /**
+   * Check if the id corresponds to a filter
+   * @param id - The id to be checked
+   */
+  function isValidId(id: number): boolean {
+    return filters.some((f) => f.id === id);
   }
 
-  // checks if a filter exists for each filterId in checkedShifts
-  // and if the shift exists for that filter.
-  function clearUnvalidShiftItems(
-    checkedShifts: { id: number; shift: string }[]
-  ) {
-    const validShifts = checkedShifts.filter((shift) => {
-      const filter = filters.find((f) => f.id === shift.id);
-      return filter && filter.shifts.includes(shift.shift); // filter must include the shift
+  /**
+   * Get a filter by its id or name
+   * @param idOrName - The id or name of the filter
+   */
+  function getFilterByIdOrName(idOrName: string) {
+    return filters.find((f) => f.name === idOrName || f.id.toString() === idOrName);
+  }
+
+  /**
+   * Parses a shift string and returns the parsed shifts
+   *
+   * The shift string is in the format "id=shift1,shift2,shift3"
+   * The reason for a list of shifts being returned is because the same id can have multiple shifts separated by a comma
+   * @param shift - The shift string to be parsed
+   */
+  function parseShiftValid(shift: string): SelectedShift[] | undefined {
+    const [idOrName, shiftName] = shift.split("=");
+    if (!idOrName || !shiftName) return undefined;
+
+    const filter = getFilterByIdOrName(idOrName);
+    if (!filter) return undefined;
+
+    const shifts = shiftName.split(",").map((s) => s.toUpperCase());
+    if (!shifts.every((s) => filter.shifts.includes(s))) return undefined;
+
+    return shifts.map((shift) => ({id: filter.id, shift}));
+  }
+
+  /**
+   * Parses a shifts string separated by an ampersand using parseShiftValid
+   *
+   * If any shift is invalid, the function returns undefined
+   * @param shiftsString
+   */
+  function parseShiftsValid(shiftsString: string): SelectedShift[] | undefined {
+    const shifts = shiftsString.split("&").map(parseShiftValid);
+    return shifts.every(Boolean) ? shifts.flat() : undefined;
+  }
+
+  /**
+   * Parses an event string
+   * If the there are no filters with the event string id or name, the function returns undefined
+   *
+   * @param eventString - The event string to be parsed
+   */
+  function parseEventValid(eventString: string): number | undefined {
+    const event = getFilterByIdOrName(eventString);
+    return event ? event.id : undefined;
+  }
+
+  /**
+   * Parses an events string separated by an ampersand using parseEventValid
+   *
+   * If any event is invalid, the function returns undefined
+   * @param eventsString
+   */
+  function parseEvents(eventsString: string): number[] | undefined {
+    const events = eventsString.split("&").map(parseEventValid);
+    return events.every(isValidId) ? events : undefined;
+  }
+
+  const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+    list.reduce((previous, currentItem) => {
+      const group = getKey(currentItem);
+      if (!previous[group]) previous[group] = [];
+      previous[group].push(currentItem);
+      return previous;
+    }, {} as Record<K, T[]>);
+
+  /**
+   * Converts a list of shifts to a list of strings in the format "id=shift1,shift2,shift3"
+   * Shifts with the same id are grouped together and will get separated by a comma
+   *
+   * Used to generate the share code
+   *
+   * @param shifts - The shift to be converted
+   */
+  function shiftsToStringArray(shifts: SelectedShift[]): string[] {
+    const groupedShifts = groupBy(shifts, ({ id }) => id);
+
+    return Object.entries(groupedShifts).map(([id, shifts]) => {
+      const identifier = filters.find((f) => f.id.toString() === id)?.name || id.toString();
+      const shiftsString = shifts.map(shift => shift.shift).join(",");
+      return `${identifier}=${shiftsString}`;
     });
-    localStorage.setItem("shifts", JSON.stringify(validShifts));
-
-    return validShifts;
   }
 
-  function generateShareLink(): string {
-    var link: string = "";
-    if (isHome) {
-      // fecth checked events from localStorage
-      const checkedEvents: number[] = JSON.parse(
-        localStorage.getItem("checked")
-      );
-
-      // if there are no checked events, return empty string (empty URL => warning message on modal)
-      if (!checkedEvents || checkedEvents.length === 0) return "";
-
-      // clear unvalid events from checkedEvents
-      const validCheckedEvents = clearUnvalidEventItems(checkedEvents);
-
-      // if the resulting valid events array is empty, return empty string (empty URL => warning message on modal)
-      if (validCheckedEvents.length === 0) return "";
-
-      // build link string
-      link = validCheckedEvents.join("&");
-    } else {
-      // helps format each shift parameter
-      const toString = (shift: { id: number; shift: string }) => {
-        return `${shift.id}=${shift.shift}`;
-      };
-
-      // fetch checked shifts from localStorage
-      const checkedShifts: { id: number; shift: string }[] = JSON.parse(
-        localStorage.getItem("shifts")
-      );
-
-      // if there are no checked shifts, return empty string (empty URL => warning message on modal)
-      if (!checkedShifts || checkedShifts.length === 0) return "";
-
-      // clear unvalid shifts from checkedShifts
-      const validCheckedShifts = clearUnvalidShiftItems(checkedShifts);
-
-      // if the resulting valid shifts array is empty, return empty string (empty URL => warning message on modal)
-      if (validCheckedShifts.length === 0) return "";
-
-      // build link string
-      link = `${validCheckedShifts.map((shift) => toString(shift)).join("&")}`;
+  /**
+   * Converts a list of events to a list of their names
+   * Used to generate the share code
+   *
+   * @param eventIds - The event ids to be converted
+   */
+  function eventsToStringArray(eventIds: number[]): string[] {
+    function eventToString(eventId: number): string {
+      return filters.find((f) => f.id === eventId)?.name || eventId.toString();
     }
-    return link;
+    return eventIds.map(eventToString);
   }
 
-  function copyToClipboard() {
-    navigator.clipboard.writeText(link);
+  function generateShareCodeHandle(): string {
+    const values = JSON.parse(localStorage.getItem(isHome ? "checked" : "shifts"));
+    const toStringArray = isHome ? eventsToStringArray : shiftsToStringArray;
+
+    return toStringArray(values)?.join("&") || "";
+  }
+
+  function copyToClipboardHandle() {
+    navigator.clipboard.writeText(code);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 1000);
   }
 
-  function importEvents(e) {
-    // prevent the browser from reloading the page
+  function importEventsHandle(e) {
     e.preventDefault();
 
-    // read the form data
     const form = e.target;
     const formData = new FormData(form);
 
-    // get the link from the form data
-    const link: string | File = formData.get("link");
+    const rawCode = formData.get("code");
+    if (typeof rawCode !== "string") return;
 
-    if (link instanceof File) return false;
+    const code = rawCode as string;
 
-    // for events
-    if (isHome) {
-      // get subject ids
-      const subjectIds: string[] = (link as string).split("&");
-
-      // validate subject ids
-      const filterIds = filters.map((f) => f.id);
-      const valid =
-        subjectIds.length > 0 &&
-        subjectIds.every((id) => filterIds.includes(parseInt(id)));
-
-      if (valid) {
-        importAnimation(false);
-
-        const checkedEvents: number[] = subjectIds.map((id) => parseInt(id));
-
-        handleFilters(checkedEvents);
-        setChecked(checkedEvents);
-        localStorage.setItem("checked", JSON.stringify(checkedEvents));
-      } else importAnimation(true);
+    const parsedData = isHome ? parseEvents(code) : parseShiftsValid(code);
+    if (!parsedData) {
+      playErrorImportAnimation();
+      return;
     }
-    // for schedules
-    else {
-      // get entries
-      const entries: [string, string[]][] = link
-        .split("&")
-        .map((e) => [
-          e.split("=")[0] ?? "",
-          (e.split("=")[1] ?? "").split(","),
-        ]);
 
-      // validate entries
-      const valid: boolean =
-        entries.length > 0 &&
-        entries.every((entry) => {
-          const [key, value] = entry;
-
-          const filter = filters.find((f) => f.id === parseInt(key));
-
-          return filter && value.every((v) => filter.shifts.includes(v));
-        });
-
-      if (valid) {
-        importAnimation(false);
-
-        // get checked shifts
-        const checkedShifts: SelectedShift[] = entries
-          .map((entry) => {
-            const [key, value] = entry;
-            const filter = filters.find((f) => f.id === parseInt(key));
-
-            return value.map((v) => ({ id: filter.id, shift: v }));
-          })
-          .flat();
-
-        handleFilters(checkedShifts);
-        setChecked(checkedShifts);
-        localStorage.setItem("shifts", JSON.stringify(checkedShifts));
-      } else importAnimation(true);
-    }
+    handleFilters(parsedData);
+    setChecked(parsedData);
+    localStorage.setItem(isHome ? "checked" : "shifts", JSON.stringify(parsedData));
+    playValidImportAnimation();
   }
 
-  function importAnimation(err: boolean = false) {
-    setIsImporting(true);
-    setTimeout(() => setIsImporting(false), 1000);
-    if (!err) {
-      setIsImported(true);
-      setTimeout(() => setIsImported(false), 2000);
-    } else {
-      setIsError(true);
-      setTimeout(() => setIsError(false), 2000);
-    }
+  function playErrorImportAnimation() {
+    setIsError(true);
+    setTimeout(() => setIsError(false), 2000);
+  }
+
+  function playValidImportAnimation() {
+    setIsImported(true);
+    setTimeout(() => setIsImported(false), 2000);
   }
 
   useEffect(() => {
-    setLink(generateShareLink());
+    setCode(generateShareCodeHandle());
   });
 
   return (
@@ -203,8 +194,8 @@ const ShareModal = ({
         open={isOpen}
         onClose={() => setIsOpen(false)}
         closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{ backdrop: { timeout: 400 } }}
+        slots={{backdrop: Backdrop}}
+        slotProps={{backdrop: {timeout: 400}}}
       >
         <Fade in={isOpen} timeout={400}>
           <Box
@@ -227,13 +218,13 @@ const ShareModal = ({
                   <div className="flex">
                     <form
                       className="flex rounded-lg shadow-sm"
-                      onSubmit={importEvents}
+                      onSubmit={importEventsHandle}
                     >
                       <div className="relative flex flex-grow items-stretch focus-within:z-10">
                         <input
-                          name="link"
+                          name="code"
                           className="block w-full rounded-none rounded-l-lg border-0 py-1.5 ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 dark:bg-neutral-800 dark:ring-neutral-400/30 sm:text-sm sm:leading-6"
-                          placeholder="Insert a share link here..."
+                          placeholder="Insert a share code here"
                         />
                       </div>
                       <button
@@ -241,47 +232,25 @@ const ShareModal = ({
                         className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                         title="Import"
                       >
-                        {isImporting ? (
-                          // Spinner SVG
-                          <svg
-                            className="h-4 w-4 animate-spin text-cesium-900"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            ></path>
-                          </svg>
-                        ) : isImported ? (
-                          <i className="bi bi-check-circle-fill text-cesium-900" />
+                        {isImported ? (
+                          <i className="bi bi-check-circle-fill text-cesium-900"/>
                         ) : isError ? (
-                          <i className="bi bi-exclamation-triangle-fill text-red-600" />
+                          <i className="bi bi-exclamation-triangle-fill text-red-600"/>
                         ) : (
-                          <i className="bi bi-download" />
+                          <i className="bi bi-download"/>
                         )}
                       </button>
                     </form>
                     <button
                       type="button"
                       className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
-                      title="Copy your share link"
-                      onClick={copyToClipboard}
+                      title="Copy your share code"
+                      onClick={copyToClipboardHandle}
                     >
                       {isCopied ? (
-                        <i className="bi bi-check-circle-fill text-cesium-900" />
+                        <i className="bi bi-check-circle-fill text-cesium-900"/>
                       ) : (
-                        <i className="bi bi-copy" />
+                        <i className="bi bi-copy"/>
                       )}
                     </button>
                   </div>
@@ -290,16 +259,16 @@ const ShareModal = ({
               <Collapse className="w-full rounded-lg border-neutral-300 bg-white text-left font-display shadow-sm">
                 <Collapse.Panel header="How does it work?" key="1">
                   <div className="text-justify">
-                    <a className="font-medium">
-                      Copy your share code with <i className="bi bi-copy" />
-                    </a>{" "}
+                    <span className="font-medium">
+                      Copy your share code with <i className="bi bi-copy"/>
+                    </span>{" "}
                     to share your {isHome ? "events" : "schedule"} with your
                     friends or with another device.
                     <p></p>
-                    <a className="font-medium">
+                    <span className="font-medium">
                       Paste a share code and click{" "}
-                      <i className="bi bi-download" />
-                    </a>{" "}
+                      <i className="bi bi-download"/>
+                    </span>{" "}
                     to import your friend{"'"}s {isHome ? "events" : "schedule"}{" "}
                     or the {isHome ? "events" : "schedule"} you set up on
                     another device.
