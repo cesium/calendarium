@@ -108,7 +108,9 @@ const ShareModal = ({
     }, {} as Record<K, T[]>);
 
   /**
-   * Converts a shift to a string
+   * Converts a list of shifts to a list of strings in the format "id=shift1,shift2,shift3"
+   * Shifts with the same id are grouped together and will get separated by a comma
+   *
    * Used to generate the share code
    *
    * @param shifts - The shift to be converted
