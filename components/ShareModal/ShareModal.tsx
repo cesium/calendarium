@@ -30,14 +30,29 @@ const ShareModal = ({
   const [isImported, setIsImported] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
+  /**
+   * Check if the id corresponds to a filter
+   * @param id - The id to be checked
+   */
   function isValidId(id: number): boolean {
     return filters.some((f) => f.id === id);
   }
 
+  /**
+   * Get a filter by its id or name
+   * @param idOrName - The id or name of the filter
+   */
   function getFilterByIdOrName(idOrName: string) {
     return filters.find((f) => f.name === idOrName || f.id.toString() === idOrName);
   }
 
+  /**
+   * Parses a shift string and returns the parsed shifts
+   *
+   * The shift string is in the format "id=shift1,shift2,shift3"
+   * The reason for a list of shifts being returned is because the same id can have multiple shifts separated by a comma
+   * @param shift - The shift string to be parsed
+   */
   function parseShiftValid(shift: string): SelectedShift[] | undefined {
     const [idOrName, shiftName] = shift.split("=");
     if (!idOrName || !shiftName) return undefined;
@@ -51,27 +66,57 @@ const ShareModal = ({
     return shifts.map((shift) => ({id: filter.id, shift}));
   }
 
+  /**
+   * Parses a shifts string separated by an ampersand using parseShiftValid
+   *
+   * If any shift is invalid, the function returns undefined
+   * @param shiftsString
+   */
   function parseShiftsValid(shiftsString: string): SelectedShift[] | undefined {
     const shifts = shiftsString.split("&").map(parseShiftValid);
     return shifts.every(Boolean) ? shifts.flat() : undefined;
   }
 
+  /**
+   * Parses an event string
+   * If the there are no filters with the event string id or name, the function returns undefined
+   *
+   * @param eventString - The event string to be parsed
+   */
   function parseEventValid(eventString: string): number | undefined {
     const event = getFilterByIdOrName(eventString);
     return event ? event.id : undefined;
   }
 
+  /**
+   * Parses an events string separated by an ampersand using parseEventValid
+   *
+   * If any event is invalid, the function returns undefined
+   * @param eventsString
+   */
   function parseEvents(eventsString: string): number[] | undefined {
     const events = eventsString.split("&").map(parseEventValid);
     return events.every(isValidId) ? events : undefined;
   }
 
+  /**
+   * Converts a shift to a string
+   * Used to generate the share code
+   *
+   * @param shift - The shift to be converted
+   */
   function shiftToString(shift: SelectedShift): string {
     // identified is the name of the filter, if it exists
     const identifier = filters.find((f) => f.id === shift.id)?.name || shift.id.toString();
     return `${identifier}=${shift.shift}`;
   }
 
+  /**
+   * Converts an event to a string
+   * Used to generate the share code
+   *
+   * @param eventId - The event id to be converted
+   */
   function eventToString(eventId: number): string {
     return filters.find((f) => f.id === eventId)?.name || eventId.toString();
   }
