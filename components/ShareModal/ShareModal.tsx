@@ -99,32 +99,48 @@ const ShareModal = ({
     return events.every(isValidId) ? events : undefined;
   }
 
+  const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+    list.reduce((previous, currentItem) => {
+      const group = getKey(currentItem);
+      if (!previous[group]) previous[group] = [];
+      previous[group].push(currentItem);
+      return previous;
+    }, {} as Record<K, T[]>);
+
   /**
    * Converts a shift to a string
    * Used to generate the share code
    *
-   * @param shift - The shift to be converted
+   * @param shifts - The shift to be converted
    */
-  function shiftToString(shift: SelectedShift): string {
-    // identified is the name of the filter, if it exists
-    const identifier = filters.find((f) => f.id === shift.id)?.name || shift.id.toString();
-    return `${identifier}=${shift.shift}`;
+  function shiftsToStringArray(shifts: SelectedShift[]): string[] {
+    const groupedShifts = groupBy(shifts, ({ id }) => id);
+
+    return Object.entries(groupedShifts).map(([id, shifts]) => {
+      const identifier = filters.find((f) => f.id.toString() === id)?.name || id.toString();
+      const shiftsString = shifts.map(shift => shift.shift).join(",");
+      return `${identifier}=${shiftsString}`;
+    });
   }
 
   /**
-   * Converts an event to a string
+   * Converts a list of events to a list of their names
    * Used to generate the share code
    *
-   * @param eventId - The event id to be converted
+   * @param eventIds - The event ids to be converted
    */
-  function eventToString(eventId: number): string {
-    return filters.find((f) => f.id === eventId)?.name || eventId.toString();
+  function eventsToStringArray(eventIds: number[]): string[] {
+    function eventToString(eventId: number): string {
+      return filters.find((f) => f.id === eventId)?.name || eventId.toString();
+    }
+    return eventIds.map(eventToString);
   }
 
   function generateShareCodeHandle(): string {
     const values = JSON.parse(localStorage.getItem(isHome ? "checked" : "shifts"));
-    const toString = isHome ? eventToString : shiftToString;
-    return values?.map(toString).join("&") || "";
+    const toStringArray = isHome ? eventsToStringArray : shiftsToStringArray;
+
+    return toStringArray(values)?.join("&") || "";
   }
 
   function copyToClipboardHandle() {
