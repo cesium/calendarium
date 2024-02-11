@@ -206,7 +206,7 @@ const ShareModal = ({
                         <input
                           name="code"
                           className="block w-full rounded-none rounded-l-lg border-0 py-1.5 ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-cesium-900 dark:bg-neutral-800 dark:ring-neutral-400/30 sm:text-sm sm:leading-6"
-                          placeholder="Insert a share link here"
+                          placeholder="Insert a share code here"
                         />
                       </div>
                       <button
@@ -241,16 +241,16 @@ const ShareModal = ({
               <Collapse className="w-full rounded-lg border-neutral-300 bg-white text-left font-display shadow-sm">
                 <Collapse.Panel header="How does it work?" key="1">
                   <div className="text-justify">
-                    <a className="font-medium">
+                    <span className="font-medium">
                       Copy your share code with <i className="bi bi-copy"/>
-                    </a>{" "}
+                    </span>{" "}
                     to share your {isHome ? "events" : "schedule"} with your
                     friends or with another device.
                     <p></p>
-                    <a className="font-medium">
+                    <span className="font-medium">
                       Paste a share code and click{" "}
                       <i className="bi bi-download"/>
-                    </a>{" "}
+                    </span>{" "}
                     to import your friend{"'"}s {isHome ? "events" : "schedule"}{" "}
                     or the {isHome ? "events" : "schedule"} you set up on
                     another device.
