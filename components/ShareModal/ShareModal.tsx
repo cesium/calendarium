@@ -152,6 +152,8 @@ const ShareModal = ({
   }
 
   function importEventsHandle(e) {
+    if (!e) return;
+
     e.preventDefault();
 
     const form = e.target;
