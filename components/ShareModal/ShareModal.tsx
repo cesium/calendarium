@@ -1,12 +1,12 @@
-import {Backdrop, Box, Fade, Modal} from "@mui/material";
+import { Backdrop, Box, Fade, Modal } from "@mui/material";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-import {IFilterDTO} from "../../dtos";
+import { IFilterDTO } from "../../dtos";
 
-import {SelectedShift} from "../../types";
+import { SelectedShift } from "../../types";
 
-import {Collapse} from "antd";
+import { Collapse } from "antd";
 
 type ShareModalProps = {
   isOpen: boolean;
@@ -18,13 +18,13 @@ type ShareModalProps = {
 };
 
 const ShareModal = ({
-                      isOpen,
-                      setIsOpen,
-                      isHome,
-                      filters,
-                      handleFilters,
-                      setChecked,
-                    }: ShareModalProps) => {
+  isOpen,
+  setIsOpen,
+  isHome,
+  filters,
+  handleFilters,
+  setChecked,
+}: ShareModalProps) => {
   const [code, setCode] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isImported, setIsImported] = useState<boolean>(false);
@@ -43,7 +43,9 @@ const ShareModal = ({
    * @param idOrName - The id or name of the filter
    */
   function getFilterByIdOrName(idOrName: string) {
-    return filters.find((f) => f.name === idOrName || f.id.toString() === idOrName);
+    return filters.find(
+      (f) => f.name === idOrName || f.id.toString() === idOrName
+    );
   }
 
   /**
@@ -63,7 +65,7 @@ const ShareModal = ({
     const shifts = shiftName.split(",").map((s) => s.toUpperCase());
     if (!shifts.every((s) => filter.shifts.includes(s))) return undefined;
 
-    return shifts.map((shift) => ({id: filter.id, shift}));
+    return shifts.map((shift) => ({ id: filter.id, shift }));
   }
 
   /**
@@ -116,11 +118,12 @@ const ShareModal = ({
    * @param shifts - The shift to be converted
    */
   function shiftsToStringArray(shifts: SelectedShift[]): string[] {
-    const groupedShifts = groupBy(shifts, ({id}) => id);
+    const groupedShifts = groupBy(shifts, ({ id }) => id);
 
     return Object.entries(groupedShifts).map(([id, shifts]) => {
-      const identifier = filters.find((f) => f.id.toString() === id)?.name || id.toString();
-      const shiftsString = shifts.map(shift => shift.shift).join(",");
+      const identifier =
+        filters.find((f) => f.id.toString() === id)?.name || id.toString();
+      const shiftsString = shifts.map((shift) => shift.shift).join(",");
       return `${identifier}=${shiftsString}`;
     });
   }
@@ -180,7 +183,10 @@ const ShareModal = ({
 
     handleFilters(parsedData);
     setChecked(parsedData);
-    localStorage.setItem(isHome ? "checked" : "shifts", JSON.stringify(parsedData));
+    localStorage.setItem(
+      isHome ? "checked" : "shifts",
+      JSON.stringify(parsedData)
+    );
     playValidImportAnimation();
   }
 
@@ -204,8 +210,8 @@ const ShareModal = ({
         open={isOpen}
         onClose={() => setIsOpen(false)}
         closeAfterTransition
-        slots={{backdrop: Backdrop}}
-        slotProps={{backdrop: {timeout: 400}}}
+        slots={{ backdrop: Backdrop }}
+        slotProps={{ backdrop: { timeout: 400 } }}
       >
         <Fade in={isOpen} timeout={400}>
           <Box
@@ -243,11 +249,11 @@ const ShareModal = ({
                         title="Import"
                       >
                         {isImported ? (
-                          <i className="bi bi-check-circle-fill text-cesium-900"/>
+                          <i className="bi bi-check-circle-fill text-cesium-900" />
                         ) : isError ? (
-                          <i className="bi bi-exclamation-triangle-fill text-red-600"/>
+                          <i className="bi bi-exclamation-triangle-fill text-red-600" />
                         ) : (
-                          <i className="bi bi-download"/>
+                          <i className="bi bi-download" />
                         )}
                       </button>
                     </form>
@@ -258,9 +264,9 @@ const ShareModal = ({
                       onClick={copyToClipboardHandle}
                     >
                       {isCopied ? (
-                        <i className="bi bi-check-circle-fill text-cesium-900"/>
+                        <i className="bi bi-check-circle-fill text-cesium-900" />
                       ) : (
-                        <i className="bi bi-copy"/>
+                        <i className="bi bi-copy" />
                       )}
                     </button>
                   </div>
@@ -270,14 +276,14 @@ const ShareModal = ({
                 <Collapse.Panel header="How does it work?" key="1">
                   <div className="text-justify">
                     <span className="font-medium">
-                      Copy your share code with <i className="bi bi-copy"/>
+                      Copy your share code with <i className="bi bi-copy" />
                     </span>{" "}
                     to share your {isHome ? "events" : "schedule"} with your
                     friends or with another device.
                     <p></p>
                     <span className="font-medium">
                       Paste a share code and click{" "}
-                      <i className="bi bi-download"/>
+                      <i className="bi bi-download" />
                     </span>{" "}
                     to import your friend{"'"}s {isHome ? "events" : "schedule"}{" "}
                     or the {isHome ? "events" : "schedule"} you set up on
