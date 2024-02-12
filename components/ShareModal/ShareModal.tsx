@@ -116,7 +116,7 @@ const ShareModal = ({
    * @param shifts - The shift to be converted
    */
   function shiftsToStringArray(shifts: SelectedShift[]): string[] {
-    const groupedShifts = groupBy(shifts, ({ id }) => id);
+    const groupedShifts = groupBy(shifts, ({id}) => id);
 
     return Object.entries(groupedShifts).map(([id, shifts]) => {
       const identifier = filters.find((f) => f.id.toString() === id)?.name || id.toString();
@@ -135,14 +135,22 @@ const ShareModal = ({
     function eventToString(eventId: number): string {
       return filters.find((f) => f.id === eventId)?.name || eventId.toString();
     }
+
     return eventIds.map(eventToString);
   }
 
   function generateShareCodeHandle(): string {
-    const values = JSON.parse(localStorage.getItem(isHome ? "checked" : "shifts"));
-    const toStringArray = isHome ? eventsToStringArray : shiftsToStringArray;
+    const valuesRaw = localStorage.getItem(isHome ? "checked" : "shifts");
+    if (!valuesRaw) return "";
 
-    return toStringArray(values)?.join("&") || "";
+    try {
+      const values = JSON.parse(valuesRaw);
+      const toStringArray = isHome ? eventsToStringArray : shiftsToStringArray;
+
+      return toStringArray(values)?.join("&") || "";
+    } catch (error) {
+      return "";
+    }
   }
 
   function copyToClipboardHandle() {
