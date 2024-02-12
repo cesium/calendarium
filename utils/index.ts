@@ -27,6 +27,7 @@ export const defaultColors = [
   "#FF0000", // join
   "#1B69EE", // jordi
   "#FF499E", // codeweek
+  "#66B22E"  // bugsbyte
 ];
 
 export async function getEvents(
