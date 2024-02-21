@@ -108,6 +108,12 @@ a {
   font-weight: 500;
 }
 
+@media (max-width: 767px) {
+  .rbc-calendar .rbc-toolbar {
+    flex-direction: row;
+  }
+}
+
 .rbc-calendar .rbc-month-view {
   overflow: hidden;
   border: 1px solid rgb(203 213 225);
