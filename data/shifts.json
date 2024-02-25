@@ -1949,7 +1949,7 @@
     "theoretical": true,
     "shift": "T1",
     "building": "CP1",
-    "room": "0.20",
+    "room": "0.08",
     "day": 1,
     "start": "09:00",
     "end": "11:00",
@@ -3468,18 +3468,6 @@
     "filterId": 321
   },
   {
-    "id": 14317,
-    "title": "Processamento de Linguagens",
-    "theoretical": false,
-    "shift": "PL3",
-    "building": "7",
-    "room": "0.08",
-    "day": 0,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 324
-  },
-  {
     "id": 14319,
     "title": "Engenharia Web",
     "theoretical": true,
@@ -3492,6 +3480,18 @@
     "filterId": 327
   },
   {
+    "id": 14317,
+    "title": "Processamento de Linguagens",
+    "theoretical": false,
+    "shift": "PL3",
+    "building": "7",
+    "room": "0.08",
+    "day": 0,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 324
+  },
+  {
     "id": 14318,
     "title": "Aprendizagem e Decisão Inteligentes",
     "theoretical": false,
@@ -3502,6 +3502,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 321
+  },
+  {
+    "id": 14319,
+    "title": "Engenharia Web",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP2",
+    "room": "0.05",
+    "day": 0,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 327
   },
   {
     "id": 14321,
@@ -4648,8 +4660,8 @@
     "title": "Redes Definidas por Software",
     "theoretical": true,
     "shift": "T1",
-    "building": "CP1",
-    "room": "0.17",
+    "building": "7",
+    "room": "1.09",
     "day": 4,
     "start": "13:00",
     "end": "14:00",
@@ -4768,8 +4780,8 @@
     "title": "Redes Definidas por Software",
     "theoretical": false,
     "shift": "TP1",
-    "building": "CP1",
-    "room": "0.17",
+    "building": "7",
+    "room": "1.09",
     "day": 4,
     "start": "14:00",
     "end": "16:00",
