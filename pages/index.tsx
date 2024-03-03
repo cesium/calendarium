@@ -15,6 +15,7 @@ import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors } from "../utils";
 import { SubjectColor } from "../types";
+import { merge } from "antd/es/theme/util/statistic";
 
 const localizer = momentLocalizer(moment);
 
@@ -176,6 +177,14 @@ export default function Home({ filters }) {
     return color;
   }
 
+  function mergeColors(colors: string[]) {
+    let merged = [...colors];
+    for (let i = 0; i < defaultColors.length; i++) {
+      if (merged[i] === undefined) merged[i] = defaultColors[i];
+    }
+    return merged;
+  }
+
   function saveTheme() {
     let theme = localStorage.getItem("theme");
     const colors = localStorage.getItem("colors");
@@ -184,6 +193,10 @@ export default function Home({ filters }) {
     const subjectColors: SubjectColor[] =
       JSON.parse(localStorage.getItem("subjectColors")) ?? [];
 
+    // error proof checks
+    colors &&
+      colors.split(",").length !== defaultColors.length &&
+      localStorage.setItem("colors", mergeColors(colors.split(",")).join(","));
     !theme && localStorage.setItem("theme", "Modern");
     !customType && localStorage.setItem("customType", "Subject");
 
