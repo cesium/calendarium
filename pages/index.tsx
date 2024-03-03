@@ -148,8 +148,8 @@ export default function Home({ filters }) {
     else if (theme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = reduceOpacity(colors[event.groupId]))
-          : (color = colors[event.groupId]);
+          ? (color = reduceOpacity(colors[event.groupId] ?? defaultColors[event.groupId]))
+          : (color = colors[event.groupId] ?? defaultColors[event.groupId]);
       } else if (customType === "Subject") {
         opacity
           ? (color = reduceOpacity(getSubjectColor(event)))
