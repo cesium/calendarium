@@ -8,15 +8,12 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import moment from "moment";
-import path from "path";
-import fsPromises from "fs/promises";
 
 import ShiftModal from "../components/ShiftModal";
 import Layout from "../components/Layout";
 import { IFilterDTO, IShiftDTO } from "../dtos";
-import { reduceOpacity } from "../utils";
+import { reduceOpacity, defaultColors, mergeColors } from "../utils";
 import { SubjectColor } from "../types";
-import { defaultColors } from "../utils";
 
 import styles from "../styles/schedule.module.css";
 
@@ -86,8 +83,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = reduceOpacity(colors[String(event.filterId)[0]]))
-          : (color = colors[String(event.filterId)[0]]);
+          ? (color = reduceOpacity(colors[String(event.filterId)[0]] ?? getDefaultColor(event)))
+          : (color = colors[String(event.filterId)[0]] ?? getDefaultColor(event));
       } else if (customType === "Subject") {
         opacity
           ? (color = reduceOpacity(getSubjectColor(event)))
@@ -106,7 +103,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = colors[String(event.filterId)[0]])
+          ? (color = colors[String(event.filterId)[0]] ?? getDefaultColor(event))
           : (color = "white");
       } else if (customType === "Subject") {
         opacity ? (color = getSubjectColor(event)) : (color = "white");
@@ -124,6 +121,10 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     const subjectColors: SubjectColor[] =
       JSON.parse(localStorage.getItem("subjectColors")) ?? [];
 
+    // error proof checks
+    colors &&
+      colors.split(",").length !== defaultColors.length &&
+      localStorage.setItem("colors", mergeColors(colors.split(",")).join(","));
     !theme && localStorage.setItem("theme", "Modern");
     !customType && localStorage.setItem("customType", "Subject");
 

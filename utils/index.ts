@@ -119,3 +119,11 @@ export async function getEvents(
     ); // filter out invalid/incomplete events
   }
 }
+
+export function mergeColors(colors: string[]) {
+  let merged = [...colors];
+  for (let i = 0; i < defaultColors.length; i++) {
+    if (merged[i] === undefined) merged[i] = defaultColors[i];
+  }
+  return merged;
+}
