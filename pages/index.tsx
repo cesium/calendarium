@@ -13,9 +13,8 @@ import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
 import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
-import { reduceOpacity, defaultColors } from "../utils";
+import { reduceOpacity, defaultColors, mergeColors } from "../utils";
 import { SubjectColor } from "../types";
-import { merge } from "antd/es/theme/util/statistic";
 
 const localizer = momentLocalizer(moment);
 
@@ -175,14 +174,6 @@ export default function Home({ filters }) {
     }
 
     return color;
-  }
-
-  function mergeColors(colors: string[]) {
-    let merged = [...colors];
-    for (let i = 0; i < defaultColors.length; i++) {
-      if (merged[i] === undefined) merged[i] = defaultColors[i];
-    }
-    return merged;
   }
 
   function saveTheme() {
