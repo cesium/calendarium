@@ -2093,18 +2093,6 @@
     "theoretical": false,
     "shift": "PL7",
     "building": "CP2",
-    "room": "2.10",
-    "day": 4,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 223
-  },
-  {
-    "id": 14282,
-    "title": "Métodos Numéricos e Otimização não Linear",
-    "theoretical": false,
-    "shift": "PL7",
-    "building": "CP2",
     "room": "1.10",
     "day": 4,
     "start": "11:00",
