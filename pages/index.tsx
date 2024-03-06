@@ -6,7 +6,7 @@ import Head from "next/head";
 
 import moment from "moment-timezone";
 
-import { Calendar, Navigate, momentLocalizer } from "react-big-calendar";
+import { Calendar, Navigate, momentLocalizer, ToolbarProps } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
@@ -15,6 +15,8 @@ import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors, mergeColors } from "../utils";
 import { SubjectColor } from "../types";
+
+import { useTheme } from "next-themes";
 
 const localizer = momentLocalizer(moment);
 
@@ -235,19 +237,12 @@ export default function Home({ filters }) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
-  const CustomToolbar = ({ label, onNavigate, onView }) => {
-    const [activeView, setActiveView] = useState("month");
-
-    const handleViewChange = (view) => {
-      onView(view);
-      setActiveView(view);
-    };
-
+  const CustomToolbar = ({ date, label, onNavigate, view, onView }: ToolbarProps) => {
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
           <button type="button" onClick={() => onNavigate(Navigate.TODAY)}>
-            <i className="bi bi-calendar3-event"></i>
+            <i className="bi bi-brightness-high-fill"></i>
           </button>
           <button type="button" onClick={() => onNavigate(Navigate.PREVIOUS)}>
             <i className="bi bi-caret-left-fill"></i>
@@ -260,17 +255,28 @@ export default function Home({ filters }) {
         <span className="rbc-btn-group">
           <button
             type="button"
+            title="Day"
             // don't use condition && "result" -> className can't be a boolean
-            className={activeView === "week" ? "rbc-active" : undefined}
-            onClick={() => handleViewChange("week")}
+            className={view === "day" ? "rbc-active" : undefined}
+            onClick={() => onView("day")}
+          >
+            <i className="bi bi-calendar3-event"></i>
+          </button>
+          <button
+            type="button"
+            title="Week"
+            // don't use condition && "result" -> className can't be a boolean
+            className={view === "week" ? "rbc-active" : undefined}
+            onClick={() => onView("week")}
           >
             <i className="bi bi-calendar3-week"></i>
           </button>
           <button
             type="button"
+            title="Month"
             // don't use condition && "result" -> className can't be a boolean
-            className={activeView === "month" ? "rbc-active" : undefined}
-            onClick={() => handleViewChange("month")}
+            className={view === "month" ? "rbc-active" : undefined}
+            onClick={() => onView("month")}
           >
             <i className="bi bi-calendar3"></i>
           </button>
@@ -278,6 +284,8 @@ export default function Home({ filters }) {
       </div>
     );
   };
+
+  const { resolvedTheme } = useTheme();
 
   return (
     <Layout
@@ -300,12 +308,11 @@ export default function Home({ filters }) {
           onSelectEvent={(event) => handleSelection(event)}
           defaultDate={new Date()}
           defaultView="month"
-          views={["week", "month"]}
+          views={["week", "month", "day"]}
           min={minDate}
           max={maxDate}
           eventPropGetter={(event: IEventDTO) => {
             const newStyle = {
-              border: 0,
               backgroundColor: getBgColor(event),
               color: getTextColor(event),
             };
