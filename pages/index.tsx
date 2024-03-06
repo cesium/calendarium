@@ -6,17 +6,19 @@ import Head from "next/head";
 
 import moment from "moment-timezone";
 
-import { Calendar, Navigate, momentLocalizer, ToolbarProps } from "react-big-calendar";
+import {
+  Calendar,
+  momentLocalizer,
+} from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
+import CustomToolbar from "../components/CustomToolbar";
 import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
 import { reduceOpacity, defaultColors, mergeColors } from "../utils";
 import { SubjectColor } from "../types";
-
-import { useTheme } from "next-themes";
 
 const localizer = momentLocalizer(moment);
 
@@ -150,7 +152,9 @@ export default function Home({ filters }) {
     else if (theme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = reduceOpacity(colors[event.groupId] ?? defaultColors[event.groupId]))
+          ? (color = reduceOpacity(
+              colors[event.groupId] ?? defaultColors[event.groupId]
+            ))
           : (color = colors[event.groupId] ?? defaultColors[event.groupId]);
       } else if (customType === "Subject") {
         opacity
@@ -169,7 +173,9 @@ export default function Home({ filters }) {
     else if (theme === "Classic") color = "white";
     else if (theme === "Custom") {
       if (customType === "Year") {
-        opacity ? (color = colors[event.groupId] ?? defaultColors[event.groupId]) : (color = "white");
+        opacity
+          ? (color = colors[event.groupId] ?? defaultColors[event.groupId])
+          : (color = "white");
       } else if (customType === "Subject") {
         opacity ? (color = getSubjectColor(event)) : (color = "white");
       }
@@ -236,56 +242,6 @@ export default function Home({ filters }) {
 
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
-
-  const CustomToolbar = ({ date, label, onNavigate, view, onView }: ToolbarProps) => {
-    return (
-      <div className="rbc-toolbar">
-        <span className="rbc-btn-group">
-          <button type="button" onClick={() => onNavigate(Navigate.TODAY)}>
-            <i className="bi bi-brightness-high-fill"></i>
-          </button>
-          <button type="button" onClick={() => onNavigate(Navigate.PREVIOUS)}>
-            <i className="bi bi-caret-left-fill"></i>
-          </button>
-          <button type="button" onClick={() => onNavigate(Navigate.NEXT)}>
-            <i className="bi bi-caret-right-fill"></i>
-          </button>
-        </span>
-        <span className="rbc-toolbar-label">{label}</span>
-        <span className="rbc-btn-group">
-          <button
-            type="button"
-            title="Day"
-            // don't use condition && "result" -> className can't be a boolean
-            className={view === "day" ? "rbc-active" : undefined}
-            onClick={() => onView("day")}
-          >
-            <i className="bi bi-calendar3-event"></i>
-          </button>
-          <button
-            type="button"
-            title="Week"
-            // don't use condition && "result" -> className can't be a boolean
-            className={view === "week" ? "rbc-active" : undefined}
-            onClick={() => onView("week")}
-          >
-            <i className="bi bi-calendar3-week"></i>
-          </button>
-          <button
-            type="button"
-            title="Month"
-            // don't use condition && "result" -> className can't be a boolean
-            className={view === "month" ? "rbc-active" : undefined}
-            onClick={() => onView("month")}
-          >
-            <i className="bi bi-calendar3"></i>
-          </button>
-        </span>
-      </div>
-    );
-  };
-
-  const { resolvedTheme } = useTheme();
 
   return (
     <Layout
