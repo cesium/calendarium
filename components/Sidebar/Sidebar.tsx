@@ -9,7 +9,7 @@ import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 import Settings from "../Settings";
 import ExportButton from "../ExportButton";
-import ClearScheduleButton from "../ClearScheduleButton";
+import ClearSelectionButton from "../ClearSelectionButton";
 import NavigationPane from "../NavigationPane";
 
 import { IFilterDTO } from "../../dtos";
@@ -121,7 +121,7 @@ const Sidebar = ({
                 setChecked={setChecked}
               />
               {/* Clear Schedule button */}
-              <ClearScheduleButton
+              <ClearSelectionButton
                 isHome={isHome}
                 isSettings={isSettings}
                 clearSelection={clearSelection}
