@@ -49,7 +49,7 @@ const Layout = ({
   );
 
   return (
-    <div className="text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200 lg:flex">
+    <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
       {/* Open/Close Sidebar Button */}
       <button
         className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 lg:hidden"

@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { useTheme } from "next-themes";
 
 export default function Document() {
+  const { resolvedTheme } = useTheme();
+  
   return (
     <Html lang="en" className="dark">
       <Head>
@@ -62,10 +65,10 @@ export default function Document() {
         {/* Status Bar configuration for IOS devices */}
         <meta
           name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
+          content={resolvedTheme === "dark" ? "black-translucent" : "default"}
         />
       </Head>
-      <body>
+      <body className="dark:bg-neutral-900">
         <Main />
         <NextScript />
       </body>
