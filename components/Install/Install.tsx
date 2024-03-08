@@ -17,7 +17,6 @@ const Install = ({ installPwaPrompt }: IInstallProps) => {
     if (!installPwaPrompt) {
       setIsModalOpen(true);
     } else {
-      console.log(typeof installPwaPrompt);
       installPwaPrompt.prompt();
     }
   };
