@@ -11,10 +11,40 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "pwa/splashscreens/iphonexr_splash.png",
-      "sizes": "800x600",
+      "src": "pwa/screenshots/1.jpg",
+      "sizes": "1080x2400",
       "form_factor": "narrow",
-      "type": "image/png"
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/2.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/3.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/4.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/5.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/6.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
     }
   ],
   "categories": ["fundraising", "donations"],
