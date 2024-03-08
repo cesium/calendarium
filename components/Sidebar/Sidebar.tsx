@@ -15,7 +15,7 @@ import NavigationPane from "../NavigationPane";
 import { IFilterDTO } from "../../dtos";
 import ShareButton from "../ShareButton";
 
-import { SelectedShift } from "../../types";
+import { BeforeInstallPromptEvent, SelectedShift } from "../../types";
 
 import { useTheme } from "next-themes";
 
@@ -39,11 +39,23 @@ const Sidebar = ({
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
   const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
+  const [promptInstall, setPromptInstall] =
+    useState<BeforeInstallPromptEvent>(null);
 
   function clearSelection() {
     setClear(true);
     setTimeout(() => setClear(false), 300);
   }
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setPromptInstall(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("transitionend", handler);
+  }, []);
 
   const exportPDF = async () => {
     const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
@@ -143,6 +155,7 @@ const Sidebar = ({
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             isHome={isHome}
+            installPwaPrompt={promptInstall}
           />
         ) : isHome ? (
           <EventFilters

@@ -9,6 +9,15 @@
   "id": "/",
   "start_url": "/",
   "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "pwa/splashscreens/iphonexr_splash.png",
+      "sizes": "800x600",
+      "form_factor": "narrow",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["fundraising", "donations"],
   "icons": [
     {
       "src": "pwa/windows11/SmallTile.scale-100.png",
