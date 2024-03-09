@@ -52,6 +52,7 @@ const Layout = ({
   return (
     <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
       <Head>
+        {/* Status Bar configuration for Android devices */}
         <meta
           name="theme-color"
           content={resolvedTheme === "dark" ? "#171717" : "#ffffff"}

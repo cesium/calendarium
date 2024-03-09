@@ -5,11 +5,11 @@ import { Modal, Box, Fade, Backdrop, Typography } from "@mui/material";
 import { Collapse } from "antd";
 import { BeforeInstallPromptEvent } from "../../types";
 
-interface IInstallProps {
+type InstallProps = {
   installPwaPrompt: BeforeInstallPromptEvent;
 }
 
-const Install = ({ installPwaPrompt }: IInstallProps) => {
+const Install = ({ installPwaPrompt }: InstallProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const installPwa = (evt) => {

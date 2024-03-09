@@ -47,7 +47,6 @@
       "type": "image/jpeg"
     }
   ],
-  "categories": ["fundraising", "donations"],
   "icons": [
     {
       "src": "pwa/windows11/SmallTile.scale-100.png",
