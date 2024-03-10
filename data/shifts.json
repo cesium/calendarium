@@ -2187,7 +2187,7 @@
     "id": 14308,
     "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL8",
+    "shift": "PL9",
     "building": "CP2",
     "room": "2.04",
     "day": 1,
@@ -2254,6 +2254,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 225
+  },
+  {
+    "id": 14307,
+    "title": "Bases de Dados",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP3",
+    "room": "0.07",
+    "day": 2,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 221
   },
   {
     "id": 14307,
@@ -2331,7 +2343,7 @@
     "id": 14308,
     "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL9",
+    "shift": "PL8",
     "building": "CP2",
     "room": "1.09",
     "day": 4,

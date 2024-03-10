@@ -148,7 +148,9 @@ export default function Home({ filters }) {
     else if (theme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = reduceOpacity(colors[event.groupId] ?? defaultColors[event.groupId]))
+          ? (color = reduceOpacity(
+              colors[event.groupId] ?? defaultColors[event.groupId]
+            ))
           : (color = colors[event.groupId] ?? defaultColors[event.groupId]);
       } else if (customType === "Subject") {
         opacity
@@ -167,7 +169,9 @@ export default function Home({ filters }) {
     else if (theme === "Classic") color = "white";
     else if (theme === "Custom") {
       if (customType === "Year") {
-        opacity ? (color = colors[event.groupId] ?? defaultColors[event.groupId]) : (color = "white");
+        opacity
+          ? (color = colors[event.groupId] ?? defaultColors[event.groupId])
+          : (color = "white");
       } else if (customType === "Subject") {
         opacity ? (color = getSubjectColor(event)) : (color = "white");
       }
