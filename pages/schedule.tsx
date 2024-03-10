@@ -83,8 +83,11 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = reduceOpacity(colors[String(event.filterId)[0]] ?? getDefaultColor(event)))
-          : (color = colors[String(event.filterId)[0]] ?? getDefaultColor(event));
+          ? (color = reduceOpacity(
+              colors[String(event.filterId)[0]] ?? getDefaultColor(event)
+            ))
+          : (color =
+              colors[String(event.filterId)[0]] ?? getDefaultColor(event));
       } else if (customType === "Subject") {
         opacity
           ? (color = reduceOpacity(getSubjectColor(event)))
@@ -103,7 +106,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     else if (colorTheme === "Custom") {
       if (customType === "Year") {
         opacity
-          ? (color = colors[String(event.filterId)[0]] ?? getDefaultColor(event))
+          ? (color =
+              colors[String(event.filterId)[0]] ?? getDefaultColor(event))
           : (color = "white");
       } else if (customType === "Subject") {
         opacity ? (color = getSubjectColor(event)) : (color = "white");
