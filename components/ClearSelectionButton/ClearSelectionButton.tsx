@@ -1,6 +1,6 @@
 import { Popconfirm } from "antd";
 
-const ClearScheduleButton = ({
+const ClearSelectionButton = ({
   isHome,
   isSettings,
   clearSelection,
@@ -27,7 +27,7 @@ const ClearScheduleButton = ({
       disabled={isSettings}
     >
       <button
-        className={`h-10 w-10 rounded-xl p-2 font-medium leading-3 text-error/50 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-error hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-neutral-800/70 dark:text-red-400/60 dark:ring-neutral-400/20 ${
+        className={`h-10 w-10 rounded-xl p-2 font-medium leading-3 text-error/50 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-error hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-neutral-800/70 dark:text-red-400/60 dark:hover:text-red-400 dark:ring-neutral-400/20 ${
           isSettings && "cursor-not-allowed hover:text-error/50"
         }`}
         type="button"
@@ -38,4 +38,4 @@ const ClearScheduleButton = ({
   );
 };
 
-export default ClearScheduleButton;
+export default ClearSelectionButton;

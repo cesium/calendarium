@@ -1,34 +1,11 @@
 import moment from "moment-timezone";
 
+import { useEffect, useState } from "react";
+
 import { IEventDTO } from "../dtos";
 import { sheets_v4 } from "googleapis";
 
-export function reduceOpacity(hexColor) {
-  // Convert HEX color code to RGBA color code
-  let r = parseInt(hexColor.slice(1, 3), 16);
-  let g = parseInt(hexColor.slice(3, 5), 16);
-  let b = parseInt(hexColor.slice(5, 7), 16);
-  let a = 0.25; // 25% opacity
-  let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-
-  return rgbaColor;
-}
-
-export const defaultColors = [
-  "#ed7950", // cesium
-  "#4BC0D9", // 1st year
-  "#7b54f0", // 2nd year
-  "#f0547b", // 3rd year
-  "#5ac77b", // 4th year
-  "#395B50", // 5th year
-  "#b70a0a", // uminho
-  "#3408fd", // sei
-  "#642580", // coderdojo
-  "#FF0000", // join
-  "#1B69EE", // jordi
-  "#FF499E", // codeweek
-  "#66B22E", // bugsbyte
-];
+// EVENTS
 
 export async function getEvents(
   sheets: sheets_v4.Sheets,
@@ -120,10 +97,71 @@ export async function getEvents(
   }
 }
 
+// UI
+
+export function reduceOpacity(hexColor) {
+  // Convert HEX color code to RGBA color code
+  let r = parseInt(hexColor.slice(1, 3), 16);
+  let g = parseInt(hexColor.slice(3, 5), 16);
+  let b = parseInt(hexColor.slice(5, 7), 16);
+  let a = 0.25; // 25% opacity
+  let rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+  return rgbaColor;
+}
+
+export const defaultColors = [
+  "#ed7950", // cesium
+  "#4BC0D9", // 1st year
+  "#7b54f0", // 2nd year
+  "#f0547b", // 3rd year
+  "#5ac77b", // 4th year
+  "#395B50", // 5th year
+  "#b70a0a", // uminho
+  "#3408fd", // sei
+  "#642580", // coderdojo
+  "#FF0000", // join
+  "#1B69EE", // jordi
+  "#FF499E", // codeweek
+  "#66B22E", // bugsbyte
+];
+
 export function mergeColors(colors: string[]) {
   let merged = [...colors];
   for (let i = 0; i < defaultColors.length; i++) {
     if (merged[i] === undefined) merged[i] = defaultColors[i];
   }
   return merged;
+}
+
+// hook
+export function useWindowSize() {
+  // initialize state with undefined width/height so server and client renders match
+  // learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // only execute all the code below in client side
+    // handler to call on window resize
+    function handleResize() {
+      // set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    // add event listener
+    window.addEventListener("resize", handleResize);
+
+    // call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // empty array ensures that effect is only run on mount
+  return windowSize;
 }

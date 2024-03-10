@@ -100,7 +100,7 @@ a {
 }
 
 .rbc-calendar .rbc-event:hover {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .rbc-calendar .rbc-toolbar {
@@ -260,7 +260,7 @@ a {
 .rbc-calendar .rbc-events-container .rbc-event {
   margin: auto;
   font-weight: 500;
-  border: 3px solid white;
+  border: none;
   border-radius: 10px;
 }
 
@@ -352,11 +352,7 @@ a {
 }
 
 .rbc-calendar .rbc-show-more {
-  margin-left: 5px;
-  font-size: 12px;
-  font-weight: 400;
-  color: rgb(107 114 128);
-  background-color: rgba(0, 0, 0, 0);
+  @apply ml-[5px] text-[12px] font-light text-neutral-500 bg-transparent transition-all hover:text-neutral-200;
 
   @media (max-width: 640px) {
     font-size: 8px;
