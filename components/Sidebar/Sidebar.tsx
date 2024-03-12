@@ -15,7 +15,7 @@ import NavigationPane from "../NavigationPane";
 import { IFilterDTO } from "../../dtos";
 import ShareButton from "../ShareButton";
 
-import { SelectedShift } from "../../types";
+import { BeforeInstallPromptEvent, SelectedShift } from "../../types";
 
 import { useTheme } from "next-themes";
 
@@ -39,11 +39,23 @@ const Sidebar = ({
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
   const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
+  const [promptInstall, setPromptInstall] =
+    useState<BeforeInstallPromptEvent>(null);
 
   function clearSelection() {
     setClear(true);
     setTimeout(() => setClear(false), 300);
   }
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setPromptInstall(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("transitionend", handler);
+  }, []);
 
   const exportPDF = async () => {
     const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
@@ -56,7 +68,7 @@ const Sidebar = ({
     pdf.save("calendario.pdf");
   };
 
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-y lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-scroll overflow-x-hidden lg:overflow-y-scroll lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-y lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
   const { resolvedTheme } = useTheme();
   const [logo, setLogo] = useState(null);
@@ -143,6 +155,7 @@ const Sidebar = ({
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             isHome={isHome}
+            installPwaPrompt={promptInstall}
           />
         ) : isHome ? (
           <EventFilters

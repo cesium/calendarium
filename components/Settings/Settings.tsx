@@ -3,6 +3,7 @@ import { IFilterDTO } from "../../dtos";
 import Themes from "../Themes";
 import Install from "../Install";
 import DarkModeToggler from "../DarkModeToggler";
+import { BeforeInstallPromptEvent } from "../../types";
 
 type SettingsProps = {
   saveTheme: () => void;
@@ -10,6 +11,7 @@ type SettingsProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   isHome: boolean;
+  installPwaPrompt: BeforeInstallPromptEvent;
 };
 
 const Settings = ({
@@ -18,6 +20,7 @@ const Settings = ({
   isOpen,
   setIsOpen,
   isHome,
+  installPwaPrompt,
 }: SettingsProps) => {
   return (
     <div className="h-full w-full select-none space-y-4 overflow-hidden rounded-xl p-4 shadow-default ring-1 ring-neutral-200/30 dark:bg-neutral-800/70 dark:ring-neutral-400/20">
@@ -33,7 +36,7 @@ const Settings = ({
         isHome={isHome}
       />
       <DarkModeToggler />
-      <Install />
+      <Install installPwaPrompt={installPwaPrompt} />
     </div>
   );
 };

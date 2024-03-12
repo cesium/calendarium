@@ -8,6 +8,7 @@ import Notifications from "../Notifications";
 import styles from "./layout.module.scss";
 
 import { useTheme } from "next-themes";
+import Head from "next/head";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -49,7 +50,19 @@ const Layout = ({
   );
 
   return (
-    <div className="text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200 lg:flex">
+    <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
+      <Head>
+        {/* Status Bar configuration for Android devices */}
+        <meta
+          name="theme-color"
+          content={resolvedTheme === "dark" ? "#171717" : "#ffffff"}
+        />
+        {/* Status Bar configuration for IOS devices */}
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content={resolvedTheme === "dark" ? "black-translucent" : "default"}
+        />
+      </Head>
       {/* Open/Close Sidebar Button */}
       <button
         className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 lg:hidden"

@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
 
-export default function Document() {
+export default function Document() {  
+  
   return (
     <Html lang="en" className="dark">
       <Head>
@@ -58,14 +61,8 @@ export default function Document() {
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
         />
-        <meta name="theme-color" content="#ffffff" />
-        {/* Status Bar configuration for IOS devices */}
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
       </Head>
-      <body>
+      <body className="dark:bg-neutral-900">
         <Main />
         <NextScript />
       </body>

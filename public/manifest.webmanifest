@@ -9,6 +9,44 @@
   "id": "/",
   "start_url": "/",
   "prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "pwa/screenshots/1.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/2.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/3.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/4.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/5.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "pwa/screenshots/6.jpg",
+      "sizes": "1080x2400",
+      "form_factor": "narrow",
+      "type": "image/jpeg"
+    }
+  ],
   "icons": [
     {
       "src": "pwa/windows11/SmallTile.scale-100.png",
@@ -413,7 +451,8 @@
     {
       "src": "pwa/android/android-launchericon-512-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable"
     },
     {
       "src": "pwa/android/android-launchericon-192-192.png",
