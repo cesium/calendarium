@@ -6,10 +6,7 @@ import Head from "next/head";
 
 import moment from "moment-timezone";
 
-import {
-  Calendar,
-  momentLocalizer,
-} from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Layout from "../components/Layout";

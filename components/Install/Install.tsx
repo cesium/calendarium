@@ -7,7 +7,7 @@ import { BeforeInstallPromptEvent } from "../../types";
 
 type InstallProps = {
   installPwaPrompt: BeforeInstallPromptEvent;
-}
+};
 
 const Install = ({ installPwaPrompt }: InstallProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
