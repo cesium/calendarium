@@ -2,8 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 
-export default function Document() {  
-  
+export default function Document() {
   return (
     <Html lang="en" className="dark">
       <Head>
