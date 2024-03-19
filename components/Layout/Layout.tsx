@@ -130,7 +130,7 @@ const Layout = ({
       </div>
 
       {/* Children */}
-      <main className="h-[calc(100vh-4.9rem)] w-full flex-1 px-8 py-8  lg:ml-96 lg:h-screen">
+      <main className="h-[calc(100dvh-4.9rem)] w-full flex-1 px-8 py-8  lg:ml-96 lg:h-screen">
         {children}
       </main>
     </div>
