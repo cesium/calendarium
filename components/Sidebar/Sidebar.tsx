@@ -19,14 +19,14 @@ import { BeforeInstallPromptEvent, SelectedShift } from "../../types";
 
 import { useTheme } from "next-themes";
 
-interface ISidebarProps {
+type SidebarProps = {
   isHome?: boolean;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
   filters?: IFilterDTO[];
   handleFilters?: any;
   saveTheme: () => void;
-}
+};
 
 const Sidebar = ({
   isHome,
@@ -35,7 +35,7 @@ const Sidebar = ({
   filters,
   handleFilters,
   saveTheme,
-}: ISidebarProps) => {
+}: SidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
   const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
@@ -57,18 +57,7 @@ const Sidebar = ({
     return () => window.removeEventListener("transitionend", handler);
   }, []);
 
-  const exportPDF = async () => {
-    const input = document.getElementById(isHome ? "APP" : "SCHEDULE");
-    const canvas = await html2canvas(input, { logging: true });
-    const imgwidth = 208;
-    const imgHeight = (canvas.height * imgwidth) / canvas.width;
-    const imgData = canvas.toDataURL("img/png");
-    const pdf = new jsPDF("p", "mm", "a4");
-    pdf.addImage(imgData, "PNG", 0, 0, imgwidth, imgHeight);
-    pdf.save("calendario.pdf");
-  };
-
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-y lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
   const { resolvedTheme } = useTheme();
   const [logo, setLogo] = useState(null);
@@ -93,7 +82,7 @@ const Sidebar = ({
   );
 
   return (
-    <div
+    <nav
       className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
       style={{ direction: "rtl" }}
     >
@@ -110,42 +99,36 @@ const Sidebar = ({
         {/* Page Links */}
         <NavigationPane />
 
-        <div className="space-y-2">
-          <div className="flex space-x-2">
+        <div className="flex space-x-4">
+          <div className="flex space-x-4">
             {/* Settings Button */}
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setIsSettings(!isSettings)}
-                className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
-                title="Settings"
-              >
-                {isSettings ? (
-                  <i className="bi bi-gear-fill text-neutral-900 dark:text-neutral-200"></i>
-                ) : (
-                  <i className="bi bi-gear-fill"></i>
-                )}
-              </button>
-              {/* Share Button */}
-              <ShareButton
-                isHome={isHome}
-                filters={filters}
-                handleFilters={handleFilters}
-                setChecked={setChecked}
-              />
-              {/* Clear Schedule button */}
-              <ClearSelectionButton
-                isHome={isHome}
-                isSettings={isSettings}
-                clearSelection={clearSelection}
-              />
-            </div>
-            {/* Export button */}
-            <ExportButton
-              exportPDF={exportPDF}
+            <button
+              onClick={() => setIsSettings(!isSettings)}
+              className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
+              title="Settings"
+            >
+              {isSettings ? (
+                <i className="bi bi-gear-fill text-neutral-900 dark:text-neutral-200"></i>
+              ) : (
+                <i className="bi bi-gear-fill"></i>
+              )}
+            </button>
+            {/* Clear Schedule button */}
+            <ClearSelectionButton
+              isHome={isHome}
+              isSettings={isSettings}
+              clearSelection={clearSelection}
+            />
+            {/* Share Button */}
+            <ShareButton
               isHome={isHome}
               filters={filters}
+              handleFilters={handleFilters}
+              setChecked={setChecked}
             />
           </div>
+          {/* Export button */}
+          <ExportButton isHome={isHome} filters={filters} />
         </div>
 
         {isSettings ? (
@@ -160,7 +143,7 @@ const Sidebar = ({
         ) : isHome ? (
           <EventFilters
             filters={filters}
-            handleFilters={(myFilters) => handleFilters(myFilters)}
+            handleFilters={handleFilters}
             clearEvents={clear}
             checked={checked}
             setChecked={setChecked}
@@ -168,14 +151,14 @@ const Sidebar = ({
         ) : (
           <ScheduleFilters
             filters={filters}
-            handleFilters={(myFilters) => handleFilters(myFilters)}
+            handleFilters={handleFilters}
             clearSchedule={clear}
             checked={checked}
             setChecked={setChecked}
           />
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
