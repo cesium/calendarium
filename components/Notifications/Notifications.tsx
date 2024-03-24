@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import moment from "moment-timezone";
 
@@ -33,7 +33,7 @@ const Banner = ({
   total,
   update,
 }: BannerProps) => {
-  const [isDismissed, setIsDismissed] = React.useState(true);
+  const [isDismissed, setIsDismissed] = useState(true);
 
   function handleDismiss() {
     // saves notification to local storage
@@ -44,7 +44,7 @@ const Banner = ({
     update();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     // notification on top -> visible
     // notification not on top / dismissed -> hidden
     setIsDismissed(total - 1 !== index);
@@ -128,8 +128,7 @@ async function getData(): Promise<INotDTO[]> {
 }
 
 const Notifications = ({ isOpen }: { isOpen: boolean }) => {
-  const [notifications, setNotifications] = React.useState([]);
-  const currentDate = new Date();
+  const [notifications, setNotifications] = useState([]);
 
   const shouldFetchData = (localData: string) => {
     // fetch last update date
@@ -142,29 +141,31 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     return !localData || diffMin >= 60;
   };
 
-  async function getNotifications(): Promise<INotDTO[]> {
-    // fetch data from localStorage if it exists
-    const localData = localStorage.getItem(ndKey);
+  const updateNotifications = useCallback(async () => {
+    const currentDate = new Date();
 
-    let data: INotDTO[];
+    async function getNotifications(): Promise<INotDTO[]> {
+      // fetch data from localStorage if it exists
+      const localData = localStorage.getItem(ndKey);
 
-    // only fetch data if it's been more than 60 minutes since last update
-    // or if there is no data in localStorage
-    if (shouldFetchData(localData)) {
-      data = await getData();
-      localStorage.setItem(ndKey, JSON.stringify(data));
-      localStorage.setItem(
-        luKey,
-        moment(new Date()).format("YYYY-MM-DD HH:mm")
-      );
-    } else {
-      data = JSON.parse(localData);
+      let data: INotDTO[];
+
+      // only fetch data if it's been more than 60 minutes since last update
+      // or if there is no data in localStorage
+      if (shouldFetchData(localData)) {
+        data = await getData();
+        localStorage.setItem(ndKey, JSON.stringify(data));
+        localStorage.setItem(
+          luKey,
+          moment(new Date()).format("YYYY-MM-DD HH:mm")
+        );
+      } else {
+        data = JSON.parse(localData);
+      }
+
+      return data;
     }
 
-    return data;
-  }
-
-  async function updateNotifications() {
     const notifications = await getNotifications();
     const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
@@ -178,7 +179,7 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
           return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
         })
     );
-  }
+  }, []);
 
   function handleDismissAll() {
     const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
@@ -197,9 +198,9 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     updateNotifications();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateNotifications();
-  }, []);
+  }, [updateNotifications]);
 
   return (
     <>

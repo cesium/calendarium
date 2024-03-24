@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import * as fs from "fs";
 
@@ -48,7 +48,7 @@ export default function Home({ filters }) {
   };
 
   // Fetch event data
-  const handleData = async (update: boolean = false) => {
+  const handleData = useCallback(async (update: boolean = false) => {
     // fetch data from localStorage if it exists
     const localData = localStorage.getItem(edKey);
 
@@ -94,31 +94,34 @@ export default function Home({ filters }) {
       ); // -1 is an id dedicated to always active events
     }
     setEvents(newEvents);
-  };
+  }, []);
 
   useEffect(() => {
     handleData();
-  }, []);
+  }, [handleData]);
 
-  const showNewEvents = (f) => {
-    const filters = Object.values(f);
+  const handleFilters = useCallback(
+    (myFilters: number[]) => {
+      const showNewEvents = (f) => {
+        const filters = Object.values(f);
 
-    let newEvents = [...fetchedEvents];
+        let newEvents = [...fetchedEvents];
 
-    if (filters.length > 0) {
-      newEvents = newEvents.filter(
-        (ev) => filters.includes(ev.filterId) || ev.filterId === -1
-      ); // -1 is an id dedicated to always active events
-    }
+        if (filters.length > 0) {
+          newEvents = newEvents.filter(
+            (ev) => filters.includes(ev.filterId) || ev.filterId === -1
+          ); // -1 is an id dedicated to always active events
+        }
 
-    setEvents(newEvents);
-  };
+        setEvents(newEvents);
+      };
 
-  const handleFilters = (myFilters: number[]) => {
-    const newFilters = { ...myFilters };
-    setFilters(newFilters);
-    showNewEvents(newFilters);
-  };
+      const newFilters = { ...myFilters };
+      setFilters(newFilters);
+      showNewEvents(newFilters);
+    },
+    [fetchedEvents]
+  );
 
   const handleSelection = (event) => {
     setSelectedEvent(event);
@@ -244,16 +247,15 @@ export default function Home({ filters }) {
     <Layout
       isHome
       filters={filters}
-      handleFilters={(myFilters) => handleFilters(myFilters)}
+      handleFilters={handleFilters}
       saveTheme={saveTheme}
     >
-      <div className="h-full">
-        <Head>
-          <title>Events | Calendarium</title>
-          <meta name="description" content="Your exams, due dates and more." />
-          <link rel="icon" href="/favicon-calendarium.ico" />
-        </Head>
-
+      <Head>
+        <title>Events | Calendarium</title>
+        <meta name="description" content="Your exams, due dates and more." />
+        <link rel="icon" href="/favicon-calendarium.ico" />
+      </Head>
+      <div id="EVENTS" className="h-full">
         <Calendar
           className={styles.calendar}
           localizer={localizer}
@@ -280,7 +282,7 @@ export default function Home({ filters }) {
           }}
         />
 
-        <div className="mt-2 font-display text-sm">
+        <footer className="mt-2 font-display text-sm">
           <button
             className="transition-colors hover:text-blue-500"
             onClick={() => handleData(true)}
@@ -298,16 +300,15 @@ export default function Home({ filters }) {
           >
             add it
           </a>
-        </div>
-
-        {selectedEvent && (
-          <EventModal
-            selectedEvent={selectedEvent}
-            setInspectEvent={setInspectEvent}
-            inspectEvent={inspectEvent}
-          />
-        )}
+        </footer>
       </div>
+      {selectedEvent && (
+        <EventModal
+          selectedEvent={selectedEvent}
+          setInspectEvent={setInspectEvent}
+          inspectEvent={inspectEvent}
+        />
+      )}
     </Layout>
   );
 }

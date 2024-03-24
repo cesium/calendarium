@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import "antd/dist/reset.css";
 
 import FilterBlock from "../FilterBlock";
@@ -26,7 +26,7 @@ const EventFilters = ({
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
     handleFilters(stored);
-  }, []);
+  }, [setChecked, handleFilters]);
 
   let event: {
     map: any;
@@ -72,15 +72,15 @@ const EventFilters = ({
     return checkBoxes;
   }
 
-  function clearSelection() {
+  const clearSelection = useCallback(() => {
     setChecked([]);
     handleFilters([]);
     localStorage.setItem("checked", JSON.stringify([]));
-  }
+  }, [handleFilters, setChecked]);
 
   useEffect(() => {
     clearEvents && clearSelection();
-  }, [clearEvents]);
+  }, [clearEvents, clearSelection]);
 
   return (
     <>
