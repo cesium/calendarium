@@ -1,8 +1,8 @@
 <h1 align="center">
   <a href="https://calendario.cesium.di.uminho.pt/" title="Go to Calendarium">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/calendarium-banner-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="assets/calendarium-banner-light.png">
+      <source media="(prefers-color-scheme: dark)" srcset="public/calendarium-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="public/calendarium-light.svg">
       <img alt="Calendarium" height="auto" width="800px">
     </picture>
   </a>
@@ -40,17 +40,17 @@ We have a [Contributing Guide](CONTRIBUTING.md) to help you getting started.
 
 See only the activities that matter to you
 
-### Filter Memorization
+### Clear Choices
 
-Find your selected Schedule and Events always there for you, even if you leave or refresh the page
+New schedule? New subject? Clear all your choices with one click and start again
 
-### Clear Schedule
+### Share
 
-New schedule? Clear all your choices with one click and start again
+Share your schedule or events with another device or with your friends
 
-### Export to PDF
+### Export
 
-Export your calendar or schedule into PDF format
+Export your calendar or schedule to your favorite calendar app
 
 ### Notifications
 
@@ -60,9 +60,9 @@ Get updated on the latest changes to the platform and know when new information 
 
 Customize your calendar view with a choice of themes or create your own!
 
-### Export to Calendar
+### Appearance
 
-Export your events and schedule into your favorite calendar app, from Google Calendar to Apple Calendar!
+Choose between beautiful dark and light modes!
 
 ## 🔌 Calendar Export API
 

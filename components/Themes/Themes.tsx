@@ -1,6 +1,6 @@
 import { Switch } from "@headlessui/react";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
@@ -16,7 +16,13 @@ type ThemesProps = {
   isHome: boolean;
 };
 
-const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
+const Themes = ({
+  saveTheme,
+  filters,
+  isOpen,
+  setIsOpen,
+  isHome,
+}: ThemesProps) => {
   const [theme, setTheme] = useState<string>("Modern");
   const [colors, setColors] = useState<string[]>(defaultColors);
   const [opacity, setOpacity] = useState<boolean>(true);
@@ -27,18 +33,6 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
   const [checkedClasses, setCheckedClasses] = useState<number[]>([]);
 
   const checkedThings = isHome ? checkedFilters : checkedClasses;
-
-  function initializeSubjectColors() {
-    const newSubjectColors: SubjectColor[] = [];
-    filters.forEach((f) => {
-      newSubjectColors.push({
-        filterId: f.id,
-        color: defaultColors[f.groupId],
-      });
-    });
-    setSubjectColors(newSubjectColors);
-    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
-  }
 
   function getSubjectColor(index: number) {
     return subjectColors.find((sc) => sc.filterId === checkedThings[index])
@@ -132,7 +126,19 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
     localStorage.setItem("opacity", "true");
   }
 
-  function getThemeSettings() {
+  const getThemeSettings = useCallback(() => {
+    function initializeSubjectColors() {
+      const newSubjectColors: SubjectColor[] = [];
+      filters.forEach((f) => {
+        newSubjectColors.push({
+          filterId: f.id,
+          color: defaultColors[f.groupId],
+        });
+      });
+      setSubjectColors(newSubjectColors);
+      localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
+    }
+
     const theme = localStorage.getItem("theme");
     const colors = localStorage.getItem("colors");
     const opacity = localStorage.getItem("opacity") === "true";
@@ -170,11 +176,11 @@ const Themes = ({ saveTheme, filters, isOpen, setIsOpen, isHome }) => {
       );
       setCheckedClasses(uniqueCheckedClasses);
     }
-  }
+  }, [filters]);
 
   useEffect(() => {
     getThemeSettings();
-  }, []);
+  }, [getThemeSettings]);
 
   return (
     <>

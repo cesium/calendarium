@@ -204,7 +204,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     });
 
     setEvents(formatedEvents);
-  }, [shifts, selectedFilters]);
+  }, [shifts, selectedFilters, filters]);
 
   useEffect(() => {
     formatEvents();
@@ -222,22 +222,23 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
   const { resolvedTheme } = useTheme();
 
+  const handleFilters = useCallback((myFilters) => {
+    setSelectedFilters(myFilters);
+  }, []);
+
   return (
     <Layout
       isHome={false}
       filters={filters}
-      handleFilters={(myFilters) => {
-        setSelectedFilters(myFilters);
-      }}
+      handleFilters={handleFilters}
       saveTheme={saveTheme}
     >
-      <div className="h-full">
-        <Head>
-          <title>Schedule | Calendarium</title>
-          <meta name="description" content="Your weekly schedule." />
-          <link rel="icon" href="/favicon-calendarium.ico" />~
-        </Head>
-
+      <Head>
+        <title>Schedule | Calendarium</title>
+        <meta name="description" content="Your weekly schedule." />
+        <link rel="icon" href="/favicon-calendarium.ico" />~
+      </Head>
+      <div id="SCHEDULE" className="h-full">
         <Calendar
           toolbar={false}
           localizer={localizer}
@@ -267,7 +268,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           className={styles.schedule}
         />
 
-        <div className="mt-2 font-display text-sm">
+        <footer className="mt-2 font-display text-sm">
           <b>Source:</b>{" "}
           <a
             href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
@@ -277,15 +278,14 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           >
             Horários UMinho <i className="bi bi-box-arrow-up-right" />
           </a>
-        </div>
-
-        <ShiftModal
-          selectedShift={selectedShift}
-          setInspectShift={setInspectShift}
-          inspectShift={inspectShift}
-          shifts={shifts}
-        />
+        </footer>
       </div>
+      <ShiftModal
+        selectedShift={selectedShift}
+        setInspectShift={setInspectShift}
+        inspectShift={inspectShift}
+        shifts={shifts}
+      />
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
 import { Modal, Box, Typography, Fade, Backdrop } from "@mui/material";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { Collapse } from "antd";
 
@@ -22,31 +22,31 @@ const CalendarExportModal = ({
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [URL, setURL] = useState<string>("");
 
-  // checks if a filter exists for each filterId in checkedEvents
-  function clearUnvalidEventItems(checkedEvents: number[]) {
-    const validEvents = checkedEvents.filter((id) =>
-      filters.find((f) => f.id === id)
-    );
-    localStorage.setItem("checked", JSON.stringify(validEvents));
+  const generateURL = useCallback((): string => {
+    // checks if a filter exists for each filterId in checkedEvents
+    function clearUnvalidEventItems(checkedEvents: number[]) {
+      const validEvents = checkedEvents.filter((id) =>
+        filters.find((f) => f.id === id)
+      );
+      localStorage.setItem("checked", JSON.stringify(validEvents));
 
-    return validEvents;
-  }
+      return validEvents;
+    }
 
-  // checks if a filter exists for each filterId in checkedShifts
-  // and if the shift exists for that filter.
-  function clearUnvalidShiftItems(
-    checkedShifts: { id: number; shift: string }[]
-  ) {
-    const validShifts = checkedShifts.filter((shift) => {
-      const filter = filters.find((f) => f.id === shift.id);
-      return filter && filter.shifts.includes(shift.shift); // filter must include the shift
-    });
-    localStorage.setItem("shifts", JSON.stringify(validShifts));
+    // checks if a filter exists for each filterId in checkedShifts
+    // and if the shift exists for that filter.
+    function clearUnvalidShiftItems(
+      checkedShifts: { id: number; shift: string }[]
+    ) {
+      const validShifts = checkedShifts.filter((shift) => {
+        const filter = filters.find((f) => f.id === shift.id);
+        return filter && filter.shifts.includes(shift.shift); // filter must include the shift
+      });
+      localStorage.setItem("shifts", JSON.stringify(validShifts));
 
-    return validShifts;
-  }
+      return validShifts;
+    }
 
-  function generateURL(): string {
     const domain = process.env.NEXT_PUBLIC_DOMAIN;
     const baseURL: string =
       domain + "/api/export/" + (isHome ? "events" : "schedule") + "?";
@@ -115,11 +115,11 @@ const CalendarExportModal = ({
     // still, in an edge case of an empty 'query' string, return empty string (empty URL => warning message on modal)
     if (query !== "") return baseURL + query;
     else return "";
-  }
+  }, [isHome, filters]);
 
   useEffect(() => {
     setURL(generateURL());
-  });
+  }, [generateURL, isOpen]);
 
   function copyToClipboard() {
     navigator.clipboard.writeText(URL);

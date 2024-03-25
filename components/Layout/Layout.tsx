@@ -36,7 +36,7 @@ const Layout = ({
       setLogo(
         <picture>
           <img
-            className="h-[46px] w-auto"
+            className="h-9 w-auto min-[400px]:h-10 sm:h-12"
             src={
               resolvedTheme === "dark"
                 ? "/calendarium-dark.svg"
@@ -65,7 +65,7 @@ const Layout = ({
       </Head>
       {/* Open/Close Sidebar Button */}
       <button
-        className="group absolute z-20 ml-8 mt-8 flex h-12 w-12 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 lg:hidden"
+        className="absolute left-8 top-8 z-20 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 min-[400px]:h-11 min-[400px]:w-11 sm:h-12 sm:w-12 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
@@ -94,9 +94,7 @@ const Layout = ({
 
       {/* Calendarium Logo */}
       <div className="px-8 pt-8 lg:hidden">
-        <div
-          style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
-        >
+        <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
           <Link href="/">{logo}</Link>
         </div>
       </div>
