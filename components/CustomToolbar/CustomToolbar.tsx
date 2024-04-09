@@ -8,7 +8,13 @@ const MobileToolbar = ({ view, onView }) => {
   return (
     <Menu as="div" className="relative inline-block">
       <Menu.Button>
-        <i className="bi bi-three-dots"></i>
+        {view === "day" ? (
+          <i className="bi bi-calendar3-event"></i>
+        ) : view === "week" ? (
+          <i className="bi bi-calendar3-week"></i>
+        ) : view === "month" ? (
+          <i className="bi bi-calendar3"></i>
+        ) : null}
       </Menu.Button>
       <Transition
         as={Fragment}

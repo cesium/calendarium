@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import moment from "moment-timezone";
 
@@ -33,7 +33,7 @@ const Banner = ({
   total,
   update,
 }: BannerProps) => {
-  const [isDismissed, setIsDismissed] = React.useState(true);
+  const [isDismissed, setIsDismissed] = useState(true);
 
   function handleDismiss() {
     // saves notification to local storage
@@ -44,7 +44,7 @@ const Banner = ({
     update();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     // notification on top -> visible
     // notification not on top / dismissed -> hidden
     setIsDismissed(total - 1 !== index);
@@ -54,7 +54,7 @@ const Banner = ({
     <div
       className={`${
         (isDismissed || isOpen) && "translate-y-full"
-      } ease fixed inset-x-0 bottom-0 z-20 m-auto transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
+      } ease fixed inset-x-0 bottom-0 z-20 m-auto w-fit transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 pb-6 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="font-display text-sm leading-6 text-white">
@@ -128,8 +128,7 @@ async function getData(): Promise<INotDTO[]> {
 }
 
 const Notifications = ({ isOpen }: { isOpen: boolean }) => {
-  const [notifications, setNotifications] = React.useState([]);
-  const currentDate = new Date();
+  const [notifications, setNotifications] = useState([]);
 
   const shouldFetchData = (localData: string) => {
     // fetch last update date
@@ -142,29 +141,31 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     return !localData || diffMin >= 60;
   };
 
-  async function getNotifications(): Promise<INotDTO[]> {
-    // fetch data from localStorage if it exists
-    const localData = localStorage.getItem(ndKey);
+  const updateNotifications = useCallback(async () => {
+    const currentDate = new Date();
 
-    let data: INotDTO[];
+    async function getNotifications(): Promise<INotDTO[]> {
+      // fetch data from localStorage if it exists
+      const localData = localStorage.getItem(ndKey);
 
-    // only fetch data if it's been more than 60 minutes since last update
-    // or if there is no data in localStorage
-    if (shouldFetchData(localData)) {
-      data = await getData();
-      localStorage.setItem(ndKey, JSON.stringify(data));
-      localStorage.setItem(
-        luKey,
-        moment(new Date()).format("YYYY-MM-DD HH:mm")
-      );
-    } else {
-      data = JSON.parse(localData);
+      let data: INotDTO[];
+
+      // only fetch data if it's been more than 60 minutes since last update
+      // or if there is no data in localStorage
+      if (shouldFetchData(localData)) {
+        data = await getData();
+        localStorage.setItem(ndKey, JSON.stringify(data));
+        localStorage.setItem(
+          luKey,
+          moment(new Date()).format("YYYY-MM-DD HH:mm")
+        );
+      } else {
+        data = JSON.parse(localData);
+      }
+
+      return data;
     }
 
-    return data;
-  }
-
-  async function updateNotifications() {
     const notifications = await getNotifications();
     const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
 
@@ -178,7 +179,7 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
           return difDays >= 0 && difDays <= 7 && !datesArray.includes(not.date);
         })
     );
-  }
+  }, []);
 
   function handleDismissAll() {
     const datesArray = JSON.parse(localStorage.getItem(dnKey)) || [];
@@ -197,9 +198,9 @@ const Notifications = ({ isOpen }: { isOpen: boolean }) => {
     updateNotifications();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateNotifications();
-  }, []);
+  }, [updateNotifications]);
 
   return (
     <>

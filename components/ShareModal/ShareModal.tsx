@@ -1,6 +1,6 @@
 import { Backdrop, Box, Fade, Modal } from "@mui/material";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { IFilterDTO } from "../../dtos";
 
@@ -109,40 +109,42 @@ const ShareModal = ({
       return previous;
     }, {} as Record<K, T[]>);
 
-  /**
-   * Converts a list of shifts to a list of strings in the format "id=shift1,shift2,shift3"
-   * Shifts with the same id are grouped together and will get separated by a comma
-   *
-   * Used to generate the share code
-   *
-   * @param shifts - The shift to be converted
-   */
-  function shiftsToStringArray(shifts: SelectedShift[]): string[] {
-    const groupedShifts = groupBy(shifts, ({ id }) => id);
+  const generateShareCodeHandle = useCallback((): string => {
+    /**
+     * Converts a list of shifts to a list of strings in the format "id=shift1,shift2,shift3"
+     * Shifts with the same id are grouped together and will get separated by a comma
+     *
+     * Used to generate the share code
+     *
+     * @param shifts - The shift to be converted
+     */
+    function shiftsToStringArray(shifts: SelectedShift[]): string[] {
+      const groupedShifts = groupBy(shifts, ({ id }) => id);
 
-    return Object.entries(groupedShifts).map(([id, shifts]) => {
-      const identifier =
-        filters.find((f) => f.id.toString() === id)?.name || id.toString();
-      const shiftsString = shifts.map((shift) => shift.shift).join(",");
-      return `${identifier}=${shiftsString}`;
-    });
-  }
-
-  /**
-   * Converts a list of events to a list of their names
-   * Used to generate the share code
-   *
-   * @param eventIds - The event ids to be converted
-   */
-  function eventsToStringArray(eventIds: number[]): string[] {
-    function eventToString(eventId: number): string {
-      return filters.find((f) => f.id === eventId)?.name || eventId.toString();
+      return Object.entries(groupedShifts).map(([id, shifts]) => {
+        const identifier =
+          filters.find((f) => f.id.toString() === id)?.name || id.toString();
+        const shiftsString = shifts.map((shift) => shift.shift).join(",");
+        return `${identifier}=${shiftsString}`;
+      });
     }
 
-    return eventIds.map(eventToString);
-  }
+    /**
+     * Converts a list of events to a list of their names
+     * Used to generate the share code
+     *
+     * @param eventIds - The event ids to be converted
+     */
+    function eventsToStringArray(eventIds: number[]): string[] {
+      function eventToString(eventId: number): string {
+        return (
+          filters.find((f) => f.id === eventId)?.name || eventId.toString()
+        );
+      }
 
-  function generateShareCodeHandle(): string {
+      return eventIds.map(eventToString);
+    }
+
     const valuesRaw = localStorage.getItem(isHome ? "checked" : "shifts");
     if (!valuesRaw) return "";
 
@@ -154,7 +156,7 @@ const ShareModal = ({
     } catch (error) {
       return "";
     }
-  }
+  }, [isHome, filters]);
 
   function copyToClipboardHandle() {
     navigator.clipboard.writeText(code);
@@ -202,7 +204,7 @@ const ShareModal = ({
 
   useEffect(() => {
     setCode(generateShareCodeHandle());
-  });
+  }, [generateShareCodeHandle, isOpen]);
 
   return (
     <div>

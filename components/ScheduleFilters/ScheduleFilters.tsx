@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { IFilterDTO } from "../../dtos";
 
@@ -24,17 +24,17 @@ const ScheduleFilters = ({
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
     setChecked(stored);
     handleFilters(stored);
-  }, []);
+  }, [handleFilters, setChecked]);
 
-  function clearSelection() {
+  const clearSelection = useCallback(() => {
     setChecked([]);
     localStorage.setItem("shifts", JSON.stringify([]));
     handleFilters([]);
-  }
+  }, [handleFilters, setChecked]);
 
   useEffect(() => {
     clearSchedule && clearSelection();
-  }, [clearSchedule]);
+  }, [clearSchedule, clearSelection]);
 
   // filtersByGroup matrix: organizes the filters into a single matrix where each array represents a semester
 
