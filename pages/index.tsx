@@ -255,7 +255,7 @@ export default function Home({ filters }) {
         <meta name="description" content="Your exams, due dates and more." />
         <link rel="icon" href="/favicon-calendarium.ico" />
       </Head>
-      <div id="EVENTS" className="h-full">
+      <div id="events" className="h-full">
         <Calendar
           className={styles.calendar}
           localizer={localizer}

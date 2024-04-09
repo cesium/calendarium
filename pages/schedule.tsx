@@ -238,7 +238,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         <meta name="description" content="Your weekly schedule." />
         <link rel="icon" href="/favicon-calendarium.ico" />~
       </Head>
-      <div id="SCHEDULE" className="h-full">
+      <div id="schedule" className="h-full">
         <Calendar
           toolbar={false}
           localizer={localizer}
