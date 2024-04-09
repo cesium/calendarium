@@ -236,7 +236,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       <Head>
         <title>Schedule | Calendarium</title>
         <meta name="description" content="Your weekly schedule." />
-        <link rel="icon" href="/favicon-calendarium.ico" />~
+        <link rel="icon" href="/favicon-calendarium.ico" />
       </Head>
       <div id="SCHEDULE" className="h-full">
         <Calendar
