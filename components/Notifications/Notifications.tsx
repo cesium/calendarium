@@ -54,7 +54,7 @@ const Banner = ({
     <div
       className={`${
         (isDismissed || isOpen) && "translate-y-full"
-      } ease fixed inset-x-0 bottom-0 z-20 m-auto transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
+      } ease fixed inset-x-0 bottom-0 z-20 m-auto w-fit transform transition duration-300 sm:flex sm:max-w-8/10 sm:justify-center sm:pb-4`}
     >
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 pb-6 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="font-display text-sm leading-6 text-white">
