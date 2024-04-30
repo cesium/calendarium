@@ -7,7 +7,7 @@ import { useWindowSize } from "../../utils";
 const MobileToolbar = ({ view, onView }) => {
   return (
     <Menu as="div" className="relative inline-block">
-      <Menu.Button>
+      <Menu.Button className="h-[2.1rem]">
         {view === "day" ? (
           <i className="bi bi-calendar3-event"></i>
         ) : view === "week" ? (
@@ -33,7 +33,9 @@ const MobileToolbar = ({ view, onView }) => {
                   type="button"
                   title="Day"
                   // don't use condition && "result" -> className can't be a boolean
-                  className={view === "day" ? "rbc-active" : undefined}
+                  className={`${
+                    view === "day" ? "rbc-active" : undefined
+                  } h-[2.1rem]`}
                   onClick={() => onView("day")}
                 >
                   <i className="bi bi-calendar3-event"></i> Day
@@ -46,7 +48,9 @@ const MobileToolbar = ({ view, onView }) => {
                   type="button"
                   title="Week"
                   // don't use condition && "result" -> className can't be a boolean
-                  className={view === "week" ? "rbc-active" : undefined}
+                  className={`${
+                    view === "week" ? "rbc-active" : undefined
+                  } h-[2.1rem]`}
                   onClick={() => onView("week")}
                 >
                   <i className="bi bi-calendar3-week"></i> Week
@@ -59,7 +63,9 @@ const MobileToolbar = ({ view, onView }) => {
                   type="button"
                   title="Month"
                   // don't use condition && "result" -> className can't be a boolean
-                  className={view === "month" ? "rbc-active" : undefined}
+                  className={`${
+                    view === "month" ? "rbc-active" : undefined
+                  } h-[2.1rem]`}
                   onClick={() => onView("month")}
                 >
                   <i className="bi bi-calendar3"></i> Month
@@ -80,7 +86,7 @@ const DesktopToolbar = ({ view, onView }) => {
         type="button"
         title="Day"
         // don't use condition && "result" -> className can't be a boolean
-        className={view === "day" ? "rbc-active" : undefined}
+        className={`${view === "day" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("day")}
       >
         <i className="bi bi-calendar3-event"></i>
@@ -89,7 +95,7 @@ const DesktopToolbar = ({ view, onView }) => {
         type="button"
         title="Week"
         // don't use condition && "result" -> className can't be a boolean
-        className={view === "week" ? "rbc-active" : undefined}
+        className={`${view === "week" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("week")}
       >
         <i className="bi bi-calendar3-week"></i>
@@ -98,7 +104,7 @@ const DesktopToolbar = ({ view, onView }) => {
         type="button"
         title="Month"
         // don't use condition && "result" -> className can't be a boolean
-        className={view === "month" ? "rbc-active" : undefined}
+        className={`${view === "month" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("month")}
       >
         <i className="bi bi-calendar3"></i>
@@ -107,19 +113,37 @@ const DesktopToolbar = ({ view, onView }) => {
   );
 };
 
-const CustomToolbar = ({ label, onNavigate, view, onView }: ToolbarProps) => {
+const CustomToolbar = ({
+  date,
+  label,
+  onNavigate,
+  view,
+  onView,
+}: ToolbarProps) => {
   const size = useWindowSize();
 
   return (
     <div className="rbc-toolbar">
       <span className="rbc-btn-group">
-        <button type="button" onClick={() => onNavigate(Navigate.TODAY)}>
-          <i className="bi bi-brightness-high-fill"></i>
+        <button
+          className="h-[2.1rem] text-sm"
+          type="button"
+          onClick={() => onNavigate(Navigate.TODAY)}
+        >
+          Today
         </button>
-        <button type="button" onClick={() => onNavigate(Navigate.PREVIOUS)}>
+        <button
+          className="h-[2.1rem]"
+          type="button"
+          onClick={() => onNavigate(Navigate.PREVIOUS)}
+        >
           <i className="bi bi-caret-left-fill"></i>
         </button>
-        <button type="button" onClick={() => onNavigate(Navigate.NEXT)}>
+        <button
+          className="h-[2.1rem]"
+          type="button"
+          onClick={() => onNavigate(Navigate.NEXT)}
+        >
           <i className="bi bi-caret-right-fill"></i>
         </button>
       </span>
