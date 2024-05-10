@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";

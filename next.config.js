@@ -13,6 +13,13 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  transpilePackages: [
+    'rc-util',
+    'rc-pagination',
+    'rc-picker',
+    'antd',
+    '@ant-design'
+  ],
   env: {
     PRIVATE_ID_EMAIL_SERVICE: "service_7hw69gg",
 
