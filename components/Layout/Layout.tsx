@@ -78,7 +78,7 @@ const Layout = ({
         <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
           <Link href="/">
             <Image
-              className="h-[46px] w-auto"
+              className="h-9 w-auto min-[400px]:h-10 sm:h-12"
               width={0}
               height={0}
               src={
