@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Link from "next/link";
-
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import Image from "next/image";
 
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
@@ -60,26 +58,6 @@ const Sidebar = ({
   const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
   const { resolvedTheme } = useTheme();
-  const [logo, setLogo] = useState(null);
-
-  // necesary so logo renders only on the client
-  useEffect(
-    () =>
-      setLogo(
-        <picture>
-          <img
-            className="h-[46px] w-auto"
-            src={
-              resolvedTheme === "dark"
-                ? "/calendarium-dark.svg"
-                : "/calendarium-light.svg"
-            }
-            alt="Calendarium Logo"
-          />
-        </picture>
-      ),
-    [resolvedTheme]
-  );
 
   return (
     <nav
@@ -92,7 +70,19 @@ const Sidebar = ({
           <div
             style={{ cursor: "pointer", width: "fit-content", margin: "auto" }}
           >
-            <Link href="https://cesium.link/">{logo}</Link>
+            <Link href="/">
+              <Image
+                className="h-[46px] w-auto"
+                width={0}
+                height={0}
+                src={
+                  resolvedTheme === "dark"
+                    ? "/calendarium-dark.svg"
+                    : "/calendarium-light.svg"
+                }
+                alt="Calendarium Logo"
+              />
+            </Link>
           </div>
         </div>
 
