@@ -24,7 +24,7 @@
     "@tailwindcss/forms": "^0.5.5",
     "@types/react-big-calendar": "^0.38.1",
     "@types/react-dom": "^18.3.0",
-    "antd": "^5.17.0",
+    "antd": "^5.17.2",
     "emailjs": "^4.0.0",
     "emailjs-com": "^3.2.0",
     "googleapis": "^126.0.1",
