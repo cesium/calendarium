@@ -9,6 +9,7 @@ import styles from "./layout.module.scss";
 
 import { useTheme } from "next-themes";
 import Head from "next/head";
+import Image from "next/image";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -28,26 +29,6 @@ const Layout = ({
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
   const { resolvedTheme } = useTheme();
-  const [logo, setLogo] = useState(null);
-
-  // necesary so logo renders only on the client
-  useEffect(
-    () =>
-      setLogo(
-        <picture>
-          <img
-            className="h-9 w-auto min-[400px]:h-10 sm:h-12"
-            src={
-              resolvedTheme === "dark"
-                ? "/calendarium-dark.svg"
-                : "/calendarium-light.svg"
-            }
-            alt="Calendarium Logo"
-          />
-        </picture>
-      ),
-    [resolvedTheme]
-  );
 
   return (
     <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
@@ -95,7 +76,19 @@ const Layout = ({
       {/* Calendarium Logo */}
       <div className="px-8 pt-8 lg:hidden">
         <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
-          <Link href="/">{logo}</Link>
+          <Link href="/">
+            <Image
+              className="h-[46px] w-auto"
+              width={0}
+              height={0}
+              src={
+                resolvedTheme === "dark"
+                  ? "/calendarium-dark.svg"
+                  : "/calendarium-light.svg"
+              }
+              alt="Calendarium Logo"
+            />
+          </Link>
         </div>
       </div>
 
