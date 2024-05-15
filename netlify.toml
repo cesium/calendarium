@@ -5,7 +5,7 @@
 [build.environment]
   TZ = "Europe/Lisbon"
   NODE_VERSION = "20.9.0"
-  NEXT_VERSION = "13.4.19"
+  NEXT_VERSION = "14.2.3"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
