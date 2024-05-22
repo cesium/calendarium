@@ -6,7 +6,7 @@ import DarkModeToggler from "../DarkModeToggler";
 import { BeforeInstallPromptEvent } from "../../types";
 
 type SettingsProps = {
-  saveTheme: () => void;
+  fetchTheme: () => void;
   filters: IFilterDTO[];
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -15,7 +15,7 @@ type SettingsProps = {
 };
 
 const Settings = ({
-  saveTheme,
+  fetchTheme,
   filters,
   isOpen,
   setIsOpen,
@@ -29,7 +29,7 @@ const Settings = ({
       <div className="border-b border-neutral-200/80 dark:border-neutral-400/30" />
       {/* Configs */}
       <Themes
-        saveTheme={saveTheme}
+        fetchTheme={fetchTheme}
         filters={filters}
         isOpen={isOpen}
         setIsOpen={setIsOpen}

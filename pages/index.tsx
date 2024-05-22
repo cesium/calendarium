@@ -14,8 +14,7 @@ import EventModal from "../components/EventModal";
 import CustomToolbar from "../components/CustomToolbar";
 import styles from "../styles/events.module.css";
 import { IEventDTO } from "../dtos";
-import { reduceOpacity, defaultColors, mergeColors } from "../utils";
-import { SubjectColor } from "../types";
+import useColorTheme from "../hooks/useColorTheme";
 
 const localizer = momentLocalizer(moment);
 
@@ -96,10 +95,6 @@ export default function Home({ filters }) {
     setEvents(newEvents);
   }, []);
 
-  useEffect(() => {
-    handleData();
-  }, [handleData]);
-
   const handleFilters = useCallback(
     (myFilters: number[]) => {
       const showNewEvents = (f) => {
@@ -130,102 +125,13 @@ export default function Home({ filters }) {
 
   // THEMES
 
-  const [theme, setTheme] = useState<string>("Modern");
-  const [colors, setColors] = useState<string[]>(defaultColors);
-  const [opacity, setOpacity] = useState<boolean>(true);
-  const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
-  const [customType, setCustomType] = useState<string>("Year");
+  const { fetchTheme, getBgColor, getTextColor } = useColorTheme();
 
-  // note: returns the default color if it was not found in the subjectColors array
-  function getSubjectColor(event: IEventDTO) {
-    const color = subjectColors.find(
-      (sc) => sc.filterId === event.filterId
-    )?.color;
-    return color ? color : defaultColors[event.groupId];
-  }
-
-  function getBgColor(event: IEventDTO) {
-    let color: string = "#000000";
-
-    if (theme === "Modern") color = reduceOpacity(defaultColors[event.groupId]);
-    else if (theme === "Classic") color = defaultColors[event.groupId];
-    else if (theme === "Custom") {
-      if (customType === "Year") {
-        opacity
-          ? (color = reduceOpacity(
-              colors[event.groupId] ?? defaultColors[event.groupId]
-            ))
-          : (color = colors[event.groupId] ?? defaultColors[event.groupId]);
-      } else if (customType === "Subject") {
-        opacity
-          ? (color = reduceOpacity(getSubjectColor(event)))
-          : (color = getSubjectColor(event));
-      }
-    }
-
-    return color;
-  }
-
-  function getTextColor(event: IEventDTO) {
-    let color: string = "#000000";
-
-    if (theme === "Modern") color = defaultColors[event.groupId];
-    else if (theme === "Classic") color = "white";
-    else if (theme === "Custom") {
-      if (customType === "Year") {
-        opacity
-          ? (color = colors[event.groupId] ?? defaultColors[event.groupId])
-          : (color = "white");
-      } else if (customType === "Subject") {
-        opacity ? (color = getSubjectColor(event)) : (color = "white");
-      }
-    }
-
-    return color;
-  }
-
-  function saveTheme() {
-    let theme = localStorage.getItem("theme");
-    const colors = localStorage.getItem("colors");
-    const opacity = localStorage.getItem("opacity");
-    const customType = localStorage.getItem("customType") ?? "Year";
-    const subjectColors: SubjectColor[] =
-      JSON.parse(localStorage.getItem("subjectColors")) ?? [];
-
-    // error proof checks
-    colors &&
-      colors.split(",").length !== defaultColors.length &&
-      localStorage.setItem("colors", mergeColors(colors.split(",")).join(","));
-    !theme && localStorage.setItem("theme", "Modern");
-    !customType && localStorage.setItem("customType", "Subject");
-
-    if (theme !== "Modern" && theme !== "Classic" && theme !== "Custom") {
-      localStorage.setItem("theme", "Modern");
-      theme = "Modern";
-    }
-
-    setTheme(theme);
-    if (theme === "Custom") {
-      setCustomType(customType);
-
-      switch (customType) {
-        case "Year": {
-          colors ? setColors(colors.split(",")) : setColors(defaultColors);
-          opacity ? setOpacity(opacity === "true") : setOpacity(true);
-          break;
-        }
-        case "Subject": {
-          opacity ? setOpacity(opacity === "true") : setOpacity(true);
-          subjectColors && setSubjectColors(subjectColors);
-          break;
-        }
-      }
-    }
-  }
+  // INITIALIZATION
 
   useEffect(() => {
-    saveTheme();
-  }, []);
+    handleData();
+  }, [handleData]);
 
   // RELATED TO react-big-calendar
 
@@ -248,7 +154,7 @@ export default function Home({ filters }) {
       isHome
       filters={filters}
       handleFilters={handleFilters}
-      saveTheme={saveTheme}
+      fetchTheme={fetchTheme}
     >
       <Head>
         <title>Events | Calendarium</title>
