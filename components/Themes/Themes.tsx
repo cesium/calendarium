@@ -4,12 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
-import { reduceOpacity, defaultColors } from "../../utils";
+import { reduceOpacity, DEFAULT_COLORS } from "../../hooks/useColorTheme";
 import { IFilterDTO } from "../../dtos";
 import { SubjectColor } from "../../types";
 
 type ThemesProps = {
-  saveTheme: () => void;
+  fetchTheme: () => void;
   filters: IFilterDTO[];
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -17,14 +17,14 @@ type ThemesProps = {
 };
 
 const Themes = ({
-  saveTheme,
+  fetchTheme,
   filters,
   isOpen,
   setIsOpen,
   isHome,
 }: ThemesProps) => {
   const [theme, setTheme] = useState<string>("Modern");
-  const [colors, setColors] = useState<string[]>(defaultColors);
+  const [colors, setColors] = useState<string[]>(DEFAULT_COLORS);
   const [opacity, setOpacity] = useState<boolean>(true);
   const [openColor, setOpenColor] = useState<number>(0);
   const [customType, setCustomType] = useState<string>("Subject");
@@ -85,7 +85,7 @@ const Themes = ({
   function updateTheme(newTheme: string) {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    saveTheme();
+    fetchTheme();
     isOpen && newTheme !== "Custom" && setIsOpen(false);
   }
 
@@ -98,7 +98,7 @@ const Themes = ({
     setCustomType(newCustomType);
     localStorage.setItem("customType", newCustomType);
     setOpenColor(0);
-    saveTheme();
+    fetchTheme();
   }
 
   function backToSubjectDefault() {
@@ -109,7 +109,7 @@ const Themes = ({
         (sc) => sc.filterId === filterId
       );
       subjectColor.color =
-        defaultColors[filters.find((f) => f.id === filterId).groupId];
+        DEFAULT_COLORS[filters.find((f) => f.id === filterId).groupId];
     });
 
     setSubjectColors(newSubjectColors);
@@ -120,9 +120,9 @@ const Themes = ({
   }
 
   function backToDefault() {
-    setColors(defaultColors);
+    setColors(DEFAULT_COLORS);
     setOpacity(true);
-    localStorage.setItem("colors", defaultColors.join(","));
+    localStorage.setItem("colors", DEFAULT_COLORS.join(","));
     localStorage.setItem("opacity", "true");
   }
 
@@ -132,7 +132,7 @@ const Themes = ({
       filters.forEach((f) => {
         newSubjectColors.push({
           filterId: f.id,
-          color: defaultColors[f.groupId],
+          color: DEFAULT_COLORS[f.groupId],
         });
       });
       setSubjectColors(newSubjectColors);
@@ -372,7 +372,7 @@ const Themes = ({
               type="button"
               className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
               onClick={() => {
-                saveTheme();
+                fetchTheme();
                 isOpen && setIsOpen(false);
               }}
             >
