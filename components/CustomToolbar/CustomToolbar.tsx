@@ -2,7 +2,7 @@ import { Navigate, ToolbarProps } from "react-big-calendar";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import { useWindowSize } from "../../utils";
+import useWindowSize from "../../hooks/useWindowSize";
 
 const MobileToolbar = ({ view, onView }) => {
   return (
