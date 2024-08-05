@@ -1,4 +1,4 @@
-from re import split
+import re
 
 
 def create_filters(shifts: list[dict], subjects: list[dict]):
@@ -62,19 +62,13 @@ def create_filters(shifts: list[dict], subjects: list[dict]):
             if shift["filterId"] == subject["id"] and shift["shift"] not in subject_shifts:
                 subject_shifts.append(shift["shift"])
 
-        # Ordering shifts by number
-        subject_shifts = sorted(
-            subject_shifts, key=lambda shift: int(split('(\d+)', shift)[1]))
-        # Ordering shifts by letters
-        subject_shifts = sorted(
-            subject_shifts, key=lambda shift: split('(\d+)', shift)[0])
-        # Ordering shifts by type (theoretical first)
-        theoretical_shifts = [
-            shift for shift in subject_shifts if shift[0] == "T" and shift[1].isnumeric()]
-        subject_shifts = [
-            shift for shift in subject_shifts if shift not in theoretical_shifts]
+        theoretical_shifts = [shift for shift in subject_shifts if shift.startswith('T') and not shift.startswith('TP')]
+        theoretical_shifts.sort(key=extract_number)
 
-        subject_shifts = theoretical_shifts + subject_shifts
+        practical_shifts = [shift for shift in subject_shifts if shift.startswith('TP') or shift.startswith('PL')]
+        practical_shifts.sort(key=extract_number)
+
+        subject_shifts = theoretical_shifts + practical_shifts
 
         filters.append({
             "id": subject["id"],
@@ -85,3 +79,8 @@ def create_filters(shifts: list[dict], subjects: list[dict]):
         })
 
     return filters
+
+def extract_number(shift):
+  m = re.search(r'\d+', shift)
+  # T with no number goes first, thus the -inf
+  return int(m.group()) if m else float('-inf')

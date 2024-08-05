@@ -84,12 +84,12 @@ def get_subjects_short_names_scraper():
 
     print("\nDownloading and parsing `filters.json` from Calendarium's GitHub repository")
     filters_resp = get(
-        "https://raw.githubusercontent.com/cesium/calendarium/d595fdf2e60c4117fc8a38df1b1751d452c8993a/data/filters.json")
+        "https://raw.githubusercontent.com/cesium/calendarium/master/data/filters.json")
     filters = json.loads(filters_resp.text)
 
     print("Downloading and parsing `shifts.json` from Calendarium's GitHub repository\n")
     shifts_resp = get(
-        "https://raw.githubusercontent.com/cesium/calendarium/d595fdf2e60c4117fc8a38df1b1751d452c8993a/data/shifts.json")
+        "https://raw.githubusercontent.com/cesium/calendarium/master/data/shifts.json")
     shifts = json.loads(shifts_resp.text)
 
     names = {}
