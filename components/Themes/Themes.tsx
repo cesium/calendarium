@@ -1,12 +1,13 @@
 import { Switch } from "@headlessui/react";
-
 import { useCallback, useEffect, useState } from "react";
-
 import { HexColorPicker, HexColorInput } from "react-colorful";
-
-import { reduceOpacity, DEFAULT_COLORS } from "../../hooks/useColorTheme";
 import { IFilterDTO } from "../../dtos";
 import { SubjectColor } from "../../types";
+import {
+  reduceOpacity,
+  useColorTheme,
+  DEFAULT_COLORS,
+} from "../../hooks/useColorTheme";
 
 type ThemesProps = {
   fetchTheme: () => void;
@@ -23,14 +24,29 @@ const Themes = ({
   setIsOpen,
   isHome,
 }: ThemesProps) => {
-  const [theme, setTheme] = useState<string>("Modern");
-  const [colors, setColors] = useState<string[]>(DEFAULT_COLORS);
-  const [opacity, setOpacity] = useState<boolean>(true);
-  const [openColor, setOpenColor] = useState<number>(0);
-  const [customType, setCustomType] = useState<string>("Subject");
+  const {
+    setColors,
+    setCustomType,
+    setOpacity,
+    setSubjectColors,
+    setTheme,
+    colors,
+    theme,
+    customType,
+    subjectColors,
+    opacity,
+    saveThemeChanges,
+  } = useColorTheme(filters);
+
   const [checkedFilters, setCheckedFilters] = useState<number[]>([]);
-  const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
   const [checkedClasses, setCheckedClasses] = useState<number[]>([]);
+  const [openColor, setOpenColor] = useState<number>(0);
+  const [pendingThemeUpdate, setPendingThemeUpdate] = useState<string | null>(
+    null
+  );
+  const [pendingCustomTypeUpdate, setPendingCustomTypeUpdate] = useState<
+    string | null
+  >(null);
 
   const checkedThings = isHome ? checkedFilters : checkedClasses;
 
@@ -62,7 +78,6 @@ const Themes = ({
       (sc) => sc.filterId === checkedThings[openColor]
     ).color = newColor;
     setSubjectColors(newSubjectColors);
-    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
   }
 
   function getBgColor(index: number) {
@@ -79,26 +94,21 @@ const Themes = ({
     const newColors = [...colors];
     newColors[openColor + 1] = newColor;
     setColors(newColors);
-    localStorage.setItem("colors", newColors.join(","));
   }
 
   function updateTheme(newTheme: string) {
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    fetchTheme();
-    isOpen && newTheme !== "Custom" && setIsOpen(false);
+    setPendingThemeUpdate(newTheme);
   }
 
   function updateOpacity(updateOpacity: boolean) {
     setOpacity(updateOpacity);
-    localStorage.setItem("opacity", updateOpacity.toString());
   }
 
   function updateCustomType(newCustomType: string) {
     setCustomType(newCustomType);
-    localStorage.setItem("customType", newCustomType);
     setOpenColor(0);
-    fetchTheme();
+    setPendingCustomTypeUpdate(newCustomType);
   }
 
   function backToSubjectDefault() {
@@ -113,59 +123,22 @@ const Themes = ({
     });
 
     setSubjectColors(newSubjectColors);
-    localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
-
     setOpacity(true);
-    localStorage.setItem("opacity", "true");
   }
 
   function backToDefault() {
     setColors(DEFAULT_COLORS);
     setOpacity(true);
-    localStorage.setItem("colors", DEFAULT_COLORS.join(","));
-    localStorage.setItem("opacity", "true");
   }
 
-  const getThemeSettings = useCallback(() => {
-    function initializeSubjectColors() {
-      const newSubjectColors: SubjectColor[] = [];
-      filters.forEach((f) => {
-        newSubjectColors.push({
-          filterId: f.id,
-          color: DEFAULT_COLORS[f.groupId],
-        });
-      });
-      setSubjectColors(newSubjectColors);
-      localStorage.setItem("subjectColors", JSON.stringify(newSubjectColors));
-    }
-
-    const theme = localStorage.getItem("theme");
-    const colors = localStorage.getItem("colors");
-    const opacity = localStorage.getItem("opacity") === "true";
-    const customType = localStorage.getItem("customType");
+  const initializeVariables = useCallback(() => {
     const checkedFilters: number[] =
       JSON.parse(localStorage.getItem("checked")) ?? [];
-    const subjectColors: SubjectColor[] = JSON.parse(
-      localStorage.getItem("subjectColors")
-    );
-
     const checkedShifts: { id: number; shift: string }[] = JSON.parse(
       localStorage.getItem("shifts")
     );
 
-    if (theme) setTheme(theme);
-
-    if (colors) setColors(colors.split(","));
-
-    if (opacity) setOpacity(opacity);
-
-    if (customType) setCustomType(customType);
-
     if (checkedFilters) setCheckedFilters(checkedFilters);
-
-    if (subjectColors && subjectColors.length > 0)
-      setSubjectColors(subjectColors);
-    else initializeSubjectColors();
 
     if (checkedShifts) {
       const checkedClasses: number[] = checkedShifts.map(
@@ -176,11 +149,37 @@ const Themes = ({
       );
       setCheckedClasses(uniqueCheckedClasses);
     }
-  }, [filters]);
+  }, []);
+
+  const saveTheme = () => {
+    saveThemeChanges();
+    fetchTheme();
+  };
 
   useEffect(() => {
-    getThemeSettings();
-  }, [getThemeSettings]);
+    initializeVariables();
+  }, [initializeVariables]);
+
+  // make sure theme changes are saved and applied
+  useEffect(() => {
+    if (pendingThemeUpdate || pendingCustomTypeUpdate) {
+      saveThemeChanges();
+      fetchTheme();
+      if (isOpen && pendingThemeUpdate !== "Custom") {
+        setIsOpen(false);
+      }
+      setPendingThemeUpdate(null);
+      setPendingCustomTypeUpdate(null);
+    }
+  }, [
+    theme,
+    pendingThemeUpdate,
+    pendingCustomTypeUpdate,
+    saveThemeChanges,
+    fetchTheme,
+    isOpen,
+    setIsOpen,
+  ]);
 
   return (
     <>
@@ -251,7 +250,7 @@ const Themes = ({
                     title="A Hex color code, for example: #ed7950"
                     className="cursor-default text-sm font-medium"
                   >
-                    Hex
+                    HEX
                   </div>
                   <HexColorInput
                     className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
@@ -267,7 +266,7 @@ const Themes = ({
                     onChange={updateOpacity}
                     className={`${
                       opacity ? "bg-cesium-900" : "bg-neutral-200"
-                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"}`}
+                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2"}`}
                   >
                     <span className="sr-only">Use setting</span>
                     <span
@@ -338,7 +337,7 @@ const Themes = ({
                     onChange={updateOpacity}
                     className={`${
                       opacity ? "bg-cesium-900" : "bg-neutral-200"
-                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"}`}
+                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2"}`}
                   >
                     <span className="sr-only">Use setting</span>
                     <span
@@ -372,7 +371,7 @@ const Themes = ({
               type="button"
               className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
               onClick={() => {
-                fetchTheme();
+                saveTheme();
                 isOpen && setIsOpen(false);
               }}
             >

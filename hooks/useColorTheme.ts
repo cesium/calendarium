@@ -1,8 +1,8 @@
 import { SetStateAction, useCallback, useState, useEffect } from "react";
-
 import { SubjectColor } from "../types";
 import { IFormatedShift } from "../pages/schedule";
 import { IEventDTO } from "../dtos";
+import { IFilterDTO } from "../dtos";
 
 const DEFAULT_THEME = "Modern";
 const DEFAULT_CUSTOM_TYPE = "Subject";
@@ -41,12 +41,24 @@ function mergeColors(colors: string[]) {
   return merged;
 }
 
+function initializeSubjectColors(filters: IFilterDTO[]) {
+  const newSubjectColors: SubjectColor[] = [];
+  filters.forEach((f) => {
+    newSubjectColors.push({
+      filterId: f.id,
+      color: DEFAULT_COLORS[f.groupId],
+    });
+  });
+  return newSubjectColors;
+}
+
 const fetchTheme = (
   setCustomType: (value: SetStateAction<string>) => void,
   setTheme: (value: SetStateAction<string>) => void,
   setColors: (value: SetStateAction<string[]>) => void,
   setOpacity: (value: SetStateAction<boolean>) => void,
-  setSubjectColors: (value: SetStateAction<SubjectColor[]>) => void
+  setSubjectColors: (value: SetStateAction<SubjectColor[]>) => void,
+  filters: IFilterDTO[]
 ) => {
   let themeLS = localStorage.getItem("theme");
   const colorsLS = localStorage.getItem("colors");
@@ -62,6 +74,11 @@ const fetchTheme = (
     localStorage.setItem("colors", mergeColors(colorsLS.split(",")).join(","));
   !themeLS && localStorage.setItem("theme", "Modern");
   !customTypeLS && localStorage.setItem("customType", DEFAULT_CUSTOM_TYPE);
+  subjectColorsLS.length <= 0 &&
+    localStorage.setItem(
+      "subjectColors",
+      JSON.stringify(initializeSubjectColors(filters))
+    );
 
   if (themeLS !== "Modern" && themeLS !== "Classic" && themeLS !== "Custom") {
     localStorage.setItem("theme", "Modern");
@@ -171,7 +188,7 @@ function getTextColor(
   return color;
 }
 
-export const useColorTheme = () => {
+export const useColorTheme = (filters: IFilterDTO[]) => {
   const [theme, setTheme] = useState<string>(DEFAULT_THEME);
   const [colors, setColors] = useState<string[]>(DEFAULT_COLORS);
   const [opacity, setOpacity] = useState<boolean>(true);
@@ -184,16 +201,16 @@ export const useColorTheme = () => {
       setTheme,
       setColors,
       setOpacity,
-      setSubjectColors
+      setSubjectColors,
+      filters
     );
-  }, []);
+  }, [filters]);
 
   useEffect(() => {
     fetchThemeCallBack();
   }, [fetchThemeCallBack]);
 
   const saveThemeChanges = useCallback(() => {
-    console.log("theme in hook", theme);
     localStorage.setItem("theme", theme);
     localStorage.setItem("colors", colors.join(","));
     localStorage.setItem("opacity", opacity.toString());

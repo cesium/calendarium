@@ -98,7 +98,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
   // THEMES
 
-  const { fetchTheme, getBgColor, getTextColor } = useColorTheme();
+  const { fetchTheme, getBgColor, getTextColor } = useColorTheme(filters);
 
   // INITIALIZATION
 
