@@ -203,8 +203,7 @@ const FilterBlock = ({
   }) => {
     return (
       <>
-        {shifts &&
-          shifts.length > 0 &&
+        {shifts && shifts.length > 0 ? (
           shifts.map((item) => (
             <Fragment key={id.toString() + item + "Checkbox"}>
               <div>
@@ -217,7 +216,10 @@ const FilterBlock = ({
                 </Checkbox>
               </div>
             </Fragment>
-          ))}
+          ))
+        ) : (
+          <p className="text-neutral-400">Information not available.</p>
+        )}
       </>
     );
   };
@@ -317,7 +319,7 @@ const FilterBlock = ({
                           >
                             {checkBoxes[index1 * layer2.length + index2] &&
                             checkBoxes[index1 * layer2.length + index2].some(
-                              (item) => item.shifts
+                              (item) => item.shifts && item.shifts.length > 0
                             ) ? (
                               <>
                                 {checkBoxes[
@@ -341,6 +343,12 @@ const FilterBlock = ({
                                   </Fragment>
                                 ))}
                               </>
+                            ) : checkBoxes[
+                                index1 * layer2.length + index2
+                              ].some((item) => item.shifts) ? (
+                              <p className="text-neutral-400">
+                                Information not available.
+                              </p>
                             ) : (
                               <>
                                 <SelectAll
