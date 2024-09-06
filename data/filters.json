@@ -311,7 +311,7 @@
     "name": "LI4",
     "groupId": 3,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1"]
   },
   {
     "id": 316,
