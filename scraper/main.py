@@ -33,14 +33,14 @@ print("\nScraping schedules from Mestrado em Engenharia Informática:")
 shifts += course_scraper(driver,
                          "Mestrado em Engenharia Informática", subject_codes)
 
-with open(path.join("data", "shifts.json"), "w") as outfile:
+with open(path.join("data", "shifts.json"), "w", encoding="utf-8") as outfile:
     json.dump(shifts, outfile, indent=2, ensure_ascii=False)
 
 print(f"\nDone. Scraped {len(shifts)} shifts from the schedules!")
 print(f"Check them at data/shifts.json\n")
 
 filters = create_filters(shifts, subjects)
-with open(path.join("data", "filters.json"), "w") as outfile:
+with open(path.join("data", "filters.json"), "w", encoding="utf-8") as outfile:
     json.dump(filters, outfile, indent=2, ensure_ascii=False)
 
 print(f"\nDone. Stored {len(filters)} filters!")

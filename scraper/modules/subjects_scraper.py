@@ -90,7 +90,7 @@ def subjects_scraper(driver: WebDriver):
     # =====================
 
     # Store the subjects
-    with open(path.join("scraper", "subjects.json"), "w") as outfile:
+    with open(path.join("scraper", "subjects.json"), "w", encoding="utf-8") as outfile:
         json.dump(subjects, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Scraped {len(subjects)} subjects from the UMinho page!")

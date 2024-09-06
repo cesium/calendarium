@@ -122,7 +122,7 @@ def get_subjects_short_names_scraper():
     for subject in manual_subject_names.values():
         print("\t" + subject['name'])
 
-    with open(path.join("scraper", "subjects_short_names.json"), "w") as outfile:
+    with open(path.join("scraper", "subjects_short_names.json"), "w", encoding="utf-8") as outfile:
         json.dump(names, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Stored {len(names)} names!")
