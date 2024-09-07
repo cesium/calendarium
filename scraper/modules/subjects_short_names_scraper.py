@@ -95,7 +95,7 @@ def get_subjects_short_names_scraper():
 
     names = {}
 
-    print("Not founded info on `shifts.json` about:")
+    print("Couldn't find info on `shifts.json` about:")
 
     for subject in filters:
         filter_id = subject["id"]
