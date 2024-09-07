@@ -35,7 +35,7 @@ sudo pacman -S geckodriver firefox # Arch
 
 | package     | usage                                                                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| requests    | To download previous commit files from our GitHub page and scrape subjects short names                                                    |
+| requests    | To download previously commmitted files from our GitHub page and scrape subjects short names                                                    |
 | unidecode   | To create short names to subjects (that weren't scraped), removing accents from chars. Ex.: Álgebra Linear para a Engenharia -> ÁLE -> ALE |
 | selenium    | Used to scrape the webpage. On this case is impossible use libraries like `beautifulsoup` due the web stack used by UMinho                 |
 | geckodriver | A selenium dependency to interact with browsers                                                                                            |
