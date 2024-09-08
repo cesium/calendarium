@@ -12,7 +12,7 @@ def schedule_scraper(driver: WebDriver, subject_codes: list[dict[str, int]]):
     Parameters
     ----------
     driver : WebDriver
-      The selenium driver. Need have the schedule ready
+      The selenium driver. Needs to have the schedule ready
 
     subject_codes : list[dict[str, int]]
       Every subject has its subject ID and filter ID. This IDs are stored on a list of dicts with the format:
