@@ -2,6 +2,7 @@
 
 import json
 from requests import get
+from os import path
 
 manual_subject_names = {
 
@@ -84,17 +85,17 @@ def get_subjects_short_names_scraper():
 
     print("\nDownloading and parsing `filters.json` from Calendarium's GitHub repository")
     filters_resp = get(
-        "https://raw.githubusercontent.com/cesium/calendarium/d595fdf2e60c4117fc8a38df1b1751d452c8993a/data/filters.json")
+        "https://raw.githubusercontent.com/cesium/calendarium/master/data/filters.json")
     filters = json.loads(filters_resp.text)
 
     print("Downloading and parsing `shifts.json` from Calendarium's GitHub repository\n")
     shifts_resp = get(
-        "https://raw.githubusercontent.com/cesium/calendarium/d595fdf2e60c4117fc8a38df1b1751d452c8993a/data/shifts.json")
+        "https://raw.githubusercontent.com/cesium/calendarium/master/data/shifts.json")
     shifts = json.loads(shifts_resp.text)
 
     names = {}
 
-    print("Not founded info on `shifts.json` about:")
+    print("Couldn't find info on `shifts.json` about:")
 
     for subject in filters:
         filter_id = subject["id"]
@@ -121,7 +122,7 @@ def get_subjects_short_names_scraper():
     for subject in manual_subject_names.values():
         print("\t" + subject['name'])
 
-    with open("scraper/subjects_short_names.json", "w") as outfile:
+    with open(path.join("scraper", "subjects_short_names.json"), "w", encoding="utf-8") as outfile:
         json.dump(names, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Stored {len(names)} names!")
