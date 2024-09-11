@@ -12,6 +12,7 @@ import json
 from time import sleep
 from unidecode import unidecode
 from collections import Counter
+from os import path
 
 
 def subjects_scraper(driver: WebDriver):
@@ -35,13 +36,15 @@ def subjects_scraper(driver: WebDriver):
     }]
     """
 
+    subjects_short_names_path = path.join("scraper", "subjects_short_names.json")
+
     # To compatibility with old version of Calendarium, we use the subjects short names available at GitHub
     try:
         subjects_short_names = json.load(
-            open('scraper/subjects_short_names.json'))
+            open(subjects_short_names_path, encoding="utf-8"))
     except FileNotFoundError:
         get_subjects_short_names_scraper()
-        subjects_short_names = json.load(open('scraper/subjects_short_names.json'))
+        subjects_short_names = json.load(open(subjects_short_names_path, encoding="utf-8"))
 
     # This function will store the return at a file. If the file already exists, we can skip this function
     try:
@@ -87,7 +90,7 @@ def subjects_scraper(driver: WebDriver):
     # =====================
 
     # Store the subjects
-    with open("scraper/subjects.json", "w") as outfile:
+    with open(path.join("scraper", "subjects.json"), "w", encoding="utf-8") as outfile:
         json.dump(subjects, outfile, indent=2, ensure_ascii=False)
 
     print(f"\nDone. Scraped {len(subjects)} subjects from the UMinho page!")
@@ -269,7 +272,7 @@ def scraper(driver: WebDriver, course_name: str, short_names, master: bool = Fal
 
 
 def get_subject_codes_from_file():
-    subjects_file = open("scraper/subjects.json", "r")
+    subjects_file = open(path.join("scraper", "subjects.json"), "r", encoding="utf-8")
 
     subjects = json.load(subjects_file)
     subject_codes = {}

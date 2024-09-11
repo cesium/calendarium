@@ -1,5 +1,17 @@
 [
   {
+    "id": "",
+    "title": "Sustentabilidade Ambiental, Social e Económica",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP1",
+    "room": "1.30",
+    "day": 1,
+    "start": "18:00",
+    "end": "20:00",
+    "filterId": 1118
+  },
+  {
     "id": 14294,
     "title": "Programação Funcional",
     "theoretical": false,
@@ -1548,6 +1560,18 @@
     "filterId": 315
   },
   {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT3",
+    "building": "CP3",
+    "room": "2.02",
+    "day": 2,
+    "start": "13:30",
+    "end": "15:30",
+    "filterId": 315
+  },
+  {
     "id": 14311,
     "title": "Inteligência Artificial",
     "theoretical": false,
@@ -1620,6 +1644,30 @@
     "filterId": 315
   },
   {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT2",
+    "building": "7",
+    "room": "0.11",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 315
+  },
+  {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT4",
+    "building": "7",
+    "room": "0.11",
+    "day": 3,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 315
+  },
+  {
     "id": 14310,
     "title": "Desenvolvimento de Sistemas de Software",
     "theoretical": true,
@@ -1634,6 +1682,10 @@
   {
     "id": 14298,
     "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT5",
+    "building": "CP2",
+    "room": "2.06",
     "theoretical": false,
     "shift": "OT5",
     "building": "CP2",
@@ -2112,11 +2164,25 @@
     "filterId": 416
   },
   {
+    "id": 14601,
+    "title": "Requisitos e Arquiteturas de Software",
+    "theoretical": false,
+    "shift": "PL8",
+    "building": "CP1",
+    "room": "1.15",
+    "day": 1,
+    "start": "13:00",
+    "end": "15:00",
+    "filterId": 416
+  },
+  {
     "id": 14599,
     "title": "Computação Paralela",
     "theoretical": false,
     "shift": "PL1",
+    "shift": "PL1",
     "building": "CP1",
+    "room": "2.25",
     "room": "2.25",
     "day": 1,
     "start": "13:00",
@@ -2296,7 +2362,9 @@
     "title": "Requisitos e Arquiteturas de Software",
     "theoretical": false,
     "shift": "PL6",
+    "shift": "PL6",
     "building": "CP1",
+    "room": "2.18",
     "room": "2.18",
     "day": 1,
     "start": "16:00",
