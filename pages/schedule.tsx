@@ -242,6 +242,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         <Calendar
           toolbar={false}
           localizer={localizer}
+          getNow={() => new Date()}
           selected={selectedShift}
           onSelectEvent={(shift) => handleSelection(shift)}
           defaultDate={new Date()}

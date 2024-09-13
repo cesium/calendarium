@@ -259,6 +259,7 @@ export default function Home({ filters }) {
         <Calendar
           className={styles.calendar}
           localizer={localizer}
+          getNow={() => new Date()}
           selected={selectedEvent}
           onSelectEvent={(event) => handleSelection(event)}
           defaultDate={new Date()}
