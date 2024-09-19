@@ -226,6 +226,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     setSelectedFilters(myFilters);
   }, []);
 
+  const [currentDate, setCurrentDate] = useState(() => new Date());
+
   return (
     <Layout
       isHome={false}
@@ -242,10 +244,10 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         <Calendar
           toolbar={false}
           localizer={localizer}
-          getNow={() => new Date()}
+          getNow={() => currentDate}
           selected={selectedShift}
           onSelectEvent={(shift) => handleSelection(shift)}
-          defaultDate={new Date()}
+          defaultDate={currentDate}
           defaultView={"work_week"}
           views={["work_week"]}
           min={minDate}
