@@ -228,6 +228,10 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
   const [currentDate, setCurrentDate] = useState(() => new Date());
 
+  useEffect(() => {
+    setCurrentDate(new Date());
+  }, []);
+
   return (
     <Layout
       isHome={false}
