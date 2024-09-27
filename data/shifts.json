@@ -1596,18 +1596,6 @@
     "filterId": 313
   },
   {
-    "id": 14310,
-    "title": "Desenvolvimento de Sistemas de Software",
-    "theoretical": false,
-    "shift": "PL6",
-    "building": "CP1",
-    "room": "2.09",
-    "day": 0,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 313
-  },
-  {
     "id": 14298,
     "title": "Laboratórios de Informática IV",
     "theoretical": false,
