@@ -1,17 +1,5 @@
 [
   {
-    "id": "",
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1118
-  },
-  {
     "id": 14294,
     "title": "Programação Funcional",
     "theoretical": false,
@@ -965,7 +953,7 @@
     "theoretical": false,
     "shift": "PL2",
     "building": "CP1",
-    "room": "1.43",
+    "room": "2.11",
     "day": 3,
     "start": "15:30",
     "end": "17:30",
@@ -978,6 +966,18 @@
     "shift": "PL4",
     "building": "CP1",
     "room": "2.08",
+    "day": 3,
+    "start": "15:30",
+    "end": "17:30",
+    "filterId": 216
+  },
+  {
+    "id": 14297,
+    "title": "Laboratórios de Informática III",
+    "theoretical": false,
+    "shift": "PL2",
+    "building": "CP1",
+    "room": "1.43",
     "day": 3,
     "start": "15:30",
     "end": "17:30",
@@ -1556,7 +1556,7 @@
     "room": "2.02",
     "day": 2,
     "start": "13:30",
-    "end": "15:30",
+    "end": "14:30",
     "filterId": 315
   },
   {
@@ -1604,7 +1604,19 @@
     "room": "0.11",
     "day": 1,
     "start": "14:00",
-    "end": "16:00",
+    "end": "15:00",
+    "filterId": 315
+  },
+  {
+    "id": 14298,
+    "title": "Laboratórios de Informática IV",
+    "theoretical": false,
+    "shift": "OT5",
+    "building": "CP3",
+    "room": "2.02",
+    "day": 2,
+    "start": "14:30",
+    "end": "15:30",
     "filterId": 315
   },
   {
@@ -1614,8 +1626,8 @@
     "shift": "OT4",
     "building": "7",
     "room": "0.11",
-    "day": 3,
-    "start": "14:00",
+    "day": 1,
+    "start": "15:00",
     "end": "16:00",
     "filterId": 315
   },
@@ -1630,18 +1642,6 @@
     "start": "15:30",
     "end": "17:30",
     "filterId": 313
-  },
-  {
-    "id": 14298,
-    "title": "Laboratórios de Informática IV",
-    "theoretical": false,
-    "shift": "OT5",
-    "building": "CP2",
-    "room": "2.06",
-    "day": 4,
-    "start": "15:30",
-    "end": "17:30",
-    "filterId": 315
   },
   {
     "id": 14311,
