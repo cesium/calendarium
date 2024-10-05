@@ -16,7 +16,7 @@ interface ILayoutProps {
   isHome: boolean;
   filters: any;
   handleFilters: any;
-  saveTheme: () => void;
+  fetchTheme: () => void;
 }
 
 const Layout = ({
@@ -24,7 +24,7 @@ const Layout = ({
   isHome,
   filters,
   handleFilters,
-  saveTheme,
+  fetchTheme,
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
@@ -100,7 +100,7 @@ const Layout = ({
           setIsOpen={setIsOpen}
           filters={filters}
           handleFilters={handleFilters}
-          saveTheme={saveTheme}
+          fetchTheme={fetchTheme}
         />
       </div>
 
