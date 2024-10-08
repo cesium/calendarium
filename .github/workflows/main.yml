@@ -1,8 +1,6 @@
 name: Calendarium Scraper
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
   schedule:
     # run every 7 days
     - cron: "0 0 * * 0"
