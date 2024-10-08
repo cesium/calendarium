@@ -52,7 +52,7 @@ jobs:
         run: |
           # Fetch contributors using GitHub API
           contributors=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=2")
+            "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=1")
 
           # Extract the login names of the top contributors
           echo "::set-output name=reviewers::$(echo $contributors | jq -r '.[].login' | tr '\n' ',')"
