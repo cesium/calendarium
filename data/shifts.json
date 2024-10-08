@@ -1,17 +1,5 @@
 [
   {
-    "id": "",
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1118
-  },
-  {
     "id": 14294,
     "title": "Programação Funcional",
     "theoretical": false,
