@@ -4,6 +4,7 @@ on:
   schedule:
     # run every 7 days
     - cron: "0 0 * * 0"
+  workflow_dispatch: # enables manual triggering
 
 jobs:
   build:
@@ -33,12 +34,22 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20.9.0
 
       - name: Format Code with Prettier
         run: |
           npm ci
           npm run format
+
+      - name: Get Most Active Contributors
+        id: get_contributors
+        run: |
+          # Fetch contributors using GitHub API
+          contributors=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=1")
+
+          # Extract the login names of the top contributors
+          echo "::set-output name=reviewers::$(echo $contributors | jq -r '.[].login' | tr '\n' ',')"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -51,7 +62,10 @@ jobs:
             > Before merging, please be aware of edge cases where manual intervention is needed.
           commit-message: "chore: update shifts data"
           branch: action/shifts
+          base: master
           delete-branch: true
           labels: add activities, automated
-          reviewers: diogogmatos
+          reviewers: ${{ steps.get_contributors.outputs.reviewers }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          author: "GitHub <noreply@github.com>"
+          committer: "GitHub <noreply@github.com>"
