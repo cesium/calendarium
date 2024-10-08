@@ -36,17 +36,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20.9.0
 
       - name: Format Code with Prettier
         run: |
           npm ci
           npm run format
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Get Most Active Contributors
         id: get_contributors
@@ -55,8 +50,15 @@ jobs:
           contributors=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=5")
 
-          # Extract the login names of the top contributors
-          echo "::set-output name=reviewers::$(echo $contributors | jq -r '.[].login' | tr '\n' ',')"
+          # Extract the login names of the top contributors, excluding the commit author
+          commit_author="${{ github.actor }}"
+          reviewers=$(echo $contributors | jq -r '.[].login' | grep -v "^$commit_author$" | tr '\n' ',')
+
+          # Remove trailing comma if it exists
+          reviewers=${reviewers%,}
+
+          # Set reviewers output
+          echo "::set-output name=reviewers::$reviewers"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -74,3 +76,5 @@ jobs:
           labels: add activities, automated
           reviewers: ${{ steps.get_contributors.outputs.reviewers }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
