@@ -69,5 +69,5 @@ jobs:
           labels: add activities, automated
           reviewers: ${{ steps.get_contributors.outputs.reviewers }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-          committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          author: "GitHub <noreply@github.com>"
+          committer: "GitHub <noreply@github.com>"
