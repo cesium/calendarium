@@ -123,7 +123,7 @@
     "name": "SASE",
     "groupId": 1,
     "semester": 1,
-    "shifts": ["T1"]
+    "shifts": []
   },
   {
     "id": 1119,
