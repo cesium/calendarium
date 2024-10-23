@@ -23,7 +23,7 @@ type SidebarProps = {
   setIsOpen?: (isOpen: boolean) => void;
   filters?: IFilterDTO[];
   handleFilters?: any;
-  saveTheme: () => void;
+  fetchTheme: () => void;
 };
 
 const Sidebar = ({
@@ -32,7 +32,7 @@ const Sidebar = ({
   setIsOpen,
   filters,
   handleFilters,
-  saveTheme,
+  fetchTheme,
 }: SidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
@@ -123,7 +123,7 @@ const Sidebar = ({
 
         {isSettings ? (
           <Settings
-            saveTheme={saveTheme}
+            fetchTheme={fetchTheme}
             filters={filters}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
