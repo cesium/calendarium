@@ -36,10 +36,15 @@ jobs:
         with:
           node-version: 20.9.0
 
+      - name: Setup up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.32
+
       - name: Format Code with Prettier
         run: |
-          npm ci
-          npm run format
+          bun i
+          bun format
 
       - name: Get Most Active Contributors
         id: get_contributors
