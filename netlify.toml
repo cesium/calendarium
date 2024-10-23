@@ -1,6 +1,6 @@
 [build]
   publish = ".next"
-  command = "npm run build"
+  command = "bun run build"
 
 [build.environment]
   TZ = "Europe/Lisbon"
