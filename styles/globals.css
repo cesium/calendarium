@@ -250,7 +250,6 @@ a {
 /* hides 'today' background color by default */
 .rbc-calendar .rbc-today {
   @apply bg-transparent;
-  @apply bg-cesium-900/10;
 }
 
 .rbc-calendar .rbc-date-cell.rbc-now.rbc-current > button {
