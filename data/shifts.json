@@ -1,17 +1,5 @@
 [
   {
-    "id": "",
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1118
-  },
-  {
     "id": 14294,
     "title": "Programação Funcional",
     "theoretical": false,
@@ -965,18 +953,6 @@
     "theoretical": false,
     "shift": "PL2",
     "building": "CP1",
-    "room": "1.43",
-    "day": 3,
-    "start": "15:30",
-    "end": "17:30",
-    "filterId": 216
-  },
-  {
-    "id": 14297,
-    "title": "Laboratórios de Informática III",
-    "theoretical": false,
-    "shift": "PL2",
-    "building": "CP1",
     "room": "2.11",
     "day": 3,
     "start": "15:30",
@@ -987,9 +963,9 @@
     "id": 14303,
     "title": "Arquitetura de Computadores",
     "theoretical": false,
-    "shift": "PL1",
+    "shift": "PL3",
     "building": "7",
-    "room": "0.08",
+    "room": "1.10",
     "day": 3,
     "start": "15:30",
     "end": "17:30",
@@ -999,9 +975,9 @@
     "id": 14303,
     "title": "Arquitetura de Computadores",
     "theoretical": false,
-    "shift": "PL3",
+    "shift": "PL1",
     "building": "7",
-    "room": "1.10",
+    "room": "0.08",
     "day": 3,
     "start": "15:30",
     "end": "17:30",
@@ -1396,8 +1372,8 @@
     "title": "Desenvolvimento de Sistemas de Software",
     "theoretical": false,
     "shift": "PL5",
-    "building": "CP1",
-    "room": "2.20",
+    "building": "7",
+    "room": "0.11",
     "day": 0,
     "start": "11:00",
     "end": "13:00",
@@ -1728,8 +1704,8 @@
     "filterId": 314
   },
   {
-    "id": 14309,
-    "title": "Cálculo de Programas",
+    "id": 0,
+    "title": "Cálculo Diferencial e Integral",
     "theoretical": false,
     "shift": "TP1",
     "building": "CP1",
@@ -1737,7 +1713,7 @@
     "day": 0,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 311
+    "filterId": 0
   },
   {
     "id": 14309,
