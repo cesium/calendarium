@@ -1,17 +1,5 @@
 [
   {
-    "id": "",
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1118
-  },
-  {
     "id": 14294,
     "title": "Programação Funcional",
     "theoretical": false,
@@ -537,7 +525,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1120
+    "filterId": 1119
   },
   {
     "id": 16178,
@@ -549,7 +537,7 @@
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 1119
+    "filterId": 1118
   },
   {
     "id": 12365,
@@ -1714,18 +1702,6 @@
     "start": "18:00",
     "end": "20:00",
     "filterId": 314
-  },
-  {
-    "id": 0,
-    "title": "Cálculo Diferencial e Integral",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "CP1",
-    "room": "1.05",
-    "day": 0,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 0
   },
   {
     "id": 14309,

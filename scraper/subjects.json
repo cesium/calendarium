@@ -105,9 +105,9 @@
   },
   {
     "id": 1114,
-    "subjectId": 4236,
-    "name": "Islão e Mundo Árabe",
-    "short_name": "IMA",
+    "subjectId": 11732,
+    "name": "Leitura e Escrita para a Produção de Conhecimento Académico",
+    "short_name": "LEPCA",
     "year": 1,
     "semester": 1
   },
@@ -137,14 +137,6 @@
   },
   {
     "id": 1118,
-    "subjectId": 13403,
-    "name": "Sustentabilidade Ambiental, Social e Económica",
-    "short_name": "SASE",
-    "year": 1,
-    "semester": 1
-  },
-  {
-    "id": 1119,
     "subjectId": 16178,
     "name": "Temas de Direito da Igualdade e Não Discriminação",
     "short_name": "TDIND",
@@ -152,7 +144,7 @@
     "semester": 1
   },
   {
-    "id": 1120,
+    "id": 1119,
     "subjectId": 10886,
     "name": "Tópicos de Astronomia e Cosmologia",
     "short_name": "TAC",
@@ -473,6 +465,14 @@
   },
   {
     "id": 422,
+    "subjectId": 16714,
+    "name": "Análise de Dados de Grandes Dimensões",
+    "short_name": "ADGD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 423,
     "subjectId": 14605,
     "name": "Análise Inteligente em Sistemas de \"Big Data\"",
     "short_name": "AISBD",
@@ -480,7 +480,7 @@
     "semester": 2
   },
   {
-    "id": 423,
+    "id": 424,
     "subjectId": 11589,
     "name": "Arquiteturas Aplicacionais",
     "short_name": "AA",
@@ -488,7 +488,15 @@
     "semester": 2
   },
   {
-    "id": 424,
+    "id": 425,
+    "subjectId": 16717,
+    "name": "Conceção e Implementação de Armazéns de Dados",
+    "short_name": "CIAD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 426,
     "subjectId": 13421,
     "name": "Engenharia de Segurança",
     "short_name": "ES",
@@ -496,7 +504,7 @@
     "semester": 2
   },
   {
-    "id": 425,
+    "id": 427,
     "subjectId": 14607,
     "name": "Engenharia Gramatical",
     "short_name": "EG",
@@ -504,7 +512,7 @@
     "semester": 2
   },
   {
-    "id": 426,
+    "id": 428,
     "subjectId": 14609,
     "name": "Experimentação em Engenharia de Software",
     "short_name": "EES",
@@ -512,7 +520,7 @@
     "semester": 2
   },
   {
-    "id": 427,
+    "id": 429,
     "subjectId": 14606,
     "name": "Gestão e Segurança de Redes",
     "short_name": "GSR",
@@ -520,7 +528,7 @@
     "semester": 2
   },
   {
-    "id": 428,
+    "id": 4210,
     "subjectId": 14608,
     "name": "Redes Definidas por Software",
     "short_name": "RDS",
@@ -528,7 +536,7 @@
     "semester": 2
   },
   {
-    "id": 429,
+    "id": 4211,
     "subjectId": 13422,
     "name": "Sistemas Distribuídos em Grande Escala",
     "short_name": "SDGE",
@@ -536,7 +544,7 @@
     "semester": 2
   },
   {
-    "id": 4210,
+    "id": 4212,
     "subjectId": 11602,
     "name": "Verificação Formal",
     "short_name": "VF",
@@ -544,7 +552,7 @@
     "semester": 2
   },
   {
-    "id": 4211,
+    "id": 4213,
     "subjectId": 14604,
     "name": "Visão por Computador e Processamento de Imagem",
     "short_name": "VCPI",
@@ -552,7 +560,7 @@
     "semester": 2
   },
   {
-    "id": 4212,
+    "id": 4214,
     "subjectId": 11588,
     "name": "Administração de Bases de Dados",
     "short_name": "ABD",
@@ -560,7 +568,7 @@
     "semester": 2
   },
   {
-    "id": 4213,
+    "id": 4215,
     "subjectId": 14615,
     "name": "Aprendizagem Profunda",
     "short_name": "AProf",
@@ -568,7 +576,15 @@
     "semester": 2
   },
   {
-    "id": 4214,
+    "id": 4216,
+    "subjectId": 16715,
+    "name": "Aquisição de Conhecimento em Armazéns de Dados",
+    "short_name": "ACAD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4217,
     "subjectId": 13624,
     "name": "Bases de Dados NoSQL",
     "short_name": "BD NoSQL",
@@ -576,7 +592,15 @@
     "semester": 2
   },
   {
-    "id": 4215,
+    "id": 4218,
+    "subjectId": 16716,
+    "name": "Computação Heterogénea de Elevado Desempenho",
+    "short_name": "CHED",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4219,
     "subjectId": 13414,
     "name": "Estruturas Criptográficas",
     "short_name": "EC",
@@ -584,7 +608,7 @@
     "semester": 2
   },
   {
-    "id": 4216,
+    "id": 4220,
     "subjectId": 14611,
     "name": "Interligação de Redes IP",
     "short_name": "IRIP",
@@ -592,7 +616,15 @@
     "semester": 2
   },
   {
-    "id": 4217,
+    "id": 4221,
+    "subjectId": 16718,
+    "name": "Internet das Coisas Aplicada",
+    "short_name": "ICA",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4222,
     "subjectId": 14614,
     "name": "Manutenção e Evolução de Software",
     "short_name": "MES",
@@ -600,7 +632,7 @@
     "semester": 2
   },
   {
-    "id": 4218,
+    "id": 4223,
     "subjectId": 14612,
     "name": "Programação Ciber-física",
     "short_name": "PCF",
@@ -608,7 +640,7 @@
     "semester": 2
   },
   {
-    "id": 4219,
+    "id": 4224,
     "subjectId": 14613,
     "name": "Redes Fixas e Móveis",
     "short_name": "RFM",
@@ -616,7 +648,7 @@
     "semester": 2
   },
   {
-    "id": 4220,
+    "id": 4225,
     "subjectId": 11604,
     "name": "Scripting no Processamento de Linguagem Natural",
     "short_name": "SPLN",
@@ -624,7 +656,7 @@
     "semester": 2
   },
   {
-    "id": 4221,
+    "id": 4226,
     "subjectId": 9427,
     "name": "Tolerância a Faltas",
     "short_name": "TF",
@@ -632,7 +664,7 @@
     "semester": 2
   },
   {
-    "id": 4222,
+    "id": 4227,
     "subjectId": 14623,
     "name": "Visualização e Iluminação",
     "short_name": "VI",
@@ -640,7 +672,7 @@
     "semester": 2
   },
   {
-    "id": 4223,
+    "id": 4228,
     "subjectId": 9397,
     "name": "Cálculo de Sistemas de Informação",
     "short_name": "CSI",
@@ -648,7 +680,7 @@
     "semester": 2
   },
   {
-    "id": 4224,
+    "id": 4229,
     "subjectId": 13935,
     "name": "Mineração de Dados",
     "short_name": "MD",
@@ -656,7 +688,7 @@
     "semester": 2
   },
   {
-    "id": 4225,
+    "id": 4230,
     "subjectId": 14620,
     "name": "Novos Paradigmas de Rede",
     "short_name": "NPR",
@@ -664,7 +696,7 @@
     "semester": 2
   },
   {
-    "id": 4226,
+    "id": 4231,
     "subjectId": 11608,
     "name": "Paradigmas de Sistemas Distribuídos",
     "short_name": "PSD",
@@ -672,7 +704,7 @@
     "semester": 2
   },
   {
-    "id": 4227,
+    "id": 4232,
     "subjectId": 13416,
     "name": "Qualidade de Serviço na Internet",
     "short_name": "QSI",
@@ -680,7 +712,7 @@
     "semester": 2
   },
   {
-    "id": 4228,
+    "id": 4233,
     "subjectId": 14619,
     "name": "Representação e Processamento de Conhecimento na Web",
     "short_name": "RPCW",
@@ -688,7 +720,7 @@
     "semester": 2
   },
   {
-    "id": 4229,
+    "id": 4234,
     "subjectId": 14622,
     "name": "Sensorização e Ambiente",
     "short_name": "SA",
@@ -696,7 +728,23 @@
     "semester": 2
   },
   {
-    "id": 4230,
+    "id": 4235,
+    "subjectId": 16719,
+    "name": "Sistemas de Armazenamento de Dados",
+    "short_name": "SAD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4236,
+    "subjectId": 16720,
+    "name": "Sistemas de Extração, Transformação e Carregamento de Dados",
+    "short_name": "SETCD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4237,
     "subjectId": 14618,
     "name": "Sistemas Interativos Confiáveis",
     "short_name": "SIC",
@@ -704,7 +752,7 @@
     "semester": 2
   },
   {
-    "id": 4231,
+    "id": 4238,
     "subjectId": 14617,
     "name": "Tecnologias de Segurança",
     "short_name": "TS",
@@ -712,7 +760,7 @@
     "semester": 2
   },
   {
-    "id": 4232,
+    "id": 4239,
     "subjectId": 14621,
     "name": "Tópicos de Desenvolvimento de Software",
     "short_name": "TDS",
@@ -720,7 +768,7 @@
     "semester": 2
   },
   {
-    "id": 4233,
+    "id": 4240,
     "subjectId": 14616,
     "name": "Visualização em Tempo Real",
     "short_name": "VTR",
