@@ -283,7 +283,7 @@
     "name": "CP",
     "groupId": 3,
     "semester": 1,
-    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5"]
+    "shifts": ["T1", "T2", "TP2", "TP3", "TP4", "TP5"]
   },
   {
     "id": 312,
@@ -311,7 +311,7 @@
     "name": "LI4",
     "groupId": 3,
     "semester": 1,
-    "shifts": ["T1"]
+    "shifts": ["T1", "OT2", "OT3", "OT4", "OT5"]
   },
   {
     "id": 316,

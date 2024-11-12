@@ -8,31 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup node
+      - name: Setup up Node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22.11.0
 
-      - uses: actions/cache@v3
+      - name: Setup up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          bun-version: 1.1.32
 
       - name: Install dependencies
-        run: npm ci
+        run: bun i
 
       - name: Format the code
-        run: npm run format
+        run: bun format
 
       - name: Lint the code
-        run: npm run test:lint
+        run: bun run test:lint
