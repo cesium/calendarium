@@ -80,10 +80,8 @@ const fetchTheme = (
   }
 
   setTheme(themeLS);
-  if (themeLS === "Custom") {
-    opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
-    subjectColorsLS && setSubjectColors(subjectColorsLS);
-  }
+  opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
+  subjectColorsLS && setSubjectColors(subjectColorsLS);
 };
 
 function getDefaultColor(event: IFormatedShift | IEventDTO): string {
@@ -92,18 +90,6 @@ function getDefaultColor(event: IFormatedShift | IEventDTO): string {
   }
   if ((event as IEventDTO).groupId !== undefined) {
     return DEFAULT_COLORS[(event as IEventDTO).groupId];
-  }
-}
-
-function getYearColor(event: IFormatedShift | IEventDTO, colors: string[]) {
-  if ((event as IFormatedShift).id !== undefined) {
-    return (
-      colors[String((event as IFormatedShift).filterId)[0]] ??
-      getDefaultColor(event)
-    );
-  }
-  if ((event as IEventDTO).groupId !== undefined) {
-    return colors[(event as IEventDTO).groupId] ?? getDefaultColor(event);
   }
 }
 
