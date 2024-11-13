@@ -65,7 +65,7 @@ def create_filters(shifts: list[dict], subjects: list[dict]):
         theoretical_shifts = [shift for shift in subject_shifts if shift.startswith('T') and not shift.startswith('TP')]
         theoretical_shifts.sort(key=extract_number)
 
-        practical_shifts = [shift for shift in subject_shifts if shift.startswith('TP') or shift.startswith('PL')]
+        practical_shifts = [shift for shift in subject_shifts if shift.startswith('TP') or shift.startswith('PL') or shift.startswith('OT')]
         practical_shifts.sort(key=extract_number)
 
         subject_shifts = theoretical_shifts + practical_shifts

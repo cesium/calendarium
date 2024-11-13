@@ -59,7 +59,7 @@ const Banner = ({
       <div className="flex items-center justify-between gap-x-6 bg-cesium-900 px-6 py-2.5 pb-6 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5 sm:shadow-md">
         <div className="font-display text-sm leading-6 text-white">
           <div className="select-none">
-            <strong className="font-semibold">
+            <strong className="font-bold">
               <i className="bi bi-info-circle-fill"></i> {type}
             </strong>
             <svg
@@ -74,9 +74,14 @@ const Banner = ({
                 overrides: {
                   a: {
                     props: {
-                      className: "hover:underline",
+                      className: "underline",
                       target: "_blank",
                       rel: "noopener noreferrer",
+                    },
+                  },
+                  strong: {
+                    props: {
+                      className: "font-semibold",
                     },
                   },
                 },

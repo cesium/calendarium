@@ -242,8 +242,14 @@ a {
   border-radius: 8px;
 }
 
-.rbc-calendar .rbc-today {
+/* shows a 'today' background color in month view */
+.rbc-calendar .rbc-month-row .rbc-day-bg.rbc-today {
   @apply bg-cesium-900/10;
+}
+
+/* hides 'today' background color by default */
+.rbc-calendar .rbc-today {
+  @apply bg-transparent;
 }
 
 .rbc-calendar .rbc-date-cell.rbc-now.rbc-current > button {
