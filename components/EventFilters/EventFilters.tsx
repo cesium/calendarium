@@ -20,12 +20,13 @@ const EventFilters = ({
 }: EventFiltersProps) => {
   const info = useAppInfo();
   const filters = info.filters as IFilterDTO[];
+  const handleFilters = info.handleFilters;
 
   useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
-    info.handleFilters(stored);
-  }, [setChecked, info]);
+    handleFilters(stored);
+  }, [setChecked, handleFilters]);
 
   let event: IFilterDTO[][] = [];
 

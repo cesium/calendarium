@@ -19,12 +19,13 @@ const ScheduleFilters = ({
 }: ISelectScheduleProps) => {
   const info = useAppInfo();
   const filters = info.filters as IFilterDTO[];
+  const handleFilters = info.handleFilters;
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
     setChecked(stored);
-    info.handleFilters(stored);
-  }, [info, setChecked]);
+    handleFilters(stored);
+  }, [handleFilters, setChecked]);
 
   const clearSelection = useCallback(() => {
     setChecked([]);
