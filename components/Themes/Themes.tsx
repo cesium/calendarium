@@ -39,9 +39,6 @@ const Themes = ({
   const [pendingThemeUpdate, setPendingThemeUpdate] = useState<string | null>(
     null
   );
-  const [pendingCustomTypeUpdate, setPendingCustomTypeUpdate] = useState<
-    string | null
-  >(null);
 
   const checkedThings = isHome ? checkedFilters : checkedClasses;
 
@@ -130,19 +127,17 @@ const Themes = ({
 
   // make sure theme changes are saved and applied
   useEffect(() => {
-    if (pendingThemeUpdate || pendingCustomTypeUpdate) {
+    if (pendingThemeUpdate) {
       saveThemeChanges();
       fetchTheme();
       if (isOpen && pendingThemeUpdate !== "Custom") {
         setIsOpen(false);
       }
       setPendingThemeUpdate(null);
-      setPendingCustomTypeUpdate(null);
     }
   }, [
     theme,
     pendingThemeUpdate,
-    pendingCustomTypeUpdate,
     saveThemeChanges,
     fetchTheme,
     isOpen,
