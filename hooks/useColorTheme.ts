@@ -5,7 +5,6 @@ import { IEventDTO } from "../dtos";
 import { IFilterDTO } from "../dtos";
 
 const DEFAULT_THEME = "Modern";
-const DEFAULT_CUSTOM_TYPE = "Subject";
 export const DEFAULT_COLORS = [
   "#ed7950", // cesium
   "#4BC0D9", // 1st year
@@ -53,9 +52,7 @@ function initializeSubjectColors(filters: IFilterDTO[]) {
 }
 
 const fetchTheme = (
-  setCustomType: (value: SetStateAction<string>) => void,
   setTheme: (value: SetStateAction<string>) => void,
-  setColors: (value: SetStateAction<string[]>) => void,
   setOpacity: (value: SetStateAction<boolean>) => void,
   setSubjectColors: (value: SetStateAction<SubjectColor[]>) => void,
   filters: IFilterDTO[]
@@ -63,8 +60,6 @@ const fetchTheme = (
   let themeLS = localStorage.getItem("theme");
   const colorsLS = localStorage.getItem("colors");
   const opacityLS = localStorage.getItem("opacity");
-  const customTypeLS =
-    localStorage.getItem("customType") ?? DEFAULT_CUSTOM_TYPE;
   const subjectColorsLS: SubjectColor[] =
     JSON.parse(localStorage.getItem("subjectColors")) ?? [];
 
@@ -73,7 +68,6 @@ const fetchTheme = (
     colorsLS.split(",").length !== DEFAULT_COLORS.length &&
     localStorage.setItem("colors", mergeColors(colorsLS.split(",")).join(","));
   !themeLS && localStorage.setItem("theme", "Modern");
-  !customTypeLS && localStorage.setItem("customType", DEFAULT_CUSTOM_TYPE);
   subjectColorsLS.length <= 0 &&
     localStorage.setItem(
       "subjectColors",
@@ -87,20 +81,8 @@ const fetchTheme = (
 
   setTheme(themeLS);
   if (themeLS === "Custom") {
-    setCustomType(customTypeLS);
-
-    switch (customTypeLS) {
-      case "Year": {
-        colorsLS ? setColors(colorsLS.split(",")) : setColors(DEFAULT_COLORS);
-        opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
-        break;
-      }
-      case "Subject": {
-        opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
-        subjectColorsLS && setSubjectColors(subjectColorsLS);
-        break;
-      }
-    }
+    opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
+    subjectColorsLS && setSubjectColors(subjectColorsLS);
   }
 };
 
@@ -139,9 +121,7 @@ function getSubjectColor(
 function getBgColor(
   event: IFormatedShift | IEventDTO,
   theme: string,
-  colors: string[],
   opacity: boolean,
-  customType: string,
   subjectColors: SubjectColor[]
 ) {
   let color: string = "#000000";
@@ -149,15 +129,9 @@ function getBgColor(
   if (theme === "Modern") color = reduceOpacity(getDefaultColor(event));
   else if (theme === "Classic") color = getDefaultColor(event);
   else if (theme === "Custom") {
-    if (customType === "Year") {
-      opacity
-        ? (color = reduceOpacity(getYearColor(event, colors)))
-        : (color = getYearColor(event, colors));
-    } else if (customType === "Subject") {
-      opacity
-        ? (color = reduceOpacity(getSubjectColor(event, subjectColors)))
-        : (color = getSubjectColor(event, subjectColors));
-    }
+    opacity
+      ? (color = reduceOpacity(getSubjectColor(event, subjectColors)))
+      : (color = getSubjectColor(event, subjectColors));
   }
 
   return color;
@@ -166,9 +140,7 @@ function getBgColor(
 function getTextColor(
   event: IFormatedShift | IEventDTO,
   theme: string,
-  colors: string[],
   opacity: boolean,
-  customType: string,
   subjectColors: SubjectColor[]
 ) {
   let color: string = "#000000";
@@ -176,13 +148,9 @@ function getTextColor(
   if (theme === "Modern") color = getDefaultColor(event);
   else if (theme === "Classic") color = "white";
   else if (theme === "Custom") {
-    if (customType === "Year") {
-      opacity ? (color = getYearColor(event, colors)) : (color = "white");
-    } else if (customType === "Subject") {
-      opacity
-        ? (color = getSubjectColor(event, subjectColors))
-        : (color = "white");
-    }
+    opacity
+      ? (color = getSubjectColor(event, subjectColors))
+      : (color = "white");
   }
 
   return color;
@@ -190,20 +158,11 @@ function getTextColor(
 
 export const useColorTheme = (filters: IFilterDTO[]) => {
   const [theme, setTheme] = useState<string>(DEFAULT_THEME);
-  const [colors, setColors] = useState<string[]>(DEFAULT_COLORS);
   const [opacity, setOpacity] = useState<boolean>(true);
   const [subjectColors, setSubjectColors] = useState<SubjectColor[]>([]);
-  const [customType, setCustomType] = useState<string>(DEFAULT_CUSTOM_TYPE);
 
   const fetchThemeCallBack = useCallback(() => {
-    fetchTheme(
-      setCustomType,
-      setTheme,
-      setColors,
-      setOpacity,
-      setSubjectColors,
-      filters
-    );
+    fetchTheme(setTheme, setOpacity, setSubjectColors, filters);
   }, [filters]);
 
   useEffect(() => {
@@ -212,29 +171,23 @@ export const useColorTheme = (filters: IFilterDTO[]) => {
 
   const saveThemeChanges = useCallback(() => {
     localStorage.setItem("theme", theme);
-    localStorage.setItem("colors", colors.join(","));
     localStorage.setItem("opacity", opacity.toString());
     localStorage.setItem("subjectColors", JSON.stringify(subjectColors));
-    localStorage.setItem("customType", customType);
-  }, [theme, colors, opacity, subjectColors, customType]);
+  }, [theme, opacity, subjectColors]);
 
   return {
     saveThemeChanges,
     fetchTheme: fetchThemeCallBack,
     getBgColor: (event: IFormatedShift | IEventDTO) =>
-      getBgColor(event, theme, colors, opacity, customType, subjectColors),
+      getBgColor(event, theme, opacity, subjectColors),
     getTextColor: (event: IFormatedShift | IEventDTO) =>
-      getTextColor(event, theme, colors, opacity, customType, subjectColors),
+      getTextColor(event, theme, opacity, subjectColors),
     theme,
     setTheme,
-    colors,
-    setColors,
     opacity,
     setOpacity,
     subjectColors,
     setSubjectColors,
-    customType,
-    setCustomType,
   };
 };
 

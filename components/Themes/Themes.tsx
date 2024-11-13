@@ -2,7 +2,6 @@ import { Switch } from "@headlessui/react";
 import { useCallback, useEffect, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { IFilterDTO } from "../../dtos";
-import { SubjectColor } from "../../types";
 import {
   reduceOpacity,
   useColorTheme,
@@ -25,14 +24,10 @@ const Themes = ({
   isHome,
 }: ThemesProps) => {
   const {
-    setColors,
-    setCustomType,
     setOpacity,
     setSubjectColors,
     setTheme,
-    colors,
     theme,
-    customType,
     subjectColors,
     opacity,
     saveThemeChanges,
@@ -80,22 +75,6 @@ const Themes = ({
     setSubjectColors(newSubjectColors);
   }
 
-  function getBgColor(index: number) {
-    if (opacity) return reduceOpacity(colors[index + 1]);
-    else return colors[index + 1];
-  }
-
-  function getTextColor(index: number) {
-    if (opacity) return colors[index + 1];
-    else return "white";
-  }
-
-  function updateColors(newColor: string) {
-    const newColors = [...colors];
-    newColors[openColor + 1] = newColor;
-    setColors(newColors);
-  }
-
   function updateTheme(newTheme: string) {
     setTheme(newTheme);
     setPendingThemeUpdate(newTheme);
@@ -103,12 +82,6 @@ const Themes = ({
 
   function updateOpacity(updateOpacity: boolean) {
     setOpacity(updateOpacity);
-  }
-
-  function updateCustomType(newCustomType: string) {
-    setCustomType(newCustomType);
-    setOpenColor(0);
-    setPendingCustomTypeUpdate(newCustomType);
   }
 
   function backToSubjectDefault() {
@@ -123,11 +96,6 @@ const Themes = ({
     });
 
     setSubjectColors(newSubjectColors);
-    setOpacity(true);
-  }
-
-  function backToDefault() {
-    setColors(DEFAULT_COLORS);
     setOpacity(true);
   }
 
@@ -200,185 +168,93 @@ const Themes = ({
         </select>
       </div>
 
-      {theme === "Custom" && (
-        <div className="space-y-4">
-          <div className="flex flex-row place-content-between items-center">
-            <label htmlFor="theme" className="w-full text-sm font-medium ">
-              Customize by:
-            </label>
-            <select
-              id="theme"
-              name="theme"
-              className="block w-full rounded-md border-0 py-1.5  ring-1 ring-inset ring-neutral-300 focus:ring-2 focus:ring-cesium-900 dark:bg-neutral-800 dark:ring-neutral-400/20"
-              value={customType}
-              onChange={(e) => updateCustomType(e.target.value)}
-            >
-              <option>Year</option>
-              <option>Subject</option>
-            </select>
+      {theme === "Custom" && checkedThings.length > 0 ? (
+        <div id="bySubject" className="space-y-4">
+          <div className="space-y-2">
+            <div className="grid h-full w-full grid-flow-row grid-cols-3 gap-1">
+              {checkedThings.map((filterId, index) => (
+                <button
+                  key={index}
+                  className="h-7 w-full place-content-center items-center rounded-lg text-sm font-medium hover:font-bold hover:opacity-70"
+                  style={{
+                    backgroundColor: getBgSubjectColor(index),
+                    color: getTextSubjectColor(index),
+                    fontWeight: openColor === index && 900,
+                  }}
+                  onClick={() => setOpenColor(index)}
+                >
+                  {filters.filter((f) => f.id === filterId).map((f) => f.name)}
+                </button>
+              ))}
+            </div>
+            <div>
+              <HexColorPicker
+                color={getSubjectColor(openColor)}
+                onChange={(newColor) => updateSubjectColors(newColor)}
+              />
+            </div>
+            <div className="flex flex-row items-center space-x-2">
+              <div
+                title="A Hex color code, for example: #ed7950"
+                className="cursor-default text-sm font-medium "
+              >
+                Hex
+              </div>
+              <HexColorInput
+                className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
+                color={getSubjectColor(openColor)}
+                onChange={(newColor) => updateSubjectColors(newColor)}
+              />
+            </div>
           </div>
-
-          {customType === "Year" ? (
-            <div id="byYear" className="space-y-4">
-              <div className="space-y-2">
-                <div className="flex flex-row place-content-center items-center space-x-2">
-                  <div className="w-full flex-col space-y-1">
-                    {colors.slice(1, 6).map((color, index) => (
-                      <button
-                        key={index}
-                        className="flex h-9 w-full place-content-center items-center rounded-lg font-medium hover:font-bold hover:opacity-70"
-                        style={{
-                          backgroundColor: getBgColor(index),
-                          color: getTextColor(index),
-                          fontWeight: openColor === index && 900,
-                        }}
-                        onClick={() => setOpenColor(index)}
-                      >
-                        {index + 1}º
-                      </button>
-                    ))}
-                  </div>
-                  <div>
-                    <HexColorPicker
-                      color={colors[openColor + 1]}
-                      onChange={(newColor) => updateColors(newColor)}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-row items-center space-x-2">
-                  <div
-                    title="A Hex color code, for example: #ed7950"
-                    className="cursor-default text-sm font-medium"
-                  >
-                    HEX
-                  </div>
-                  <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
-                    color={colors[openColor + 1]}
-                    onChange={(newColor) => updateColors(newColor)}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row place-content-between">
-                <Switch.Group as="div" className="flex items-center">
-                  <Switch
-                    checked={opacity}
-                    onChange={updateOpacity}
-                    className={`${
-                      opacity ? "bg-cesium-900" : "bg-neutral-200"
-                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2"}`}
-                  >
-                    <span className="sr-only">Use setting</span>
-                    <span
-                      aria-hidden="true"
-                      className={`${
-                        opacity ? "translate-x-5" : "translate-x-0"
-                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
-                    />
-                  </Switch>
-                  <Switch.Label as="span" className="ml-3 text-sm font-medium ">
-                    Opacity
-                  </Switch.Label>
-                </Switch.Group>
-                <button
-                  type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold shadow-sm hover:bg-neutral-50 dark:border-neutral-400/20  dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                  onClick={backToDefault}
-                >
-                  Back to Default
-                </button>
-              </div>
-            </div>
-          ) : checkedThings.length > 0 ? (
-            <div id="bySubject" className="space-y-4">
-              <div className="space-y-2">
-                <div className="grid h-full w-full grid-flow-row grid-cols-3 gap-1">
-                  {checkedThings.map((filterId, index) => (
-                    <button
-                      key={index}
-                      className="h-7 w-full place-content-center items-center rounded-lg text-sm font-medium hover:font-bold hover:opacity-70"
-                      style={{
-                        backgroundColor: getBgSubjectColor(index),
-                        color: getTextSubjectColor(index),
-                        fontWeight: openColor === index && 900,
-                      }}
-                      onClick={() => setOpenColor(index)}
-                    >
-                      {filters
-                        .filter((f) => f.id === filterId)
-                        .map((f) => f.name)}
-                    </button>
-                  ))}
-                </div>
-                <div>
-                  <HexColorPicker
-                    color={getSubjectColor(openColor)}
-                    onChange={(newColor) => updateSubjectColors(newColor)}
-                  />
-                </div>
-                <div className="flex flex-row items-center space-x-2">
-                  <div
-                    title="A Hex color code, for example: #ed7950"
-                    className="cursor-default text-sm font-medium "
-                  >
-                    Hex
-                  </div>
-                  <HexColorInput
-                    className="text-md h-8 w-full rounded-lg border-neutral-300 text-center focus:border-cesium-900 focus:ring-0 dark:border-neutral-400/20 dark:bg-neutral-800"
-                    color={getSubjectColor(openColor)}
-                    onChange={(newColor) => updateSubjectColors(newColor)}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row place-content-between">
-                <Switch.Group as="div" className="flex items-center">
-                  <Switch
-                    checked={opacity}
-                    onChange={updateOpacity}
-                    className={`${
-                      opacity ? "bg-cesium-900" : "bg-neutral-200"
-                    } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2"}`}
-                  >
-                    <span className="sr-only">Use setting</span>
-                    <span
-                      aria-hidden="true"
-                      className={`${
-                        opacity ? "translate-x-5" : "translate-x-0"
-                      } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
-                    />
-                  </Switch>
-                  <Switch.Label as="span" className="ml-3 text-sm font-medium ">
-                    Opacity
-                  </Switch.Label>
-                </Switch.Group>
-                <button
-                  type="button"
-                  className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold shadow-sm hover:bg-neutral-50 dark:border-neutral-400/20  dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                  onClick={backToSubjectDefault}
-                >
-                  Back to Default
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="">
-              <i className="bi bi-exclamation-circle-fill text-warning" />{" "}
-              Select at least one subject.
-            </div>
-          )}
-          {(customType === "Year" || checkedThings.length > 0) && (
+          <div className="flex flex-row place-content-between">
+            <Switch.Group as="div" className="flex items-center">
+              <Switch
+                checked={opacity}
+                onChange={updateOpacity}
+                className={`${
+                  opacity ? "bg-cesium-900" : "bg-neutral-200"
+                } ${"relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cesium-900 focus:ring-offset-2"}`}
+              >
+                <span className="sr-only">Use setting</span>
+                <span
+                  aria-hidden="true"
+                  className={`${
+                    opacity ? "translate-x-5" : "translate-x-0"
+                  } ${"pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"}`}
+                />
+              </Switch>
+              <Switch.Label as="span" className="ml-3 text-sm font-medium ">
+                Opacity
+              </Switch.Label>
+            </Switch.Group>
             <button
               type="button"
-              className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
-              onClick={() => {
-                saveTheme();
-                isOpen && setIsOpen(false);
-              }}
+              className="rounded-md border bg-white px-2.5 py-1 text-xs font-semibold shadow-sm hover:bg-neutral-50 dark:border-neutral-400/20  dark:bg-neutral-800 dark:hover:bg-neutral-700"
+              onClick={backToSubjectDefault}
             >
-              Save
+              Back to Default
             </button>
-          )}
+          </div>
         </div>
+      ) : (
+        <div className="">
+          <i className="bi bi-exclamation-circle-fill text-warning" /> Select at
+          least one subject.
+        </div>
+      )}
+
+      {checkedThings.length > 0 && (
+        <button
+          type="button"
+          className="w-full rounded-md bg-cesium-100 px-2 py-1 text-sm font-semibold text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
+          onClick={() => {
+            saveTheme();
+            isOpen && setIsOpen(false);
+          }}
+        >
+          Save
+        </button>
       )}
     </>
   );
