@@ -34,7 +34,7 @@ export default function Home({ filters }) {
 
   const [fetchedEvents, setFetchedEvents] = useState<IEventDTO[]>([]); // events fetched from the API
   const [events, setEvents] = useState<IEventDTO[]>([]); // events to be displayed
-  const [Filters, setFilters] = useState(filters);
+  const [Filters, setFilters] = useState<number[]>(filters);
   const [selectedEvent, setSelectedEvent] = useState<IEventDTO>(events[0]);
   const [inspectEvent, setInspectEvent] = useState<boolean>(false);
 
@@ -97,9 +97,7 @@ export default function Home({ filters }) {
 
   const handleFilters = useCallback(
     (myFilters: number[]) => {
-      const showNewEvents = (f) => {
-        const filters = Object.values(f);
-
+      const showNewEvents = (filters: number[]) => {
         let newEvents = [...fetchedEvents];
 
         if (filters.length > 0) {
@@ -110,10 +108,8 @@ export default function Home({ filters }) {
 
         setEvents(newEvents);
       };
-
-      const newFilters = { ...myFilters };
-      setFilters(newFilters);
-      showNewEvents(newFilters);
+      setFilters(myFilters);
+      showNewEvents(myFilters);
     },
     [fetchedEvents]
   );
@@ -151,7 +147,7 @@ export default function Home({ filters }) {
 
   return (
     <Layout
-      isHome
+      isEvents
       filters={filters}
       handleFilters={handleFilters}
       fetchTheme={fetchTheme}

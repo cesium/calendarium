@@ -3,38 +3,31 @@ import "antd/dist/reset.css";
 
 import FilterBlock from "../FilterBlock";
 
-import { CheckBoxProps, SelectedShift } from "../../types";
-
-import { IFilterDTO } from "../../dtos";
+import { CheckBoxProps } from "../../types";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type EventFiltersProps = {
-  filters: any;
-  handleFilters: (selectedFilter: number[]) => void;
   clearEvents: boolean;
-  checked: number[] | SelectedShift[];
-  setChecked: (obj: number[] | SelectedShift[]) => void;
+  checked: number[] | ISelectedFilterDTO[];
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 };
 
 const EventFilters = ({
-  filters,
-  handleFilters,
   clearEvents,
   checked,
   setChecked,
 }: EventFiltersProps) => {
+  const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
+
   useEffect(() => {
     const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     setChecked(stored);
-    handleFilters(stored);
-  }, [setChecked, handleFilters]);
+    info.handleFilters(stored);
+  }, [setChecked, info]);
 
-  let event: {
-    map: any;
-    id: number;
-    name: string;
-    groupId: number;
-    semester: number;
-  }[][] = [];
+  let event: IFilterDTO[][] = [];
 
   const mei = ["4ᵗʰ year", "5ᵗʰ year"];
 
@@ -74,9 +67,9 @@ const EventFilters = ({
 
   const clearSelection = useCallback(() => {
     setChecked([]);
-    handleFilters([]);
+    info.handleFilters([]);
     localStorage.setItem("checked", JSON.stringify([]));
-  }, [handleFilters, setChecked]);
+  }, [info, setChecked]);
 
   useEffect(() => {
     clearEvents && clearSelection();
@@ -91,7 +84,6 @@ const EventFilters = ({
         checkBoxes={getCheckBoxes().slice(0, 6)}
         checked={checked}
         setChecked={setChecked as (v: number[]) => void}
-        handleFilters={handleFilters}
         isShifts={false}
       />
       {/* MEI */}
@@ -102,7 +94,6 @@ const EventFilters = ({
         checked={checked}
         setChecked={setChecked as (v: number[]) => void}
         exception={1}
-        handleFilters={handleFilters}
         isShifts={false}
       />
     </>

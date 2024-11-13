@@ -1,24 +1,12 @@
 import { useState } from "react";
-
 import ShareModal from "../ShareModal";
-
-import { IFilterDTO } from "../../dtos";
-
-import { SelectedShift } from "../../types";
+import { ISelectedFilterDTO } from "../../dtos";
 
 type ShareButtonProps = {
-  isHome: boolean;
-  filters: IFilterDTO[];
-  handleFilters: any;
-  setChecked: (obj: number[] | SelectedShift[]) => void;
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 };
 
-const ShareButton = ({
-  isHome,
-  filters,
-  handleFilters,
-  setChecked,
-}: ShareButtonProps) => {
+const ShareButton = ({ setChecked }: ShareButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -34,9 +22,6 @@ const ShareButton = ({
       <ShareModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
-        isHome={isHome}
-        filters={filters}
-        handleFilters={handleFilters}
         setChecked={setChecked}
       />
     </div>

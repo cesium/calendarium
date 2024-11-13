@@ -1,19 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-
 import Head from "next/head";
 import { useTheme } from "next-themes";
-
 import * as fs from "fs";
 import moment from "moment";
-
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
 import ShiftModal from "../components/ShiftModal";
 import Layout from "../components/Layout";
-import { IFilterDTO, IShiftDTO } from "../dtos";
+import { IFilterDTO, IShiftDTO, ISelectedFilterDTO } from "../dtos";
 import useColorTheme from "../hooks/useColorTheme";
-
 import styles from "../styles/schedule.module.css";
 
 const localizer = momentLocalizer(moment);
@@ -31,11 +26,6 @@ export interface IFormatedShift {
   filterId: number;
 }
 
-interface ISelectedFilter {
-  id: number;
-  shift?: string;
-}
-
 interface ISchedulesProps {
   filters: IFilterDTO[];
   shifts: IShiftDTO[];
@@ -45,7 +35,9 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   // EVENT RELATED
 
   const [events, setEvents] = useState<IFormatedShift[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<ISelectedFilter[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<ISelectedFilterDTO[]>(
+    []
+  );
   const [selectedShift, setSelectedShift] = useState<IShiftDTO>(shifts[0]);
   const [inspectShift, setInspectShift] = useState(false);
 
@@ -87,7 +79,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
     setEvents(formatedEvents);
   }, [shifts, selectedFilters, filters]);
 
-  const handleFilters = useCallback((myFilters) => {
+  const handleFilters = useCallback((myFilters: ISelectedFilterDTO[]) => {
     setSelectedFilters(myFilters);
   }, []);
 
@@ -132,7 +124,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
 
   return (
     <Layout
-      isHome={false}
+      isEvents={false}
       filters={filters}
       handleFilters={handleFilters}
       fetchTheme={fetchTheme}

@@ -1,42 +1,27 @@
 import { useState, useEffect } from "react";
-
 import Link from "next/link";
 import Image from "next/image";
-
 import EventFilters from "../EventFilters";
 import ScheduleFilters from "../ScheduleFilters";
 import Settings from "../Settings";
 import ExportButton from "../ExportButton";
 import ClearSelectionButton from "../ClearSelectionButton";
 import NavigationPane from "../NavigationPane";
-
-import { IFilterDTO } from "../../dtos";
 import ShareButton from "../ShareButton";
-
-import { BeforeInstallPromptEvent, SelectedShift } from "../../types";
-
+import { BeforeInstallPromptEvent } from "../../types";
 import { useTheme } from "next-themes";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
+import { ISelectedFilterDTO } from "../../dtos";
 
 type SidebarProps = {
-  isHome?: boolean;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
-  filters?: IFilterDTO[];
-  handleFilters?: any;
-  fetchTheme: () => void;
 };
 
-const Sidebar = ({
-  isHome,
-  isOpen,
-  setIsOpen,
-  filters,
-  handleFilters,
-  fetchTheme,
-}: SidebarProps) => {
+const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
-  const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
+  const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
 
@@ -58,6 +43,7 @@ const Sidebar = ({
   const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
   const { resolvedTheme } = useTheme();
+  const info = useAppInfo();
 
   return (
     <nav
@@ -105,43 +91,30 @@ const Sidebar = ({
             </button>
             {/* Clear Schedule button */}
             <ClearSelectionButton
-              isHome={isHome}
               isSettings={isSettings}
               clearSelection={clearSelection}
             />
             {/* Share Button */}
-            <ShareButton
-              isHome={isHome}
-              filters={filters}
-              handleFilters={handleFilters}
-              setChecked={setChecked}
-            />
+            <ShareButton setChecked={setChecked} />
           </div>
           {/* Export button */}
-          <ExportButton isHome={isHome} filters={filters} />
+          <ExportButton />
         </div>
 
         {isSettings ? (
           <Settings
-            fetchTheme={fetchTheme}
-            filters={filters}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            isHome={isHome}
             installPwaPrompt={promptInstall}
           />
-        ) : isHome ? (
+        ) : info.isEvents ? (
           <EventFilters
-            filters={filters}
-            handleFilters={handleFilters}
             clearEvents={clear}
             checked={checked}
             setChecked={setChecked}
           />
         ) : (
           <ScheduleFilters
-            filters={filters}
-            handleFilters={handleFilters}
             clearSchedule={clear}
             checked={checked}
             setChecked={setChecked}

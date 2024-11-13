@@ -7,22 +7,17 @@ import {
   useColorTheme,
   DEFAULT_COLORS,
 } from "../../hooks/useColorTheme";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type ThemesProps = {
-  fetchTheme: () => void;
-  filters: IFilterDTO[];
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  isHome: boolean;
 };
 
-const Themes = ({
-  fetchTheme,
-  filters,
-  isOpen,
-  setIsOpen,
-  isHome,
-}: ThemesProps) => {
+const Themes = ({ isOpen, setIsOpen }: ThemesProps) => {
+  const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
+
   const {
     setOpacity,
     setSubjectColors,
@@ -40,7 +35,7 @@ const Themes = ({
     null
   );
 
-  const checkedThings = isHome ? checkedFilters : checkedClasses;
+  const checkedThings = info.isEvents ? checkedFilters : checkedClasses;
 
   function getSubjectColor(index: number) {
     return subjectColors.find((sc) => sc.filterId === checkedThings[index])
@@ -118,7 +113,7 @@ const Themes = ({
 
   const saveTheme = () => {
     saveThemeChanges();
-    fetchTheme();
+    info.fetchTheme();
   };
 
   useEffect(() => {
@@ -129,20 +124,13 @@ const Themes = ({
   useEffect(() => {
     if (pendingThemeUpdate) {
       saveThemeChanges();
-      fetchTheme();
+      info.fetchTheme();
       if (isOpen && pendingThemeUpdate !== "Custom") {
         setIsOpen(false);
       }
       setPendingThemeUpdate(null);
     }
-  }, [
-    theme,
-    pendingThemeUpdate,
-    saveThemeChanges,
-    fetchTheme,
-    isOpen,
-    setIsOpen,
-  ]);
+  }, [info, isOpen, setIsOpen, pendingThemeUpdate, saveThemeChanges]);
 
   return (
     <>

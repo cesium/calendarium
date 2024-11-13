@@ -6,6 +6,11 @@ export interface IFilterDTO {
   shifts?: string[];
 }
 
+export interface ISelectedFilterDTO {
+  id: number;
+  shift?: string;
+}
+
 export interface IEventDTO {
   title: string;
   place: string;

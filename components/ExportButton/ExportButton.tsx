@@ -1,17 +1,8 @@
 import { Fragment, useState } from "react";
-import { Menu, Transition } from "@headlessui/react";
-
 import CalendarExportModal from "../CalendarExportModal";
 
-import { IFilterDTO } from "../../dtos";
-
-type ExportButtonProps = {
-  isHome: boolean;
-  filters: IFilterDTO[];
-};
-
-const ExportButton = ({ isHome, filters }: ExportButtonProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ExportButton = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <div className="w-full">
@@ -23,12 +14,7 @@ const ExportButton = ({ isHome, filters }: ExportButtonProps) => {
         Export <i className="bi bi-box-arrow-up"></i>
       </button>
 
-      <CalendarExportModal
-        isOpen={isModalOpen}
-        setIsOpen={setIsModalOpen}
-        isHome={isHome}
-        filters={filters}
-      />
+      <CalendarExportModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
     </div>
   );
 };
