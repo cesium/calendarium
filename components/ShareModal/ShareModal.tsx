@@ -20,13 +20,14 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
 
   /**
    * Check if the id corresponds to a filter
    * @param id - The id to be checked
    */
   function isValidId(id: number): boolean {
-    return info.filters.some((f) => f.id === id);
+    return filters.some((f) => f.id === id);
   }
 
   /**
@@ -34,10 +35,8 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
    * @param idOrName - The id or name of the filter
    */
   function getFilterByIdOrName(idOrName: string) {
-    return info.filters.find(
-      (f) =>
-        (f as IFilterDTO).name === idOrName ||
-        (f as IFilterDTO).id.toString() === idOrName
+    return filters.find(
+      (f) => f.name === idOrName || f.id.toString() === idOrName
     );
   }
 
@@ -118,9 +117,8 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
       const groupedShifts = groupBy(shifts, ({ id }) => id);
 
       return Object.entries(groupedShifts).map(([id, shifts]) => {
-        const fs = info.filters as IFilterDTO[];
         const identifier =
-          fs.find((f) => f.id.toString() === id)?.name || id.toString();
+          filters.find((f) => f.id.toString() === id)?.name || id.toString();
         const shiftsString = shifts.map((shift) => shift.shift).join(",");
         return `${identifier}=${shiftsString}`;
       });
@@ -134,8 +132,9 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
      */
     function eventsToStringArray(eventIds: number[]): string[] {
       function eventToString(eventId: number): string {
-        const fs = info.filters as IFilterDTO[];
-        return fs.find((f) => f.id === eventId)?.name || eventId.toString();
+        return (
+          filters.find((f) => f.id === eventId)?.name || eventId.toString()
+        );
       }
 
       return eventIds.map(eventToString);
@@ -156,7 +155,7 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
     } catch (error) {
       return "";
     }
-  }, [info.isEvents, info.filters]);
+  }, [info.isEvents, filters]);
 
   function copyToClipboardHandle() {
     navigator.clipboard.writeText(code);
