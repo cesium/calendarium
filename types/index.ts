@@ -9,11 +9,6 @@ export type CheckBoxProps = {
   shifts?: string[];
 };
 
-export type SelectedShift = {
-  id: number;
-  shift: string;
-};
-
 export interface BeforeInstallPromptEvent extends Event {
   readonly platforms: Array<string>;
 

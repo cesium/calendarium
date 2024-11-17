@@ -5,22 +5,21 @@ import { useState, useEffect, useCallback } from "react";
 import { Collapse } from "antd";
 
 import { IFilterDTO } from "../../dtos";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type CalendarExportModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  isHome: boolean;
-  filters: IFilterDTO[];
 };
 
 const CalendarExportModal = ({
   isOpen,
   setIsOpen,
-  isHome,
-  filters,
 }: CalendarExportModalProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [URL, setURL] = useState<string>("");
+  const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
 
   const generateURL = useCallback((): string => {
     // checks if a filter exists for each filterId in checkedEvents
@@ -49,10 +48,10 @@ const CalendarExportModal = ({
 
     const domain = process.env.NEXT_PUBLIC_DOMAIN;
     const baseURL: string =
-      domain + "/api/export/" + (isHome ? "events" : "schedule") + "?";
+      domain + "/api/export/" + (info.isEvents ? "events" : "schedule") + "?";
 
     var query: string = "";
-    if (isHome) {
+    if (info.isEvents) {
       // fecth checked events from localStorage
       const checkedEvents: number[] = JSON.parse(
         localStorage.getItem("checked")
@@ -115,7 +114,7 @@ const CalendarExportModal = ({
     // still, in an edge case of an empty 'query' string, return empty string (empty URL => warning message on modal)
     if (query !== "") return baseURL + query;
     else return "";
-  }, [isHome, filters]);
+  }, [info.isEvents, filters]);
 
   useEffect(() => {
     setURL(generateURL());
@@ -154,7 +153,7 @@ const CalendarExportModal = ({
               {URL === "" ? (
                 <div id="modal-modal-description" className="text-center">
                   <i className="bi bi-exclamation-circle-fill text-error"></i>{" "}
-                  {isHome
+                  {info.isEvents
                     ? "Select at least one subject."
                     : "Select at least one shift."}
                 </div>
@@ -196,33 +195,34 @@ const CalendarExportModal = ({
                           <a className="font-medium">subscribe</a> to your
                           active{" "}
                           <a className="font-medium">
-                            {isHome ? "events" : "schedule"}
+                            {info.isEvents ? "events" : "schedule"}
                           </a>{" "}
                           in Calendarium, using your favorite calendar app.
                         </p>
                         <p>
                           This means that you will be able to see your{" "}
-                          {isHome ? "events" : "schedule"} in your calendar app,
-                          and add event notifications, change colors and make
-                          other customizations.
+                          {info.isEvents ? "events" : "schedule"} in your
+                          calendar app, and add event notifications, change
+                          colors and make other customizations.
                         </p>
                         <p>
-                          Your {isHome ? "events" : "schedule"} will be
+                          Your {info.isEvents ? "events" : "schedule"} will be
                           automatically synced with Calendarium.
                         </p>
                         <p className="rounded-lg bg-blue-500/20 p-3">
                           <i className="bi bi-info-circle-fill text-blue-500"></i>{" "}
                           To export your{" "}
                           <a className="font-medium">
-                            {isHome ? "schedule" : "events"}
+                            {info.isEvents ? "schedule" : "events"}
                           </a>{" "}
                           please navigate to{" "}
-                          {isHome ? "/schedule" : "the main page"}.
+                          {info.isEvents ? "/schedule" : "the main page"}.
                         </p>
                         <div className="rounded-lg bg-warning/20 p-3">
                           <i className="bi bi-exclamation-triangle-fill text-warning"></i>{" "}
                           If you make any changes to your{" "}
-                          {isHome ? "events" : "schedule"} in Calendarium, you
+                          {info.isEvents ? "events" : "schedule"} in
+                          Calendarium, you
                           {"'"}ll need to{" "}
                           <a className="font-medium">
                             re-export and re-subscribe to the calendar
@@ -342,7 +342,7 @@ const CalendarExportModal = ({
                     </Collapse.Panel>
                   </Collapse>
                   <div className="cursor-pointer select-none text-sm text-neutral-500 dark:text-neutral-400">
-                    {isHome ? (
+                    {info.isEvents ? (
                       <div title="To export your schedule please go to /schedule.">
                         <i className="bi bi-info-circle-fill"></i> Currently
                         exporting your visible{" "}

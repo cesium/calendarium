@@ -1,25 +1,26 @@
 import { useCallback, useEffect } from "react";
 
-import { IFilterDTO } from "../../dtos";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 
 import FilterBlock from "../FilterBlock";
-import { CheckBoxProps, SelectedShift } from "../../types";
+import { CheckBoxProps } from "../../types";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 interface ISelectScheduleProps {
-  filters: IFilterDTO[];
-  handleFilters: (selectedFilter: SelectedShift[]) => void;
   clearSchedule: boolean;
-  checked: number[] | SelectedShift[];
-  setChecked: (obj: number[] | SelectedShift[]) => void;
+  checked: number[] | ISelectedFilterDTO[];
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 }
 
 const ScheduleFilters = ({
-  filters,
-  handleFilters,
   clearSchedule,
   checked,
   setChecked,
 }: ISelectScheduleProps) => {
+  const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
+  const handleFilters = info.handleFilters;
+
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
     setChecked(stored);
@@ -29,8 +30,8 @@ const ScheduleFilters = ({
   const clearSelection = useCallback(() => {
     setChecked([]);
     localStorage.setItem("shifts", JSON.stringify([]));
-    handleFilters([]);
-  }, [handleFilters, setChecked]);
+    info.handleFilters([]);
+  }, [info, setChecked]);
 
   useEffect(() => {
     clearSchedule && clearSelection();
@@ -113,8 +114,7 @@ const ScheduleFilters = ({
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(0, 6)}
         checked={checked}
-        setChecked={setChecked as (v: SelectedShift[]) => void}
-        handleFilters={handleFilters}
+        setChecked={setChecked as (v: ISelectedFilterDTO[]) => void}
         isShifts
       />
       {/* MEI */}
@@ -123,8 +123,7 @@ const ScheduleFilters = ({
         layer2={semesters}
         checkBoxes={getCheckBoxes().slice(6, 9)}
         checked={checked}
-        setChecked={setChecked as (v: SelectedShift[]) => void}
-        handleFilters={handleFilters}
+        setChecked={setChecked as (v: ISelectedFilterDTO[]) => void}
         isShifts
       />
     </>

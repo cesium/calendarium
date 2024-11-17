@@ -3,16 +3,17 @@ import "antd/dist/reset.css";
 
 import { Fragment } from "react";
 
-import { CheckBoxProps, SelectedShift } from "../../types";
+import { CheckBoxProps } from "../../types";
+import { ISelectedFilterDTO } from "../../dtos";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type FilterBlockProps = {
   layer1: string[]; // contains the titles for the collapses of the 1st layer
   layer2?: string[]; // contains the titles for the collapses of the 2nd layer
   checkBoxes: CheckBoxProps[][]; // contains the checkboxes information in a universal format
   exception?: number; // indicates the index of an element from layer1 where the layer2 should be ignored, for example "5th year"
-  checked: number[] | SelectedShift[]; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
-  setChecked: (obj: number[] | SelectedShift[]) => void; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
-  handleFilters: any; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  checked: number[] | ISelectedFilterDTO[]; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void; // assumes different types when called from ScheduleFilters.tsx and EventFilters.tsx
   isShifts: boolean; // used to know if FilterBlock is being called from ScheduleFilters.tsx or EventFilters.tsx
 };
 
@@ -23,9 +24,10 @@ const FilterBlock = ({
   exception,
   checked,
   setChecked,
-  handleFilters,
   isShifts,
 }: FilterBlockProps) => {
+  const info = useAppInfo();
+
   // "Select All" checkbox
   const SelectAll = ({
     index1,
@@ -103,7 +105,7 @@ const FilterBlock = ({
     else newCheck.splice(currentIdIndex, 1);
 
     setChecked(newCheck);
-    handleFilters(newCheck);
+    info.handleFilters(newCheck);
     localStorage.setItem("checked", JSON.stringify(newCheck));
   }
 
@@ -120,7 +122,7 @@ const FilterBlock = ({
     }
 
     setChecked(newChecked);
-    handleFilters(newChecked);
+    info.handleFilters(newChecked);
     localStorage.setItem("checked", JSON.stringify(newChecked));
   }
 
@@ -226,31 +228,33 @@ const FilterBlock = ({
 
   // Handles the toggle of a checkbox containing a shift (only used for Schedule)
   function handleShiftToggle(id: number, shift: string) {
-    const currentIdIndex = (checked as SelectedShift[]).findIndex(
-      (selectedShift: SelectedShift) =>
+    const currentIdIndex = (checked as ISelectedFilterDTO[]).findIndex(
+      (selectedShift: ISelectedFilterDTO) =>
         selectedShift.id === id && selectedShift.shift === shift
     );
-    const newChecked: SelectedShift[] = [...checked] as SelectedShift[];
+    const newChecked: ISelectedFilterDTO[] = [
+      ...checked,
+    ] as ISelectedFilterDTO[];
 
-    const shiftObj: SelectedShift = { id: id, shift: shift };
+    const shiftObj: ISelectedFilterDTO = { id: id, shift: shift };
     if (currentIdIndex === -1) newChecked.push(shiftObj);
     else newChecked.splice(currentIdIndex, 1);
 
     setChecked(newChecked);
-    handleFilters(newChecked);
+    info.handleFilters(newChecked);
     localStorage.setItem("shifts", JSON.stringify(newChecked));
   }
 
   // Checks if a specific shift is selected (checked) (only used for Schedule)
   const isShiftChecked = (id: number, shift: string): boolean => {
-    return (checked as SelectedShift[]).some((shiftObj) => {
+    return (checked as ISelectedFilterDTO[]).some((shiftObj) => {
       return id === shiftObj.id && shift === shiftObj.shift;
     });
   };
 
   // Checks if some shift under a certain subject is selected (checked) (only used for Schedule)
   const isSomeSubjectShiftChecked = (id: number): boolean => {
-    return (checked as SelectedShift[]).some((s) => s.id === id);
+    return (checked as ISelectedFilterDTO[]).some((s) => s.id === id);
   };
 
   // Checks if a shift that falls under a Collapse from the 2nd layer is selected (checked) (only used for Schedule)
