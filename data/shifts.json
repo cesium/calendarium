@@ -1704,6 +1704,18 @@
     "filterId": 314
   },
   {
+    "id": 0,
+    "title": "Cálculo Diferencial e Integral",
+    "theoretical": false,
+    "shift": "TP1",
+    "building": "CP1",
+    "room": "1.05",
+    "day": 0,
+    "start": "18:00",
+    "end": "20:00",
+    "filterId": 0
+  },
+  {
     "id": 14309,
     "title": "Cálculo de Programas",
     "theoretical": false,
