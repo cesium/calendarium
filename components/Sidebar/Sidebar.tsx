@@ -39,6 +39,7 @@ const Sidebar = ({
   const [checked, setChecked] = useState<number[] | SelectedShift[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
+  const [image, setImage] = useState<string>("");
 
   function clearSelection() {
     setClear(true);
@@ -59,6 +60,14 @@ const Sidebar = ({
 
   const { resolvedTheme } = useTheme();
 
+  useEffect(() => {
+    setImage(
+      resolvedTheme === "dark"
+        ? "/calendarium-dark.svg"
+        : "/calendarium-light.svg"
+    );
+  }, [resolvedTheme]);
+
   return (
     <nav
       className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
@@ -75,11 +84,7 @@ const Sidebar = ({
                 className="h-[46px] w-auto"
                 width={0}
                 height={0}
-                src={
-                  resolvedTheme === "dark"
-                    ? "/calendarium-dark.svg"
-                    : "/calendarium-light.svg"
-                }
+                src={image}
                 alt="Calendarium Logo"
               />
             </Link>
