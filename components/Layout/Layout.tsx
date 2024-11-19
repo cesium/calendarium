@@ -28,7 +28,16 @@ const Layout = ({
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
+  const [image, setImage] = useState<string>("");
   const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setImage(
+      resolvedTheme === "dark"
+        ? "/calendarium-dark.svg"
+        : "/calendarium-light.svg"
+    );
+  }, [resolvedTheme]);
 
   return (
     <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
@@ -81,11 +90,7 @@ const Layout = ({
               className="h-9 w-auto min-[400px]:h-10 sm:h-12"
               width={0}
               height={0}
-              src={
-                resolvedTheme === "dark"
-                  ? "/calendarium-dark.svg"
-                  : "/calendarium-light.svg"
-              }
+              src={image}
               alt="Calendarium Logo"
             />
           </Link>
