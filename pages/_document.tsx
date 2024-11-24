@@ -74,7 +74,7 @@ export default function Document() {
         <Script
           defer
           src="https://umami.caos.cesium.pt/script.js"
-          data-website-id="76194c0b-f06f-4065-b021-030f476593ee"
+          data-website-id="e6949456-0ee3-44e7-86f0-77a6387cc869"
           strategy="afterInteractive"
         />
       </Head>
