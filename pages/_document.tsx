@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -70,6 +71,7 @@ export default function Document() {
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
         />
+        <Script defer src="https://umami.caos.cesium.pt/script.js" data-website-id="76194c0b-f06f-4065-b021-030f476593ee" strategy="afterInteractive" />
       </Head>
       <body className="dark:bg-neutral-900">
         <Main />

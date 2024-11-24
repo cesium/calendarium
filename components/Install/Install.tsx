@@ -29,6 +29,7 @@ const Install = ({ installPwaPrompt }: InstallProps) => {
       <button
         onClick={installPwa}
         className="mt-2 rounded-lg bg-cesium-100 p-2 font-medium text-cesium-900 shadow-sm transition-colors hover:bg-cesium-200 dark:bg-cesium-700/20 dark:hover:bg-cesium-700/30"
+        data-umami-event="install-button"
       >
         Install <i className="bi bi-download" />
       </button>
