@@ -249,6 +249,8 @@ const ShareModal = ({
                         type="submit"
                         className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                         title="Import"
+                        data-umami-event="share-import-button"
+                        data-umami-event-type={isHome ? "events" : "shifts"}
                       >
                         {isImported ? (
                           <i className="bi bi-check-circle-fill text-cesium-900" />
@@ -264,6 +266,8 @@ const ShareModal = ({
                       className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                       title="Copy your share code"
                       onClick={copyToClipboardHandle}
+                      dta-umami-event="share-copy-button"
+                      data-umami-event-type={isHome ? "events" : "shifts"}
                     >
                       {isCopied ? (
                         <i className="bi bi-check-circle-fill text-cesium-900" />
