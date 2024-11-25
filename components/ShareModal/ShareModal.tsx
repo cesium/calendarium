@@ -266,7 +266,7 @@ const ShareModal = ({
                       className="relative ml-2 inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                       title="Copy your share code"
                       onClick={copyToClipboardHandle}
-                      dta-umami-event="share-copy-button"
+                      data-umami-event="share-copy-button"
                       data-umami-event-type={isHome ? "events" : "shifts"}
                     >
                       {isCopied ? (
