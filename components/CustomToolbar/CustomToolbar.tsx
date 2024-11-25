@@ -37,6 +37,7 @@ const MobileToolbar = ({ view, onView }) => {
                     view === "day" ? "rbc-active" : undefined
                   } h-[2.1rem]`}
                   onClick={() => onView("day")}
+                  data-umami-event="day-view-button"
                 >
                   <i className="bi bi-calendar3-event"></i> Day
                 </button>
@@ -52,6 +53,7 @@ const MobileToolbar = ({ view, onView }) => {
                     view === "week" ? "rbc-active" : undefined
                   } h-[2.1rem]`}
                   onClick={() => onView("week")}
+                  data-umami-event="week-view-button"
                 >
                   <i className="bi bi-calendar3-week"></i> Week
                 </button>
@@ -67,6 +69,7 @@ const MobileToolbar = ({ view, onView }) => {
                     view === "month" ? "rbc-active" : undefined
                   } h-[2.1rem]`}
                   onClick={() => onView("month")}
+                  data-umami-event="month-view-button"
                 >
                   <i className="bi bi-calendar3"></i> Month
                 </button>
@@ -88,6 +91,7 @@ const DesktopToolbar = ({ view, onView }) => {
         // don't use condition && "result" -> className can't be a boolean
         className={`${view === "day" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("day")}
+        data-umami-event="day-view-button"
       >
         <i className="bi bi-calendar3-event"></i>
       </button>
@@ -97,6 +101,7 @@ const DesktopToolbar = ({ view, onView }) => {
         // don't use condition && "result" -> className can't be a boolean
         className={`${view === "week" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("week")}
+        data-umami-event="week-view-button"
       >
         <i className="bi bi-calendar3-week"></i>
       </button>
@@ -106,6 +111,7 @@ const DesktopToolbar = ({ view, onView }) => {
         // don't use condition && "result" -> className can't be a boolean
         className={`${view === "month" ? "rbc-active" : undefined} h-[2.1rem]`}
         onClick={() => onView("month")}
+        data-umami-event="month-view-button"
       >
         <i className="bi bi-calendar3"></i>
       </button>

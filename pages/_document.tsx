@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -69,6 +70,12 @@ export default function Document() {
           href="/pwa/splashscreens/ipadpro2_splash.png"
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
+        />
+        <Script
+          defer
+          src={process.env.UMAMI_URL}
+          data-website-id={process.env.UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
         />
       </Head>
       <body className="dark:bg-neutral-900">

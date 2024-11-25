@@ -101,6 +101,7 @@ const Sidebar = ({
               onClick={() => setIsSettings(!isSettings)}
               className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
               title="Settings"
+              data-umami-event="settings-button"
             >
               {isSettings ? (
                 <i className="bi bi-gear-fill text-neutral-900 dark:text-neutral-200"></i>

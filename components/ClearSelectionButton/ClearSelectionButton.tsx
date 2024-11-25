@@ -30,6 +30,8 @@ const ClearSelectionButton = ({
         type: "button",
         title: "Clear",
         className: classNameData,
+        "data-umami-event": "clear-selection-button",
+        "data-umami-event-type": isHome ? "events" : "shifts",
       }}
     >
       <i className="bi bi-trash-fill"></i>
