@@ -137,42 +137,55 @@
     "name": "Análise",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 122,
     "name": "EPTN",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 123,
     "name": "LI2",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": ["PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7", "PL8"]
   },
   {
     "id": 124,
     "name": "Lógica",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 125,
     "name": "PI",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6"]
   },
   {
     "id": 126,
     "name": "SC",
     "groupId": 1,
     "semester": 2,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9",
+      "PL10"
+    ]
   },
   {
     "id": 211,
@@ -234,42 +247,91 @@
     "name": "BD",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9"
+    ]
   },
   {
     "id": 222,
     "name": "IO",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1", "TP2", "TP3", "TP4", "TP5"]
   },
   {
     "id": 223,
     "name": "MNOnL",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 224,
     "name": "POO",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9"
+    ]
   },
   {
     "id": 225,
     "name": "RC",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9"
+    ]
   },
   {
     "id": 226,
     "name": "SO",
     "groupId": 2,
     "semester": 2,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9",
+      "PL10"
+    ]
   },
   {
     "id": 311,
@@ -318,56 +380,56 @@
     "name": "ADI",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 322,
     "name": "CG",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 323,
     "name": "IPM",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
   },
   {
     "id": 324,
     "name": "PL",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
     "id": 325,
     "name": "SSI",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
   },
   {
     "id": 326,
     "name": "AProj",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 327,
     "name": "EngWeb",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1", "TP2", "TP3"]
   },
   {
     "id": 328,
     "name": "MQ",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 411,
@@ -427,133 +489,133 @@
     "name": "ASM",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 422,
     "name": "ADGD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 423,
     "name": "AISBD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 424,
     "name": "AA",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 425,
     "name": "CIAD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1"]
   },
   {
     "id": 426,
     "name": "ES",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 427,
     "name": "EG",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 428,
     "name": "EES",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 429,
     "name": "GSR",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4210,
     "name": "RDS",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4211,
     "name": "SDGE",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4212,
     "name": "VF",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4213,
     "name": "VCPI",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4214,
     "name": "ABD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4215,
     "name": "AProf",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4216,
     "name": "ACAD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4217,
     "name": "BD NoSQL",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4218,
     "name": "CHED",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4219,
     "name": "EC",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4220,
@@ -567,140 +629,140 @@
     "name": "ICA",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4222,
     "name": "MES",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4223,
     "name": "PCF",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4224,
     "name": "RFM",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4225,
     "name": "SPLN",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4226,
     "name": "TF",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4227,
     "name": "VI",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4228,
     "name": "CSI",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4229,
     "name": "MD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4230,
     "name": "NPR",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4231,
     "name": "PSD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4232,
     "name": "QSI",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4233,
     "name": "RPCW",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4234,
     "name": "SA",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4235,
     "name": "SAD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4236,
     "name": "SETCD",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4237,
     "name": "SIC",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL"]
   },
   {
     "id": 4238,
     "name": "TS",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4239,
     "name": "TDS",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4240,
     "name": "VTR",
     "groupId": 4,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 501,
@@ -721,6 +783,6 @@
     "name": "ATS",
     "groupId": 3,
     "semester": 2,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   }
 ]
