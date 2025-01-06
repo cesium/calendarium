@@ -25,7 +25,16 @@ const Layout = ({
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
+  const [image, setImage] = useState<string>("");
   const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setImage(
+      resolvedTheme === "dark"
+        ? "/calendarium-dark.svg"
+        : "/calendarium-light.svg"
+    );
+  }, [resolvedTheme]);
 
   return (
     <AppInfoProvider
@@ -78,23 +87,18 @@ const Layout = ({
         {/* Notification Badges */}
         <Notifications isOpen={isOpen} />
 
-        {/* Calendarium Logo */}
-        <div className="px-8 pt-8 lg:hidden">
-          <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
-            <Link href="/">
-              <Image
-                className="h-9 w-auto min-[400px]:h-10 sm:h-12"
-                width={0}
-                height={0}
-                src={
-                  resolvedTheme === "dark"
-                    ? "/calendarium-dark.svg"
-                    : "/calendarium-light.svg"
-                }
-                alt="Calendarium Logo"
-              />
-            </Link>
-          </div>
+      {/* Calendarium Logo */}
+      <div className="px-8 pt-8 lg:hidden">
+        <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
+          <Link href="/">
+            <Image
+              className="h-9 w-auto min-[400px]:h-10 sm:h-12"
+              width={0}
+              height={0}
+              src={image}
+              alt="Calendarium Logo"
+            />
+          </Link>
         </div>
 
         {/* Sidebar */}

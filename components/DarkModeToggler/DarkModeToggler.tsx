@@ -31,6 +31,8 @@ const DarkModeToggler = () => {
               : "system"
           )
         }
+        data-umami-event="appearance-select"
+        data-umami-event-mode={theme}
       >
         <option>Follow System</option>
         <option>Dark</option>

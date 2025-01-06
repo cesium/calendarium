@@ -24,6 +24,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
+  const [image, setImage] = useState<string>("");
 
   function clearSelection() {
     setClear(true);
@@ -45,6 +46,14 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const { resolvedTheme } = useTheme();
   const info = useAppInfo();
 
+  useEffect(() => {
+    setImage(
+      resolvedTheme === "dark"
+        ? "/calendarium-dark.svg"
+        : "/calendarium-light.svg"
+    );
+  }, [resolvedTheme]);
+
   return (
     <nav
       className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
@@ -61,11 +70,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                 className="h-[46px] w-auto"
                 width={0}
                 height={0}
-                src={
-                  resolvedTheme === "dark"
-                    ? "/calendarium-dark.svg"
-                    : "/calendarium-light.svg"
-                }
+                src={image}
                 alt="Calendarium Logo"
               />
             </Link>
@@ -82,6 +87,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
               onClick={() => setIsSettings(!isSettings)}
               className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
               title="Settings"
+              data-umami-event="settings-button"
             >
               {isSettings ? (
                 <i className="bi bi-gear-fill text-neutral-900 dark:text-neutral-200"></i>

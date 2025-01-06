@@ -189,6 +189,7 @@ export default function Home({ filters }) {
             className="transition-colors hover:text-blue-500"
             onClick={() => handleData(true)}
             title="Sync event data (updates every hour)"
+            data-umami-event="sync-button"
           >
             <i className="bi bi-arrow-repeat" />
           </button>
@@ -199,6 +200,7 @@ export default function Home({ filters }) {
             target="_blank"
             rel="noopener noreferrer"
             className="cursor-pointer text-blue-500 hover:underline"
+            data-umami-event="event-missing-button"
           >
             add it
           </a>
