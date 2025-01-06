@@ -24,7 +24,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>("/calendarium-light.svg");
 
   function clearSelection() {
     setClear(true);
