@@ -1,8 +1,10 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import CalendarExportModal from "../CalendarExportModal";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 const ExportButton = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const info = useAppInfo();
 
   return (
     <div className="w-full">

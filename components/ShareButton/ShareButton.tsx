@@ -1,12 +1,14 @@
 import { useState } from "react";
 import ShareModal from "../ShareModal";
 import { ISelectedFilterDTO } from "../../dtos";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type ShareButtonProps = {
   setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 };
 
 const ShareButton = ({ setChecked }: ShareButtonProps) => {
+  const info = useAppInfo();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
