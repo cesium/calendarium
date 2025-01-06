@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import Notifications from "../Notifications";
@@ -86,7 +86,7 @@ const Layout = ({
 
         {/* Notification Badges */}
         <Notifications isOpen={isOpen} />
-
+      </div>
       {/* Calendarium Logo */}
       <div className="px-8 pt-8 lg:hidden">
         <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
