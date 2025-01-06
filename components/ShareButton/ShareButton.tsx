@@ -16,7 +16,7 @@ const ShareButton = ({ setChecked }: ShareButtonProps) => {
         title="Share"
         onClick={() => setIsModalOpen(true)}
         data-umami-event="share-button"
-        data-umami-event-type={isHome ? "events" : "shifts"}
+        data-umami-event-type={info.isEvents ? "events" : "shifts"}
       >
         <i className="bi bi-share-fill"></i>
       </button>
