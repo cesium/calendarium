@@ -1,11 +1,10 @@
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 import ConfirmPopUpButton from "../ConfirmPopUpButton";
 
 const ClearSelectionButton = ({
-  isHome,
   isSettings,
   clearSelection,
 }: {
-  isHome: boolean;
   isSettings: boolean;
   clearSelection: () => void;
 }) => {
@@ -14,11 +13,14 @@ const ClearSelectionButton = ({
     "cursor-not-allowed hover:text-error/50 dark:hover:text-red-400/60"
   }`;
 
+  const info = useAppInfo();
+
   return (
     <ConfirmPopUpButton
       title={"Are you sure?"}
       description={
-        "This will remove all your selected " + (isHome ? "events." : "shifts.")
+        "This will remove all your selected " +
+        (info.isEvents ? "events." : "shifts.")
       }
       onConfirm={() => clearSelection()}
       onCancel={() => {}}
@@ -31,7 +33,7 @@ const ClearSelectionButton = ({
         title: "Clear",
         className: classNameData,
         "data-umami-event": "clear-selection-button",
-        "data-umami-event-type": isHome ? "events" : "shifts",
+        "data-umami-event-type": info.isEvents ? "events" : "shifts",
       }}
     >
       <i className="bi bi-trash-fill"></i>

@@ -2,33 +2,25 @@ import { Backdrop, Box, Fade, Modal } from "@mui/material";
 
 import { useCallback, useEffect, useState } from "react";
 
-import { IFilterDTO } from "../../dtos";
-
-import { SelectedShift } from "../../types";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 
 import { Collapse } from "antd";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type ShareModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  isHome: boolean;
-  filters: IFilterDTO[];
-  handleFilters: any;
-  setChecked: (obj: number[] | SelectedShift[]) => void;
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 };
 
-const ShareModal = ({
-  isOpen,
-  setIsOpen,
-  isHome,
-  filters,
-  handleFilters,
-  setChecked,
-}: ShareModalProps) => {
+const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
   const [code, setCode] = useState<string>("");
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isImported, setIsImported] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+
+  const info = useAppInfo();
+  const filters = info.filters as IFilterDTO[];
 
   /**
    * Check if the id corresponds to a filter
@@ -55,7 +47,7 @@ const ShareModal = ({
    * The reason for a list of shifts being returned is because the same id can have multiple shifts separated by a comma
    * @param shift - The shift string to be parsed
    */
-  function parseShiftValid(shift: string): SelectedShift[] | undefined {
+  function parseShiftValid(shift: string): ISelectedFilterDTO[] | undefined {
     const [idOrName, shiftName] = shift.split("=");
     if (!idOrName || !shiftName) return undefined;
 
@@ -63,9 +55,10 @@ const ShareModal = ({
     if (!filter) return undefined;
 
     const shifts = shiftName.split(",").map((s) => s.toUpperCase());
-    if (!shifts.every((s) => filter.shifts.includes(s))) return undefined;
+    if (!shifts.every((s) => (filter as IFilterDTO).shifts.includes(s)))
+      return undefined;
 
-    return shifts.map((shift) => ({ id: filter.id, shift }));
+    return shifts.map((shift) => ({ id: (filter as IFilterDTO).id, shift }));
   }
 
   /**
@@ -74,7 +67,9 @@ const ShareModal = ({
    * If any shift is invalid, the function returns undefined
    * @param shiftsString
    */
-  function parseShiftsValid(shiftsString: string): SelectedShift[] | undefined {
+  function parseShiftsValid(
+    shiftsString: string
+  ): ISelectedFilterDTO[] | undefined {
     const shifts = shiftsString.split("&").map(parseShiftValid);
     return shifts.every(Boolean) ? shifts.flat() : undefined;
   }
@@ -86,7 +81,7 @@ const ShareModal = ({
    * @param eventString - The event string to be parsed
    */
   function parseEventValid(eventString: string): number | undefined {
-    const event = getFilterByIdOrName(eventString);
+    const event = getFilterByIdOrName(eventString) as IFilterDTO;
     return event ? event.id : undefined;
   }
 
@@ -118,7 +113,7 @@ const ShareModal = ({
      *
      * @param shifts - The shift to be converted
      */
-    function shiftsToStringArray(shifts: SelectedShift[]): string[] {
+    function shiftsToStringArray(shifts: ISelectedFilterDTO[]): string[] {
       const groupedShifts = groupBy(shifts, ({ id }) => id);
 
       return Object.entries(groupedShifts).map(([id, shifts]) => {
@@ -145,18 +140,22 @@ const ShareModal = ({
       return eventIds.map(eventToString);
     }
 
-    const valuesRaw = localStorage.getItem(isHome ? "checked" : "shifts");
+    const valuesRaw = localStorage.getItem(
+      info.isEvents ? "checked" : "shifts"
+    );
     if (!valuesRaw) return "";
 
     try {
       const values = JSON.parse(valuesRaw);
-      const toStringArray = isHome ? eventsToStringArray : shiftsToStringArray;
+      const toStringArray = info.isEvents
+        ? eventsToStringArray
+        : shiftsToStringArray;
 
       return toStringArray(values)?.join("&") || "";
     } catch (error) {
       return "";
     }
-  }, [isHome, filters]);
+  }, [info.isEvents, filters]);
 
   function copyToClipboardHandle() {
     navigator.clipboard.writeText(code);
@@ -177,16 +176,18 @@ const ShareModal = ({
 
     const code = rawCode as string;
 
-    const parsedData = isHome ? parseEvents(code) : parseShiftsValid(code);
+    const parsedData = info.isEvents
+      ? parseEvents(code)
+      : parseShiftsValid(code);
     if (!parsedData) {
       playErrorImportAnimation();
       return;
     }
 
-    handleFilters(parsedData);
+    info.handleFilters(parsedData);
     setChecked(parsedData);
     localStorage.setItem(
-      isHome ? "checked" : "shifts",
+      info.isEvents ? "checked" : "shifts",
       JSON.stringify(parsedData)
     );
     playValidImportAnimation();
@@ -228,7 +229,7 @@ const ShareModal = ({
                 id="modal-modal-title"
                 className="select-none text-xl font-medium"
               >
-                Share Your {isHome ? "Events" : "Schedule"}{" "}
+                Share Your {info.isEvents ? "Events" : "Schedule"}{" "}
                 <i className="bi bi-link-45deg"></i>
               </span>
               <div id="modal-modal-description">
@@ -250,7 +251,9 @@ const ShareModal = ({
                         className="relative -ml-px inline-flex w-[38px] place-content-center items-center gap-x-1.5 rounded-r-lg px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-400/30 dark:hover:bg-neutral-400/10"
                         title="Import"
                         data-umami-event="share-import-button"
-                        data-umami-event-type={isHome ? "events" : "shifts"}
+                        data-umami-event-type={
+                          info.isEvents ? "events" : "shifts"
+                        }
                       >
                         {isImported ? (
                           <i className="bi bi-check-circle-fill text-cesium-900" />
@@ -267,7 +270,9 @@ const ShareModal = ({
                       title="Copy your share code"
                       onClick={copyToClipboardHandle}
                       data-umami-event="share-copy-button"
-                      data-umami-event-type={isHome ? "events" : "shifts"}
+                      data-umami-event-type={
+                        info.isEvents ? "events" : "shifts"
+                      }
                     >
                       {isCopied ? (
                         <i className="bi bi-check-circle-fill text-cesium-900" />
@@ -284,15 +289,16 @@ const ShareModal = ({
                     <span className="font-medium">
                       Copy your share code with <i className="bi bi-copy" />
                     </span>{" "}
-                    to share your {isHome ? "events" : "schedule"} with your
-                    friends or with another device.
+                    to share your {info.isEvents ? "events" : "schedule"} with
+                    your friends or with another device.
                     <p></p>
                     <span className="font-medium">
                       Paste a share code and click{" "}
                       <i className="bi bi-download" />
                     </span>{" "}
-                    to import your friend{"'"}s {isHome ? "events" : "schedule"}{" "}
-                    or the {isHome ? "events" : "schedule"} you set up on
+                    to import your friend{"'"}s{" "}
+                    {info.isEvents ? "events" : "schedule"} or the{" "}
+                    {info.isEvents ? "events" : "schedule"} you set up on
                     another device.
                   </div>
                 </Collapse.Panel>

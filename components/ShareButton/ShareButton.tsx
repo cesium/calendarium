@@ -1,24 +1,14 @@
 import { useState } from "react";
-
 import ShareModal from "../ShareModal";
-
-import { IFilterDTO } from "../../dtos";
-
-import { SelectedShift } from "../../types";
+import { ISelectedFilterDTO } from "../../dtos";
+import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type ShareButtonProps = {
-  isHome: boolean;
-  filters: IFilterDTO[];
-  handleFilters: any;
-  setChecked: (obj: number[] | SelectedShift[]) => void;
+  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
 };
 
-const ShareButton = ({
-  isHome,
-  filters,
-  handleFilters,
-  setChecked,
-}: ShareButtonProps) => {
+const ShareButton = ({ setChecked }: ShareButtonProps) => {
+  const info = useAppInfo();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -28,7 +18,7 @@ const ShareButton = ({
         title="Share"
         onClick={() => setIsModalOpen(true)}
         data-umami-event="share-button"
-        data-umami-event-type={isHome ? "events" : "shifts"}
+        data-umami-event-type={info.isEvents ? "events" : "shifts"}
       >
         <i className="bi bi-share-fill"></i>
       </button>
@@ -36,9 +26,6 @@ const ShareButton = ({
       <ShareModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
-        isHome={isHome}
-        filters={filters}
-        handleFilters={handleFilters}
         setChecked={setChecked}
       />
     </div>
