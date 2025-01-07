@@ -6,6 +6,7 @@ interface AppInfoContextData {
   filters: number[] | IFilterDTO[];
   handleFilters: (filters: number[] | ISelectedFilterDTO[]) => void;
   fetchTheme: () => void;
+  image: string;
 }
 
 const AppContext = createContext<AppInfoContextData | undefined>(undefined);

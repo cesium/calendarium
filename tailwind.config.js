@@ -9,7 +9,7 @@ module.exports = {
     },
     extend: {
       spacing: {
-        mobile: "calc(100dvh - 5.2rem)",
+        mobile: "calc(100dvh - 3.5rem)",
       },
       colors: {
         cesium: {

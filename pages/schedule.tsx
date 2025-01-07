@@ -165,7 +165,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         />
 
         <footer className="mt-2 font-display text-sm">
-          <b>Source:</b>{" "}
+          <span className="font-medium">Source:</span>{" "}
           <a
             href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
             target="_blank"

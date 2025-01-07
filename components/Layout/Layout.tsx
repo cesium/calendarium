@@ -43,9 +43,10 @@ const Layout = ({
         filters,
         handleFilters,
         fetchTheme,
+        image,
       }}
     >
-      <div className="text-neutral-900 dark:text-neutral-200 lg:flex">
+      <div className="flex h-dvh flex-col text-neutral-900 dark:text-neutral-200 lg:flex-row">
         <Head>
           {/* Status Bar configuration for Android devices */}
           <meta
@@ -60,7 +61,7 @@ const Layout = ({
         </Head>
         {/* Open/Close Sidebar Button */}
         <button
-          className="absolute left-8 top-8 z-20 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 min-[400px]:h-11 min-[400px]:w-11 sm:h-12 sm:w-12 lg:hidden"
+          className="absolute left-4 top-4 z-20 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 min-[400px]:h-11 min-[400px]:w-11 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div
@@ -88,7 +89,7 @@ const Layout = ({
         <Notifications isOpen={isOpen} />
 
         {/* Calendarium Logo */}
-        <div className="px-8 pt-8 lg:hidden">
+        <div className="px-4 pt-4 sm:px-6 sm:pt-6 lg:hidden">
           <div className="mx-auto flex h-10 w-fit cursor-pointer items-center min-[400px]:h-11 sm:h-12">
             <Link href="/">
               <Image
@@ -124,7 +125,7 @@ const Layout = ({
         </div>
 
         {/* Children */}
-        <main className="h-[calc(100dvh-4.9rem)] w-full flex-1 px-8 py-8  lg:ml-96 lg:h-screen">
+        <main className="w-full flex-1 p-4 sm:p-6 lg:ml-96 lg:pb-4">
           {children}
         </main>
       </div>

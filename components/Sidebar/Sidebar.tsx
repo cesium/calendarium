@@ -9,7 +9,6 @@ import ClearSelectionButton from "../ClearSelectionButton";
 import NavigationPane from "../NavigationPane";
 import ShareButton from "../ShareButton";
 import { BeforeInstallPromptEvent } from "../../types";
-import { useTheme } from "next-themes";
 import { useAppInfo } from "../../contexts/AppInfoProvider";
 import { ISelectedFilterDTO } from "../../dtos";
 
@@ -24,7 +23,6 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
-  const [image, setImage] = useState<string>("/calendarium-light.svg");
 
   function clearSelection() {
     setClear(true);
@@ -41,25 +39,19 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     return () => window.removeEventListener("transitionend", handler);
   }, []);
 
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl lg:py-8 pb-8 px-8 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl p-4 sm:p-6 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
-  const { resolvedTheme } = useTheme();
   const info = useAppInfo();
-
-  useEffect(() => {
-    setImage(
-      resolvedTheme === "dark"
-        ? "/calendarium-dark.svg"
-        : "/calendarium-light.svg"
-    );
-  }, [resolvedTheme]);
 
   return (
     <nav
       className={`${sidebar} ${isOpen ? "block" : "-translate-x-full"}`}
       style={{ direction: "rtl" }}
     >
-      <div className="grid-cols-1 space-y-6" style={{ direction: "ltr" }}>
+      <div
+        className="flex flex-col gap-4 sm:gap-6"
+        style={{ direction: "ltr" }}
+      >
         {/* Calendarium Logo (only shows on large screens) */}
         <div className="hidden lg:block">
           <div
@@ -70,7 +62,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                 className="h-[46px] w-auto"
                 width={0}
                 height={0}
-                src={image}
+                src={info.image}
                 alt="Calendarium Logo"
               />
             </Link>
@@ -80,8 +72,8 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         {/* Page Links */}
         <NavigationPane />
 
-        <div className="flex space-x-4">
-          <div className="flex space-x-4">
+        <div className="flex gap-3 sm:gap-4">
+          <div className="flex gap-3 sm:gap-4">
             {/* Settings Button */}
             <button
               onClick={() => setIsSettings(!isSettings)}
