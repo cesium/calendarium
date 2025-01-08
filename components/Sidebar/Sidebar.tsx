@@ -23,10 +23,25 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
+  const [animateRefresh, setAnimateRefresh] = useState<boolean>(false);
 
   function clearSelection() {
     setClear(true);
     setTimeout(() => setClear(false), 300);
+  }
+
+  function refresh() {
+    const lastUpdate: Date =
+      new Date(localStorage.getItem("lastUpdateEvents")) || new Date(); // current date if lastUpdate is null
+    const now: Date = new Date();
+    const diff: number = now.getTime() - lastUpdate.getTime(); // difference in milliseconds
+    const diffMin: number = diff / (1000 * 60); // difference in minutes
+    if (diffMin >= 1) info.handleData(true); // only fetch data if last update was more than 1 minute ago
+    setAnimateRefresh(true);
+    setTimeout(() => {
+      setAnimateRefresh(false);
+      setIsOpen(false);
+    }, 1000);
   }
 
   useEffect(() => {
@@ -94,6 +109,16 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
             />
             {/* Share Button */}
             <ShareButton setChecked={setChecked} />
+            <button
+              className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
+              onClick={refresh}
+              title="Refresh event data"
+              data-umami-event="sync-button"
+            >
+              <div className={animateRefresh ? "animate-spin" : ""}>
+                <i className="bi bi-arrow-repeat" />
+              </div>
+            </button>
           </div>
           {/* Export button */}
           <ExportButton />

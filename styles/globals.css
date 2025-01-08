@@ -96,13 +96,14 @@ a {
   outline: none;
 }
 
-.rbc-calendar .rbc-event:hover {
+/* .rbc-calendar .rbc-event:hover {
   opacity: 0.85;
-}
+} */
 
 .rbc-calendar .rbc-toolbar {
   flex-wrap: nowrap;
   font-weight: 500;
+  @apply mb-4 sm:mb-6;
 }
 
 @media (max-width: 767px) {
@@ -113,9 +114,9 @@ a {
 
 .rbc-calendar .rbc-month-view {
   overflow: hidden;
-  border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20;
-  border-radius: 8px;
+  border-top: 1px solid rgb(203 213 225);
+  @apply border-x-0 border-b-0 dark:border-t-neutral-400/20;
+  border-radius: 0px;
 }
 
 .rbc-calendar .rbc-toolbar .rbc-toolbar-label {
@@ -233,13 +234,13 @@ a {
   @apply dark:border-neutral-400/20;
 }
 
-.rbc-calendar .rbc-row-segment .rbc-event {
-  width: calc(100% - 0.5rem);
+.rbc-calendar .rbc-event {
+  width: calc(100% - 0.2rem);
   margin: auto;
-  margin-bottom: 0.25rem;
-  font-weight: 500;
+  margin-bottom: 0.1rem;
+  font-weight: 400;
   border: none;
-  border-radius: 8px;
+  @apply rounded-md text-xs sm:text-sm sm:font-medium;
 }
 
 /* shows a 'today' background color in month view */
@@ -261,14 +262,7 @@ a {
 }
 
 .rbc-calendar .rbc-events-container .rbc-event {
-  margin: auto;
-  font-weight: 500;
-  border: none;
-  border-radius: 10px;
-}
-
-.rbc-calendar .rbc-events-container .rbc-event-content {
-  margin-top: 5px;
+  @apply rounded-lg border-[3px] border-white p-2 transition-opacity hover:opacity-90 dark:border-neutral-900;
 }
 
 .rbc-calendar .rbc-time-content > * + * > * {
@@ -329,8 +323,7 @@ a {
 .rbc-calendar .rbc-time-view {
   overflow: hidden;
   border: 1px solid rgb(203 213 225);
-  @apply dark:border-neutral-400/20;
-  border-radius: 8px;
+  @apply border-x-0 border-b-0 dark:border-t-neutral-400/20 md:border-t-0;
 }
 
 .rbc-calendar .rbc-label {

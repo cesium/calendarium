@@ -2,11 +2,11 @@ import { useState, ReactNode, useEffect } from "react";
 import Link from "next/link";
 import Sidebar from "../Sidebar";
 import Notifications from "../Notifications";
-import styles from "./layout.module.scss";
 import { useTheme } from "next-themes";
 import Head from "next/head";
 import Image from "next/image";
 import { AppInfoProvider } from "../../contexts/AppInfoProvider";
+import MoreButton from "../MoreButton";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -14,6 +14,7 @@ interface ILayoutProps {
   filters: any;
   handleFilters: any;
   fetchTheme: () => void;
+  handleData?: (_: boolean) => void;
 }
 
 const Layout = ({
@@ -22,6 +23,7 @@ const Layout = ({
   filters,
   handleFilters,
   fetchTheme,
+  handleData,
 }: ILayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hamburgerLine = `h-1 w-6 my-0.5 rounded-full bg-black transition ease transform duration-300 dark:bg-neutral-200 bg-neutral-900`;
@@ -44,6 +46,7 @@ const Layout = ({
         handleFilters,
         fetchTheme,
         image,
+        handleData,
       }}
     >
       <div className="flex h-dvh flex-col text-neutral-900 dark:text-neutral-200 lg:flex-row">
@@ -61,7 +64,7 @@ const Layout = ({
         </Head>
         {/* Open/Close Sidebar Button */}
         <button
-          className="absolute left-4 top-4 z-20 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-neutral-800/70 dark:ring-neutral-400/20 min-[400px]:h-11 min-[400px]:w-11 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:hidden"
+          className="absolute left-4 top-4 z-20 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white shadow-md ring-1 ring-neutral-100/50 dark:bg-[#212121] dark:ring-neutral-400/20 min-[400px]:h-11 min-[400px]:w-11 sm:left-6 sm:top-6 sm:h-12 sm:w-12 lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div
@@ -108,26 +111,11 @@ const Layout = ({
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
 
-        {/* Feedback Button */}
-        <div
-          className={`fixed bottom-0 right-0 z-20 transform pb-4 pr-4 transition duration-300 lg:translate-y-0 ${
-            !isOpen && "translate-y-full"
-          }`}
-        >
-          <button
-            onClick={() => window.open("https://forms.gle/C2uxuUKqoeqMWfcZ6")}
-            className={styles.buttonBug}
-          >
-            <div>
-              <p>Feedback</p> <i className="bi bi-chat-fill"></i>
-            </div>
-          </button>
-        </div>
+        {/* More Button */}
+        <MoreButton isOpen={isOpen} />
 
         {/* Children */}
-        <main className="w-full flex-1 p-4 sm:p-6 lg:ml-96 lg:pb-4">
-          {children}
-        </main>
+        <main className="w-full flex-1 lg:ml-96">{children}</main>
       </div>
     </AppInfoProvider>
   );
