@@ -7,12 +7,12 @@ const MoreButton = ({ isOpen }: { isOpen: boolean }) => {
 
   return (
     <div
-      className={`fixed bottom-0 right-0 z-50 transform pb-4 pr-4 transition duration-300 lg:translate-x-0 lg:translate-y-0 ${
+      className={`fixed bottom-0 right-0 z-50 transform p-4 transition duration-300 lg:translate-x-0 lg:translate-y-0 ${
         !isOpen && "translate-x-full translate-y-full"
       }`}
     >
       <Menu as="div" className="relative inline-block">
-        <Menu.Button className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-[#212121] dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200">
+        <Menu.Button className="size-11 rounded-xl bg-cesium-900 p-2 leading-3 text-neutral-100 shadow-md ring-1 ring-cesium-900/50 transition-all duration-300 hover:bg-[#ed906f] hover:shadow-cesium-900/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cesium-500 dark:ring-cesium-900/20">
           <i className="bi bi-three-dots"></i>
         </Menu.Button>
         <Transition
