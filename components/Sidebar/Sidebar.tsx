@@ -107,18 +107,21 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
               isSettings={isSettings}
               clearSelection={clearSelection}
             />
+            {/* Refresh Data Button */}
+            {info.isEvents && (
+              <button
+                className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
+                onClick={refresh}
+                title="Refresh event data"
+                data-umami-event="sync-button"
+              >
+                <div className={animateRefresh ? "animate-spin" : ""}>
+                  <i className="bi bi-arrow-repeat" />
+                </div>
+              </button>
+            )}
             {/* Share Button */}
             <ShareButton setChecked={setChecked} />
-            <button
-              className="h-10 w-10 rounded-xl p-2 leading-3 text-neutral-300 shadow-md ring-1 ring-neutral-200/50 transition-all duration-300 hover:text-neutral-900 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:bg-neutral-800/70 dark:text-neutral-500 dark:ring-neutral-400/20 dark:hover:text-neutral-200"
-              onClick={refresh}
-              title="Refresh event data"
-              data-umami-event="sync-button"
-            >
-              <div className={animateRefresh ? "animate-spin" : ""}>
-                <i className="bi bi-arrow-repeat" />
-              </div>
-            </button>
           </div>
           {/* Export button */}
           <ExportButton />
