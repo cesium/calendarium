@@ -153,12 +153,12 @@ export default function Home({ filters }) {
       fetchTheme={fetchTheme}
       handleData={handleData}
     >
+      <Head>
+        <title>Events | Calendarium</title>
+        <meta name="description" content="Your exams, due dates and more." />
+        <link rel="icon" href="/favicon-calendarium.ico" />
+      </Head>
       <div className="h-full pt-4 sm:pt-6">
-        <Head>
-          <title>Events | Calendarium</title>
-          <meta name="description" content="Your exams, due dates and more." />
-          <link rel="icon" href="/favicon-calendarium.ico" />
-        </Head>
         <Calendar
           className={styles.calendar}
           localizer={localizer}
