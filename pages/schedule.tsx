@@ -125,12 +125,12 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
       handleFilters={handleFilters}
       fetchTheme={fetchTheme}
     >
+      <Head>
+        <title>Schedule | Calendarium</title>
+        <meta name="description" content="Your weekly schedule." />
+        <link rel="icon" href="/favicon-calendarium.ico" />
+      </Head>
       <div className="h-full pt-4 sm:pt-6 md:pt-0">
-        <Head>
-          <title>Schedule | Calendarium</title>
-          <meta name="description" content="Your weekly schedule." />
-          <link rel="icon" href="/favicon-calendarium.ico" />
-        </Head>
         <Calendar
           toolbar={false}
           localizer={localizer}
