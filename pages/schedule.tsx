@@ -118,10 +118,6 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
-  // RELATED TO APPEARANCE
-
-  const { resolvedTheme } = useTheme();
-
   return (
     <Layout
       isEvents={false}
@@ -134,7 +130,7 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
         <meta name="description" content="Your weekly schedule." />
         <link rel="icon" href="/favicon-calendarium.ico" />
       </Head>
-      <div id="schedule" className="h-full">
+      <div className="h-full pt-4 sm:pt-6 md:pt-0">
         <Calendar
           toolbar={false}
           localizer={localizer}
@@ -147,13 +143,8 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           max={maxDate}
           eventPropGetter={(event) => {
             const newStyle = {
-              border:
-                "2px solid " + (resolvedTheme === "dark" ? "#171717" : "white"),
               backgroundColor: getBgColor(event),
               color: getTextColor(event),
-              fontWeight: "500",
-              padding: "0.5rem",
-              borderRadius: "12px",
             };
 
             return { style: newStyle };
@@ -163,25 +154,13 @@ export default function Schedule({ filters, shifts }: ISchedulesProps) {
           events={events}
           className={styles.schedule}
         />
-
-        <footer className="mt-2 font-display text-sm">
-          <b>Source:</b>{" "}
-          <a
-            href="https://alunos.uminho.pt/pt/estudantes/paginas/infouteishorarios.aspx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer hover:text-blue-500 hover:underline"
-          >
-            Horários UMinho <i className="bi bi-box-arrow-up-right" />
-          </a>
-        </footer>
+        <ShiftModal
+          selectedShift={selectedShift}
+          setInspectShift={setInspectShift}
+          inspectShift={inspectShift}
+          shifts={shifts}
+        />
       </div>
-      <ShiftModal
-        selectedShift={selectedShift}
-        setInspectShift={setInspectShift}
-        inspectShift={inspectShift}
-        shifts={shifts}
-      />
     </Layout>
   );
 }

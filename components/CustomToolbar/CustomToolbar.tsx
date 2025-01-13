@@ -119,20 +119,14 @@ const DesktopToolbar = ({ view, onView }) => {
   );
 };
 
-const CustomToolbar = ({
-  date,
-  label,
-  onNavigate,
-  view,
-  onView,
-}: ToolbarProps) => {
+const CustomToolbar = ({ label, onNavigate, view, onView }: ToolbarProps) => {
   const size = useWindowSize();
 
   return (
-    <div className="rbc-toolbar">
+    <div className="rbc-toolbar px-4 sm:px-6">
       <span className="rbc-btn-group">
         <button
-          className="h-[2.1rem] text-sm"
+          className="flex h-[2.1rem] items-center justify-center text-sm"
           type="button"
           onClick={() => onNavigate(Navigate.TODAY)}
         >

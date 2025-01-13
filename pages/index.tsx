@@ -151,13 +151,14 @@ export default function Home({ filters }) {
       filters={filters}
       handleFilters={handleFilters}
       fetchTheme={fetchTheme}
+      handleData={handleData}
     >
       <Head>
         <title>Events | Calendarium</title>
         <meta name="description" content="Your exams, due dates and more." />
         <link rel="icon" href="/favicon-calendarium.ico" />
       </Head>
-      <div id="events" className="h-full">
+      <div className="h-full pt-4 sm:pt-6">
         <Calendar
           className={styles.calendar}
           localizer={localizer}
@@ -183,36 +184,14 @@ export default function Home({ filters }) {
             toolbar: CustomToolbar,
           }}
         />
-
-        <footer className="mt-2 font-display text-sm">
-          <button
-            className="transition-colors hover:text-blue-500"
-            onClick={() => handleData(true)}
-            title="Sync event data (updates every hour)"
-            data-umami-event="sync-button"
-          >
-            <i className="bi bi-arrow-repeat" />
-          </button>
-          {" · "}
-          <span className="font-medium">Something missing?</span> Help us{" "}
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfpk0mJowLtjPdJo99NOVDD5G8IX0UPMWOO6g5ngJ1gZNMsqQ/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer text-blue-500 hover:underline"
-            data-umami-event="event-missing-button"
-          >
-            add it
-          </a>
-        </footer>
+        {selectedEvent && (
+          <EventModal
+            selectedEvent={selectedEvent}
+            setInspectEvent={setInspectEvent}
+            inspectEvent={inspectEvent}
+          />
+        )}
       </div>
-      {selectedEvent && (
-        <EventModal
-          selectedEvent={selectedEvent}
-          setInspectEvent={setInspectEvent}
-          inspectEvent={inspectEvent}
-        />
-      )}
     </Layout>
   );
 }

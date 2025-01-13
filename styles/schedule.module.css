@@ -6,6 +6,5 @@
 .schedule {
   z-index: 0;
   width: 100%;
-  height: calc(100% - 1.5rem);
   font-family: Inter;
 }
