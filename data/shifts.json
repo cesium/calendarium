@@ -660,30 +660,6 @@
     "filterId": 125
   },
   {
-    "id": 14299,
-    "title": "Lógica",
-    "theoretical": false,
-    "shift": "TP6",
-    "building": "CP3",
-    "room": "1.03",
-    "day": 1,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 124
-  },
-  {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL9",
-    "building": "CP2",
-    "room": "2.04",
-    "day": 1,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 126
-  },
-  {
     "id": 14268,
     "title": "Sistemas de Computação",
     "theoretical": false,
@@ -696,16 +672,16 @@
     "filterId": 126
   },
   {
-    "id": 14296,
-    "title": "Laboratórios de Informática II",
+    "id": 14268,
+    "title": "Sistemas de Computação",
     "theoretical": false,
-    "shift": "PL1",
+    "shift": "PL9",
     "building": "CP2",
-    "room": "0.17",
+    "room": "2.04",
     "day": 1,
     "start": "09:00",
     "end": "11:00",
-    "filterId": 123
+    "filterId": 126
   },
   {
     "id": 14238,
@@ -732,16 +708,16 @@
     "filterId": 123
   },
   {
-    "id": 14296,
-    "title": "Laboratórios de Informática II",
+    "id": 14299,
+    "title": "Lógica",
     "theoretical": false,
-    "shift": "PL2",
-    "building": "CP1",
-    "room": "1.21",
+    "shift": "TP6",
+    "building": "CP3",
+    "room": "1.03",
     "day": 1,
     "start": "09:00",
     "end": "11:00",
-    "filterId": 123
+    "filterId": 124
   },
   {
     "id": 14301,
@@ -766,18 +742,6 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 126
-  },
-  {
-    "id": 14296,
-    "title": "Laboratórios de Informática II",
-    "theoretical": false,
-    "shift": "PL5",
-    "building": "CP1",
-    "room": "1.16",
-    "day": 2,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 123
   },
   {
     "id": 14238,
@@ -814,18 +778,6 @@
     "start": "09:00",
     "end": "10:00",
     "filterId": 125
-  },
-  {
-    "id": 14296,
-    "title": "Laboratórios de Informática II",
-    "theoretical": false,
-    "shift": "PL6",
-    "building": "CP1",
-    "room": "2.17",
-    "day": 4,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 123
   },
   {
     "id": 14238,
@@ -867,33 +819,9 @@
     "id": 14268,
     "title": "Sistemas de Computação",
     "theoretical": false,
-    "shift": "PL6",
-    "building": "CP1",
-    "room": "1.18",
-    "day": 3,
-    "start": "10:00",
-    "end": "12:00",
-    "filterId": 126
-  },
-  {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
     "shift": "PL7",
     "building": "CP1",
     "room": "2.21",
-    "day": 3,
-    "start": "10:00",
-    "end": "12:00",
-    "filterId": 126
-  },
-  {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL10",
-    "building": "CP1",
-    "room": "1.17",
     "day": 3,
     "start": "10:00",
     "end": "12:00",
@@ -960,16 +888,16 @@
     "filterId": 126
   },
   {
-    "id": 14268,
-    "title": "Sistemas de Computação",
+    "id": 14301,
+    "title": "Programação Imperativa",
     "theoretical": false,
-    "shift": "PL5",
-    "building": "CP1",
-    "room": "1.16",
+    "shift": "TP1",
+    "building": "CP2",
+    "room": "1.10",
     "day": 0,
     "start": "11:00",
     "end": "13:00",
-    "filterId": 126
+    "filterId": 125
   },
   {
     "id": 14238,
@@ -996,18 +924,6 @@
     "filterId": 122
   },
   {
-    "id": 14301,
-    "title": "Programação Imperativa",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "CP2",
-    "room": "1.10",
-    "day": 0,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 125
-  },
-  {
     "id": 14300,
     "title": "Elementos de Probabilidades e Teoria de Números",
     "theoretical": true,
@@ -1018,18 +934,6 @@
     "start": "11:00",
     "end": "13:00",
     "filterId": 122
-  },
-  {
-    "id": 14299,
-    "title": "Lógica",
-    "theoretical": true,
-    "shift": "T2",
-    "building": "CP3",
-    "room": "0.07",
-    "day": 2,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 124
   },
   {
     "id": 14301,
@@ -1056,6 +960,18 @@
     "filterId": 126
   },
   {
+    "id": 14299,
+    "title": "Lógica",
+    "theoretical": true,
+    "shift": "T2",
+    "building": "CP3",
+    "room": "0.07",
+    "day": 2,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 124
+  },
+  {
     "id": 14238,
     "title": "Análise Matemática para Engenharia",
     "theoretical": false,
@@ -1074,18 +990,6 @@
     "shift": "PL3",
     "building": "CP1",
     "room": "1.17",
-    "day": 2,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 123
-  },
-  {
-    "id": 14296,
-    "title": "Laboratórios de Informática II",
-    "theoretical": false,
-    "shift": "PL4",
-    "building": "CP1",
-    "room": "1.16",
     "day": 2,
     "start": "11:00",
     "end": "13:00",
@@ -1143,9 +1047,9 @@
     "id": 14299,
     "title": "Lógica",
     "theoretical": false,
-    "shift": "TP5",
+    "shift": "TP3",
     "building": "CP3",
-    "room": "2.02",
+    "room": "1.03",
     "day": 0,
     "start": "14:00",
     "end": "16:00",
@@ -1155,13 +1059,25 @@
     "id": 14299,
     "title": "Lógica",
     "theoretical": false,
-    "shift": "TP3",
+    "shift": "TP5",
     "building": "CP3",
-    "room": "1.03",
+    "room": "2.02",
     "day": 0,
     "start": "14:00",
     "end": "16:00",
     "filterId": 124
+  },
+  {
+    "id": 14296,
+    "title": "Laboratórios de Informática II",
+    "theoretical": false,
+    "shift": "PL4",
+    "building": "7",
+    "room": "1.09",
+    "day": 0,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 123
   },
   {
     "id": 14300,
@@ -1176,16 +1092,16 @@
     "filterId": 122
   },
   {
-    "id": 14299,
-    "title": "Lógica",
+    "id": 14296,
+    "title": "Laboratórios de Informática II",
     "theoretical": false,
-    "shift": "TP4",
-    "building": "CP2",
-    "room": "2.10",
-    "day": 1,
+    "shift": "PL1",
+    "building": "7",
+    "room": "0.08",
+    "day": 0,
     "start": "14:00",
     "end": "16:00",
-    "filterId": 124
+    "filterId": 123
   },
   {
     "id": 14299,
@@ -1198,6 +1114,54 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 124
+  },
+  {
+    "id": 14299,
+    "title": "Lógica",
+    "theoretical": false,
+    "shift": "TP4",
+    "building": "CP2",
+    "room": "2.10",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 124
+  },
+  {
+    "id": 14296,
+    "title": "Laboratórios de Informática II",
+    "theoretical": false,
+    "shift": "PL6",
+    "building": "7",
+    "room": "0.07",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 123
+  },
+  {
+    "id": 14296,
+    "title": "Laboratórios de Informática II",
+    "theoretical": false,
+    "shift": "PL2",
+    "building": "7",
+    "room": "0.08",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 123
+  },
+  {
+    "id": 14296,
+    "title": "Laboratórios de Informática II",
+    "theoretical": false,
+    "shift": "PL5",
+    "building": "7",
+    "room": "0.09",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 123
   },
   {
     "id": 14299,
@@ -1227,6 +1191,42 @@
     "id": 14268,
     "title": "Sistemas de Computação",
     "theoretical": false,
+    "shift": "PL5",
+    "building": "CP1",
+    "room": "2.20",
+    "day": 4,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 126
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL10",
+    "building": "CP3",
+    "room": "1.04",
+    "day": 4,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 126
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": true,
+    "shift": "T2",
+    "building": "CP1",
+    "room": "0.08",
+    "day": 0,
+    "start": "16:00",
+    "end": "17:00",
+    "filterId": 126
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
     "shift": "PL4",
     "building": "CP2",
     "room": "2.03",
@@ -1236,16 +1236,16 @@
     "filterId": 126
   },
   {
-    "id": 14299,
-    "title": "Lógica",
+    "id": 14268,
+    "title": "Sistemas de Computação",
     "theoretical": false,
-    "shift": "TP2",
-    "building": "CP3",
-    "room": "1.03",
+    "shift": "PL6",
+    "building": "7",
+    "room": "0.08",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
-    "filterId": 124
+    "filterId": 126
   },
   {
     "id": 14300,
@@ -1258,6 +1258,18 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 122
+  },
+  {
+    "id": 14299,
+    "title": "Lógica",
+    "theoretical": false,
+    "shift": "TP2",
+    "building": "CP3",
+    "room": "1.03",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 124
   },
   {
     "id": 14300,
@@ -1294,18 +1306,6 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 121
-  },
-  {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": true,
-    "shift": "T2",
-    "building": "CP1",
-    "room": "0.08",
-    "day": 0,
-    "start": "17:00",
-    "end": "18:00",
-    "filterId": 126
   },
   {
     "id": 14240,
@@ -1884,16 +1884,16 @@
     "filterId": 214
   },
   {
-    "id": 14308,
-    "title": "Redes de Computadores",
-    "theoretical": false,
-    "shift": "PL6",
+    "id": 14307,
+    "title": "Bases de Dados",
+    "theoretical": true,
+    "shift": "T2",
     "building": "CP2",
-    "room": "0.16",
-    "day": 0,
+    "room": "1.03",
+    "day": 1,
     "start": "09:00",
     "end": "11:00",
-    "filterId": 225
+    "filterId": 221
   },
   {
     "id": 14282,
@@ -1992,6 +1992,18 @@
     "filterId": 222
   },
   {
+    "id": 14308,
+    "title": "Redes de Computadores",
+    "theoretical": false,
+    "shift": "PL9",
+    "building": "CP1",
+    "room": "1.30",
+    "day": 1,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 225
+  },
+  {
     "id": 14307,
     "title": "Bases de Dados",
     "theoretical": false,
@@ -2014,18 +2026,6 @@
     "start": "11:00",
     "end": "13:00",
     "filterId": 221
-  },
-  {
-    "id": 14308,
-    "title": "Redes de Computadores",
-    "theoretical": false,
-    "shift": "PL5",
-    "building": "CP1",
-    "room": "1.27",
-    "day": 2,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 225
   },
   {
     "id": 14306,
@@ -2076,16 +2076,16 @@
     "filterId": 224
   },
   {
-    "id": 14306,
-    "title": "Programação Orientada aos Objetos",
+    "id": 14308,
+    "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL2",
-    "building": "CP1",
-    "room": "2.17",
+    "shift": "PL6",
+    "building": "CP2",
+    "room": "2.02",
     "day": 4,
     "start": "11:00",
     "end": "13:00",
-    "filterId": 224
+    "filterId": 225
   },
   {
     "id": 14307,
@@ -2098,6 +2098,18 @@
     "start": "11:00",
     "end": "13:00",
     "filterId": 221
+  },
+  {
+    "id": 14306,
+    "title": "Programação Orientada aos Objetos",
+    "theoretical": false,
+    "shift": "PL2",
+    "building": "CP1",
+    "room": "2.17",
+    "day": 4,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 224
   },
   {
     "id": 14279,
@@ -2151,9 +2163,9 @@
     "id": 14308,
     "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL4",
-    "building": "CP1",
-    "room": "2.25",
+    "shift": "PL1",
+    "building": "CP3",
+    "room": "2.01",
     "day": 2,
     "start": "14:00",
     "end": "16:00",
@@ -2175,7 +2187,7 @@
     "id": 14279,
     "title": "Sistemas Operativos",
     "theoretical": false,
-    "shift": "PL1",
+    "shift": "PL9",
     "building": "CP1",
     "room": "2.23",
     "day": 2,
@@ -2268,18 +2280,6 @@
     "filterId": 224
   },
   {
-    "id": 14307,
-    "title": "Bases de Dados",
-    "theoretical": true,
-    "shift": "T2",
-    "building": "CP1",
-    "room": "0.04",
-    "day": 3,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 221
-  },
-  {
     "id": 14306,
     "title": "Programação Orientada aos Objetos",
     "theoretical": false,
@@ -2307,7 +2307,7 @@
     "id": 14279,
     "title": "Sistemas Operativos",
     "theoretical": false,
-    "shift": "PL9",
+    "shift": "PL1",
     "building": "CP1",
     "room": "2.17",
     "day": 4,
@@ -2400,18 +2400,6 @@
     "filterId": 226
   },
   {
-    "id": 14308,
-    "title": "Redes de Computadores",
-    "theoretical": false,
-    "shift": "PL9",
-    "building": "CP2",
-    "room": "1.10",
-    "day": 0,
-    "start": "16:00",
-    "end": "18:00",
-    "filterId": 225
-  },
-  {
     "id": 14306,
     "title": "Programação Orientada aos Objetos",
     "theoretical": false,
@@ -2439,9 +2427,9 @@
     "id": 14308,
     "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL3",
+    "shift": "PL5",
     "building": "CP1",
-    "room": "1.18",
+    "room": "1.15",
     "day": 0,
     "start": "16:00",
     "end": "18:00",
@@ -2451,9 +2439,9 @@
     "id": 14308,
     "title": "Redes de Computadores",
     "theoretical": false,
-    "shift": "PL1",
-    "building": "CP2",
-    "room": "2.07",
+    "shift": "PL3",
+    "building": "CP1",
+    "room": "1.18",
     "day": 0,
     "start": "16:00",
     "end": "18:00",
@@ -2530,6 +2518,18 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 226
+  },
+  {
+    "id": 14308,
+    "title": "Redes de Computadores",
+    "theoretical": false,
+    "shift": "PL4",
+    "building": "CP2",
+    "room": "2.02",
+    "day": 3,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 225
   },
   {
     "id": 14306,
