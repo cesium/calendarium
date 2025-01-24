@@ -1241,7 +1241,7 @@
     "theoretical": false,
     "shift": "PL6",
     "building": "7",
-    "room": "0.08",
+    "room": "1.10",
     "day": 1,
     "start": "16:00",
     "end": "18:00",
@@ -3468,18 +3468,6 @@
     "filterId": 324
   },
   {
-    "id": 14321,
-    "title": "Mecânica Quântica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "1.19",
-    "day": 0,
-    "start": "14:00",
-    "end": "17:00",
-    "filterId": 328
-  },
-  {
     "id": 14319,
     "title": "Engenharia Web",
     "theoretical": true,
@@ -3490,18 +3478,6 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 327
-  },
-  {
-    "id": 14320,
-    "title": "Análise de Projetos",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "CP1",
-    "room": "1.40",
-    "day": 0,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 326
   },
   {
     "id": 14315,
@@ -3516,16 +3492,16 @@
     "filterId": 322
   },
   {
-    "id": 14319,
-    "title": "Engenharia Web",
+    "id": 14320,
+    "title": "Análise de Projetos",
     "theoretical": false,
     "shift": "TP1",
-    "building": "CP2",
-    "room": "2.08",
-    "day": 1,
+    "building": "CP1",
+    "room": "1.40",
+    "day": 0,
     "start": "14:00",
     "end": "16:00",
-    "filterId": 327
+    "filterId": 326
   },
   {
     "id": 14318,
@@ -3564,16 +3540,16 @@
     "filterId": 327
   },
   {
-    "id": 14321,
-    "title": "Mecânica Quântica",
+    "id": 14318,
+    "title": "Aprendizagem e Decisão Inteligentes",
     "theoretical": false,
-    "shift": "TP1",
-    "building": "CP2",
-    "room": "1.12",
+    "shift": "PL3",
+    "building": "CP3",
+    "room": "2.05",
     "day": 3,
     "start": "14:00",
     "end": "16:00",
-    "filterId": 328
+    "filterId": 321
   },
   {
     "id": 14322,
@@ -3588,16 +3564,16 @@
     "filterId": 329
   },
   {
-    "id": 14318,
-    "title": "Aprendizagem e Decisão Inteligentes",
+    "id": 14319,
+    "title": "Engenharia Web",
     "theoretical": false,
-    "shift": "PL3",
-    "building": "CP3",
-    "room": "2.05",
-    "day": 3,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 321
+    "shift": "TP1",
+    "building": "7",
+    "room": "1.09",
+    "day": 0,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 327
   },
   {
     "id": 14318,
