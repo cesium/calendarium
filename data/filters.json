@@ -429,7 +429,7 @@
     "name": "MQ",
     "groupId": 3,
     "semester": 2,
-    "shifts": ["T1", "TP1"]
+    "shifts": []
   },
   {
     "id": 411,
