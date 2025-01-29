@@ -10,7 +10,7 @@ import { useAppInfo } from "../../contexts/AppInfoProvider";
 type ShareModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
+  setChecked: (obj: ISelectedFilterDTO[]) => void;
 };
 
 const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
@@ -91,9 +91,10 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
    * If any event is invalid, the function returns undefined
    * @param eventsString
    */
-  function parseEvents(eventsString: string): number[] | undefined {
+  function parseEvents(eventsString: string): ISelectedFilterDTO[] | undefined {
     const events = eventsString.split("&").map(parseEventValid);
-    return events.every(isValidId) ? events : undefined;
+    const formatedEvents = events.map((id) => ({ id }));
+    return events.every(isValidId) ? formatedEvents : undefined;
   }
 
   const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>

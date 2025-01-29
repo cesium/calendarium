@@ -7,12 +7,13 @@ import Head from "next/head";
 import Image from "next/image";
 import { AppInfoProvider } from "../../contexts/AppInfoProvider";
 import MoreButton from "../MoreButton";
+import { ISelectedFilterDTO } from "../../dtos";
 
 interface ILayoutProps {
   children: ReactNode;
   isEvents: boolean;
   filters: any;
-  handleFilters: any;
+  handleFilters: (filters: ISelectedFilterDTO[]) => void;
   fetchTheme: () => void;
   handleData?: (_: boolean) => void;
 }

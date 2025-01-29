@@ -1,7 +1,7 @@
 import { Switch } from "@headlessui/react";
 import { useCallback, useEffect, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { IFilterDTO } from "../../dtos";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 import {
   reduceOpacity,
   useColorTheme,
@@ -92,8 +92,9 @@ const Themes = ({ isOpen, setIsOpen }: ThemesProps) => {
   }
 
   const initializeVariables = useCallback(() => {
-    const checkedFilters: number[] =
+    const checkedFiltersData: ISelectedFilterDTO[] =
       JSON.parse(localStorage.getItem("checked")) ?? [];
+    const checkedFilters = checkedFiltersData.map((f) => f.id);
     const checkedShifts: { id: number; shift: string }[] = JSON.parse(
       localStorage.getItem("shifts")
     );

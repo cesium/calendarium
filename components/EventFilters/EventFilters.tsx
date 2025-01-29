@@ -1,16 +1,17 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "antd/dist/reset.css";
 
 import FilterBlock from "../FilterBlock";
 
-import { CheckBoxProps } from "../../types";
+import { CheckBoxProps, Layer } from "../../types";
 import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 import { useAppInfo } from "../../contexts/AppInfoProvider";
+import * as mei_perfis from "../../data/mei_perfis";
 
 type EventFiltersProps = {
   clearEvents: boolean;
-  checked: number[] | ISelectedFilterDTO[];
-  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
+  checked: ISelectedFilterDTO[];
+  setChecked: (obj: ISelectedFilterDTO[]) => void;
 };
 
 const EventFilters = ({
@@ -23,18 +24,13 @@ const EventFilters = ({
   const handleFilters = info.handleFilters;
 
   useEffect(() => {
-    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
-    setChecked(stored);
-    handleFilters(stored);
+    const storedFilters: ISelectedFilterDTO[] =
+      JSON.parse(localStorage.getItem("checked")) ?? [];
+    setChecked(storedFilters);
+    handleFilters(storedFilters);
   }, [setChecked, handleFilters]);
 
   let event: IFilterDTO[][] = [];
-
-  const mei = ["4ᵗʰ year", "5ᵗʰ year"];
-
-  const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
-
-  const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
 
   event[0] = filters.filter((f) => f.groupId === 1 && f.semester === 1); // 1st year 1st semester
   event[1] = filters.filter((f) => f.groupId === 1 && f.semester === 2); // 1st year 2nd semester
@@ -76,27 +72,163 @@ const EventFilters = ({
     clearEvents && clearSelection();
   }, [clearEvents, clearSelection]);
 
+  const [activePanels, setActivePanels] = useState<{
+    [key: string]: string;
+  }>({});
+
+  const lei: Layer[] = [
+    {
+      title: "1ˢᵗ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          checkboxes: getCheckBoxes()[0].slice(0, 5),
+          sublayers: [
+            {
+              title: "Opção UMinho",
+              checkboxes: getCheckBoxes()[0].slice(5),
+            },
+          ],
+        },
+        {
+          title: "2ⁿᵈ semester",
+          checkboxes: getCheckBoxes()[1],
+        },
+      ],
+    },
+    {
+      title: "2ⁿᵈ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          checkboxes: getCheckBoxes()[2],
+        },
+        {
+          title: "2ⁿᵈ semester",
+          checkboxes: getCheckBoxes()[3],
+        },
+      ],
+    },
+    {
+      title: "3ʳᵈ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          checkboxes: getCheckBoxes()[4],
+        },
+        {
+          title: "2ⁿᵈ semester",
+          checkboxes: getCheckBoxes()[5],
+        },
+      ],
+    },
+  ];
+
+  const mei: Layer[] = [
+    {
+      title: "4ᵗʰ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          checkboxes: getCheckBoxes()[6],
+        },
+        {
+          title: "2ⁿᵈ semester",
+          sublayers: [
+            {
+              title: "CA",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_ca.includes(i.label)
+              ),
+            },
+            {
+              title: "CG",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_cg.includes(i.label)
+              ),
+            },
+            {
+              title: "CSI",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_csi.includes(i.label)
+              ),
+            },
+            {
+              title: "EA",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_ea.includes(i.label)
+              ),
+            },
+            {
+              title: "EC",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_ec.includes(i.label)
+              ),
+            },
+            {
+              title: "EI",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_ei.includes(i.label)
+              ),
+            },
+            {
+              title: "EL",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_el.includes(i.label)
+              ),
+            },
+            {
+              title: "SD",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_sd.includes(i.label)
+              ),
+            },
+            {
+              title: "SDVM",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_sdvm.includes(i.label)
+              ),
+            },
+            {
+              title: "SDW",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_sdw.includes(i.label)
+              ),
+            },
+            {
+              title: "SI",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_si.includes(i.label)
+              ),
+            },
+            {
+              title: "MFP",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_mfp.includes(i.label)
+              ),
+            },
+            {
+              title: "RNG",
+              checkboxes: getCheckBoxes()[7].filter((i) =>
+                mei_perfis.mei_rng.includes(i.label)
+              ),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "5ᵗʰ year",
+      checkboxes: getCheckBoxes()[8],
+    },
+  ];
+
   return (
     <>
       {/* LEI */}
-      <FilterBlock
-        layer1={lei}
-        layer2={semesters}
-        checkBoxes={getCheckBoxes().slice(0, 6)}
-        checked={checked}
-        setChecked={setChecked as (v: number[]) => void}
-        isShifts={false}
-      />
+      <FilterBlock layers={lei} checked={checked} setChecked={setChecked} />
       {/* MEI */}
-      <FilterBlock
-        layer1={mei}
-        layer2={semesters}
-        checkBoxes={getCheckBoxes().slice(6, 9)}
-        checked={checked}
-        setChecked={setChecked as (v: number[]) => void}
-        exception={1}
-        isShifts={false}
-      />
+      <FilterBlock layers={mei} checked={checked} setChecked={setChecked} />
     </>
   );
 };

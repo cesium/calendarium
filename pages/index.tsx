@@ -13,7 +13,7 @@ import Layout from "../components/Layout";
 import EventModal from "../components/EventModal";
 import CustomToolbar from "../components/CustomToolbar";
 import styles from "../styles/events.module.css";
-import { IEventDTO } from "../dtos";
+import { IEventDTO, ISelectedFilterDTO } from "../dtos";
 import useColorTheme from "../hooks/useColorTheme";
 
 const localizer = momentLocalizer(moment);
@@ -85,7 +85,9 @@ export default function Home({ filters }) {
      *
      * this is why we go to the localStorage, which is normally the responsibility of EventFilters.
      */
-    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
+    const storedData: ISelectedFilterDTO[] =
+      JSON.parse(localStorage.getItem("checked")) ?? [];
+    const stored = storedData.map((f) => f.id);
     let newEvents = [...data];
     if (stored.length > 0) {
       newEvents = newEvents.filter(
@@ -96,7 +98,7 @@ export default function Home({ filters }) {
   }, []);
 
   const handleFilters = useCallback(
-    (myFilters: number[]) => {
+    (myFilters: ISelectedFilterDTO[]) => {
       const showNewEvents = (filters: number[]) => {
         let newEvents = [...fetchedEvents];
 
@@ -108,8 +110,8 @@ export default function Home({ filters }) {
 
         setEvents(newEvents);
       };
-      setFilters(myFilters);
-      showNewEvents(myFilters);
+      setFilters(myFilters.map((f) => f.id));
+      showNewEvents(myFilters.map((f) => f.id));
     },
     [fetchedEvents]
   );

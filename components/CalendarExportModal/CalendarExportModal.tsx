@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 
 import { Collapse } from "antd";
 
-import { IFilterDTO } from "../../dtos";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 import { useAppInfo } from "../../contexts/AppInfoProvider";
 
 type CalendarExportModalProps = {
@@ -27,7 +27,10 @@ const CalendarExportModal = ({
       const validEvents = checkedEvents.filter((id) =>
         filters.find((f) => f.id === id)
       );
-      localStorage.setItem("checked", JSON.stringify(validEvents));
+      localStorage.setItem(
+        "checked",
+        JSON.stringify(validEvents.map((id) => ({ id })))
+      );
 
       return validEvents;
     }
@@ -53,9 +56,10 @@ const CalendarExportModal = ({
     var query: string = "";
     if (info.isEvents) {
       // fecth checked events from localStorage
-      const checkedEvents: number[] = JSON.parse(
-        localStorage.getItem("checked")
+      const checkedEventsData: ISelectedFilterDTO[] = JSON.parse(
+        localStorage.getItem("checked") ?? "[]"
       );
+      const checkedEvents: number[] = checkedEventsData.map((f) => f.id);
 
       // if there are no checked events, return empty string (empty URL => warning message on modal)
       if (!checkedEvents || checkedEvents.length === 0) return "";
