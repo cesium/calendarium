@@ -29,7 +29,7 @@ const CalendarExportModal = ({
       );
       localStorage.setItem(
         "checked",
-        JSON.stringify(validEvents.map((id) => ({ id })))
+        JSON.stringify(validEvents.map((id) => id))
       );
 
       return validEvents;
@@ -56,10 +56,8 @@ const CalendarExportModal = ({
     var query: string = "";
     if (info.isEvents) {
       // fecth checked events from localStorage
-      const checkedEventsData: ISelectedFilterDTO[] = JSON.parse(
-        localStorage.getItem("checked") ?? "[]"
-      );
-      const checkedEvents: number[] = checkedEventsData.map((f) => f.id);
+      const checkedEvents: number[] =
+        JSON.parse(localStorage.getItem("checked")) ?? [];
 
       // if there are no checked events, return empty string (empty URL => warning message on modal)
       if (!checkedEvents || checkedEvents.length === 0) return "";

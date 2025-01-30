@@ -85,9 +85,7 @@ export default function Home({ filters }) {
      *
      * this is why we go to the localStorage, which is normally the responsibility of EventFilters.
      */
-    const storedData: ISelectedFilterDTO[] =
-      JSON.parse(localStorage.getItem("checked")) ?? [];
-    const stored = storedData.map((f) => f.id);
+    const stored: number[] = JSON.parse(localStorage.getItem("checked")) ?? [];
     let newEvents = [...data];
     if (stored.length > 0) {
       newEvents = newEvents.filter(

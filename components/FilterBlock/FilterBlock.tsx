@@ -43,9 +43,11 @@ const RenderLayer = ({
         ? [...checked, isShift ? { id, shift } : { id }]
         : checked.filter((_, idx) => idx !== index);
 
+    const storeUpdated = isShift ? updated : updated.map(({ id }) => id);
+
     setChecked(updated);
     handleFilters(updated);
-    saveState(isShift ? "shifts" : "checked", index === -1 ? updated : []);
+    saveState(isShift ? "shifts" : "checked", index === -1 ? storeUpdated : []);
   };
 
   const isChecked = (id: number, shift?: string) =>
@@ -80,9 +82,11 @@ const RenderLayer = ({
 
     const isShift = items[0].isShift;
 
+    const storeUpdated = isShift ? updated : updated.map(({ id }) => id);
+
     setChecked(updated);
     handleFilters(updated);
-    saveState(isShift ? "shifts" : "checked", allChecked ? [] : updated);
+    saveState(isShift ? "shifts" : "checked", allChecked ? [] : storeUpdated);
   };
 
   const isAllGroupChecked = (items: CheckBox[]) => {

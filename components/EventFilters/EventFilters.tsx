@@ -24,8 +24,11 @@ const EventFilters = ({
   const handleFilters = info.handleFilters;
 
   useEffect(() => {
-    const storedFilters: ISelectedFilterDTO[] =
+    const storedFiltersData: number[] =
       JSON.parse(localStorage.getItem("checked")) ?? [];
+    const storedFilters: ISelectedFilterDTO[] = storedFiltersData.map((id) => ({
+      id,
+    }));
     setChecked(storedFilters);
     handleFilters(storedFilters);
   }, [setChecked, handleFilters]);
@@ -71,10 +74,6 @@ const EventFilters = ({
   useEffect(() => {
     clearEvents && clearSelection();
   }, [clearEvents, clearSelection]);
-
-  const [activePanels, setActivePanels] = useState<{
-    [key: string]: string;
-  }>({});
 
   const lei: Layer[] = [
     {

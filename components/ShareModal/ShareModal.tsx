@@ -189,7 +189,9 @@ const ShareModal = ({ isOpen, setIsOpen, setChecked }: ShareModalProps) => {
     setChecked(parsedData);
     localStorage.setItem(
       info.isEvents ? "checked" : "shifts",
-      JSON.stringify(parsedData)
+      JSON.stringify(
+        info.isEvents ? parsedData.map(({ id }) => id) : parsedData
+      )
     );
     playValidImportAnimation();
   }

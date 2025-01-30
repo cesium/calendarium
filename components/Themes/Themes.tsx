@@ -92,9 +92,8 @@ const Themes = ({ isOpen, setIsOpen }: ThemesProps) => {
   }
 
   const initializeVariables = useCallback(() => {
-    const checkedFiltersData: ISelectedFilterDTO[] =
+    const checkedFilters: number[] =
       JSON.parse(localStorage.getItem("checked")) ?? [];
-    const checkedFilters = checkedFiltersData.map((f) => f.id);
     const checkedShifts: { id: number; shift: string }[] = JSON.parse(
       localStorage.getItem("shifts")
     );
