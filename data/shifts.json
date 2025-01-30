@@ -2117,7 +2117,7 @@
     "theoretical": true,
     "shift": "T2",
     "building": "CP2",
-    "room": "0.20",
+    "room": "0.07",
     "day": 0,
     "start": "14:00",
     "end": "16:00",
@@ -3461,7 +3461,7 @@
     "theoretical": true,
     "shift": "T1",
     "building": "CP2",
-    "room": "0.07",
+    "room": "0.20",
     "day": 0,
     "start": "14:00",
     "end": "16:00",
@@ -3502,18 +3502,6 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 321
-  },
-  {
-    "id": 14320,
-    "title": "Análise de Projetos",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "2.14",
-    "day": 1,
-    "start": "14:00",
-    "end": "15:00",
-    "filterId": 326
   },
   {
     "id": 14319,
@@ -3562,6 +3550,18 @@
     "start": "16:00",
     "end": "18:00",
     "filterId": 327
+  },
+  {
+    "id": 14320,
+    "title": "Análise de Projetos",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP1",
+    "room": "1.40",
+    "day": 0,
+    "start": "16:00",
+    "end": "17:00",
+    "filterId": 326
   },
   {
     "id": 14318,
