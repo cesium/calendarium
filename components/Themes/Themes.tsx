@@ -1,7 +1,7 @@
 import { Switch } from "@headlessui/react";
 import { useCallback, useEffect, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { IFilterDTO } from "../../dtos";
+import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 import {
   reduceOpacity,
   useColorTheme,

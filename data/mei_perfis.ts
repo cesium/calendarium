@@ -1,0 +1,13 @@
+export const mei_ca = ["CHED", "ADGD", "SAD"];
+export const mei_cg = ["VI", "VTR", "VCPI"];
+export const mei_csi = ["TS", "EC", "ES"];
+export const mei_ea = ["SIC", "AA", "ABD"];
+export const mei_ec = ["MD", "BD NoSQL", "AISBD"];
+export const mei_ei = ["GSR", "IRIP", "QSI"];
+export const mei_el = ["EG", "RPCW", "SPLN"];
+export const mei_sd = ["TF", "SDGE", "PSD"];
+export const mei_sdvm = ["TDS", "MES", "EES"];
+export const mei_sdw = ["SETCD", "CIAD", "ACAD"];
+export const mei_si = ["SA", "AProf", "ASM"];
+export const mei_mfp = ["VF", "PCF", "CSI"];
+export const mei_rng = ["RFM", "RDS", "NPR"];

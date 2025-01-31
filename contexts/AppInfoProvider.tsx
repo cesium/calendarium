@@ -4,7 +4,7 @@ import { IFilterDTO, ISelectedFilterDTO } from "../dtos";
 interface AppInfoContextData {
   isEvents: boolean;
   filters: number[] | IFilterDTO[];
-  handleFilters: (filters: number[] | ISelectedFilterDTO[]) => void;
+  handleFilters: (filters: ISelectedFilterDTO[]) => void;
   fetchTheme: () => void;
   image: string;
   handleData: (_: boolean) => void;

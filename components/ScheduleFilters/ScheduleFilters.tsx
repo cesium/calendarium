@@ -3,13 +3,14 @@ import { useCallback, useEffect } from "react";
 import { IFilterDTO, ISelectedFilterDTO } from "../../dtos";
 
 import FilterBlock from "../FilterBlock";
-import { CheckBoxProps } from "../../types";
+import { CheckBoxProps, Layer } from "../../types";
 import { useAppInfo } from "../../contexts/AppInfoProvider";
+import * as mei_perfis from "../../data/mei_perfis";
 
 interface ISelectScheduleProps {
   clearSchedule: boolean;
-  checked: number[] | ISelectedFilterDTO[];
-  setChecked: (obj: number[] | ISelectedFilterDTO[]) => void;
+  checked: ISelectedFilterDTO[];
+  setChecked: (obj: ISelectedFilterDTO[]) => void;
 }
 
 const ScheduleFilters = ({
@@ -22,7 +23,8 @@ const ScheduleFilters = ({
   const handleFilters = info.handleFilters;
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("shifts")) ?? [];
+    const stored: { id: number; shift: string }[] =
+      JSON.parse(localStorage.getItem("shifts")) ?? [];
     setChecked(stored);
     handleFilters(stored);
   }, [handleFilters, setChecked]);
@@ -79,12 +81,6 @@ const ScheduleFilters = ({
 
   filtersByGroup[9] = filters.filter((f) => f.groupId === 0); // others
 
-  const mei = ["4ᵗʰ year"];
-
-  const lei = ["1ˢᵗ year", "2ⁿᵈ year", "3ʳᵈ year"];
-
-  const semesters = ["1ˢᵗ semester", "2ⁿᵈ semester"];
-
   // Converts all filter information into the universal format used by FilterBlock
   function getCheckBoxes(): CheckBoxProps[][] {
     const checkBoxes: CheckBoxProps[][] = [];
@@ -106,26 +102,191 @@ const ScheduleFilters = ({
     return checkBoxes;
   }
 
+  const mapToCheckbox = (items: CheckBoxProps[]) =>
+    items.map((item) => ({
+      title: item.label,
+      checkboxes: item.shifts.map((shift) => ({
+        id: item.id,
+        label: shift,
+        isShift: true,
+      })),
+    }));
+
+  const lei: Layer[] = [
+    {
+      title: "1ˢᵗ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          sublayers: [
+            ...mapToCheckbox(getCheckBoxes()[0]).slice(0, 5),
+            {
+              title: "Opção UMinho",
+              sublayers: mapToCheckbox(getCheckBoxes()[0]).slice(5),
+            },
+          ],
+        },
+        {
+          title: "2ⁿᵈ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[1]),
+        },
+      ],
+    },
+    {
+      title: "2ⁿᵈ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[2]),
+        },
+        {
+          title: "2ⁿᵈ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[3]),
+        },
+      ],
+    },
+    {
+      title: "3ʳᵈ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[4]),
+        },
+        {
+          title: "2ⁿᵈ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[5]),
+        },
+      ],
+    },
+  ];
+
+  const mei: Layer[] = [
+    {
+      title: "4ᵗʰ year",
+      sublayers: [
+        {
+          title: "1ˢᵗ semester",
+          sublayers: mapToCheckbox(getCheckBoxes()[6]),
+        },
+        {
+          title: "2ⁿᵈ semester",
+          sublayers: [
+            {
+              title: "CA",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_ca.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "CG",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_cg.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "CSI",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_csi.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "EA",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_ea.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "EC",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_ec.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "EI",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_ei.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "EL",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_el.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "SD",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_sd.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "SDVM",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_sdvm.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "SDW",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_sdw.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "SI",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_si.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "MFP",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_mfp.includes(i.label)
+                )
+              ),
+            },
+            {
+              title: "RNG",
+              sublayers: mapToCheckbox(
+                getCheckBoxes()[7].filter((i) =>
+                  mei_perfis.mei_rng.includes(i.label)
+                )
+              ),
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
   return (
     <>
       {/* LEI */}
-      <FilterBlock
-        layer1={lei}
-        layer2={semesters}
-        checkBoxes={getCheckBoxes().slice(0, 6)}
-        checked={checked}
-        setChecked={setChecked as (v: ISelectedFilterDTO[]) => void}
-        isShifts
-      />
+      <FilterBlock layers={lei} checked={checked} setChecked={setChecked} />
       {/* MEI */}
-      <FilterBlock
-        layer1={mei}
-        layer2={semesters}
-        checkBoxes={getCheckBoxes().slice(6, 9)}
-        checked={checked}
-        setChecked={setChecked as (v: ISelectedFilterDTO[]) => void}
-        isShifts
-      />
+      <FilterBlock layers={mei} checked={checked} setChecked={setChecked} />
     </>
   );
 };

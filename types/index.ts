@@ -9,6 +9,18 @@ export type CheckBoxProps = {
   shifts?: string[];
 };
 
+export interface CheckBox {
+  id: number;
+  label: string;
+  isShift?: boolean;
+}
+
+export interface Layer {
+  title: string;
+  sublayers?: Layer[];
+  checkboxes?: CheckBox[];
+}
+
 export interface BeforeInstallPromptEvent extends Event {
   readonly platforms: Array<string>;
 

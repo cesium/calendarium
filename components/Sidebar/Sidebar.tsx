@@ -20,7 +20,7 @@ type SidebarProps = {
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [isSettings, setIsSettings] = useState(false);
   const [clear, setClear] = useState(false);
-  const [checked, setChecked] = useState<number[] | ISelectedFilterDTO[]>([]);
+  const [checked, setChecked] = useState<ISelectedFilterDTO[]>([]);
   const [promptInstall, setPromptInstall] =
     useState<BeforeInstallPromptEvent>(null);
   const [animateRefresh, setAnimateRefresh] = useState<boolean>(false);
