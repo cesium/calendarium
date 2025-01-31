@@ -118,7 +118,13 @@ const ScheduleFilters = ({
       sublayers: [
         {
           title: "1ˢᵗ semester",
-          sublayers: mapToCheckbox(getCheckBoxes()[0]),
+          sublayers: [
+            ...mapToCheckbox(getCheckBoxes()[0]).slice(0, 5),
+            {
+              title: "Opção UMinho",
+              sublayers: mapToCheckbox(getCheckBoxes()[0]).slice(5),
+            },
+          ],
         },
         {
           title: "2ⁿᵈ semester",
