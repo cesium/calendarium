@@ -51,6 +51,31 @@ function initializeSubjectColors(filters: IFilterDTO[]) {
   return newSubjectColors;
 }
 
+function mergeSubjectColors(a: SubjectColor[], b: SubjectColor[]) {
+  const merged = [...a];
+  b.forEach((bColor) => {
+    if (!merged.find((aColor) => aColor.filterId === bColor.filterId)) {
+      merged.push(bColor);
+    }
+  });
+  return merged;
+}
+
+function getDifferentSubjectColors(a: SubjectColor[], b: SubjectColor[]) {
+  const different = [];
+  a.forEach((aColor) => {
+    if (
+      !b.find(
+        (bColor) =>
+          bColor.filterId === aColor.filterId && bColor.color === aColor.color
+      )
+    ) {
+      different.push(aColor);
+    }
+  });
+  return different;
+}
+
 const fetchTheme = (
   setTheme: (value: SetStateAction<string>) => void,
   setOpacity: (value: SetStateAction<boolean>) => void,
@@ -63,16 +88,22 @@ const fetchTheme = (
   const subjectColorsLS: SubjectColor[] =
     JSON.parse(localStorage.getItem("subjectColors")) ?? [];
 
+  // make sure only customized subject colors are saved
+  localStorage.setItem(
+    "subjectColors",
+    JSON.stringify(
+      getDifferentSubjectColors(
+        subjectColorsLS,
+        initializeSubjectColors(filters)
+      )
+    )
+  );
+
   // error proof checks
   colorsLS &&
     colorsLS.split(",").length !== DEFAULT_COLORS.length &&
     localStorage.setItem("colors", mergeColors(colorsLS.split(",")).join(","));
   !themeLS && localStorage.setItem("theme", "Modern");
-  subjectColorsLS.length <= 0 &&
-    localStorage.setItem(
-      "subjectColors",
-      JSON.stringify(initializeSubjectColors(filters))
-    );
 
   if (themeLS !== "Modern" && themeLS !== "Classic" && themeLS !== "Custom") {
     localStorage.setItem("theme", "Modern");
@@ -81,7 +112,10 @@ const fetchTheme = (
 
   setTheme(themeLS);
   opacityLS ? setOpacity(opacityLS === "true") : setOpacity(true);
-  subjectColorsLS && setSubjectColors(subjectColorsLS);
+  setSubjectColors(
+    // merge the customized subject colors with the default ones to create a complete list
+    mergeSubjectColors(subjectColorsLS, initializeSubjectColors(filters))
+  );
 };
 
 function getDefaultColor(event: IFormatedShift | IEventDTO): string {
@@ -158,8 +192,17 @@ export const useColorTheme = (filters: IFilterDTO[]) => {
   const saveThemeChanges = useCallback(() => {
     localStorage.setItem("theme", theme);
     localStorage.setItem("opacity", opacity.toString());
-    localStorage.setItem("subjectColors", JSON.stringify(subjectColors));
-  }, [theme, opacity, subjectColors]);
+    localStorage.setItem(
+      "subjectColors",
+      JSON.stringify(
+        // store only the customized subject colors
+        getDifferentSubjectColors(
+          subjectColors,
+          initializeSubjectColors(filters)
+        )
+      )
+    );
+  }, [theme, opacity, subjectColors, filters]);
 
   return {
     saveThemeChanges,
