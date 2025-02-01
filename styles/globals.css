@@ -361,21 +361,7 @@ a {
 }
 
 #bySubject .react-colorful {
-  width: calc(100vw - 6rem);
-}
-
-#byYear .react-colorful {
-  width: calc(86vw - 6rem);
-}
-
-@media (min-width: 1024px) {
-  #bySubject .react-colorful {
-    width: 18rem;
-  }
-
-  #byYear .react-colorful {
-    width: 14rem;
-  }
+  width: 100%;
 }
 
 .ant-collapse-header-text {
