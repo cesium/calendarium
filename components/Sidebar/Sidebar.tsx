@@ -54,7 +54,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     return () => window.removeEventListener("transitionend", handler);
   }, []);
 
-  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto lg:rounded-r-3xl p-4 sm:p-6 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
+  const sidebar = `lg:w-96 lg:block lg:translate-x-0 lg:h-full h-mobile lg:shadow-md lg:border-r dark:border-neutral-400/30 w-full absolute overflow-y-auto overflow-x-hidden lg:overflow-y-auto p-4 sm:p-6 bg-white dark:bg-neutral-900 z-10 transition ease transform duration-300`;
 
   const info = useAppInfo();
 
