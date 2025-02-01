@@ -178,7 +178,7 @@ const RenderLayer = ({
 
 const FilterBlock = ({ layers, checked, setChecked }: FilterBlockProps) => {
   return (
-    <div className="overflow-hidden rounded-xl ring-1 ring-neutral-100/50 dark:ring-neutral-400/20">
+    <div className="overflow-hidden rounded-xl shadow-default ring-1 ring-neutral-100/50 dark:ring-neutral-400/20">
       <RenderLayer
         layers={layers || []}
         checked={checked}
