@@ -672,16 +672,16 @@
     "filterId": 126
   },
   {
-    "id": 14268,
-    "title": "Sistemas de Computação",
+    "id": 14299,
+    "title": "Lógica",
     "theoretical": false,
-    "shift": "PL9",
-    "building": "CP2",
-    "room": "2.04",
+    "shift": "TP6",
+    "building": "CP3",
+    "room": "1.03",
     "day": 1,
     "start": "09:00",
     "end": "11:00",
-    "filterId": 126
+    "filterId": 124
   },
   {
     "id": 14238,
@@ -706,18 +706,6 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 123
-  },
-  {
-    "id": 14299,
-    "title": "Lógica",
-    "theoretical": false,
-    "shift": "TP6",
-    "building": "CP3",
-    "room": "1.03",
-    "day": 1,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 124
   },
   {
     "id": 14301,
@@ -828,6 +816,30 @@
     "filterId": 126
   },
   {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL9",
+    "building": "7",
+    "room": "1.09",
+    "day": 3,
+    "start": "10:00",
+    "end": "12:00",
+    "filterId": 126
+  },
+  {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL3",
+    "building": "7",
+    "room": "1.10",
+    "day": 3,
+    "start": "10:00",
+    "end": "12:00",
+    "filterId": 126
+  },
+  {
     "id": 14296,
     "title": "Laboratórios de Informática II",
     "theoretical": false,
@@ -867,33 +879,21 @@
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": false,
-    "shift": "TP4",
+    "shift": "TP1",
     "building": "CP2",
-    "room": "1.12",
+    "room": "1.10",
     "day": 0,
     "start": "11:00",
     "end": "13:00",
     "filterId": 125
   },
   {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL3",
-    "building": "CP1",
-    "room": "1.17",
-    "day": 0,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 126
-  },
-  {
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": false,
-    "shift": "TP1",
+    "shift": "TP4",
     "building": "CP2",
-    "room": "1.10",
+    "room": "1.12",
     "day": 0,
     "start": "11:00",
     "end": "13:00",
@@ -3123,7 +3123,7 @@
     "id": 14316,
     "title": "Segurança de Sistemas Informáticos",
     "theoretical": false,
-    "shift": "PL3",
+    "shift": "PL1",
     "building": "CP2",
     "room": "1.12",
     "day": 0,
@@ -3171,7 +3171,7 @@
     "id": 14316,
     "title": "Segurança de Sistemas Informáticos",
     "theoretical": false,
-    "shift": "PL1",
+    "shift": "PL3",
     "building": "CP2",
     "room": "2.07",
     "day": 1,
@@ -3240,16 +3240,16 @@
     "filterId": 325
   },
   {
-    "id": 14319,
-    "title": "Engenharia Web",
+    "id": 14318,
+    "title": "Aprendizagem e Decisão Inteligentes",
     "theoretical": false,
-    "shift": "TP3",
-    "building": "7",
-    "room": "0.07",
+    "shift": "PL5",
+    "building": "CP1",
+    "room": "1.24",
     "day": 3,
     "start": "09:00",
     "end": "11:00",
-    "filterId": 327
+    "filterId": 321
   },
   {
     "id": 14317,
@@ -3262,18 +3262,6 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 324
-  },
-  {
-    "id": 14318,
-    "title": "Aprendizagem e Decisão Inteligentes",
-    "theoretical": false,
-    "shift": "PL5",
-    "building": "CP1",
-    "room": "1.24",
-    "day": 3,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 321
   },
   {
     "id": 14322,
@@ -3420,18 +3408,6 @@
     "filterId": 324
   },
   {
-    "id": 14317,
-    "title": "Processamento de Linguagens",
-    "theoretical": false,
-    "shift": "PL2",
-    "building": "CP1",
-    "room": "2.24",
-    "day": 3,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 324
-  },
-  {
     "id": 14318,
     "title": "Aprendizagem e Decisão Inteligentes",
     "theoretical": false,
@@ -3444,16 +3420,16 @@
     "filterId": 321
   },
   {
-    "id": 14319,
-    "title": "Engenharia Web",
+    "id": 14317,
+    "title": "Processamento de Linguagens",
     "theoretical": false,
-    "shift": "TP2",
-    "building": "7",
-    "room": "0.07",
+    "shift": "PL2",
+    "building": "CP1",
+    "room": "2.24",
     "day": 3,
     "start": "11:00",
     "end": "13:00",
-    "filterId": 327
+    "filterId": 324
   },
   {
     "id": 14317,
@@ -3502,6 +3478,18 @@
     "start": "14:00",
     "end": "16:00",
     "filterId": 326
+  },
+  {
+    "id": 14319,
+    "title": "Engenharia Web",
+    "theoretical": false,
+    "shift": "TP3",
+    "building": "7",
+    "room": "1.09",
+    "day": 1,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 327
   },
   {
     "id": 14318,
@@ -3562,6 +3550,18 @@
     "start": "16:00",
     "end": "17:00",
     "filterId": 326
+  },
+  {
+    "id": 14319,
+    "title": "Engenharia Web",
+    "theoretical": false,
+    "shift": "TP2",
+    "building": "7",
+    "room": "1.09",
+    "day": 1,
+    "start": "16:00",
+    "end": "18:00",
+    "filterId": 327
   },
   {
     "id": 14318,
