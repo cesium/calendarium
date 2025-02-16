@@ -780,18 +780,6 @@
     "filterId": 121
   },
   {
-    "id": 14301,
-    "title": "Programação Imperativa",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "0.08",
-    "day": 4,
-    "start": "09:00",
-    "end": "10:00",
-    "filterId": 125
-  },
-  {
     "id": 14268,
     "title": "Sistemas de Computação",
     "theoretical": true,
@@ -828,18 +816,6 @@
     "filterId": 126
   },
   {
-    "id": 14268,
-    "title": "Sistemas de Computação",
-    "theoretical": false,
-    "shift": "PL3",
-    "building": "7",
-    "room": "1.10",
-    "day": 3,
-    "start": "10:00",
-    "end": "12:00",
-    "filterId": 126
-  },
-  {
     "id": 14296,
     "title": "Laboratórios de Informática II",
     "theoretical": false,
@@ -852,28 +828,28 @@
     "filterId": 123
   },
   {
+    "id": 14268,
+    "title": "Sistemas de Computação",
+    "theoretical": false,
+    "shift": "PL3",
+    "building": "7",
+    "room": "1.10",
+    "day": 3,
+    "start": "10:00",
+    "end": "12:00",
+    "filterId": 126
+  },
+  {
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": true,
     "shift": "T1",
     "building": "CP1",
     "room": "0.08",
-    "day": 3,
+    "day": 4,
     "start": "10:00",
     "end": "11:00",
     "filterId": 125
-  },
-  {
-    "id": 14238,
-    "title": "Análise Matemática para Engenharia",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP2",
-    "room": "0.07",
-    "day": 4,
-    "start": "10:00",
-    "end": "12:00",
-    "filterId": 121
   },
   {
     "id": 14301,
@@ -998,6 +974,18 @@
   {
     "id": 14301,
     "title": "Programação Imperativa",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP1",
+    "room": "0.08",
+    "day": 3,
+    "start": "11:00",
+    "end": "12:00",
+    "filterId": 125
+  },
+  {
+    "id": 14301,
+    "title": "Programação Imperativa",
     "theoretical": false,
     "shift": "TP6",
     "building": "CP2",
@@ -1014,6 +1002,18 @@
     "shift": "TP2",
     "building": "CP2",
     "room": "1.12",
+    "day": 4,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 121
+  },
+  {
+    "id": 14238,
+    "title": "Análise Matemática para Engenharia",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP2",
+    "room": "0.07",
     "day": 4,
     "start": "11:00",
     "end": "13:00",
@@ -4240,8 +4240,8 @@
     "title": "Arquiteturas Aplicacionais",
     "theoretical": true,
     "shift": "T1",
-    "building": "CP2",
-    "room": "2.11",
+    "building": "7",
+    "room": "1.10",
     "day": 0,
     "start": "09:00",
     "end": "10:00",
@@ -4432,8 +4432,8 @@
     "title": "Arquiteturas Aplicacionais",
     "theoretical": false,
     "shift": "PL1",
-    "building": "CP2",
-    "room": "2.11",
+    "building": "7",
+    "room": "1.10",
     "day": 0,
     "start": "10:00",
     "end": "12:00",
