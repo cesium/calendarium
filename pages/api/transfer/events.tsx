@@ -7,6 +7,7 @@ import { getEvents } from "../../../utils";
 
 const API = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   try {
     const { GS_CLIENT_EMAIL, GS_PRIVATE_KEY } = process.env;
