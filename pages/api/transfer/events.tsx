@@ -25,7 +25,21 @@ const API = async (req: NextApiRequest, res: NextApiResponse) => {
     const sheets = google.sheets({ version: "v4", auth: jwt });
 
     // Fetch event data
-    const eventsData: IEventDTO[] = await getEvents(sheets);
+    let eventsData: IEventDTO[] = await getEvents(sheets);
+
+    if (req.query.filterId) {
+      eventsData = eventsData.filter(
+        (event) => event.filterId === Number(req.query.filterId as string)
+      );
+    }
+
+    if (req.query.groupId) {
+      eventsData = eventsData.filter((event) =>
+        typeof req.query.groupId === "string"
+          ? event.groupId === Number(req.query.groupId)
+          : req.query.groupId.includes(event.groupId.toString())
+      );
+    }
 
     // Convert data into JSON
     const data = JSON.stringify(eventsData);
