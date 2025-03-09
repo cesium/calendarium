@@ -711,9 +711,9 @@
     "id": 14301,
     "title": "Programação Imperativa",
     "theoretical": false,
-    "shift": "TP2",
+    "shift": "TP7",
     "building": "CP2",
-    "room": "1.10",
+    "room": "1.12",
     "day": 2,
     "start": "09:00",
     "end": "11:00",
@@ -730,6 +730,18 @@
     "start": "09:00",
     "end": "11:00",
     "filterId": 126
+  },
+  {
+    "id": 14301,
+    "title": "Programação Imperativa",
+    "theoretical": false,
+    "shift": "TP2",
+    "building": "CP2",
+    "room": "1.10",
+    "day": 2,
+    "start": "09:00",
+    "end": "11:00",
+    "filterId": 125
   },
   {
     "id": 14238,
