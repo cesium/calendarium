@@ -1,0 +1,417 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+
+  --orange: #ed7950;
+  --dark_orange: #c65932;
+
+  --placeholder: #969cb3;
+
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.txt-container-border {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+.txt-caixa {
+  display: block;
+  width: 300px;
+  padding: 10px 10px;
+  margin-top: 10px;
+  background-color: #d3d3d3;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+
+.txt-caixa input {
+  display: block;
+  width: 90%;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.txt-msg {
+  display: block;
+  width: 90%;
+  max-width: 90%;
+  border-radius: 2px;
+}
+
+.txt-send-button {
+  display: block;
+  padding: 2px 5px;
+  margin-top: 30px;
+  cursor: pointer;
+  background-color: #a9a9a9;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+
+.txt-send-button:hover {
+  opacity: 50%;
+}
+
+.rbc-calendar .rbc-event:focus {
+  outline: none;
+}
+
+/* .rbc-calendar .rbc-event:hover {
+  opacity: 0.85;
+} */
+
+.rbc-calendar .rbc-toolbar {
+  flex-wrap: nowrap;
+  font-weight: 500;
+  @apply mb-4 sm:mb-6;
+}
+
+@media (max-width: 767px) {
+  .rbc-calendar .rbc-toolbar {
+    flex-direction: row;
+  }
+}
+
+.rbc-calendar .rbc-month-view {
+  overflow: hidden;
+  border-top: 1px solid rgb(203 213 225);
+  @apply border-x-0 border-b-0 dark:border-t-neutral-400/20;
+  border-radius: 0px;
+}
+
+.rbc-calendar .rbc-toolbar .rbc-toolbar-label {
+  @media (max-width: 640px) {
+    font-size: small;
+  }
+}
+
+.rbc-calendar .rbc-toolbar button {
+  font-weight: 500;
+  color: #111827;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.rbc-calendar .rbc-toolbar button:hover {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-toolbar button:focus {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-toolbar button:active {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-white/10 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-toolbar button.rbc-active {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-neutral-800 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-timeslot-group {
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-time-slot {
+  @apply border-none;
+}
+
+.rbc-calendar .rbc-time-header-content {
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-toolbar button.rbc-active:hover {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-neutral-700/80 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-toolbar button.rbc-active:focus {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:bg-neutral-700/80 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-toolbar button.rbc-active:active {
+  color: #2c2e32;
+  border: 1px solid rgb(203 213 225);
+  @apply dark:border-neutral-400/20 dark:text-neutral-200;
+}
+
+.rbc-calendar .rbc-header {
+  padding: 0.15rem;
+  font-weight: 500;
+  color: #374151;
+  @apply dark:border-neutral-400/20 dark:text-neutral-400;
+}
+
+.rbc-calendar .rbc-off-range-bg {
+  background-color: rgb(243 244 246);
+  @apply dark:bg-neutral-800/50;
+}
+
+.rbc-calendar .rbc-header + .rbc-header {
+  @apply dark:border-l dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-off-range {
+  color: rgb(107 114 128);
+}
+
+.rbc-calendar .rbc-date-cell {
+  padding: 5px 0 5px 9px;
+  font-size: small;
+  text-align: left;
+}
+
+.rbc-calendar .rbc-month-row {
+  color: rgb(55 65 81);
+  @apply dark:text-neutral-400;
+}
+
+.rbc-calendar .rbc-month-row + .rbc-month-row {
+  border-top: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-day-bg + .rbc-day-bg {
+  border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-rtl .rbc-day-bg + .rbc-day-bg {
+  border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-event {
+  width: calc(100% - 0.2rem);
+  margin: auto;
+  margin-bottom: 0.1rem;
+  font-weight: 400;
+  border: none;
+  @apply rounded-md text-xs sm:text-sm sm:font-medium;
+}
+
+/* shows a 'today' background color in month view */
+.rbc-calendar .rbc-month-row .rbc-day-bg.rbc-today {
+  @apply bg-cesium-900/10;
+}
+
+/* hides 'today' background color by default */
+.rbc-calendar .rbc-today {
+  @apply bg-transparent;
+}
+
+.rbc-calendar .rbc-date-cell.rbc-now.rbc-current > button {
+  font-weight: 600;
+}
+
+.rbc-calendar .rbc-day-slot .rbc-events-container {
+  margin-right: 0;
+}
+
+.rbc-calendar .rbc-events-container .rbc-event {
+  @apply rounded-lg border-[3px] border-white p-2 transition-opacity hover:opacity-90 dark:border-neutral-900;
+}
+
+.rbc-calendar .rbc-time-content > * + * > * {
+  border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-rtl .rbc-time-content > * + * > * {
+  border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-content {
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-current-time-indicator {
+  height: 2px;
+  background-color: var(--orange);
+  border-radius: 12px;
+}
+
+.rbc-calendar .rbc-time-view-resources .rbc-time-header-gutter {
+  border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-header.rbc-overflowing {
+  border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-rtl .rbc-time-header.rbc-overflowing {
+  border-left: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-header > .rbc-row:first-child {
+  border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-header > .rbc-row.rbc-row-resource {
+  border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-rtl .rbc-time-header-content {
+  border-right: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-time-header-content > .rbc-row.rbc-row-resource {
+  border-bottom: 1px solid rgb(226 232 240);
+  @apply dark:border-neutral-400/20;
+}
+
+.rbc-calendar .rbc-time-view {
+  overflow: hidden;
+  border: 1px solid rgb(203 213 225);
+  @apply border-x-0 border-b-0 dark:border-t-neutral-400/20 md:border-t-0;
+}
+
+.rbc-calendar .rbc-label {
+  font-size: small;
+  color: rgb(55 65 81);
+  @apply dark:text-neutral-400;
+  text-align: left;
+}
+
+.rbc-calendar .rbc-row.rbc-time-header-cell .rbc-button-link {
+  font-weight: 500;
+}
+
+.rbc-calendar .rbc-allday-cell .rbc-event.rbc-event-allday {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.rbc-calendar .rbc-allday-cell .rbc-event {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.rbc-calendar .rbc-show-more {
+  @apply ml-[5px] bg-transparent text-[12px] font-light text-neutral-500 transition-all hover:text-neutral-200;
+
+  @media (max-width: 640px) {
+    font-size: 8px;
+  }
+}
+
+.rbc-calendar .rbc-show-more:hover,
+.rbc-show-more:focus {
+  opacity: 75%;
+}
+
+#bySubject .react-colorful {
+  width: 100%;
+}
+
+.ant-collapse-header-text {
+  @apply text-neutral-900 dark:text-neutral-200;
+}
+
+.ant-collapse-expand-icon {
+  @apply text-neutral-900 dark:text-neutral-200;
+}
+
+.ant-collapse-borderless > .ant-collapse-item {
+  @apply border-neutral-400/20;
+}
+
+.ant-checkbox-wrapper {
+  @apply font-display text-neutral-900 dark:text-neutral-200;
+}
+
+.ant-checkbox .ant-checkbox-inner {
+  @apply dark:border-neutral-400/20 dark:bg-white/20;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  @apply dark:border-neutral-400/20 dark:bg-blue-500;
+}
+
+.ant-collapse > .ant-collapse-item {
+  @apply dark:border-neutral-400/20;
+}
+
+.ant-collapse {
+  @apply dark:border-neutral-400/30 dark:bg-neutral-800;
+}
+
+.ant-collapse-content {
+  @apply dark:border-neutral-400/30 dark:bg-neutral-800 dark:text-neutral-200;
+}
+
+.ant-popover-inner {
+  @apply dark:bg-neutral-800;
+}
+
+.ant-popconfirm-message {
+  @apply dark:text-neutral-200;
+}
+
+.ant-popconfirm-description {
+  @apply dark:text-neutral-200;
+}
+
+:is(.dark .ant-popover) {
+  --antd-arrow-background-color: #262626;
+}

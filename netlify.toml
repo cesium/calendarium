@@ -4,8 +4,8 @@
 
 [build.environment]
   TZ = "Europe/Lisbon"
-  NODE_VERSION = "22.11.0"
-  NEXT_VERSION = "14.2.3"
+  NODE_VERSION = "22.16.0"
+  NEXT_VERSION = "15.3.3"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
