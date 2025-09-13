@@ -16,10 +16,10 @@
     "semester": 1
   },
   {
-    "id": 113,
-    "subjectId": 14295,
-    "name": "Laboratórios de Informática I",
-    "short_name": "LI1",
+    "id": 115,
+    "subjectId": 14273,
+    "name": "Tópicos de Matemática Discreta",
+    "short_name": "TMD",
     "year": 1,
     "semester": 1
   },
@@ -32,10 +32,10 @@
     "semester": 1
   },
   {
-    "id": 115,
-    "subjectId": 14273,
-    "name": "Tópicos de Matemática Discreta",
-    "short_name": "TMD",
+    "id": 113,
+    "subjectId": 14295,
+    "name": "Laboratórios de Informática I",
+    "short_name": "LI1",
     "year": 1,
     "semester": 1
   },
@@ -152,26 +152,18 @@
     "semester": 1
   },
   {
+    "id": 126,
+    "subjectId": 14268,
+    "name": "Sistemas de Computação",
+    "short_name": "SC",
+    "year": 1,
+    "semester": 2
+  },
+  {
     "id": 121,
     "subjectId": 14238,
     "name": "Análise Matemática para Engenharia",
     "short_name": "Análise",
-    "year": 1,
-    "semester": 2
-  },
-  {
-    "id": 122,
-    "subjectId": 14300,
-    "name": "Elementos de Probabilidades e Teoria de Números",
-    "short_name": "EPTN",
-    "year": 1,
-    "semester": 2
-  },
-  {
-    "id": 123,
-    "subjectId": 14296,
-    "name": "Laboratórios de Informática II",
-    "short_name": "LI2",
     "year": 1,
     "semester": 2
   },
@@ -184,6 +176,14 @@
     "semester": 2
   },
   {
+    "id": 122,
+    "subjectId": 14300,
+    "name": "Elementos de Probabilidades e Teoria de Números",
+    "short_name": "EPTN",
+    "year": 1,
+    "semester": 2
+  },
+  {
     "id": 125,
     "subjectId": 14301,
     "name": "Programação Imperativa",
@@ -192,26 +192,18 @@
     "semester": 2
   },
   {
-    "id": 126,
-    "subjectId": 14268,
-    "name": "Sistemas de Computação",
-    "short_name": "SC",
+    "id": 123,
+    "subjectId": 14296,
+    "name": "Laboratórios de Informática II",
+    "short_name": "LI2",
     "year": 1,
     "semester": 2
   },
   {
-    "id": 211,
-    "subjectId": 14305,
-    "name": "Algoritmos e Complexidade",
-    "short_name": "AlgC",
-    "year": 2,
-    "semester": 1
-  },
-  {
-    "id": 212,
-    "subjectId": 14303,
-    "name": "Arquitetura de Computadores",
-    "short_name": "ArqC",
+    "id": 216,
+    "subjectId": 14297,
+    "name": "Laboratórios de Informática III",
+    "short_name": "LI3",
     "year": 2,
     "semester": 1
   },
@@ -224,10 +216,18 @@
     "semester": 1
   },
   {
-    "id": 214,
-    "subjectId": 14302,
-    "name": "Física Moderna",
-    "short_name": "FM",
+    "id": 221,
+    "subjectId": 14307,
+    "name": "Bases de Dados",
+    "short_name": "BD",
+    "year": 2,
+    "semester": 1
+  },
+  {
+    "id": 212,
+    "subjectId": 14303,
+    "name": "Arquitetura de Computadores",
+    "short_name": "ArqC",
     "year": 2,
     "semester": 1
   },
@@ -240,50 +240,18 @@
     "semester": 1
   },
   {
-    "id": 216,
-    "subjectId": 14297,
-    "name": "Laboratórios de Informática III",
-    "short_name": "LI3",
+    "id": 211,
+    "subjectId": 14305,
+    "name": "Algoritmos e Complexidade",
+    "short_name": "AlgC",
     "year": 2,
     "semester": 1
   },
   {
-    "id": 221,
-    "subjectId": 14307,
-    "name": "Bases de Dados",
-    "short_name": "BD",
-    "year": 2,
-    "semester": 2
-  },
-  {
-    "id": 222,
-    "subjectId": 14288,
-    "name": "Investigação Operacional",
-    "short_name": "IO",
-    "year": 2,
-    "semester": 2
-  },
-  {
-    "id": 223,
-    "subjectId": 14282,
-    "name": "Métodos Numéricos e Otimização Não Linear",
-    "short_name": "MNOnL",
-    "year": 2,
-    "semester": 2
-  },
-  {
-    "id": 224,
-    "subjectId": 14306,
-    "name": "Programação Orientada aos Objetos",
-    "short_name": "POO",
-    "year": 2,
-    "semester": 2
-  },
-  {
-    "id": 225,
-    "subjectId": 14308,
-    "name": "Redes de Computadores",
-    "short_name": "RC",
+    "id": 323,
+    "subjectId": 14314,
+    "name": "Interface Pessoa-Máquina",
+    "short_name": "IPM",
     "year": 2,
     "semester": 2
   },
@@ -296,18 +264,42 @@
     "semester": 2
   },
   {
+    "id": 224,
+    "subjectId": 14306,
+    "name": "Programação Orientada aos Objetos",
+    "short_name": "POO",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 214,
+    "subjectId": 14302,
+    "name": "Física Moderna",
+    "short_name": "FM",
+    "year": 2,
+    "semester": 2
+  },
+  {
+    "id": 222,
+    "subjectId": 14288,
+    "name": "Investigação Operacional",
+    "short_name": "IO",
+    "year": 2,
+    "semester": 2
+  },
+    {
+    "id": 225,
+    "subjectId": 14308,
+    "name": "Redes de Computadores",
+    "short_name": "RC",
+    "year": 2,
+    "semester": 2
+  },
+  {
     "id": 311,
     "subjectId": 14309,
     "name": "Cálculo de Programas",
     "short_name": "CP",
-    "year": 3,
-    "semester": 1
-  },
-  {
-    "id": 312,
-    "subjectId": 14313,
-    "name": "Comunicações por Computador",
-    "short_name": "CC",
     "year": 3,
     "semester": 1
   },
@@ -328,10 +320,10 @@
     "semester": 1
   },
   {
-    "id": 315,
-    "subjectId": 14298,
-    "name": "Laboratórios de Informática IV",
-    "short_name": "LI4",
+    "id": 223,
+    "subjectId": 14282,
+    "name": "Métodos Numéricos e Otimização Não Linear",
+    "short_name": "MNOnL",
     "year": 3,
     "semester": 1
   },
@@ -344,10 +336,18 @@
     "semester": 1
   },
   {
-    "id": 321,
-    "subjectId": 14318,
-    "name": "Aprendizagem e Decisão Inteligentes",
-    "short_name": "ADI",
+    "id": 312,
+    "subjectId": 14313,
+    "name": "Comunicações por Computador",
+    "short_name": "CC",
+    "year": 3,
+    "semester": 1
+  },
+  {
+    "id": 315,
+    "subjectId": 14298,
+    "name": "Laboratórios de Informática IV",
+    "short_name": "LI4",
     "year": 3,
     "semester": 2
   },
@@ -360,10 +360,10 @@
     "semester": 2
   },
   {
-    "id": 323,
-    "subjectId": 14314,
-    "name": "Interface Pessoa-Máquina",
-    "short_name": "IPM",
+    "id": 325,
+    "subjectId": 14316,
+    "name": "Segurança de Sistemas Informáticos",
+    "short_name": "SSI",
     "year": 3,
     "semester": 2
   },
@@ -376,10 +376,10 @@
     "semester": 2
   },
   {
-    "id": 325,
-    "subjectId": 14316,
-    "name": "Segurança de Sistemas Informáticos",
-    "short_name": "SSI",
+    "id": 321,
+    "subjectId": 14318,
+    "name": "Aprendizagem e Decisão Inteligentes",
+    "short_name": "ADI",
     "year": 3,
     "semester": 2
   },
