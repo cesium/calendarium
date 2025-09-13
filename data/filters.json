@@ -196,11 +196,23 @@
     "shifts": ["T1", "TP1", "TP2", "TP3", "TP4"]
   },
   {
-    "id": 214,
-    "name": "FM",
+    "id": 221,
+    "name": "BD",
     "groupId": 2,
     "semester": 1,
-    "shifts": []
+    "shifts": [
+      "T1",
+      "T2",
+      "PL1",
+      "PL2",
+      "PL3",
+      "PL4",
+      "PL5",
+      "PL6",
+      "PL7",
+      "PL8",
+      "PL9"
+    ]
   },
   {
     "id": 215,
@@ -230,23 +242,11 @@
     ]
   },
   {
-    "id": 221,
-    "name": "BD",
+    "id": 214,
+    "name": "FM",
     "groupId": 2,
     "semester": 2,
-    "shifts": [
-      "T1",
-      "T2",
-      "PL1",
-      "PL2",
-      "PL3",
-      "PL4",
-      "PL5",
-      "PL6",
-      "PL7",
-      "PL8",
-      "PL9"
-    ]
+    "shifts": []
   },
   {
     "id": 222,
@@ -254,13 +254,6 @@
     "groupId": 2,
     "semester": 2,
     "shifts": []
-  },
-  {
-    "id": 223,
-    "name": "MNOnL",
-    "groupId": 2,
-    "semester": 2,
-    "shifts": ["T1", "PL1"]
   },
   {
     "id": 224,
@@ -284,11 +277,25 @@
     "shifts": []
   },
   {
+    "id": 323,
+    "name": "IPM",
+    "groupId": 2,
+    "semester": 2,
+    "shifts": []
+  },
+  {
     "id": 311,
     "name": "CP",
     "groupId": 3,
     "semester": 1,
     "shifts": ["T1", "T2", "TP1", "TP2", "TP3", "TP4", "TP5"]
+  },
+  {
+    "id": 223,
+    "name": "MNOnL",
+    "groupId": 3,
+    "semester": 1,
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 312,
@@ -312,18 +319,18 @@
     "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
   },
   {
-    "id": 315,
-    "name": "LI4",
-    "groupId": 3,
-    "semester": 1,
-    "shifts": []
-  },
-  {
     "id": 316,
     "name": "SD",
     "groupId": 3,
     "semester": 1,
     "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7"]
+  },
+  {
+    "id": 315,
+    "name": "LI4",
+    "groupId": 3,
+    "semester": 2,
+    "shifts": []
   },
   {
     "id": 321,
@@ -338,13 +345,6 @@
     "groupId": 3,
     "semester": 2,
     "shifts": []
-  },
-  {
-    "id": 323,
-    "name": "IPM",
-    "groupId": 3,
-    "semester": 2,
-    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
   },
   {
     "id": 324,
