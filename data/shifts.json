@@ -377,7 +377,7 @@
     "theoretical": false,
     "shift": "TP3",
     "building": "CP2",
-    "room": "1.11",
+    "room": "0.11",
     "day": 0,
     "start": "16:00",
     "end": "18:00",
@@ -696,6 +696,18 @@
     "filterId": 221
   },
   {
+    "id": 14307,
+    "title": "Bases de Dados",
+    "theoretical": true,
+    "shift": "T1",
+    "building": "CP2",
+    "room": "1.03",
+    "day": 1,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 221
+  },
+  {
     "id": 14303,
     "title": "Arquitetura de Computadores",
     "theoretical": true,
@@ -706,18 +718,6 @@
     "start": "11:00",
     "end": "13:00",
     "filterId": 212
-  },
-  {
-    "id": 14305,
-    "title": "Algoritmos e Complexidade",
-    "theoretical": true,
-    "shift": "T2",
-    "building": "CP2",
-    "room": "1.03",
-    "day": 1,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 211
   },
   {
     "id": 14307,
@@ -828,24 +828,24 @@
     "filterId": 216
   },
   {
+    "id": 14305,
+    "title": "Algoritmos e Complexidade",
+    "theoretical": true,
+    "shift": "T2",
+    "building": "CP2",
+    "room": "0.03",
+    "day": 2,
+    "start": "14:00",
+    "end": "16:00",
+    "filterId": 211
+  },
+  {
     "id": 14307,
     "title": "Bases de Dados",
     "theoretical": false,
     "shift": "PL8",
     "building": "CP1",
     "room": "2.19",
-    "day": 2,
-    "start": "14:00",
-    "end": "16:00",
-    "filterId": 221
-  },
-  {
-    "id": 14307,
-    "title": "Bases de Dados",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP2",
-    "room": "0.03",
     "day": 2,
     "start": "14:00",
     "end": "16:00",
@@ -1140,18 +1140,6 @@
     "filterId": 212
   },
   {
-    "id": 14311,
-    "title": "Inteligência Artificial",
-    "theoretical": false,
-    "shift": "PL5",
-    "building": "CP2",
-    "room": "1.12",
-    "day": 0,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 314
-  },
-  {
     "id": 14312,
     "title": "Sistemas Distribuídos",
     "theoretical": false,
@@ -1176,6 +1164,18 @@
     "filterId": 316
   },
   {
+    "id": 14313,
+    "title": "Comunicações por Computador",
+    "theoretical": false,
+    "shift": "PL6",
+    "building": "CP2",
+    "room": "2.06",
+    "day": 0,
+    "start": "09:00",
+    "end": "11:00",
+    "filterId": 312
+  },
+  {
     "id": 14309,
     "title": "Cálculo de Programas",
     "theoretical": false,
@@ -1194,18 +1194,6 @@
     "shift": "PL3",
     "building": "CP2",
     "room": "2.05",
-    "day": 0,
-    "start": "09:00",
-    "end": "11:00",
-    "filterId": 312
-  },
-  {
-    "id": 14313,
-    "title": "Comunicações por Computador",
-    "theoretical": false,
-    "shift": "PL6",
-    "building": "CP2",
-    "room": "2.06",
     "day": 0,
     "start": "09:00",
     "end": "11:00",
@@ -1431,18 +1419,6 @@
     "id": 14312,
     "title": "Sistemas Distribuídos",
     "theoretical": false,
-    "shift": "PL1",
-    "building": "CP3",
-    "room": "1.04",
-    "day": 3,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 316
-  },
-  {
-    "id": 14312,
-    "title": "Sistemas Distribuídos",
-    "theoretical": false,
     "shift": "PL5",
     "building": "CP3",
     "room": "2.05",
@@ -1458,6 +1434,18 @@
     "shift": "PL6",
     "building": "CP1",
     "room": "2.27",
+    "day": 3,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 316
+  },
+  {
+    "id": 14312,
+    "title": "Sistemas Distribuídos",
+    "theoretical": false,
+    "shift": "PL1",
+    "building": "CP3",
+    "room": "1.04",
     "day": 3,
     "start": "11:00",
     "end": "13:00",
@@ -1482,18 +1470,6 @@
     "shift": "PL2",
     "building": "CP2",
     "room": "1.11",
-    "day": 3,
-    "start": "11:00",
-    "end": "13:00",
-    "filterId": 314
-  },
-  {
-    "id": 14311,
-    "title": "Inteligência Artificial",
-    "theoretical": false,
-    "shift": "PL4",
-    "building": "CP3",
-    "room": "1.02",
     "day": 3,
     "start": "11:00",
     "end": "13:00",
@@ -1668,6 +1644,18 @@
     "filterId": 323
   },
   {
+    "id": 14311,
+    "title": "Inteligência Artificial",
+    "theoretical": false,
+    "shift": "PL4",
+    "building": "CP2",
+    "room": "2.03",
+    "day": 0,
+    "start": "18:00",
+    "end": "20:00",
+    "filterId": 314
+  },
+  {
     "id": 14314,
     "title": "Interface Pessoa-Máquina",
     "theoretical": false,
@@ -1690,6 +1678,18 @@
     "start": "18:00",
     "end": "20:00",
     "filterId": 323
+  },
+  {
+    "id": 14311,
+    "title": "Inteligência Artificial",
+    "theoretical": false,
+    "shift": "PL5",
+    "building": "CP1",
+    "room": "2.27",
+    "day": 1,
+    "start": "18:00",
+    "end": "20:00",
+    "filterId": 314
   },
   {
     "id": 14599,
