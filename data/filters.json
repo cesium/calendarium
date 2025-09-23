@@ -246,7 +246,7 @@
     "name": "IPM",
     "groupId": 2,
     "semester": 2,
-    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4"]
   },
   {
     "id": 226,
@@ -407,7 +407,7 @@
     "name": "ESR",
     "groupId": 4,
     "semester": 1,
-    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6", "PL7"]
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4"]
   },
   {
     "id": 415,
