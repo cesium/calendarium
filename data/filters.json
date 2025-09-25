@@ -544,9 +544,9 @@
   },
   {
     "id": 4218,
-    "name": "CHED",
+    "name": "AAC",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": []
   },
   {
@@ -684,9 +684,9 @@
   },
   {
     "id": 4238,
-    "name": "TS",
+    "name": "SSC",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": []
   },
   {
