@@ -129,7 +129,92 @@ const EventFilters = ({
       sublayers: [
         {
           title: "1ˢᵗ semester",
-          checkboxes: getCheckBoxes()[6],
+          checkboxes: getCheckBoxes()[6].slice(0, 6),
+          sublayers: [
+            {
+              title: "Profiles",
+              sublayers: [
+                {
+                  title: "CA",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_ca.includes(i.label)
+                  ),
+                },
+                {
+                  title: "CG",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_cg.includes(i.label)
+                  ),
+                },
+                {
+                  title: "CSI",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_csi.includes(i.label)
+                  ),
+                },
+                {
+                  title: "EA",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_ea.includes(i.label)
+                  ),
+                },
+                {
+                  title: "EC",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_ec.includes(i.label)
+                  ),
+                },
+                {
+                  title: "EI",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_ei.includes(i.label)
+                  ),
+                },
+                {
+                  title: "EL",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_el.includes(i.label)
+                  ),
+                },
+                {
+                  title: "SD",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_sd.includes(i.label)
+                  ),
+                },
+                {
+                  title: "SDVM",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_sdvm.includes(i.label)
+                  ),
+                },
+                {
+                  title: "SDW",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_sdw.includes(i.label)
+                  ),
+                },
+                {
+                  title: "SI",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_si.includes(i.label)
+                  ),
+                },
+                {
+                  title: "MFP",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_mfp.includes(i.label)
+                  ),
+                },
+                {
+                  title: "RNG",
+                  checkboxes: getCheckBoxes()[6].filter((i) =>
+                    mei_perfis.mei_rng.includes(i.label)
+                  ),
+                },
+              ],
+            },
+          ],
         },
         {
           title: "2ⁿᵈ semester",

@@ -166,7 +166,118 @@ const ScheduleFilters = ({
       sublayers: [
         {
           title: "1ˢᵗ semester",
-          sublayers: mapToCheckbox(getCheckBoxes()[6]),
+          sublayers: [
+            ...mapToCheckbox(getCheckBoxes()[6]).slice(0, 6),
+            {
+              title: "Profiles",
+              sublayers: [
+                {
+                  title: "CA",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_ca.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "CG",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_cg.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "CSI",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_csi.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "EA",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_ea.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "EC",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_ec.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "EI",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_ei.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "EL",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_el.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "SD",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_sd.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "SDVM",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_sdvm.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "SDW",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_sdw.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "SI",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_si.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "MFP",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_mfp.includes(i.label)
+                    )
+                  ),
+                },
+                {
+                  title: "RNG",
+                  sublayers: mapToCheckbox(
+                    getCheckBoxes()[6].filter((i) =>
+                      mei_perfis.mei_rng.includes(i.label)
+                    )
+                  ),
+                },
+              ],
+            },
+          ],
         },
         {
           title: "2ⁿᵈ semester",

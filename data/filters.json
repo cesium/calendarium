@@ -427,7 +427,7 @@
     "id": 421,
     "name": "ASM",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "PL1"]
   },
   {
@@ -455,7 +455,7 @@
     "id": 425,
     "name": "CIAD",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["TP1"]
   },
   {
@@ -469,7 +469,7 @@
     "id": 427,
     "name": "EG",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "TP1"]
   },
   {
@@ -518,7 +518,7 @@
     "id": 4214,
     "name": "ABD",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "PL1"]
   },
   {
@@ -539,14 +539,14 @@
     "id": 4217,
     "name": "BD NoSQL",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "PL1"]
   },
   {
     "id": 4218,
-    "name": "CHED",
+    "name": "AAC",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": []
   },
   {
@@ -574,7 +574,7 @@
     "id": 4222,
     "name": "MES",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "PL1"]
   },
   {
@@ -588,7 +588,7 @@
     "id": 4224,
     "name": "RFM",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "TP1"]
   },
   {
@@ -602,7 +602,7 @@
     "id": 4226,
     "name": "TF",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "PL1"]
   },
   {
@@ -616,7 +616,7 @@
     "id": 4228,
     "name": "CSI",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "TP1"]
   },
   {
@@ -644,7 +644,7 @@
     "id": 4232,
     "name": "QSI",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["T1", "TP1"]
   },
   {
@@ -684,9 +684,9 @@
   },
   {
     "id": 4238,
-    "name": "TS",
+    "name": "SSC",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": []
   },
   {
@@ -700,7 +700,7 @@
     "id": 4240,
     "name": "VTR",
     "groupId": 4,
-    "semester": 2,
+    "semester": 1,
     "shifts": ["PL1"]
   },
   {
