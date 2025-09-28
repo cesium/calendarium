@@ -547,7 +547,7 @@
     "name": "AAC",
     "groupId": 4,
     "semester": 1,
-    "shifts": []
+    "shifts": ["PL1"]
   },
   {
     "id": 4219,
@@ -687,7 +687,7 @@
     "name": "SSC",
     "groupId": 4,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "PL1"]
   },
   {
     "id": 4239,

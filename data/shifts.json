@@ -893,7 +893,7 @@
     "theoretical": true,
     "shift": "T1",
     "building": "CP2",
-    "room": "1.01",
+    "room": "0.03",
     "day": 4,
     "start": "14:00",
     "end": "16:00",
@@ -1347,9 +1347,21 @@
     "id": 14313,
     "title": "Comunicações por Computador",
     "theoretical": false,
+    "shift": "PL5",
+    "building": "CP1",
+    "room": "1.40",
+    "day": 1,
+    "start": "11:00",
+    "end": "13:00",
+    "filterId": 312
+  },
+  {
+    "id": 14313,
+    "title": "Comunicações por Computador",
+    "theoretical": false,
     "shift": "PL4",
     "building": "CP1",
-    "room": "2.09",
+    "room": "1.18",
     "day": 1,
     "start": "11:00",
     "end": "13:00",
@@ -1764,7 +1776,7 @@
     "filterId": 425
   },
   {
-    "id": 0,
+    "id": 16716,
     "title": "Arquiteturas Avançadas de Computadores",
     "theoretical": false,
     "shift": "PL1",
@@ -1773,7 +1785,7 @@
     "day": 4,
     "start": "09:00",
     "end": "10:00",
-    "filterId": 0
+    "filterId": 4218
   },
   {
     "id": 14600,
@@ -1848,7 +1860,7 @@
     "filterId": 421
   },
   {
-    "id": 0,
+    "id": 16716,
     "title": "Arquiteturas Avançadas de Computadores",
     "theoretical": false,
     "shift": "PL1",
@@ -1857,10 +1869,10 @@
     "day": 4,
     "start": "10:00",
     "end": "12:00",
-    "filterId": 0
+    "filterId": 4218
   },
   {
-    "id": 0,
+    "id": 14617,
     "title": "Segurança de Sistemas de Computação",
     "theoretical": true,
     "shift": "T1",
@@ -1869,7 +1881,7 @@
     "day": 4,
     "start": "10:00",
     "end": "11:00",
-    "filterId": 0
+    "filterId": 4238
   },
   {
     "id": 13416,
@@ -1960,8 +1972,8 @@
     "title": "Dados e Aprendizagem Automática",
     "theoretical": false,
     "shift": "PL7",
-    "building": "CP3",
-    "room": "0.08",
+    "building": "7",
+    "room": "1.09",
     "day": 1,
     "start": "11:00",
     "end": "13:00",
@@ -2028,7 +2040,7 @@
     "filterId": 415
   },
   {
-    "id": 0,
+    "id": 14617,
     "title": "Segurança de Sistemas de Computação",
     "theoretical": false,
     "shift": "PL1",
@@ -2037,7 +2049,7 @@
     "day": 4,
     "start": "11:00",
     "end": "13:00",
-    "filterId": 0
+    "filterId": 4238
   },
   {
     "id": 13416,
