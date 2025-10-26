@@ -456,18 +456,6 @@
     "filterId": 0
   },
   {
-    "id": 0,
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "2.25",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 0
-  },
-  {
     "id": 10886,
     "title": "Tópicos de Astronomia e Cosmologia",
     "theoretical": false,
@@ -478,18 +466,6 @@
     "start": "18:00",
     "end": "20:00",
     "filterId": 1119
-  },
-  {
-    "id": 15410,
-    "title": "Literacia Fotográfica da Física à Mensagem",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1115
   },
   {
     "id": 13556,
@@ -504,28 +480,16 @@
     "filterId": 117
   },
   {
-    "id": 16176,
-    "title": "Direito Laboral",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "2.24",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1110
-  },
-  {
-    "id": 0,
-    "title": "Ergonomia Visual",
+    "id": 15410,
+    "title": "Literacia Fotográfica da Física à Mensagem",
     "theoretical": false,
     "shift": "TP1",
     "building": "CP1",
-    "room": "2.14",
+    "room": "1.30",
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 0
+    "filterId": 1115
   },
   {
     "id": 14240,
