@@ -456,18 +456,6 @@
     "filterId": 0
   },
   {
-    "id": 0,
-    "title": "Sustentabilidade Ambiental, Social e Económica",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "2.25",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 0
-  },
-  {
     "id": 10886,
     "title": "Tópicos de Astronomia e Cosmologia",
     "theoretical": false,
@@ -478,18 +466,6 @@
     "start": "18:00",
     "end": "20:00",
     "filterId": 1119
-  },
-  {
-    "id": 15410,
-    "title": "Literacia Fotográfica da Física à Mensagem",
-    "theoretical": false,
-    "shift": "TP1",
-    "building": "CP1",
-    "room": "1.30",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1115
   },
   {
     "id": 13556,
@@ -504,28 +480,16 @@
     "filterId": 117
   },
   {
-    "id": 16176,
-    "title": "Direito Laboral",
-    "theoretical": true,
-    "shift": "T1",
-    "building": "CP1",
-    "room": "2.24",
-    "day": 1,
-    "start": "18:00",
-    "end": "20:00",
-    "filterId": 1110
-  },
-  {
-    "id": 0,
-    "title": "Ergonomia Visual",
+    "id": 15410,
+    "title": "Literacia Fotográfica da Física à Mensagem",
     "theoretical": false,
     "shift": "TP1",
     "building": "CP1",
-    "room": "2.14",
+    "room": "1.30",
     "day": 1,
     "start": "18:00",
     "end": "20:00",
-    "filterId": 0
+    "filterId": 1115
   },
   {
     "id": 14240,
@@ -1733,7 +1697,7 @@
     "theoretical": false,
     "shift": "PL1",
     "building": "7",
-    "room": "0.04",
+    "room": "1.09",
     "day": 3,
     "start": "09:00",
     "end": "10:00",
@@ -1745,7 +1709,7 @@
     "theoretical": true,
     "shift": "T1",
     "building": "7",
-    "room": "1.09",
+    "room": "0.04",
     "day": 3,
     "start": "09:00",
     "end": "10:00",
@@ -1829,7 +1793,7 @@
     "theoretical": false,
     "shift": "PL1",
     "building": "7",
-    "room": "0.04",
+    "room": "1.09",
     "day": 3,
     "start": "10:00",
     "end": "12:00",
@@ -1841,7 +1805,7 @@
     "theoretical": false,
     "shift": "TP1",
     "building": "7",
-    "room": "1.09",
+    "room": "0.04",
     "day": 3,
     "start": "10:00",
     "end": "12:00",
@@ -2068,8 +2032,8 @@
     "title": "Conceção e Implementação de Armazéns de Dados",
     "theoretical": false,
     "shift": "TP1",
-    "building": "CP3",
-    "room": "2.05",
+    "building": "7",
+    "room": "0.11",
     "day": 4,
     "start": "11:00",
     "end": "13:00",
