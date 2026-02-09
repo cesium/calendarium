@@ -83,7 +83,7 @@ def course_scraper(driver: WebDriver, course_name: str, subject_codes: list[dict
 
         plans_pickers = driver.find_elements(By.CLASS_NAME, "rcbItem")
 
-        plans_pickers[0].click()  # Click on the second plan, because the first one is empty
+        plans_pickers[0].click()  # Click on the first plan, because the second one is empty
 
     # Show expanded Schedule
     driver.find_element(
