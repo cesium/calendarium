@@ -1152,5 +1152,221 @@
       "T1",
       "PL1"
     ]
+  },
+  {
+    "id": 1120,
+    "name": "PQ",
+    "groupId": 1,
+    "semester": 1,
+    "shifts": [
+      "TP1"
+    ]
+  },
+  {
+    "id": 3210,
+    "name": "TSO",
+    "groupId": 3,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "TP1"
+    ]
+  },
+  {
+    "id": 3211,
+    "name": "FCQ",
+    "groupId": 3,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "TP1"
+    ]
+  },
+  {
+    "id": 4241,
+    "name": "AISBD",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4242,
+    "name": "PSI",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4243,
+    "name": "IoT",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4244,
+    "name": "Cripto",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4245,
+    "name": "PEL",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4246,
+    "name": "PDVMS",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4247,
+    "name": "PRNG",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4248,
+    "name": "PMFP",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4249,
+    "name": "PCA",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4250,
+    "name": "PEI",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4251,
+    "name": "PSDW",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4252,
+    "name": "PCSI",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4253,
+    "name": "ADED",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4254,
+    "name": "PCGVC",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4255,
+    "name": "SADE",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4256,
+    "name": "SS",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "PL1"
+    ]
+  },
+  {
+    "id": 4257,
+    "name": "ECAD",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "T1",
+      "TP1"
+    ]
+  },
+  {
+    "id": 4258,
+    "name": "PSD",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4259,
+    "name": "PEC",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
+  },
+  {
+    "id": 4260,
+    "name": "PEA",
+    "groupId": 4,
+    "semester": 2,
+    "shifts": [
+      "PL1"
+    ]
   }
 ]
