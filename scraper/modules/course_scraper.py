@@ -69,6 +69,22 @@ def course_scraper(driver: WebDriver, course_name: str, subject_codes: list[dict
             course.click()
             break
 
+    try:
+        plan_arrow_picker = driver.find_element(
+            By.ID, "ctl00_ctl40_g_e84a3962_8ce0_47bf_a5c3_d5f9dd3927ef_ctl00_dataPlano_Arrow")
+    except NoSuchElementException:
+        plan_arrow_picker = None
+    
+    # Some courses don't have a plan picker, so we need to check if it exists before click on it
+    if plan_arrow_picker is not None:
+        plan_arrow_picker.click()
+
+        sleep(1.5)  # Some JS should be running, and we need wait
+
+        plans_pickers = driver.find_elements(By.CLASS_NAME, "rcbItem")
+
+        plans_pickers[0].click()  # Click on the first plan, because the second one is empty
+
     # Show expanded Schedule
     driver.find_element(
         By.ID, "ctl00_ctl40_g_e84a3962_8ce0_47bf_a5c3_d5f9dd3927ef_ctl00_chkMostraExpandido").click()

@@ -798,5 +798,189 @@
     "short_name": "ATS",
     "year": 3,
     "semester": 2
+  },
+  {
+    "id": 1120,
+    "subjectId": 0,
+    "name": "Psicologia no Quotidiano",
+    "short_name": "PQ",
+    "year": 1,
+    "semester": 1
+  },
+  {
+    "id": 3210,
+    "subjectId": 0,
+    "name": "Tecnologias de Sistemas Operativos",
+    "short_name": "TSO",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 3211,
+    "subjectId": 0,
+    "name": "Fundamentos da Computação Quântica",
+    "short_name": "FCQ",
+    "year": 3,
+    "semester": 2
+  },
+  {
+    "id": 4241,
+    "subjectId": 0,
+    "name": "Análise Inteligente em Sistemas de Big Data",
+    "short_name": "AISBD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4242,
+    "subjectId": 0,
+    "name": "Projeto em Sistemas Inteligentes",
+    "short_name": "PSI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4243,
+    "subjectId": 0,
+    "name": "Internet das Coisas",
+    "short_name": "IoT",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4244,
+    "subjectId": 0,
+    "name": "Criptografia",
+    "short_name": "Cripto",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4245,
+    "subjectId": 0,
+    "name": "Projeto em Engenharia de Linguagens",
+    "short_name": "PEL",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4246,
+    "subjectId": 0,
+    "name": "Projeto em Desenvolvimento Validação e Manutenção de Software",
+    "short_name": "PDVMS",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4247,
+    "subjectId": 0,
+    "name": "Projeto em Redes de Nova Geração",
+    "short_name": "PRNG",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4248,
+    "subjectId": 0,
+    "name": "Projeto em Métodos Formais de Programação",
+    "short_name": "PMFP",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4249,
+    "subjectId": 0,
+    "name": "Projeto em Computação Avançada",
+    "short_name": "PCA",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4250,
+    "subjectId": 0,
+    "name": "Projeto em Engenharia Internet",
+    "short_name": "PEI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4251,
+    "subjectId": 0,
+    "name": "Projeto em Sistemas de Data Warehousing",
+    "short_name": "PSDW",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4252,
+    "subjectId": 0,
+    "name": "Projeto em Criptografia e Segurança da Informação",
+    "short_name": "PCSI",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4253,
+    "subjectId": 0,
+    "name": "Análise de Dados de Elevado Desempenho",
+    "short_name": "ADED",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4254,
+    "subjectId": 0,
+    "name": "Projeto em Computação Gráfica e Visão por Computador",
+    "short_name": "PCGVC",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4255,
+    "subjectId": 0,
+    "name": "Sistemas de Armazenamento de Dados Eficientes",
+    "short_name": "SADE",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4256,
+    "subjectId": 0,
+    "name": "Segurança de Software",
+    "short_name": "SS",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4257,
+    "subjectId": 0,
+    "name": "Extração de Conhecimento em Armazéns de Dados",
+    "short_name": "ECAD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4258,
+    "subjectId": 0,
+    "name": "Projeto em Sistemas Distribuídos",
+    "short_name": "PSD",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4259,
+    "subjectId": 0,
+    "name": "Projeto em Engenharia do Conhecimento",
+    "short_name": "PEC",
+    "year": 4,
+    "semester": 2
+  },
+  {
+    "id": 4260,
+    "subjectId": 0,
+    "name": "Projeto em Engenharia de Aplicações",
+    "short_name": "PEA",
+    "year": 4,
+    "semester": 2
   }
 ]
