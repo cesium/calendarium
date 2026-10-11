@@ -687,7 +687,7 @@
     "name": "SSC",
     "groupId": 4,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4239,
