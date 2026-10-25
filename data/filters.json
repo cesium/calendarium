@@ -309,7 +309,7 @@
     "name": "MNOnL",
     "groupId": 3,
     "semester": 1,
-    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5", "PL6"]
+    "shifts": ["T1", "PL1", "PL2", "PL3", "PL4", "PL5"]
   },
   {
     "id": 316,
@@ -687,7 +687,7 @@
     "name": "SSC",
     "groupId": 4,
     "semester": 1,
-    "shifts": []
+    "shifts": ["T1", "TP1"]
   },
   {
     "id": 4239,
